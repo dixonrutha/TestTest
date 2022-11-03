@@ -14,7 +14,7 @@
 <p>A new line in our file!</p>
 <<<<<<< HEAD
 
-<P> I made change here </P>
+<P> Another change are made </P>
 
 =======
 <hello> dickson rutha </hello>
