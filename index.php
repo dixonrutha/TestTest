@@ -14,7 +14,7 @@
 <p>A new line in our file!</p>
 <<<<<<< HEAD
 
-<P> Another change are made </P>
+<P> Localhost changes  </P>
 
 =======
 <hello> dickson rutha </hello>
