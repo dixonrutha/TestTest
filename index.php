@@ -14,7 +14,7 @@
 <p>A new line in our file!</p>
 <<<<<<< HEAD
 
-<P> error fixing here</P>
+<P> delete this </P>
 
 =======
 <hello> dickson rutha </hello>
