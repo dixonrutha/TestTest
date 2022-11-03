@@ -14,7 +14,7 @@
 <p>A new line in our file!</p>
 <<<<<<< HEAD
 
-<P> Branch changes </P>
+<P> I want these to display from my main branch</P>
 
 =======
 <hello> dickson rutha </hello>
