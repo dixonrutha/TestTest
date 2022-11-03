@@ -14,7 +14,7 @@
 <p>A new line in our file!</p>
 <<<<<<< HEAD
 
-<P> Branch changes </P>
+<P> Localhost branch  changes made by dickson </P>
 
 =======
 <hello> dickson rutha </hello>
