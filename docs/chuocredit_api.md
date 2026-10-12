@@ -1,6 +1,6 @@
 # ecoPlus Student Registration API – ChuoCredit
 
-Base URL: `https://ecowatercloud.com/chuocredit_api`
+Base URL: `https://ecowatercloud.com/api/v1`
 
 All requests and responses are JSON. Every request must send these headers:
 
@@ -16,7 +16,7 @@ A missing or wrong header returns `401`.
 
 ## 1. Register a student
 
-`POST /register`
+`POST /students/register`
 
 Send this once ChuoCredit has collected the registration fee. The student gets
 an SMS with a registration code and collects their card at any Ecowater store with their ID.
@@ -78,7 +78,7 @@ an SMS with a registration code and collects their card at any Ecowater store wi
 
 ## 2. Check a registration
 
-`GET /status?registration_code=5410000127`
+`GET /students/5410000127`
 
 Returns the registration `data` plus `record_stat` and `registered_at`, or `404`.
 
@@ -103,7 +103,7 @@ Returns the registration `data` plus `record_stat` and `registered_at`, or `404`
 ## Example
 
 ```bash
-curl -X POST https://ecowatercloud.com/chuocredit_api/register \
+curl -X POST https://ecowatercloud.com/api/v1/students/register \
   -H "Content-Type: application/json" \
   -H "auth-token: <TOKEN>" \
   -H "sender: chuocredit" \

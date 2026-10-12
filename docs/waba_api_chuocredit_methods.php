@@ -1,26 +1,18 @@
 <?php
-
-use chriskacerguis\RestServer\RestController;
-
-/**
- * Partner API for ChuoCredit student registrations.
+/*
+ * ChuoCredit partner methods for Waba_api.
  *
- *   POST /chuocredit_api/register   – register a student (fee already paid via ChuoCredit)
- *   GET  /chuocredit_api/status?registration_code=...  – look up a registration
- *   GET  /chuocredit_api/campuses   – list supported campuses and their codes
- *
- * Saves into ecoplus_paid_reg the same way Waba_api::ecoplus_pay_reg_post() does
- * for WhatsApp customers; that function is left unchanged.
- *
- * Auth: headers "auth-token" + "sender", checked against rest_api_keys (cert, username).
+ * Paste everything between START and END inside the Waba_api class
+ * (e.g. just above the "Selcom USSD Push Code Start Here" comment).
+ * Nothing existing is replaced; ecoplus_pay_reg_post() stays as it is.
+ * It reuses the existing _generate_luhn_check() and the Sms_model
+ * already loaded in the Waba_api constructor.
  */
-class Chuocredit_api extends RestController
-{
-    const PARTNER = "chuocredit";
-    const REGISTRATION_FEE = 5000;
 
-    // Campus name => campus code (same codes as Waba_api::get_campus_code)
-    private $campus_codes = [
+    // ===================== START: ChuoCredit partner API =====================
+
+    // Campus name => campus code (same codes as get_campus_code)
+    private $chuocredit_campus_codes = [
         'Sokoine University Of Agriculture' => 'CA-000060',
         'St. John University Of Tanzania' => 'CA-000057',
         'College Of Business Education (Dodoma)' => 'CA-000061',
@@ -36,15 +28,10 @@ class Chuocredit_api extends RestController
         'Mzumbe University' => 'CA-000069',
     ];
 
-    public function __construct()
+    // POST api/v1/students/register
+    public function chuocredit_register_post()
     {
-        parent::__construct();
-        $this->load->model(["Sms_model", "Settings_model"]);
-    }
-
-    public function register_post()
-    {
-        if (!$this->_is_authorized()) {
+        if (!$this->_chuocredit_authorized()) {
             return $this->response(["status" => "error", "message" => "Authorization Failed"], 401);
         }
 
@@ -68,7 +55,7 @@ class Chuocredit_api extends RestController
             $errors["gender"] = "Use M, F, Male or Female";
         }
 
-        $mobile = $this->_normalize_mobile($mobile_in);
+        $mobile = $this->_chuocredit_mobile($mobile_in);
         if ($mobile === null) {
             $errors["mobile"] = "Use 07XXXXXXXX or 255XXXXXXXXX";
         }
@@ -77,13 +64,13 @@ class Chuocredit_api extends RestController
             $errors["email"] = "Invalid email";
         }
 
-        $campus_code = $this->_get_campus_code($campus_in);
+        $campus_code = $this->_chuocredit_campus_code($campus_in);
         if ($campus_code === null) {
-            $errors["campus"] = "Unknown campus. Use a campus_code from GET /chuocredit_api/campuses";
+            $errors["campus"] = "Unknown campus. Use a campus_code from GET api/v1/campuses";
         }
 
-        if (!is_numeric($amount) || (float)$amount < self::REGISTRATION_FEE) {
-            $errors["amount"] = "Registration fee is TZS " . self::REGISTRATION_FEE;
+        if (!is_numeric($amount) || (float)$amount < 5000) {
+            $errors["amount"] = "Registration fee is TZS 5000";
         }
 
         if ($errors) {
@@ -118,12 +105,12 @@ class Chuocredit_api extends RestController
             "gender" => $gender_map[$gender_in],
             "campus_code" => $campus_code,
             "sub_registration_date" => date("Y-m-d H:i:s"),
-            "relationship_agent" => self::PARTNER,
+            "relationship_agent" => "chuocredit",
             "subscription_plan" => "Fee",
             "record_stat" => "OPEN",
             "category" => "STUDENT",
             "sub_fee_amount" => $amount,
-            "registered_by" => self::PARTNER,
+            "registered_by" => "chuocredit",
         ]);
         $subscriber_id = $this->db->insert_id();
 
@@ -166,16 +153,17 @@ class Chuocredit_api extends RestController
         ], 201);
     }
 
-    public function status_get()
+    // GET api/v1/students/{registration_code}
+    public function chuocredit_status_get($registration_code = "")
     {
-        if (!$this->_is_authorized()) {
+        if (!$this->_chuocredit_authorized()) {
             return $this->response(["status" => "error", "message" => "Authorization Failed"], 401);
         }
 
-        $registration_code = trim((string)$this->get("registration_code"));
+        $registration_code = trim((string)$registration_code);
         $reg = $registration_code === "" ? null : $this->db->get_where("ecoplus_paid_reg", [
             "waba_reg_code" => $registration_code,
-            "registered_by" => self::PARTNER,
+            "registered_by" => "chuocredit",
         ])->row();
 
         if (!$reg) {
@@ -194,14 +182,15 @@ class Chuocredit_api extends RestController
         ], 200);
     }
 
-    public function campuses_get()
+    // GET api/v1/campuses
+    public function chuocredit_campuses_get()
     {
-        if (!$this->_is_authorized()) {
+        if (!$this->_chuocredit_authorized()) {
             return $this->response(["status" => "error", "message" => "Authorization Failed"], 401);
         }
 
         $list = [];
-        foreach ($this->campus_codes as $name => $code) {
+        foreach ($this->chuocredit_campus_codes as $name => $code) {
             $list[] = ["campus_code" => $code, "campus_name" => $name];
         }
 
@@ -209,23 +198,23 @@ class Chuocredit_api extends RestController
     }
 
     // Accepts a campus code (CA-000060) or the campus name; returns the code or null
-    private function _get_campus_code($campus)
+    private function _chuocredit_campus_code($campus)
     {
         if ($campus === "") {
             return null;
         }
 
         $upper = strtoupper($campus);
-        if (in_array($upper, $this->campus_codes, true)) {
+        if (in_array($upper, $this->chuocredit_campus_codes, true)) {
             return $upper;
         }
 
         $name = ucwords(strtolower(str_replace('_', ' ', $campus)));
-        return $this->campus_codes[$name] ?? null;
+        return $this->chuocredit_campus_codes[$name] ?? null;
     }
 
     // 07XXXXXXXX / 7XXXXXXXX / +255XXXXXXXXX / 255XXXXXXXXX => 255XXXXXXXXX, otherwise null
-    private function _normalize_mobile($number)
+    private function _chuocredit_mobile($number)
     {
         $digits = preg_replace("/[^0-9]/", "", $number);
         if (strlen($digits) === 10 && $digits[0] === "0") {
@@ -240,36 +229,18 @@ class Chuocredit_api extends RestController
         return null;
     }
 
-    private function _generate_luhn_check($value = "")
-    {
-        $value = (string)$value;
-        $length = strlen($value);
-        $parity = $length % 2;
-        $sum = 0;
-        for ($i = $length - 1; $i >= 0; --$i) {
-            $char = $value[$i];
-            if ($i % 2 != $parity) {
-                $char *= 2;
-                if ($char > 9) {
-                    $char -= 9;
-                }
-            }
-            $sum += $char;
-        }
-        return ($sum * 9) % 10;
-    }
-
-    // Only the ChuoCredit key may call this controller
-    private function _is_authorized()
+    // Only the ChuoCredit key (sender "chuocredit" in rest_api_keys) may call these
+    private function _chuocredit_authorized()
     {
         $token = $this->input->get_request_header("auth-token", true);
         $sender = $this->input->get_request_header("sender", true);
 
-        if (empty($token) || $sender !== self::PARTNER) {
+        if (empty($token) || $sender !== "chuocredit") {
             return false;
         }
 
         return $this->db->where(["cert" => $token, "username" => $sender])
                 ->count_all_results("rest_api_keys") === 1;
     }
-}
+
+    // ====================== END: ChuoCredit partner API ======================
