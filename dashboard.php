@@ -25,8 +25,8 @@
     font-weight: 400;
     color: var(--ink);
     background: var(--frame);
-    border-radius: 28px;
-    padding: 24px;
+    border-radius: 22px;
+    padding: 18px 12px;
     -webkit-font-smoothing: antialiased;
 }
 .mj-dash *, .mj-dash *::before, .mj-dash *::after { box-sizing: border-box; }
@@ -44,13 +44,13 @@
     .mj-grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 767.98px) {
-    .mj-dash { padding: 14px; border-radius: 0; }
+    .mj-dash { padding: 12px 8px; border-radius: 0; }
     .mj-grid { gap: 14px; margin-bottom: 14px; }
     .mj-grid-3 { grid-template-columns: 1fr; }
 }
 
 /* ---------- Top bar ---------- */
-.mj-topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin: 4px 4px 22px; }
+.mj-topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin: 2px 6px 18px; }
 .mj-hello { display: flex; align-items: center; gap: 14px; }
 .mj-logo { width: 40px; height: 40px; border-radius: 50%; background: var(--blue); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600; }
 .mj-hello h1 { font-size: 20px; font-weight: 400; letter-spacing: -.01em; }
@@ -95,7 +95,7 @@
 .mj-balance-top { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
 .mj-balance-meta { text-align: right; }
 .mj-balance-meta b { display: block; font-size: 17px; color: var(--blue); font-weight: 400; margin-top: 4px; }
-.mj-big { font-size: 40px; font-weight: 400; letter-spacing: -.03em; line-height: 1.05; margin: 6px 0 8px; overflow-wrap: anywhere; }
+.mj-big { font-size: 40px; font-weight: 400; color: var(--ink); letter-spacing: -.03em; line-height: 1.05; margin: 6px 0 8px; overflow-wrap: anywhere; }
 .mj-balance-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 22px; }
 .mj-go { margin-left: auto; width: 56px; height: 56px; border-radius: 50%; background: var(--blue); display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; }
 .mj-go svg { width: 22px; height: 22px; }
@@ -104,6 +104,7 @@
 /* ---------- Lime refills card ---------- */
 .mj-card.accent { background: linear-gradient(140deg, var(--blue) 0%, var(--blue-dark) 100%); color: #fff; }
 .mj-card.accent .mj-label { color: rgba(255, 255, 255, .85); }
+.mj-card.accent .mj-big { color: #fff; }
 .mj-star { position: absolute; right: 8px; top: 12px; width: 160px; height: 160px; color: rgba(255, 255, 255, .08); pointer-events: none; }
 .mj-badge { position: relative; display: inline-flex; align-items: center; gap: 10px; height: 36px; padding: 0 4px 0 14px; border-radius: 999px; background: rgba(255, 255, 255, .16); color: #fff; font-size: 12px; letter-spacing: .1em; }
 .mj-badge i { width: 28px; height: 28px; border-radius: 50%; background: #fff; color: var(--blue); display: flex; align-items: center; justify-content: center; font-style: normal; }
@@ -137,7 +138,7 @@
 .mj-legend span { color: var(--muted); margin-left: auto; }
 
 /* ---------- Apps performance (progress rows) ---------- */
-.mj-amount { font-size: 30px; font-weight: 400; letter-spacing: -.03em; line-height: 1.1; overflow-wrap: anywhere; }
+.mj-amount { font-size: 30px; font-weight: 400; color: var(--ink); letter-spacing: -.03em; line-height: 1.1; overflow-wrap: anywhere; }
 .mj-dash .mj-progress { margin-top: 20px; }
 .mj-progress li + li { margin-top: 16px; }
 .mj-progress-top { display: flex; justify-content: space-between; gap: 10px; font-size: 13px; margin-bottom: 7px; }
