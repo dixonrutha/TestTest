@@ -129,108 +129,6 @@
 .mj-split .mj-split-hint { font-size: 11px; color: var(--mj-muted); }
 </style>
 
-<?php
-// Shared helper for the "vs previous period" indicators (UI only).
-$mj_trend = function ($current, $previous) {
-    if ($previous > 0) {
-        $change = round((($current - $previous) / $previous) * 100, 1);
-        if ($change > 0) {
-            return ['text' => number_format(abs($change), 1) . '%', 'icon' => 'ion-md-arrow-up', 'class' => 'is-up'];
-        }
-        if ($change < 0) {
-            return ['text' => number_format(abs($change), 1) . '%', 'icon' => 'ion-md-arrow-down', 'class' => 'is-down'];
-        }
-        return ['text' => '0.0%', 'icon' => '', 'class' => 'is-flat'];
-    }
-    return ['text' => 'N/A', 'icon' => '', 'class' => 'is-flat'];
-};
-
-$mj_e = function ($value) {
-    return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
-};
-
-$mj_chip_icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>';
-
-// Revenue
-$today_revenue          = $majik_revenue_today->revenue;
-$yesterday_revenue      = $majik_revenue_yesterday->revenue;
-$current_month_revenue  = $majik_revenue_current_month->revenue;
-$previous_month_revenue = $majik_revenue_previous_month->revenue;
-$current_year_revenue   = $majik_revenue_current_year->revenue;
-$previous_year_revenue  = $majik_revenue_previous_year->revenue;
-
-// Refills
-$today_order          = $majik_order_today->majik_order;
-$yesterday_order      = $majik_order_yesterday->majik_order;
-$current_month_order  = $majik_order_current_month->majik_order;
-$previous_month_order = $majik_order_previous_month->majik_order;
-$current_year_order   = $majik_order_current_year->majik_order;
-$previous_year_order  = $majik_order_previous_year->majik_order;
-
-$revenue_kpis = [
-    [
-        'label' => 'Today',
-        'value' => $majik_revenue_today->revenue,
-        'trend' => $mj_trend($today_revenue, $yesterday_revenue),
-        'note'  => 'vs yesterday',
-        'meta'  => [
-            'Yesterday payments' => number_format($yesterday_revenue, 2),
-            'Delivery fee'       => number_format($majik_delivery_today->delivery, 0),
-        ],
-    ],
-    [
-        'label' => 'Month',
-        'value' => $majik_revenue_mtd->revenue,
-        'trend' => $mj_trend($current_month_revenue, $previous_month_revenue),
-        'note'  => 'vs last month',
-        'meta'  => ['Delivery fee' => number_format($majik_delivery_mnth->delivery, 0)],
-    ],
-    [
-        'label' => 'Year',
-        'value' => $majik_revenue_ytd->revenue,
-        'trend' => $mj_trend($current_year_revenue, $previous_year_revenue),
-        'note'  => 'vs last year',
-        'meta'  => ['Delivery fee' => number_format($majik_delivery_yr->delivery, 0)],
-    ],
-];
-
-$refill_kpis = [
-    [
-        'label' => 'Today',
-        'value' => $majik_order_today->majik_order,
-        'trend' => $mj_trend($today_order, $yesterday_order),
-        'note'  => 'vs yesterday',
-        'meta'  => ['Yesterday refills' => number_format($yesterday_order, 0)],
-    ],
-    [
-        'label' => 'Month',
-        'value' => $majik_order_mtd->majik_order,
-        'trend' => $mj_trend($current_month_order, $previous_month_order),
-        'note'  => 'vs last month',
-        'meta'  => [],
-    ],
-    [
-        'label' => 'Year',
-        'value' => $majik_order_ytd->majik_order,
-        'trend' => $mj_trend($current_year_order, $previous_year_order),
-        'note'  => 'vs last year',
-        'meta'  => [],
-    ],
-];
-
-// Majikans performance
-$sub_total = 0;
-foreach ($counts as $p) {
-    $sub_total = $sub_total + $p->count;
-}
-$mj_status_map = [
-    'E' => ['label' => 'Excellent', 'class' => 'mj-c-excellent'],
-    'G' => ['label' => 'Good',      'class' => 'mj-c-good'],
-    'N' => ['label' => 'Normal',    'class' => 'mj-c-normal'],
-    'D' => ['label' => 'Dormant',   'class' => 'mj-c-dormant'],
-];
-?>
-
 <body>
 
 <div class="app">
@@ -247,73 +145,282 @@ $mj_status_map = [
         <span class="mj-date-chip"><?= date('D, d M Y') ?></span>
     </div>
 
-    <!-- ===== Row 1: Revenue & Refills ===== -->
+    <!-- ===================== ROW 1 : REVENUE & REFILLS ===================== -->
     <div class="row">
-        <?php
-        $mj_chart_cards = [
-            ['col' => 'col-lg-7', 'title' => 'Revenue Analysis', 'accent' => '',          'chart' => 'revenuegraph', 'kpis' => $revenue_kpis],
-            ['col' => 'col-lg-5', 'title' => 'Refills Analysis', 'accent' => ' is-green', 'chart' => 'refillgraph',  'kpis' => $refill_kpis],
-        ];
-        foreach ($mj_chart_cards as $card): ?>
-        <div class="col-12 <?= $card['col'] ?> mj-col">
+
+        <!-- Revenue Analysis -->
+        <div class="col-12 col-lg-7 mj-col">
             <div class="mj-card">
                 <div class="mj-card-head">
-                    <h4 class="mj-card-title">
-                        <span class="mj-accent<?= $card['accent'] ?>"></span><?= $card['title'] ?>
-                    </h4>
+                    <h4 class="mj-card-title"><span class="mj-accent"></span>Revenue Analysis</h4>
                     <span class="mj-card-sub">Year <?= date('Y') ?></span>
                 </div>
                 <div class="mj-card-body">
-                    <div id="<?= $card['chart'] ?>" class="mj-chart"></div>
+                    <div id="revenuegraph" class="mj-chart"></div>
                 </div>
                 <div class="mj-kpis">
-                    <?php foreach ($card['kpis'] as $kpi): ?>
+
+                    <!-- Today -->
                     <div class="mj-kpi">
-                        <p class="mj-kpi-label"><?= $kpi['label'] ?></p>
-                        <p class="mj-kpi-value mj-num"><?= number_format($kpi['value'], 0) ?></p>
-                        <span class="mj-trend <?= $kpi['trend']['class'] ?>">
-                            <?php if ($kpi['trend']['icon']): ?><i class="icon <?= $kpi['trend']['icon'] ?>"></i><?php endif; ?>
-                            <?= $kpi['trend']['text'] ?>
-                        </span>
-                        <span class="mj-trend-note"><?= $kpi['note'] ?></span>
-                        <?php foreach ($kpi['meta'] as $meta_label => $meta_value): ?>
-                        <p class="mj-kpi-meta"><?= $meta_label ?>: <strong class="mj-num"><?= $meta_value ?></strong></p>
-                        <?php endforeach; ?>
+                        <?php
+                        $today_revenue = $majik_revenue_today->revenue;
+                        $yesterday_revenue = $majik_revenue_yesterday->revenue;
+
+                        if ($yesterday_revenue > 0) {
+                            $percentage_change = (($today_revenue - $yesterday_revenue) / $yesterday_revenue) * 100;
+                            if ($percentage_change > 0) {
+                                $icon = 'ion-md-arrow-up';
+                                $class = 'is-up';
+                            } else if ($percentage_change < 0) {
+                                $icon = 'ion-md-arrow-down';
+                                $class = 'is-down';
+                            } else {
+                                $icon = '';
+                                $class = 'is-flat';
+                            }
+                            $percentage_change = number_format(abs($percentage_change), 1) . '%';
+                        } else {
+                            $percentage_change = 'N/A';
+                            $icon = '';
+                            $class = 'is-flat';
+                        }
+                        ?>
+                        <p class="mj-kpi-label">Today</p>
+                        <p class="mj-kpi-value"><?= number_format($majik_revenue_today->revenue, 0) ?></p>
+                        <span class="mj-trend <?php echo $class; ?>"><i class="icon <?php echo $icon; ?>"></i> <?php echo $percentage_change; ?></span>
+                        <span class="mj-trend-note">vs yesterday</span>
+                        <p class="mj-kpi-meta">Yesterday payments: <strong><?php echo number_format($yesterday_revenue, 2); ?></strong></p>
+                        <p class="mj-kpi-meta">Delivery fee: <strong><?= number_format($majik_delivery_today->delivery, 0) ?></strong></p>
                     </div>
-                    <?php endforeach; ?>
+
+                    <!-- Month -->
+                    <div class="mj-kpi">
+                        <?php
+                        $current_month_revenue = $majik_revenue_current_month->revenue;
+                        $previous_month_revenue = $majik_revenue_previous_month->revenue;
+
+                        if ($previous_month_revenue > 0) {
+                            $percentage_change = (($current_month_revenue - $previous_month_revenue) / $previous_month_revenue) * 100;
+                            if ($percentage_change > 0) {
+                                $icon = 'ion-md-arrow-up';
+                                $class = 'is-up';
+                            } else if ($percentage_change < 0) {
+                                $icon = 'ion-md-arrow-down';
+                                $class = 'is-down';
+                            } else {
+                                $icon = '';
+                                $class = 'is-flat';
+                            }
+                            $percentage_change = number_format(abs($percentage_change), 1) . '%';
+                        } else {
+                            $percentage_change = 'N/A';
+                            $icon = '';
+                            $class = 'is-flat';
+                        }
+                        ?>
+                        <p class="mj-kpi-label">Month</p>
+                        <p class="mj-kpi-value"><?= number_format($majik_revenue_mtd->revenue, 0) ?></p>
+                        <span class="mj-trend <?php echo $class; ?>"><i class="icon <?php echo $icon; ?>"></i> <?php echo $percentage_change; ?></span>
+                        <span class="mj-trend-note">vs last month</span>
+                        <p class="mj-kpi-meta">Delivery fee: <strong><?= number_format($majik_delivery_mnth->delivery, 0) ?></strong></p>
+                    </div>
+
+                    <!-- Year -->
+                    <div class="mj-kpi">
+                        <?php
+                        $current_year_revenue = $majik_revenue_current_year->revenue;
+                        $previous_year_revenue = $majik_revenue_previous_year->revenue;
+
+                        if ($previous_year_revenue > 0) {
+                            $percentage_change = (($current_year_revenue - $previous_year_revenue) / $previous_year_revenue) * 100;
+                            if ($percentage_change > 0) {
+                                $icon = 'ion-md-arrow-up';
+                                $class = 'is-up';
+                            } else if ($percentage_change < 0) {
+                                $icon = 'ion-md-arrow-down';
+                                $class = 'is-down';
+                            } else {
+                                $icon = '';
+                                $class = 'is-flat';
+                            }
+                            $percentage_change = number_format(abs($percentage_change), 1) . '%';
+                        } else {
+                            $percentage_change = 'N/A';
+                            $icon = '';
+                            $class = 'is-flat';
+                        }
+                        ?>
+                        <p class="mj-kpi-label">Year</p>
+                        <p class="mj-kpi-value"><?= number_format($majik_revenue_ytd->revenue, 0) ?></p>
+                        <span class="mj-trend <?php echo $class; ?>"><i class="icon <?php echo $icon; ?>"></i> <?php echo $percentage_change; ?></span>
+                        <span class="mj-trend-note">vs last year</span>
+                        <p class="mj-kpi-meta">Delivery fee: <strong><?= number_format($majik_delivery_yr->delivery, 0) ?></strong></p>
+                    </div>
+
                 </div>
             </div>
         </div>
-        <?php endforeach; ?>
+
+        <!-- Refills Analysis -->
+        <div class="col-12 col-lg-5 mj-col">
+            <div class="mj-card">
+                <div class="mj-card-head">
+                    <h4 class="mj-card-title"><span class="mj-accent is-green"></span>Refills Analysis</h4>
+                    <span class="mj-card-sub">Year <?= date('Y') ?></span>
+                </div>
+                <div class="mj-card-body">
+                    <div id="refillgraph" class="mj-chart"></div>
+                </div>
+                <div class="mj-kpis">
+
+                    <!-- Today -->
+                    <div class="mj-kpi">
+                        <?php
+                        $today_order = $majik_order_today->majik_order;
+                        $yesterday_order = $majik_order_yesterday->majik_order;
+
+                        if ($yesterday_order > 0) {
+                            $percentage_change = (($today_order - $yesterday_order) / $yesterday_order) * 100;
+                            if ($percentage_change > 0) {
+                                $icon = 'ion-md-arrow-up';
+                                $class = 'is-up';
+                            } else if ($percentage_change < 0) {
+                                $icon = 'ion-md-arrow-down';
+                                $class = 'is-down';
+                            } else {
+                                $icon = '';
+                                $class = 'is-flat';
+                            }
+                            $percentage_change = number_format(abs($percentage_change), 1) . '%';
+                        } else {
+                            $percentage_change = 'N/A';
+                            $icon = '';
+                            $class = 'is-flat';
+                        }
+                        ?>
+                        <p class="mj-kpi-label">Today</p>
+                        <p class="mj-kpi-value"><?= number_format($majik_order_today->majik_order, 0) ?></p>
+                        <span class="mj-trend <?php echo $class; ?>"><i class="icon <?php echo $icon; ?>"></i> <?php echo $percentage_change; ?></span>
+                        <span class="mj-trend-note">vs yesterday</span>
+                        <p class="mj-kpi-meta">Yesterday refills: <strong><?php echo number_format($yesterday_order, 0); ?></strong></p>
+                    </div>
+
+                    <!-- Month -->
+                    <div class="mj-kpi">
+                        <?php
+                        $current_month_order = $majik_order_current_month->majik_order;
+                        $previous_month_order = $majik_order_previous_month->majik_order;
+
+                        if ($previous_month_order > 0) {
+                            $percentage_change = (($current_month_order - $previous_month_order) / $previous_month_order) * 100;
+                            if ($percentage_change > 0) {
+                                $icon = 'ion-md-arrow-up';
+                                $class = 'is-up';
+                            } else if ($percentage_change < 0) {
+                                $icon = 'ion-md-arrow-down';
+                                $class = 'is-down';
+                            } else {
+                                $icon = '';
+                                $class = 'is-flat';
+                            }
+                            $percentage_change = number_format(abs($percentage_change), 1) . '%';
+                        } else {
+                            $percentage_change = 'N/A';
+                            $icon = '';
+                            $class = 'is-flat';
+                        }
+                        ?>
+                        <p class="mj-kpi-label">Month</p>
+                        <p class="mj-kpi-value"><?= number_format($majik_order_mtd->majik_order, 0) ?></p>
+                        <span class="mj-trend <?php echo $class; ?>"><i class="icon <?php echo $icon; ?>"></i> <?php echo $percentage_change; ?></span>
+                        <span class="mj-trend-note">vs last month</span>
+                    </div>
+
+                    <!-- Year -->
+                    <div class="mj-kpi">
+                        <?php
+                        $current_year_order = $majik_order_current_year->majik_order;
+                        $previous_year_order = $majik_order_previous_year->majik_order;
+
+                        if ($previous_year_order > 0) {
+                            $percentage_change = (($current_year_order - $previous_year_order) / $previous_year_order) * 100;
+                            if ($percentage_change > 0) {
+                                $icon = 'ion-md-arrow-up';
+                                $class = 'is-up';
+                            } else if ($percentage_change < 0) {
+                                $icon = 'ion-md-arrow-down';
+                                $class = 'is-down';
+                            } else {
+                                $icon = '';
+                                $class = 'is-flat';
+                            }
+                            $percentage_change = number_format(abs($percentage_change), 1) . '%';
+                        } else {
+                            $percentage_change = 'N/A';
+                            $icon = '';
+                            $class = 'is-flat';
+                        }
+                        ?>
+                        <p class="mj-kpi-label">Year</p>
+                        <p class="mj-kpi-value"><?= number_format($majik_order_ytd->majik_order, 0) ?></p>
+                        <span class="mj-trend <?php echo $class; ?>"><i class="icon <?php echo $icon; ?>"></i> <?php echo $percentage_change; ?></span>
+                        <span class="mj-trend-note">vs last year</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <!-- ===== Row 2: Majikans / Customer base / Apps ===== -->
+    <!-- ===================== ROW 2 : MAJIKANS / CUSTOMER BASE / APPS ===================== -->
     <div class="row">
 
         <!-- Majikans Performance -->
+        <?php
+        $sub_total = 0;
+        foreach ($counts as $p) {
+            $sub_total = $sub_total + $p->count;
+        }
+        ?>
         <div class="col-12 col-md-6 col-xl-4 mj-col">
             <div class="mj-card">
                 <div class="mj-card-head">
                     <h4 class="mj-card-title">Majikans Performance</h4>
-                    <span class="mj-card-sub mj-num"><?= number_format($sub_total, 0) ?> total</span>
+                    <span class="mj-card-sub"><?= number_format($sub_total, 0) ?> total</span>
                 </div>
                 <div class="mj-card-body">
                     <ul class="mj-status">
-                        <?php foreach ($counts as $p):
-                            if (!isset($mj_status_map[$p->sub_stat_dormancy])) continue;
-                            $status = $mj_status_map[$p->sub_stat_dormancy];
-                            $pct = $sub_total > 0 ? $p->count / $sub_total * 100 : 0;
-                        ?>
-                        <li>
-                            <div class="mj-status-row">
-                                <span class="mj-dot <?= $status['class'] ?>"></span>
-                                <span class="mj-status-name"><?= $status['label'] ?></span>
-                                <span class="mj-status-count"><?= number_format($p->count, 0) ?></span>
-                                <span class="mj-status-pct"><?= number_format($pct, 1) ?>%</span>
-                            </div>
-                            <div class="mj-bar"><span class="<?= $status['class'] ?>" style="width: <?= round($pct, 1) ?>%"></span></div>
-                        </li>
-                        <?php endforeach; ?>
+                        <?php
+                        foreach ($counts as $p) {
+                            $pct = ($sub_total > 0) ? ($p->count / $sub_total * 100) : 0;
+
+                            if ($p->sub_stat_dormancy == 'E') {
+                                $label = 'Excellent';
+                                $color = 'mj-c-excellent';
+                            } elseif ($p->sub_stat_dormancy == 'G') {
+                                $label = 'Good';
+                                $color = 'mj-c-good';
+                            } elseif ($p->sub_stat_dormancy == 'N') {
+                                $label = 'Normal';
+                                $color = 'mj-c-normal';
+                            } elseif ($p->sub_stat_dormancy == 'D') {
+                                $label = 'Dormant';
+                                $color = 'mj-c-dormant';
+                            } else {
+                                continue;
+                            }
+                            ?>
+                            <li>
+                                <div class="mj-status-row">
+                                    <span class="mj-dot <?= $color ?>"></span>
+                                    <span class="mj-status-name"><?= $label ?></span>
+                                    <span class="mj-status-count"><?= number_format($p->count, 0) ?></span>
+                                    <span class="mj-status-pct"><?= number_format($pct, 1) ?>%</span>
+                                </div>
+                                <div class="mj-bar"><span class="<?= $color ?>" style="width: <?= round($pct, 1) ?>%;"></span></div>
+                            </li>
+                        <?php } ?>
                     </ul>
                 </div>
             </div>
@@ -328,7 +435,7 @@ $mj_status_map = [
                 </div>
                 <div class="mj-card-body">
                     <div class="mj-hero">
-                        <p class="mj-hero-value mj-num"><?= number_format($majik_cust->majik_customer, 0) ?></p>
+                        <p class="mj-hero-value"><?= number_format($majik_cust->majik_customer, 0) ?></p>
                         <p class="mj-hero-label">Total Majikans</p>
                     </div>
                     <ul class="mj-split">
@@ -360,22 +467,18 @@ $mj_status_map = [
                     <span class="mj-card-sub"><?= date('M Y') ?></span>
                 </div>
                 <div class="mj-card-body">
-                    <ul class="nav mj-tabs" id="mjAppsTabs" role="tablist">
+                    <ul class="nav mj-tabs" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="mj-apps-day-tab" data-toggle="tab" data-bs-toggle="tab" href="#mj-apps-day" role="tab" aria-controls="mj-apps-day" aria-selected="true">Day</a>
+                            <a class="nav-link active" data-toggle="tab" href="#appsDay" role="tab">Day</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="mj-apps-month-tab" data-toggle="tab" data-bs-toggle="tab" href="#mj-apps-month" role="tab" aria-controls="mj-apps-month" aria-selected="false">Monthly</a>
+                            <a class="nav-link" data-toggle="tab" href="#appsMonth" role="tab">Monthly</a>
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <?php
-                        $mj_app_panes = [
-                            ['id' => 'mj-apps-day',   'rows' => $daily_data,   'active' => true],
-                            ['id' => 'mj-apps-month', 'rows' => $monthly_data, 'active' => false],
-                        ];
-                        foreach ($mj_app_panes as $pane): ?>
-                        <div class="tab-pane fade<?= $pane['active'] ? ' show active' : '' ?>" id="<?= $pane['id'] ?>" role="tabpanel" aria-labelledby="<?= $pane['id'] ?>-tab">
+
+                        <!-- Day -->
+                        <div class="tab-pane fade show active" id="appsDay" role="tabpanel">
                             <div class="mj-table-wrap">
                                 <table class="mj-table">
                                     <thead>
@@ -391,10 +494,7 @@ $mj_status_map = [
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if (empty($pane['rows'])): ?>
-                                        <tr class="mj-empty"><td colspan="4">No data available</td></tr>
-                                        <?php endif; ?>
-                                        <?php foreach ($pane['rows'] as $data): ?>
+                                        <?php foreach ($daily_data as $data): ?>
                                         <tr>
                                             <td class="mj-right"><?= number_format($data['waba_revenue'], 0) ?></td>
                                             <td class="mj-right"><?= number_format($data['waba_refills'], 0) ?></td>
@@ -406,116 +506,274 @@ $mj_status_map = [
                                 </table>
                             </div>
                         </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- ===== Row 3: Drivers / Customers / Stores leaderboards ===== -->
-    <?php
-    // Each leaderboard: header chip + tabs, every tab = [label, rows, name field, value field, unit]
-    $mj_boards = [
-        [
-            'id'     => 'mj-drivers',
-            'title'  => 'Drivers Performance',
-            'active' => $majik_active_drivers->majik_drivers,
-            'name'   => 'Driver',
-            'tabs'   => [
-                ['label' => 'Day',     'value_head' => 'Trips', 'rows' => $trip_day, 'name_field' => 'md_first', 'value_field' => 'trips', 'unit' => ''],
-                ['label' => 'Monthly', 'value_head' => 'Trips', 'rows' => $trip_mnt, 'name_field' => 'md_first', 'value_field' => 'trips', 'unit' => ''],
-            ],
-        ],
-        [
-            'id'     => 'mj-customers',
-            'title'  => 'Customer Performance',
-            'active' => $majik_active_customers->Total,
-            'name'   => 'Customer',
-            'tabs'   => [
-                ['label' => 'Revenue', 'value_head' => 'Total Revenue', 'rows' => $majik_customer_revenue, 'name_field' => 'sub_name', 'value_field' => 'total_revenue', 'unit' => ''],
-                ['label' => 'Volume',  'value_head' => 'Volume',        'rows' => $majik_customer_volume,  'name_field' => 'sub_name', 'value_field' => 'total_volume',  'unit' => 'L'],
-                ['label' => 'Refills', 'value_head' => 'Refills',       'rows' => $majik_customer_refills, 'name_field' => 'sub_name', 'value_field' => 'order_count',   'unit' => ''],
-            ],
-        ],
-        [
-            'id'     => 'mj-stores',
-            'title'  => 'Stores Performance',
-            'active' => $majik_store->majik_store,
-            'name'   => 'Store',
-            'tabs'   => [
-                ['label' => 'Revenue', 'value_head' => 'Total Revenue', 'rows' => $majik_store_revenue, 'name_field' => 'store_name', 'value_field' => 'total_revenue', 'unit' => ''],
-                ['label' => 'Volume',  'value_head' => 'Volume',        'rows' => $majik_store_volume,  'name_field' => 'store_name', 'value_field' => 'total_volume',  'unit' => 'L'],
-                ['label' => 'Refills', 'value_head' => 'Refills',       'rows' => $majik_store_refills, 'name_field' => 'point_name', 'value_field' => 'sub_count',     'unit' => ''],
-            ],
-        ],
-    ];
-    ?>
-    <div class="row">
-        <?php foreach ($mj_boards as $board): ?>
-        <div class="col-12 col-lg-6 col-xl-4 mj-col">
-            <div class="mj-card">
-                <div class="mj-card-head">
-                    <h4 class="mj-card-title">
-                        <?= $board['title'] ?>
-                        <span class="mj-card-sub"><?= date('M Y') ?></span>
-                    </h4>
-                    <div class="mj-stat-chip">
-                        <span class="mj-stat-icon"><?= $mj_chip_icon ?></span>
-                        <span>
-                            <span class="mj-stat-label">Active</span>
-                            <span class="mj-stat-value mj-num"><?= number_format($board['active'], 0) ?></span>
-                        </span>
-                    </div>
-                </div>
-                <div class="mj-card-body">
-                    <ul class="nav mj-tabs" id="<?= $board['id'] ?>-tabs" role="tablist">
-                        <?php foreach ($board['tabs'] as $t => $tab):
-                            $pane_id = $board['id'] . '-' . $t; ?>
-                        <li class="nav-item">
-                            <a class="nav-link<?= $t === 0 ? ' active' : '' ?>" id="<?= $pane_id ?>-tab" data-toggle="tab" data-bs-toggle="tab" href="#<?= $pane_id ?>" role="tab" aria-controls="<?= $pane_id ?>" aria-selected="<?= $t === 0 ? 'true' : 'false' ?>"><?= $tab['label'] ?></a>
-                        </li>
-                        <?php endforeach; ?>
-                    </ul>
-                    <div class="tab-content">
-                        <?php foreach ($board['tabs'] as $t => $tab):
-                            $pane_id = $board['id'] . '-' . $t; ?>
-                        <div class="tab-pane fade<?= $t === 0 ? ' show active' : '' ?>" id="<?= $pane_id ?>" role="tabpanel" aria-labelledby="<?= $pane_id ?>-tab">
-                            <div class="mj-table-wrap mj-scroll">
+                        <!-- Monthly -->
+                        <div class="tab-pane fade" id="appsMonth" role="tabpanel">
+                            <div class="mj-table-wrap">
                                 <table class="mj-table">
                                     <thead>
                                         <tr>
-                                            <th><?= $board['name'] ?></th>
-                                            <th class="mj-right"><?= $tab['value_head'] ?></th>
+                                            <th colspan="2" class="mj-center">WABA</th>
+                                            <th colspan="2" class="mj-center mj-group-start">App</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="mj-right">Revenue</th>
+                                            <th class="mj-right">Refills</th>
+                                            <th class="mj-right mj-group-start">Revenue</th>
+                                            <th class="mj-right">Refills</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if (empty($tab['rows'])): ?>
-                                        <tr class="mj-empty"><td colspan="2">No data available</td></tr>
-                                        <?php endif; ?>
-                                        <?php $rank = 0; foreach ($tab['rows'] as $row): $rank++; ?>
+                                        <?php foreach ($monthly_data as $mtddata): ?>
                                         <tr>
-                                            <td>
-                                                <div class="mj-name">
-                                                    <span class="mj-rank<?= $rank <= 3 ? ' is-top' : '' ?>"><?= $rank ?></span>
-                                                    <span><?= $mj_e($row->{$tab['name_field']}) ?></span>
-                                                </div>
-                                            </td>
-                                            <td class="mj-right">
-                                                <?= number_format($row->{$tab['value_field']}, 0) ?><?php if ($tab['unit']): ?><span class="mj-unit"><?= $tab['unit'] ?></span><?php endif; ?>
-                                            </td>
+                                            <td class="mj-right"><?= number_format($mtddata['waba_revenue'], 0) ?></td>
+                                            <td class="mj-right"><?= number_format($mtddata['waba_refills'], 0) ?></td>
+                                            <td class="mj-right mj-group-start"><?= number_format($mtddata['app_revenue'], 0) ?></td>
+                                            <td class="mj-right"><?= number_format($mtddata['app_refills'], 0) ?></td>
                                         </tr>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        <?php endforeach; ?>
+
                     </div>
                 </div>
             </div>
         </div>
-        <?php endforeach; ?>
+
+    </div>
+
+    <!-- ===================== ROW 3 : DRIVERS / CUSTOMERS / STORES ===================== -->
+    <div class="row">
+
+        <!-- Drivers Performance -->
+        <div class="col-12 col-lg-6 col-xl-4 mj-col">
+            <div class="mj-card">
+                <div class="mj-card-head">
+                    <h4 class="mj-card-title">Drivers Performance <span class="mj-card-sub"><?= date('M Y') ?></span></h4>
+                    <div class="mj-stat-chip">
+                        <span class="mj-stat-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                        </span>
+                        <span>
+                            <span class="mj-stat-label">Active</span>
+                            <span class="mj-stat-value"><?= number_format($majik_active_drivers->majik_drivers, 0) ?></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="mj-card-body">
+                    <ul class="nav mj-tabs" role="tablist">
+                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#driversDay" role="tab">Day</a></li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#driversMonth" role="tab">Monthly</a></li>
+                    </ul>
+                    <div class="tab-content">
+
+                        <div class="tab-pane fade show active" id="driversDay" role="tabpanel">
+                            <div class="mj-table-wrap mj-scroll">
+                                <table class="mj-table">
+                                    <thead>
+                                        <tr><th>Driver</th><th class="mj-right">Trips</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $rank = 0; foreach ($trip_day as $vl) { $rank++; ?>
+                                        <tr>
+                                            <td><div class="mj-name"><span class="mj-rank <?= $rank <= 3 ? 'is-top' : '' ?>"><?= $rank ?></span><span><?= htmlspecialchars($vl->md_first) ?></span></div></td>
+                                            <td class="mj-right"><?= number_format($vl->trips, 0) ?></td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="driversMonth" role="tabpanel">
+                            <div class="mj-table-wrap mj-scroll">
+                                <table class="mj-table">
+                                    <thead>
+                                        <tr><th>Driver</th><th class="mj-right">Trips</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $rank = 0; foreach ($trip_mnt as $ref) { $rank++; ?>
+                                        <tr>
+                                            <td><div class="mj-name"><span class="mj-rank <?= $rank <= 3 ? 'is-top' : '' ?>"><?= $rank ?></span><span><?= htmlspecialchars($ref->md_first) ?></span></div></td>
+                                            <td class="mj-right"><?= number_format($ref->trips, 0) ?></td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Performance -->
+        <div class="col-12 col-lg-6 col-xl-4 mj-col">
+            <div class="mj-card">
+                <div class="mj-card-head">
+                    <h4 class="mj-card-title">Customer Performance <span class="mj-card-sub"><?= date('M Y') ?></span></h4>
+                    <div class="mj-stat-chip">
+                        <span class="mj-stat-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                        </span>
+                        <span>
+                            <span class="mj-stat-label">Active</span>
+                            <span class="mj-stat-value"><?= number_format($majik_active_customers->Total, 0) ?></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="mj-card-body">
+                    <ul class="nav mj-tabs" role="tablist">
+                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#custRevenue" role="tab">Revenue</a></li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#custVolume" role="tab">Volume</a></li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#custRefills" role="tab">Refills</a></li>
+                    </ul>
+                    <div class="tab-content">
+
+                        <div class="tab-pane fade show active" id="custRevenue" role="tabpanel">
+                            <div class="mj-table-wrap mj-scroll">
+                                <table class="mj-table">
+                                    <thead>
+                                        <tr><th>Customer</th><th class="mj-right">Total Revenue</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $rank = 0; foreach ($majik_customer_revenue as $vl) { $rank++; ?>
+                                        <tr>
+                                            <td><div class="mj-name"><span class="mj-rank <?= $rank <= 3 ? 'is-top' : '' ?>"><?= $rank ?></span><span><?= htmlspecialchars($vl->sub_name) ?></span></div></td>
+                                            <td class="mj-right"><?= number_format($vl->total_revenue, 0) ?></td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="custVolume" role="tabpanel">
+                            <div class="mj-table-wrap mj-scroll">
+                                <table class="mj-table">
+                                    <thead>
+                                        <tr><th>Customer</th><th class="mj-right">Volume</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $rank = 0; foreach ($majik_customer_volume as $msv) { $rank++; ?>
+                                        <tr>
+                                            <td><div class="mj-name"><span class="mj-rank <?= $rank <= 3 ? 'is-top' : '' ?>"><?= $rank ?></span><span><?= htmlspecialchars($msv->sub_name) ?></span></div></td>
+                                            <td class="mj-right"><?= number_format($msv->total_volume, 0) ?><span class="mj-unit">L</span></td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="custRefills" role="tabpanel">
+                            <div class="mj-table-wrap mj-scroll">
+                                <table class="mj-table">
+                                    <thead>
+                                        <tr><th>Customer</th><th class="mj-right">Refills</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $rank = 0; foreach ($majik_customer_refills as $msre) { $rank++; ?>
+                                        <tr>
+                                            <td><div class="mj-name"><span class="mj-rank <?= $rank <= 3 ? 'is-top' : '' ?>"><?= $rank ?></span><span><?= htmlspecialchars($msre->sub_name) ?></span></div></td>
+                                            <td class="mj-right"><?= number_format($msre->order_count, 0) ?></td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stores Performance -->
+        <div class="col-12 col-lg-6 col-xl-4 mj-col">
+            <div class="mj-card">
+                <div class="mj-card-head">
+                    <h4 class="mj-card-title">Stores Performance <span class="mj-card-sub"><?= date('M Y') ?></span></h4>
+                    <div class="mj-stat-chip">
+                        <span class="mj-stat-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                        </span>
+                        <span>
+                            <span class="mj-stat-label">Active</span>
+                            <span class="mj-stat-value"><?= number_format($majik_store->majik_store, 0) ?></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="mj-card-body">
+                    <ul class="nav mj-tabs" role="tablist">
+                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#storeRevenue" role="tab">Revenue</a></li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#storeVolume" role="tab">Volume</a></li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#storeRefills" role="tab">Refills</a></li>
+                    </ul>
+                    <div class="tab-content">
+
+                        <div class="tab-pane fade show active" id="storeRevenue" role="tabpanel">
+                            <div class="mj-table-wrap mj-scroll">
+                                <table class="mj-table">
+                                    <thead>
+                                        <tr><th>Store</th><th class="mj-right">Total Revenue</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $rank = 0; foreach ($majik_store_revenue as $msr) { $rank++; ?>
+                                        <tr>
+                                            <td><div class="mj-name"><span class="mj-rank <?= $rank <= 3 ? 'is-top' : '' ?>"><?= $rank ?></span><span><?= htmlspecialchars($msr->store_name) ?></span></div></td>
+                                            <td class="mj-right"><?= number_format($msr->total_revenue, 0) ?></td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="storeVolume" role="tabpanel">
+                            <div class="mj-table-wrap mj-scroll">
+                                <table class="mj-table">
+                                    <thead>
+                                        <tr><th>Store</th><th class="mj-right">Volume</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $rank = 0; foreach ($majik_store_volume as $msv) { $rank++; ?>
+                                        <tr>
+                                            <td><div class="mj-name"><span class="mj-rank <?= $rank <= 3 ? 'is-top' : '' ?>"><?= $rank ?></span><span><?= htmlspecialchars($msv->store_name) ?></span></div></td>
+                                            <td class="mj-right"><?= number_format($msv->total_volume, 0) ?><span class="mj-unit">L</span></td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="storeRefills" role="tabpanel">
+                            <div class="mj-table-wrap mj-scroll">
+                                <table class="mj-table">
+                                    <thead>
+                                        <tr><th>Store</th><th class="mj-right">Refills</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $rank = 0; foreach ($majik_store_refills as $msre) { $rank++; ?>
+                                        <tr>
+                                            <td><div class="mj-name"><span class="mj-rank <?= $rank <= 3 ? 'is-top' : '' ?>"><?= $rank ?></span><span><?= htmlspecialchars($msre->point_name) ?></span></div></td>
+                                            <td class="mj-right"><?= number_format($msre->sub_count, 0) ?></td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </div>
@@ -533,87 +791,75 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-var MJ_MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-function mjPad(data) {
-    var padded = data.slice();
-    while (padded.length < MJ_MONTHS.length) padded.push(0);
-    return padded;
-}
-
-function mjShort(value) {
+// 1200000 -> 1.2M, 1500 -> 1.5K
+function shortNumber(value) {
     var abs = Math.abs(value);
-    if (abs >= 1e6) return (value / 1e6).toFixed(abs >= 1e7 ? 0 : 1).replace(/\.0$/, '') + 'M';
-    if (abs >= 1e3) return (value / 1e3).toFixed(abs >= 1e4 ? 0 : 1).replace(/\.0$/, '') + 'K';
-    return Math.round(value).toString();
+    if (abs >= 1000000) return (value / 1000000).toFixed(abs >= 10000000 ? 0 : 1).replace('.0', '') + 'M';
+    if (abs >= 1000) return (value / 1000).toFixed(abs >= 10000 ? 0 : 1).replace('.0', '') + 'K';
+    return Math.round(value);
 }
 
-function mjBarOptions(color, name, data, valueFormatter) {
-    return {
-        chart: {
-            height: 300,
-            type: 'bar',
-            toolbar: { show: false },
-            fontFamily: 'inherit',
-            animations: { speed: 400 }
-        },
-        colors: [color],
-        plotOptions: {
-            bar: {
-                horizontal: false,
-                columnWidth: '45%',
-                borderRadius: 4,
-                borderRadiusApplication: 'end'
-            }
-        },
+function initRevenueGraph() {
+    var revenuegraph = document.querySelector('#revenuegraph');
+    if (!revenuegraph) return;
+
+    var monthData = [<?= implode(',', array_map(function($a) { return (float) $a->total_amount; }, $amount)) ?>];
+    while (monthData.length < months.length) {
+        monthData.push(0);
+    }
+
+    new ApexCharts(revenuegraph, {
+        chart: { height: 300, type: 'bar', toolbar: { show: false }, fontFamily: 'inherit' },
+        colors: ['#0779BC'],
+        plotOptions: { bar: { columnWidth: '45%', borderRadius: 4 } },
         dataLabels: { enabled: false },
-        series: [{ name: name, data: mjPad(data) }],
-        grid: {
-            borderColor: '#e8ecf3',
-            strokeDashArray: 4,
-            xaxis: { lines: { show: false } },
-            padding: { left: 8, right: 8 }
-        },
+        series: [{ name: 'Revenue', data: monthData }],
+        grid: { borderColor: '#e8ecf3', strokeDashArray: 4 },
         xaxis: {
-            categories: MJ_MONTHS,
+            categories: months,
             axisBorder: { show: false },
             axisTicks: { show: false },
-            labels: { style: { colors: '#8392a5', fontSize: '11px' } }
+            labels: { style: { colors: '#8392a5' } }
         },
         yaxis: {
             min: 0,
             forceNiceScale: true,
-            labels: {
-                style: { colors: '#8392a5', fontSize: '11px' },
-                formatter: mjShort
-            }
+            labels: { style: { colors: '#8392a5' }, formatter: shortNumber }
         },
-        states: { hover: { filter: { type: 'darken', value: 0.9 } } },
-        tooltip: {
-            y: { formatter: valueFormatter }
-        }
-    };
-}
-
-function initRevenueGraph() {
-    var el = document.querySelector('#revenuegraph');
-    if (!el) return;
-
-    var monthData = <?= json_encode(array_map(function ($a) { return (float) $a->total_amount; }, $amount)) ?>;
-
-    new ApexCharts(el, mjBarOptions('#0779BC', 'Revenue', monthData, function (val) {
-        return Number(val).toLocaleString();
-    })).render();
+        tooltip: { y: { formatter: function (val) { return Number(val).toLocaleString(); } } }
+    }).render();
 }
 
 function initRefillGraph() {
-    var el = document.querySelector('#refillgraph');
-    if (!el) return;
+    var refillgraph = document.querySelector('#refillgraph');
+    if (!refillgraph) return;
 
-    var refillData = <?= json_encode(array_map(function ($r) { return (float) $r->sub_count; }, $refill)) ?>;
+    var refillData = [<?= implode(',', array_map(function($r) { return (float) $r->sub_count; }, $refill)) ?>];
+    while (refillData.length < months.length) {
+        refillData.push(0);
+    }
 
-    new ApexCharts(el, mjBarOptions('#7DC243', 'Refills', refillData, function (val) {
-        return Number(val).toLocaleString();
-    })).render();
+    new ApexCharts(refillgraph, {
+        chart: { height: 300, type: 'bar', toolbar: { show: false }, fontFamily: 'inherit' },
+        colors: ['#7DC243'],
+        plotOptions: { bar: { columnWidth: '45%', borderRadius: 4 } },
+        dataLabels: { enabled: false },
+        series: [{ name: 'Refills', data: refillData }],
+        grid: { borderColor: '#e8ecf3', strokeDashArray: 4 },
+        xaxis: {
+            categories: months,
+            axisBorder: { show: false },
+            axisTicks: { show: false },
+            labels: { style: { colors: '#8392a5' } }
+        },
+        yaxis: {
+            min: 0,
+            forceNiceScale: true,
+            labels: { style: { colors: '#8392a5' }, formatter: shortNumber }
+        },
+        tooltip: { y: { formatter: function (val) { return Number(val).toLocaleString(); } } }
+    }).render();
 }
 </script>
