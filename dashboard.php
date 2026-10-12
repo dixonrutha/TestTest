@@ -1,29 +1,31 @@
 <link rel="stylesheet" href="<?= base_url('assets/css/majik2.css') ?>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap">
 
 <style>
 /* =====================================================================
-   MAJIK DASHBOARD — clean, neutral styles (prefix .mj-)
-   One accent colour (brand blue); green / red only for trends.
+   MAJIK DASHBOARD — soft cards, lime accent (prefix .mj-)
    ===================================================================== */
 .mj-dash {
-    --accent: #0779BC;
-    --accent-soft: #e8f2f9;
-    --ink: #111827;
-    --ink-2: #374151;
-    --muted: #6b7280;
-    --faint: #9ca3af;
-    --line: #e5e7eb;
-    --soft: #f9fafb;
+    --frame: #f3f3f1;
     --card: #ffffff;
-    --up: #15803d;
-    --down: #b91c1c;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --lime: #b9ec7f;
+    --lime-2: #d3f4ac;
+    --lime-3: #eefbe0;
+    --forest: #173b12;
+    --ink: #121212;
+    --ink-2: #3a3a3a;
+    --muted: #8b8b8b;
+    --line: #ececea;
+    --up: #2f9e44;
+    --down: #e5484d;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
     font-size: 14px;
+    font-weight: 400;
     color: var(--ink);
-    background: #f4f5f7;
-    padding: 28px;
+    background: var(--frame);
+    border-radius: 28px;
+    padding: 24px;
     -webkit-font-smoothing: antialiased;
 }
 .mj-dash *, .mj-dash *::before, .mj-dash *::after { box-sizing: border-box; }
@@ -32,123 +34,141 @@
 .mj-dash .num { font-variant-numeric: tabular-nums; }
 
 /* ---------- Layout ---------- */
-.mj-grid { display: grid; gap: 20px; margin-bottom: 20px; }
-.mj-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.mj-grid-main { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); }
+.mj-grid { display: grid; gap: 18px; margin-bottom: 18px; }
+.mj-grid:last-child { margin-bottom: 0; }
+.mj-grid-top { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); }
 .mj-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 @media (max-width: 1199.98px) {
-    .mj-grid-main { grid-template-columns: 1fr; }
-    .mj-grid-3, .mj-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .mj-grid-top { grid-template-columns: 1fr; }
+    .mj-grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 767.98px) {
-    .mj-dash { padding: 16px; }
-    .mj-grid { gap: 16px; margin-bottom: 16px; }
-    .mj-grid-3, .mj-grid-4 { grid-template-columns: 1fr; }
+    .mj-dash { padding: 14px; border-radius: 0; }
+    .mj-grid { gap: 14px; margin-bottom: 14px; }
+    .mj-grid-3 { grid-template-columns: 1fr; }
 }
 
-/* ---------- Page header ---------- */
-.mj-header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px; margin-bottom: 24px; }
-.mj-title { font-size: 22px; font-weight: 600; letter-spacing: -.01em; color: var(--ink); }
-.mj-subtitle { font-size: 13px; color: var(--muted); margin-top: 4px; }
-.mj-date { font-size: 13px; color: var(--ink-2); padding: 7px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); }
+/* ---------- Top bar ---------- */
+.mj-topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin: 4px 4px 22px; }
+.mj-hello { display: flex; align-items: center; gap: 14px; }
+.mj-logo { width: 46px; height: 46px; border-radius: 50%; background: var(--forest); color: var(--lime); display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 600; }
+.mj-hello h1 { font-size: 26px; font-weight: 400; letter-spacing: -.01em; }
+.mj-hello p { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.mj-topbar-right { display: flex; align-items: center; gap: 10px; }
+.mj-round { height: 44px; min-width: 44px; padding: 0 16px; border-radius: 999px; background: var(--card); display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; color: var(--ink); }
+.mj-round svg { width: 18px; height: 18px; }
 
 /* ---------- Card ---------- */
-.mj-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; display: flex; flex-direction: column; min-width: 0; }
-.mj-card-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 20px; border-bottom: 1px solid var(--line); }
-.mj-card-title { font-size: 15px; font-weight: 600; color: var(--ink); }
-.mj-card-sub { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
-.mj-card-body { padding: 20px; flex: 1; min-width: 0; }
-.mj-meta { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
-.mj-meta b { color: var(--ink); font-weight: 600; }
+.mj-card { background: var(--card); border-radius: 24px; padding: 26px; display: flex; flex-direction: column; min-width: 0; position: relative; overflow: hidden; }
+.mj-card-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 22px; }
+.mj-card-title { display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 400; letter-spacing: -.01em; }
+.mj-ico { width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--ink); background: #fff; }
+.mj-ico svg { width: 19px; height: 19px; }
+.mj-label { font-size: 14px; color: var(--ink-2); }
+.mj-small { font-size: 12.5px; color: var(--muted); }
 
-/* ---------- KPI cards ---------- */
-.mj-kpi { padding: 20px; }
-.mj-kpi-label { font-size: 13px; font-weight: 500; color: var(--muted); }
-.mj-kpi-value { font-size: 26px; font-weight: 600; letter-spacing: -.02em; color: var(--ink); margin: 8px 0 10px; line-height: 1.15; overflow-wrap: anywhere; }
-.mj-kpi-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 12.5px; color: var(--muted); }
-.mj-kpi-foot { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px; }
-.mj-kpi-foot div { display: flex; justify-content: space-between; gap: 8px; font-size: 12.5px; color: var(--muted); }
-.mj-kpi-foot b { color: var(--ink-2); font-weight: 500; }
-
-/* ---------- Trend ---------- */
-.mj-trend { font-size: 12.5px; font-weight: 600; white-space: nowrap; }
-.mj-trend.up { color: var(--up); }
-.mj-trend.down { color: var(--down); }
-.mj-trend.flat { color: var(--faint); }
-
-/* ---------- Charts ---------- */
-.mj-chart { min-height: 280px; margin: -6px -8px 0; }
-
-/* Summary strip (under refills chart) */
-.mj-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
-.mj-summary > div { padding: 16px 20px; border-left: 1px solid var(--line); min-width: 0; }
-.mj-summary > div:first-child { border-left: 0; }
-.mj-summary .label { font-size: 12.5px; color: var(--muted); }
-.mj-summary .value { font-size: 18px; font-weight: 600; margin: 4px 0 2px; overflow-wrap: anywhere; }
-
-/* ---------- Simple list rows ---------- */
-.mj-list li { display: flex; align-items: center; gap: 10px; padding: 11px 0; border-top: 1px solid var(--line); font-size: 13.5px; }
-.mj-list li:first-child { border-top: 0; padding-top: 0; }
-.mj-list li:last-child { padding-bottom: 0; }
-.mj-list .name { color: var(--ink-2); }
-.mj-list .value { margin-left: auto; font-weight: 600; }
-.mj-list .pct { width: 52px; text-align: right; color: var(--muted); font-size: 12.5px; }
-.mj-swatch { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
-
-/* Donut */
-.mj-donut { position: relative; margin-bottom: 12px; }
-.mj-donut-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; }
-.mj-donut-center b { font-size: 22px; font-weight: 600; }
-.mj-donut-center span { font-size: 12px; color: var(--muted); }
-
-/* Customer base */
-.mj-big { padding-bottom: 18px; margin-bottom: 18px; border-bottom: 1px solid var(--line); }
-.mj-big .label { font-size: 13px; color: var(--muted); }
-.mj-big .value { font-size: 34px; font-weight: 600; letter-spacing: -.02em; margin-top: 6px; }
-
-/* ---------- Tabs ---------- */
-.mj-tabs { display: flex; gap: 20px; border-bottom: 1px solid var(--line); margin: -4px 0 16px; }
-.mj-tab { appearance: none; background: none; border: 0; border-bottom: 2px solid transparent; margin-bottom: -1px; padding: 0 0 10px; font: inherit; font-size: 13px; font-weight: 500; color: var(--muted); cursor: pointer; }
-.mj-tab:hover { color: var(--ink); }
+/* ---------- Segmented pills ---------- */
+.mj-seg { display: inline-flex; padding: 4px; border-radius: 999px; background: #f1f1ef; gap: 2px; flex-wrap: wrap; }
+.mj-tab { appearance: none; border: 0; background: transparent; cursor: pointer; font: inherit; font-size: 14px; color: var(--ink-2); padding: 8px 18px; border-radius: 999px; }
 .mj-tab:focus { outline: none; }
-.mj-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.mj-tab.is-active { color: var(--ink); border-bottom-color: var(--accent); }
+.mj-tab:focus-visible { outline: 2px solid var(--forest); outline-offset: 1px; }
+.mj-tab.is-active { background: #fff; color: var(--ink); box-shadow: 0 1px 3px rgba(0, 0, 0, .08); }
+.mj-seg.sm .mj-tab { font-size: 13px; padding: 6px 13px; }
 .mj-pane { display: none; }
 .mj-pane.is-active { display: block; }
 
-/* ---------- Apps comparison table ---------- */
-.mj-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-.mj-table th { text-align: right; font-size: 12px; font-weight: 500; color: var(--muted); padding: 0 0 10px; }
-.mj-table th:first-child, .mj-table td:first-child { text-align: left; }
-.mj-table td { text-align: right; padding: 12px 0; border-top: 1px solid var(--line); font-variant-numeric: tabular-nums; }
-.mj-table td:first-child { color: var(--ink-2); }
-.mj-table td b { font-weight: 600; }
-.mj-share { margin-top: 18px; }
-.mj-share-label { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--muted); margin-bottom: 8px; }
-.mj-share-label b { color: var(--ink); font-weight: 600; }
-.mj-share-bar { display: flex; height: 6px; border-radius: 3px; overflow: hidden; background: var(--line); }
-.mj-share-bar span { background: var(--accent); }
+/* ---------- Pills & trends ---------- */
+.mj-pill { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; font-size: 14px; white-space: nowrap; }
+.mj-pill.dark { background: var(--forest); color: #fff; }
+.mj-pill.dark b { color: var(--lime); font-weight: 500; }
+.mj-pill.outline { border: 1px solid var(--ink); color: var(--ink); }
+.mj-pill.outline b { font-weight: 500; }
+.mj-pill svg { width: 16px; height: 16px; }
+.mj-trend { font-size: 13px; font-weight: 500; white-space: nowrap; }
+.mj-trend.up { color: var(--up); }
+.mj-trend.down { color: var(--down); }
+.mj-trend.flat { color: var(--muted); }
+.mj-chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; background: #fff; font-size: 13px; }
 
-/* ---------- Leaderboards ---------- */
-.mj-active { text-align: right; }
-.mj-active span { display: block; font-size: 12px; color: var(--muted); }
-.mj-active b { display: block; font-size: 18px; font-weight: 600; line-height: 1.3; }
+/* ---------- Revenue balance card ---------- */
+.mj-balance-top { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 34px; }
+.mj-balance-meta { text-align: right; }
+.mj-balance-meta b { display: block; font-size: 22px; font-weight: 400; margin-top: 4px; }
+.mj-big { font-size: 62px; font-weight: 300; letter-spacing: -.03em; line-height: 1.05; margin: 8px 0 10px; overflow-wrap: anywhere; }
+.mj-balance-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 30px; }
+.mj-go { margin-left: auto; width: 86px; height: 86px; border-radius: 50%; background: var(--lime); display: flex; align-items: center; justify-content: center; color: var(--forest); flex-shrink: 0; }
+.mj-go svg { width: 30px; height: 30px; }
+@media (max-width: 575.98px) { .mj-big { font-size: 44px; } .mj-go { display: none; } .mj-balance-meta { text-align: left; } }
 
-.mj-board { max-height: 360px; overflow-y: auto; }
-.mj-board::-webkit-scrollbar { width: 6px; }
-.mj-board::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
-.mj-row { display: flex; align-items: center; gap: 12px; padding: 10px 4px 10px 0; border-top: 1px solid var(--line); }
-.mj-row:first-child { border-top: 0; padding-top: 2px; }
-.mj-rank { width: 20px; font-size: 12.5px; color: var(--faint); font-variant-numeric: tabular-nums; flex-shrink: 0; }
-.mj-row:nth-child(-n+3) .mj-rank { color: var(--ink); font-weight: 600; }
-.mj-row-main { flex: 1; min-width: 0; }
-.mj-row-top { display: flex; align-items: baseline; gap: 10px; }
-.mj-row-name { font-size: 13.5px; color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.mj-row-value { margin-left: auto; font-size: 13.5px; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.mj-row-value small { font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 3px; }
-.mj-row-bar { height: 4px; border-radius: 2px; background: #f0f1f3; margin-top: 7px; overflow: hidden; }
-.mj-row-bar span { display: block; height: 100%; border-radius: 2px; background: var(--accent); opacity: .85; }
-.mj-empty { text-align: center; padding: 32px 12px; color: var(--muted); font-size: 13px; }
+/* ---------- Lime refills card ---------- */
+.mj-card.lime { background: var(--lime); }
+.mj-star { position: absolute; right: 8px; top: 12px; width: 190px; height: 190px; color: #ace06e; pointer-events: none; }
+.mj-badge { position: relative; display: inline-flex; align-items: center; gap: 12px; height: 46px; padding: 0 6px 0 18px; border-radius: 999px; border: 2px solid var(--forest); background: var(--forest); color: var(--lime); font-size: 15px; letter-spacing: .08em; }
+.mj-badge i { width: 34px; height: 34px; border-radius: 50%; background: var(--lime); color: var(--forest); display: flex; align-items: center; justify-content: center; font-style: normal; }
+.mj-badge i svg { width: 16px; height: 16px; }
+.mj-lime-body { position: relative; margin-top: 34px; }
+.mj-lime-body .mj-big { font-size: 54px; display: inline-block; margin-right: 10px; vertical-align: middle; }
+.mj-tiles { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 26px; }
+.mj-tile { background: var(--lime-2); border-radius: 16px; padding: 14px 16px; min-width: 0; }
+.mj-tile p { font-size: 13px; color: var(--ink-2); }
+.mj-tile b { display: block; font-size: 24px; font-weight: 400; margin: 6px 0 2px; overflow-wrap: anywhere; }
+
+/* ---------- Analysis chart card ---------- */
+.mj-chart { min-height: 290px; margin: -8px -10px 0; }
+.mj-chart-summary { display: flex; flex-wrap: wrap; gap: 28px; margin-bottom: 10px; }
+.mj-chart-summary div p { font-size: 13px; color: var(--muted); }
+.mj-chart-summary div b { display: block; font-size: 24px; font-weight: 400; margin-top: 2px; }
+
+/* ---------- Majikans ring ---------- */
+.mj-ring { position: relative; width: 200px; margin: 0 auto; }
+.mj-ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; }
+.mj-ring-center b { font-size: 30px; font-weight: 400; letter-spacing: -.02em; }
+.mj-ring-center span { font-size: 13px; color: var(--muted); }
+.mj-note { display: flex; justify-content: center; margin: 16px 0 18px; }
+.mj-note span { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border: 1px solid var(--line); border-radius: 999px; font-size: 14px; }
+.mj-note b { color: var(--up); font-weight: 500; }
+.mj-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; font-size: 14px; }
+.mj-legend li { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.mj-legend i { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.mj-legend span { color: var(--muted); margin-left: auto; }
+
+/* ---------- Apps performance (progress rows) ---------- */
+.mj-amount { font-size: 46px; font-weight: 300; letter-spacing: -.03em; line-height: 1.1; overflow-wrap: anywhere; }
+.mj-dash .mj-progress { margin-top: 24px; }
+.mj-progress li + li { margin-top: 18px; }
+.mj-progress-top { display: flex; justify-content: space-between; gap: 10px; font-size: 14px; margin-bottom: 8px; }
+.mj-progress-top span { color: var(--muted); }
+.mj-progress-top b { font-weight: 400; color: var(--ink-2); }
+.mj-progress li.lead .mj-progress-top span { color: var(--ink); }
+.mj-bar { position: relative; height: 8px; border-radius: 999px; background: #eeeeec; }
+.mj-bar > span { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 999px; background: #d4d4d0; }
+.mj-progress li.lead .mj-bar > span { background: var(--lime); }
+.mj-bar em { position: absolute; top: 50%; transform: translate(-50%, -50%); padding: 3px 10px; border-radius: 999px; background: var(--forest); color: var(--lime); font-style: normal; font-size: 12px; white-space: nowrap; }
+
+/* ---------- Customer base ---------- */
+.mj-stat-rows li { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 1px solid var(--line); }
+.mj-stat-rows li:first-child { border-top: 0; }
+.mj-stat-rows .ttl { font-size: 15px; }
+.mj-stat-rows .sub { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.mj-stat-rows .val { margin-left: auto; font-size: 18px; color: var(--up); white-space: nowrap; }
+
+/* ---------- Leaderboards (transaction style) ---------- */
+.mj-head-actions { display: flex; align-items: center; gap: 10px; }
+.mj-active { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+.mj-active b { color: var(--ink); font-weight: 500; font-size: 14px; }
+.mj-list { max-height: 400px; overflow-y: auto; margin: 0 -10px; padding: 0 10px; }
+.mj-list::-webkit-scrollbar { width: 5px; }
+.mj-list::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+.mj-item { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 1px solid var(--line); }
+.mj-item:first-child { border-top: 0; padding: 14px; margin: 0 -14px 4px; border: 1px solid var(--lime); background: var(--lime-3); border-radius: 18px; }
+.mj-avatar { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: #fff; display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--ink); text-transform: uppercase; flex-shrink: 0; }
+.mj-item-main { flex: 1; min-width: 0; }
+.mj-item-name { font-size: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mj-item-sub { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.mj-item:first-child .mj-item-sub { color: #3d8a1d; }
+.mj-item-val { font-size: 16px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.mj-item-val small { font-size: 12px; color: var(--muted); margin-left: 3px; }
+.mj-empty { text-align: center; padding: 34px 10px; color: var(--muted); }
 </style>
 
 <?php
@@ -160,7 +180,7 @@ $yesterday_revenue = $majik_revenue_yesterday->revenue;
 if ($yesterday_revenue > 0) {
     $rev_day_change = (($today_revenue - $yesterday_revenue) / $yesterday_revenue) * 100;
     $rev_day_class = $rev_day_change > 0 ? 'up' : ($rev_day_change < 0 ? 'down' : 'flat');
-    $rev_day_text = ($rev_day_change > 0 ? '&#9650; ' : ($rev_day_change < 0 ? '&#9660; ' : '')) . number_format(abs($rev_day_change), 1) . '%';
+    $rev_day_text = ($rev_day_change > 0 ? '+' : ($rev_day_change < 0 ? '-' : '')) . number_format(abs($rev_day_change), 1) . '%';
 } else {
     $rev_day_class = 'flat';
     $rev_day_text = 'N/A';
@@ -172,7 +192,7 @@ $previous_month_revenue = $majik_revenue_previous_month->revenue;
 if ($previous_month_revenue > 0) {
     $rev_month_change = (($current_month_revenue - $previous_month_revenue) / $previous_month_revenue) * 100;
     $rev_month_class = $rev_month_change > 0 ? 'up' : ($rev_month_change < 0 ? 'down' : 'flat');
-    $rev_month_text = ($rev_month_change > 0 ? '&#9650; ' : ($rev_month_change < 0 ? '&#9660; ' : '')) . number_format(abs($rev_month_change), 1) . '%';
+    $rev_month_text = ($rev_month_change > 0 ? '+' : ($rev_month_change < 0 ? '-' : '')) . number_format(abs($rev_month_change), 1) . '%';
 } else {
     $rev_month_class = 'flat';
     $rev_month_text = 'N/A';
@@ -184,7 +204,7 @@ $previous_year_revenue = $majik_revenue_previous_year->revenue;
 if ($previous_year_revenue > 0) {
     $rev_year_change = (($current_year_revenue - $previous_year_revenue) / $previous_year_revenue) * 100;
     $rev_year_class = $rev_year_change > 0 ? 'up' : ($rev_year_change < 0 ? 'down' : 'flat');
-    $rev_year_text = ($rev_year_change > 0 ? '&#9650; ' : ($rev_year_change < 0 ? '&#9660; ' : '')) . number_format(abs($rev_year_change), 1) . '%';
+    $rev_year_text = ($rev_year_change > 0 ? '+' : ($rev_year_change < 0 ? '-' : '')) . number_format(abs($rev_year_change), 1) . '%';
 } else {
     $rev_year_class = 'flat';
     $rev_year_text = 'N/A';
@@ -196,7 +216,7 @@ $yesterday_order = $majik_order_yesterday->majik_order;
 if ($yesterday_order > 0) {
     $ord_day_change = (($today_order - $yesterday_order) / $yesterday_order) * 100;
     $ord_day_class = $ord_day_change > 0 ? 'up' : ($ord_day_change < 0 ? 'down' : 'flat');
-    $ord_day_text = ($ord_day_change > 0 ? '&#9650; ' : ($ord_day_change < 0 ? '&#9660; ' : '')) . number_format(abs($ord_day_change), 1) . '%';
+    $ord_day_text = ($ord_day_change > 0 ? '+' : ($ord_day_change < 0 ? '-' : '')) . number_format(abs($ord_day_change), 1) . '%';
 } else {
     $ord_day_class = 'flat';
     $ord_day_text = 'N/A';
@@ -208,7 +228,7 @@ $previous_month_order = $majik_order_previous_month->majik_order;
 if ($previous_month_order > 0) {
     $ord_month_change = (($current_month_order - $previous_month_order) / $previous_month_order) * 100;
     $ord_month_class = $ord_month_change > 0 ? 'up' : ($ord_month_change < 0 ? 'down' : 'flat');
-    $ord_month_text = ($ord_month_change > 0 ? '&#9650; ' : ($ord_month_change < 0 ? '&#9660; ' : '')) . number_format(abs($ord_month_change), 1) . '%';
+    $ord_month_text = ($ord_month_change > 0 ? '+' : ($ord_month_change < 0 ? '-' : '')) . number_format(abs($ord_month_change), 1) . '%';
 } else {
     $ord_month_class = 'flat';
     $ord_month_text = 'N/A';
@@ -220,17 +240,22 @@ $previous_year_order = $majik_order_previous_year->majik_order;
 if ($previous_year_order > 0) {
     $ord_year_change = (($current_year_order - $previous_year_order) / $previous_year_order) * 100;
     $ord_year_class = $ord_year_change > 0 ? 'up' : ($ord_year_change < 0 ? 'down' : 'flat');
-    $ord_year_text = ($ord_year_change > 0 ? '&#9650; ' : ($ord_year_change < 0 ? '&#9660; ' : '')) . number_format(abs($ord_year_change), 1) . '%';
+    $ord_year_text = ($ord_year_change > 0 ? '+' : ($ord_year_change < 0 ? '-' : '')) . number_format(abs($ord_year_change), 1) . '%';
 } else {
     $ord_year_class = 'flat';
     $ord_year_text = 'N/A';
 }
 
-// Majikans total
+// Majikans totals
 $sub_total = 0;
+$sub_healthy = 0;
 foreach ($counts as $p) {
     $sub_total = $sub_total + $p->count;
+    if ($p->sub_stat_dormancy == 'E' || $p->sub_stat_dormancy == 'G') {
+        $sub_healthy = $sub_healthy + $p->count;
+    }
 }
+$healthy_pct = ($sub_total > 0) ? ($sub_healthy / $sub_total * 100) : 0;
 ?>
 
 <body>
@@ -241,430 +266,417 @@ foreach ($counts as $p) {
 <div class="app-main1" id="main">
 <div class="mj-dash">
 
-    <!-- =============================== HEADER =============================== -->
-    <div class="mj-header">
-        <div>
-            <h1 class="mj-title">Dashboard</h1>
-            <p class="mj-subtitle">Revenue, refills and performance overview</p>
-        </div>
-        <span class="mj-date"><?= date('l, d M Y') ?></span>
-    </div>
-
-    <!-- =============================== KPI CARDS =============================== -->
-    <div class="mj-grid mj-grid-4">
-        <div class="mj-card mj-kpi">
-            <p class="mj-kpi-label">Revenue today</p>
-            <p class="mj-kpi-value num"><?= number_format($majik_revenue_today->revenue, 0) ?></p>
-            <div class="mj-kpi-row"><span class="mj-trend <?= $rev_day_class ?>"><?= $rev_day_text ?></span> vs yesterday</div>
-            <div class="mj-kpi-foot">
-                <div>Yesterday payments <b class="num"><?= number_format($yesterday_revenue, 2) ?></b></div>
-                <div>Delivery fee <b class="num"><?= number_format($majik_delivery_today->delivery, 0) ?></b></div>
+    <!-- =============================== TOP BAR =============================== -->
+    <div class="mj-topbar">
+        <div class="mj-hello">
+            <span class="mj-logo">M</span>
+            <div>
+                <h1>Hello, welcome back</h1>
+                <p>Here is how Majik is performing today</p>
             </div>
         </div>
-
-        <div class="mj-card mj-kpi">
-            <p class="mj-kpi-label">Revenue this month</p>
-            <p class="mj-kpi-value num"><?= number_format($majik_revenue_mtd->revenue, 0) ?></p>
-            <div class="mj-kpi-row"><span class="mj-trend <?= $rev_month_class ?>"><?= $rev_month_text ?></span> vs last month</div>
-            <div class="mj-kpi-foot">
-                <div>Delivery fee <b class="num"><?= number_format($majik_delivery_mnth->delivery, 0) ?></b></div>
-            </div>
-        </div>
-
-        <div class="mj-card mj-kpi">
-            <p class="mj-kpi-label">Revenue this year</p>
-            <p class="mj-kpi-value num"><?= number_format($majik_revenue_ytd->revenue, 0) ?></p>
-            <div class="mj-kpi-row"><span class="mj-trend <?= $rev_year_class ?>"><?= $rev_year_text ?></span> vs last year</div>
-            <div class="mj-kpi-foot">
-                <div>Delivery fee <b class="num"><?= number_format($majik_delivery_yr->delivery, 0) ?></b></div>
-            </div>
-        </div>
-
-        <div class="mj-card mj-kpi">
-            <p class="mj-kpi-label">Refills today</p>
-            <p class="mj-kpi-value num"><?= number_format($majik_order_today->majik_order, 0) ?></p>
-            <div class="mj-kpi-row"><span class="mj-trend <?= $ord_day_class ?>"><?= $ord_day_text ?></span> vs yesterday</div>
-            <div class="mj-kpi-foot">
-                <div>Yesterday refills <b class="num"><?= number_format($yesterday_order, 0) ?></b></div>
-            </div>
+        <div class="mj-topbar-right">
+            <span class="mj-round">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <?= date('D, d M Y') ?>
+            </span>
         </div>
     </div>
 
-    <!-- =============================== CHARTS =============================== -->
-    <div class="mj-grid mj-grid-main">
+    <!-- =============================== ROW 1 =============================== -->
+    <div class="mj-grid mj-grid-top">
 
-        <div class="mj-card">
-            <div class="mj-card-head">
-                <div>
-                    <h2 class="mj-card-title">Revenue Analysis</h2>
-                    <p class="mj-card-sub">Monthly revenue, <?= date('Y') ?></p>
+        <!-- Revenue (balance style) -->
+        <div class="mj-card mj-tabset">
+            <div class="mj-balance-top">
+                <div class="mj-seg">
+                    <button type="button" class="mj-tab is-active" data-target="revToday">Today</button>
+                    <button type="button" class="mj-tab" data-target="revMonth">Month</button>
+                    <button type="button" class="mj-tab" data-target="revYear">Year</button>
                 </div>
-                <span class="mj-meta">Year to date <b class="num"><?= number_format($majik_revenue_ytd->revenue, 0) ?></b></span>
+                <div class="mj-balance-meta">
+                    <p class="mj-small">Revenue year to date</p>
+                    <b class="num"><?= number_format($majik_revenue_ytd->revenue, 0) ?></b>
+                </div>
             </div>
-            <div class="mj-card-body">
+
+            <div class="mj-pane is-active" id="revToday">
+                <p class="mj-label">Revenue today</p>
+                <p class="mj-big num"><?= number_format($majik_revenue_today->revenue, 0) ?></p>
+                <p><span class="mj-trend <?= $rev_day_class ?>"><?= $rev_day_text ?></span> <span class="mj-small">vs yesterday</span></p>
+                <div class="mj-balance-bottom">
+                    <span class="mj-pill dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Delivery fee <b class="num"><?= number_format($majik_delivery_today->delivery, 0) ?></b></span>
+                    <span class="mj-pill outline">Yesterday payments <b class="num"><?= number_format($yesterday_revenue, 2) ?></b></span>
+                    <span class="mj-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+                </div>
+            </div>
+
+            <div class="mj-pane" id="revMonth">
+                <p class="mj-label">Revenue this month</p>
+                <p class="mj-big num"><?= number_format($majik_revenue_mtd->revenue, 0) ?></p>
+                <p><span class="mj-trend <?= $rev_month_class ?>"><?= $rev_month_text ?></span> <span class="mj-small">vs last month</span></p>
+                <div class="mj-balance-bottom">
+                    <span class="mj-pill dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Delivery fee <b class="num"><?= number_format($majik_delivery_mnth->delivery, 0) ?></b></span>
+                    <span class="mj-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+                </div>
+            </div>
+
+            <div class="mj-pane" id="revYear">
+                <p class="mj-label">Revenue this year</p>
+                <p class="mj-big num"><?= number_format($majik_revenue_ytd->revenue, 0) ?></p>
+                <p><span class="mj-trend <?= $rev_year_class ?>"><?= $rev_year_text ?></span> <span class="mj-small">vs last year</span></p>
+                <div class="mj-balance-bottom">
+                    <span class="mj-pill dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Delivery fee <b class="num"><?= number_format($majik_delivery_yr->delivery, 0) ?></b></span>
+                    <span class="mj-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Refills (lime card) -->
+        <div class="mj-card lime">
+            <svg class="mj-star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 0 C54 30 70 46 100 50 C70 54 54 70 50 100 C46 70 30 54 0 50 C30 46 46 30 50 0 Z"/></svg>
+            <div>
+                <span class="mj-badge">REFILLS <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></i></span>
+            </div>
+            <div class="mj-lime-body">
+                <p class="mj-label">Refills today</p>
+                <p><span class="mj-big num"><?= number_format($majik_order_today->majik_order, 0) ?></span><span class="mj-chip"><span class="mj-trend <?= $ord_day_class ?>"><?= $ord_day_text ?></span> vs yesterday</span></p>
+                <p class="mj-small" style="color: #3a5a2a;">Yesterday refills: <?= number_format($yesterday_order, 0) ?></p>
+            </div>
+            <div class="mj-tiles">
+                <div class="mj-tile">
+                    <p>This month</p>
+                    <b class="num"><?= number_format($majik_order_mtd->majik_order, 0) ?></b>
+                    <span class="mj-trend <?= $ord_month_class ?>"><?= $ord_month_text ?></span> <span class="mj-small" style="color: #3a5a2a;">vs last month</span>
+                </div>
+                <div class="mj-tile">
+                    <p>This year</p>
+                    <b class="num"><?= number_format($majik_order_ytd->majik_order, 0) ?></b>
+                    <span class="mj-trend <?= $ord_year_class ?>"><?= $ord_year_text ?></span> <span class="mj-small" style="color: #3a5a2a;">vs last year</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- =============================== ROW 2 : ANALYSIS CHART =============================== -->
+    <div class="mj-grid">
+        <div class="mj-card mj-tabset">
+            <div class="mj-card-head">
+                <div class="mj-card-title">
+                    <span class="mj-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+                    Analysis <span class="mj-small" style="font-size: 14px;">Year <?= date('Y') ?></span>
+                </div>
+                <div class="mj-seg">
+                    <button type="button" class="mj-tab is-active" data-target="chartRevenue">Revenue</button>
+                    <button type="button" class="mj-tab" data-target="chartRefills">Refills</button>
+                </div>
+            </div>
+
+            <div class="mj-pane is-active" id="chartRevenue">
+                <div class="mj-chart-summary">
+                    <div><p>Year to date</p><b class="num"><?= number_format($majik_revenue_ytd->revenue, 0) ?></b></div>
+                    <div><p>This month</p><b class="num"><?= number_format($majik_revenue_mtd->revenue, 0) ?></b></div>
+                </div>
                 <div id="revenuegraph" class="mj-chart"></div>
             </div>
-        </div>
-
-        <div class="mj-card">
-            <div class="mj-card-head">
-                <div>
-                    <h2 class="mj-card-title">Refills Analysis</h2>
-                    <p class="mj-card-sub">Monthly refills, <?= date('Y') ?></p>
+            <div class="mj-pane" id="chartRefills">
+                <div class="mj-chart-summary">
+                    <div><p>Year to date</p><b class="num"><?= number_format($majik_order_ytd->majik_order, 0) ?></b></div>
+                    <div><p>This month</p><b class="num"><?= number_format($majik_order_mtd->majik_order, 0) ?></b></div>
                 </div>
-            </div>
-            <div class="mj-card-body">
-                <div id="refillgraph" class="mj-chart" style="min-height: 200px;"></div>
-            </div>
-            <div class="mj-summary">
-                <div>
-                    <p class="label">Today</p>
-                    <p class="value num"><?= number_format($majik_order_today->majik_order, 0) ?></p>
-                    <span class="mj-trend <?= $ord_day_class ?>"><?= $ord_day_text ?></span>
-                </div>
-                <div>
-                    <p class="label">Month</p>
-                    <p class="value num"><?= number_format($majik_order_mtd->majik_order, 0) ?></p>
-                    <span class="mj-trend <?= $ord_month_class ?>"><?= $ord_month_text ?></span>
-                </div>
-                <div>
-                    <p class="label">Year</p>
-                    <p class="value num"><?= number_format($majik_order_ytd->majik_order, 0) ?></p>
-                    <span class="mj-trend <?= $ord_year_class ?>"><?= $ord_year_text ?></span>
-                </div>
+                <div id="refillgraph" class="mj-chart"></div>
             </div>
         </div>
-
     </div>
 
-    <!-- =============================== MAJIKANS / CUSTOMERS / APPS =============================== -->
+    <!-- =============================== ROW 3 =============================== -->
     <div class="mj-grid mj-grid-3">
 
-        <!-- Majikans Performance -->
+        <!-- Majikans Performance (ring) -->
         <div class="mj-card">
             <div class="mj-card-head">
-                <div>
-                    <h2 class="mj-card-title">Majikans Performance</h2>
-                    <p class="mj-card-sub">Activity status</p>
+                <div class="mj-card-title">
+                    <span class="mj-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg></span>
+                    Majikans
+                </div>
+                <span class="mj-chip" style="border: 1px solid var(--line);">Performance</span>
+            </div>
+            <div class="mj-ring">
+                <div id="majikansdonut" style="min-height: 200px;"></div>
+                <div class="mj-ring-center"><b class="num"><?= number_format($sub_total, 0) ?></b><span>Majikans</span></div>
+            </div>
+            <div class="mj-note"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Excellent or good <b><?= number_format($healthy_pct, 1) ?>%</b></span></div>
+            <ul class="mj-legend">
+                <?php
+                foreach ($counts as $p) {
+                    if ($p->sub_stat_dormancy == 'E') { $label = 'Excellent'; $color = '#173b12'; }
+                    elseif ($p->sub_stat_dormancy == 'G') { $label = 'Good'; $color = '#8fd14f'; }
+                    elseif ($p->sub_stat_dormancy == 'N') { $label = 'Normal'; $color = '#cdeeaa'; }
+                    elseif ($p->sub_stat_dormancy == 'D') { $label = 'Dormant'; $color = '#dcdcd8'; }
+                    else { continue; }
+                ?>
+                <li><i style="background: <?= $color ?>;"></i><?= $label ?> <span class="num"><?= number_format($p->count, 0) ?></span></li>
+                <?php } ?>
+            </ul>
+        </div>
+
+        <!-- Apps Performance (earning style) -->
+        <div class="mj-card mj-tabset">
+            <div class="mj-card-head">
+                <div class="mj-card-title">
+                    <span class="mj-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
+                    Apps
+                </div>
+                <div class="mj-seg sm">
+                    <button type="button" class="mj-tab is-active" data-target="appsDay">Day</button>
+                    <button type="button" class="mj-tab" data-target="appsMonth">Month</button>
                 </div>
             </div>
-            <div class="mj-card-body">
-                <div class="mj-donut">
-                    <div id="majikansdonut" style="min-height: 190px;"></div>
-                    <div class="mj-donut-center"><b class="num"><?= number_format($sub_total, 0) ?></b><span>Total</span></div>
-                </div>
-                <ul class="mj-list">
-                    <?php
-                    foreach ($counts as $p) {
-                        $pct = ($sub_total > 0) ? ($p->count / $sub_total * 100) : 0;
-                        if ($p->sub_stat_dormancy == 'E') { $label = 'Excellent'; $color = '#0b4f7c'; }
-                        elseif ($p->sub_stat_dormancy == 'G') { $label = 'Good'; $color = '#0779BC'; }
-                        elseif ($p->sub_stat_dormancy == 'N') { $label = 'Normal'; $color = '#7fb9dc'; }
-                        elseif ($p->sub_stat_dormancy == 'D') { $label = 'Dormant'; $color = '#d1d5db'; }
-                        else { continue; }
-                    ?>
-                    <li>
-                        <span class="mj-swatch" style="background: <?= $color ?>;"></span>
-                        <span class="name"><?= $label ?></span>
-                        <span class="value num"><?= number_format($p->count, 0) ?></span>
-                        <span class="pct num"><?= number_format($pct, 1) ?>%</span>
+
+            <div class="mj-pane is-active" id="appsDay">
+                <?php foreach ($daily_data as $data):
+                    $total_rev = $data['waba_revenue'] + $data['app_revenue'];
+                    $total_ref = $data['waba_refills'] + $data['app_refills'];
+                    $waba_rev_pct = ($total_rev > 0) ? round($data['waba_revenue'] / $total_rev * 100) : 0;
+                    $app_rev_pct = ($total_rev > 0) ? 100 - $waba_rev_pct : 0;
+                    $waba_ref_pct = ($total_ref > 0) ? round($data['waba_refills'] / $total_ref * 100) : 0;
+                    $app_ref_pct = ($total_ref > 0) ? 100 - $waba_ref_pct : 0;
+                ?>
+                <p class="mj-amount num"><?= number_format($total_rev, 0) ?></p>
+                <p class="mj-small" style="margin-top: 6px;">Today's revenue from WABA and App</p>
+                <ul class="mj-progress">
+                    <li class="<?= $waba_rev_pct >= $app_rev_pct ? 'lead' : '' ?>">
+                        <div class="mj-progress-top"><span>WABA revenue</span><b class="num"><?= number_format($data['waba_revenue'], 0) ?></b></div>
+                        <div class="mj-bar"><span style="width: <?= $waba_rev_pct ?>%;"></span><?php if ($waba_rev_pct >= $app_rev_pct && $total_rev > 0) { ?><em style="left: <?= max(10, min(90, $waba_rev_pct)) ?>%;"><?= $waba_rev_pct ?>%</em><?php } ?></div>
                     </li>
-                    <?php } ?>
+                    <li class="<?= $app_rev_pct > $waba_rev_pct ? 'lead' : '' ?>">
+                        <div class="mj-progress-top"><span>App revenue</span><b class="num"><?= number_format($data['app_revenue'], 0) ?></b></div>
+                        <div class="mj-bar"><span style="width: <?= $app_rev_pct ?>%;"></span><?php if ($app_rev_pct > $waba_rev_pct) { ?><em style="left: <?= max(10, min(90, $app_rev_pct)) ?>%;"><?= $app_rev_pct ?>%</em><?php } ?></div>
+                    </li>
+                    <li>
+                        <div class="mj-progress-top"><span>WABA refills</span><b class="num"><?= number_format($data['waba_refills'], 0) ?></b></div>
+                        <div class="mj-bar"><span style="width: <?= $waba_ref_pct ?>%;"></span></div>
+                    </li>
+                    <li>
+                        <div class="mj-progress-top"><span>App refills</span><b class="num"><?= number_format($data['app_refills'], 0) ?></b></div>
+                        <div class="mj-bar"><span style="width: <?= $app_ref_pct ?>%;"></span></div>
+                    </li>
                 </ul>
+                <?php endforeach; ?>
+                <?php if (empty($daily_data)) { ?><p class="mj-empty">No data available</p><?php } ?>
+            </div>
+
+            <div class="mj-pane" id="appsMonth">
+                <?php foreach ($monthly_data as $mtddata):
+                    $total_rev = $mtddata['waba_revenue'] + $mtddata['app_revenue'];
+                    $total_ref = $mtddata['waba_refills'] + $mtddata['app_refills'];
+                    $waba_rev_pct = ($total_rev > 0) ? round($mtddata['waba_revenue'] / $total_rev * 100) : 0;
+                    $app_rev_pct = ($total_rev > 0) ? 100 - $waba_rev_pct : 0;
+                    $waba_ref_pct = ($total_ref > 0) ? round($mtddata['waba_refills'] / $total_ref * 100) : 0;
+                    $app_ref_pct = ($total_ref > 0) ? 100 - $waba_ref_pct : 0;
+                ?>
+                <p class="mj-amount num"><?= number_format($total_rev, 0) ?></p>
+                <p class="mj-small" style="margin-top: 6px;">This month's revenue from WABA and App</p>
+                <ul class="mj-progress">
+                    <li class="<?= $waba_rev_pct >= $app_rev_pct ? 'lead' : '' ?>">
+                        <div class="mj-progress-top"><span>WABA revenue</span><b class="num"><?= number_format($mtddata['waba_revenue'], 0) ?></b></div>
+                        <div class="mj-bar"><span style="width: <?= $waba_rev_pct ?>%;"></span><?php if ($waba_rev_pct >= $app_rev_pct && $total_rev > 0) { ?><em style="left: <?= max(10, min(90, $waba_rev_pct)) ?>%;"><?= $waba_rev_pct ?>%</em><?php } ?></div>
+                    </li>
+                    <li class="<?= $app_rev_pct > $waba_rev_pct ? 'lead' : '' ?>">
+                        <div class="mj-progress-top"><span>App revenue</span><b class="num"><?= number_format($mtddata['app_revenue'], 0) ?></b></div>
+                        <div class="mj-bar"><span style="width: <?= $app_rev_pct ?>%;"></span><?php if ($app_rev_pct > $waba_rev_pct) { ?><em style="left: <?= max(10, min(90, $app_rev_pct)) ?>%;"><?= $app_rev_pct ?>%</em><?php } ?></div>
+                    </li>
+                    <li>
+                        <div class="mj-progress-top"><span>WABA refills</span><b class="num"><?= number_format($mtddata['waba_refills'], 0) ?></b></div>
+                        <div class="mj-bar"><span style="width: <?= $waba_ref_pct ?>%;"></span></div>
+                    </li>
+                    <li>
+                        <div class="mj-progress-top"><span>App refills</span><b class="num"><?= number_format($mtddata['app_refills'], 0) ?></b></div>
+                        <div class="mj-bar"><span style="width: <?= $app_ref_pct ?>%;"></span></div>
+                    </li>
+                </ul>
+                <?php endforeach; ?>
+                <?php if (empty($monthly_data)) { ?><p class="mj-empty">No data available</p><?php } ?>
             </div>
         </div>
 
         <!-- Customer Base -->
         <div class="mj-card">
             <div class="mj-card-head">
-                <div>
-                    <h2 class="mj-card-title">Customer Base</h2>
-                    <p class="mj-card-sub">Majikan sign-ups</p>
+                <div class="mj-card-title">
+                    <span class="mj-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                    Customer Base
                 </div>
             </div>
-            <div class="mj-card-body">
-                <div class="mj-big">
-                    <p class="label">Total Majikans</p>
-                    <p class="value num"><?= number_format($majik_cust->majik_customer, 0) ?></p>
-                </div>
-                <ul class="mj-list">
-                    <li><span class="name">New today</span><span class="value num"><?= number_format($majik_cust_today->majik_cust, 0) ?></span></li>
-                    <li><span class="name">New this month</span><span class="value num"><?= number_format($majik_cust_mtd->majik_cust, 0) ?></span></li>
-                    <li><span class="name">New this year</span><span class="value num"><?= number_format($majik_cust_ytd->majik_cust, 0) ?></span></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Apps Performance -->
-        <div class="mj-card mj-tabset">
-            <div class="mj-card-head">
-                <div>
-                    <h2 class="mj-card-title">Apps Performance</h2>
-                    <p class="mj-card-sub">WABA vs App, <?= date('M Y') ?></p>
-                </div>
-            </div>
-            <div class="mj-card-body">
-                <div class="mj-tabs">
-                    <button type="button" class="mj-tab is-active" data-target="appsDay">Today</button>
-                    <button type="button" class="mj-tab" data-target="appsMonth">This month</button>
-                </div>
-
-                <div class="mj-pane is-active" id="appsDay">
-                    <?php foreach ($daily_data as $data):
-                        $total_rev = $data['waba_revenue'] + $data['app_revenue'];
-                        $waba_share = ($total_rev > 0) ? round($data['waba_revenue'] / $total_rev * 100) : 0;
-                    ?>
-                    <table class="mj-table">
-                        <thead><tr><th>Channel</th><th>Revenue</th><th>Refills</th></tr></thead>
-                        <tbody>
-                            <tr><td>WABA</td><td><b><?= number_format($data['waba_revenue'], 0) ?></b></td><td><?= number_format($data['waba_refills'], 0) ?></td></tr>
-                            <tr><td>App</td><td><b><?= number_format($data['app_revenue'], 0) ?></b></td><td><?= number_format($data['app_refills'], 0) ?></td></tr>
-                        </tbody>
-                    </table>
-                    <div class="mj-share">
-                        <div class="mj-share-label"><span>WABA share of revenue</span><b class="num"><?= $waba_share ?>%</b></div>
-                        <div class="mj-share-bar"><span style="width: <?= $waba_share ?>%;"></span></div>
-                    </div>
-                    <?php endforeach; ?>
-                    <?php if (empty($daily_data)) { ?><p class="mj-empty">No data available</p><?php } ?>
-                </div>
-
-                <div class="mj-pane" id="appsMonth">
-                    <?php foreach ($monthly_data as $mtddata):
-                        $total_rev = $mtddata['waba_revenue'] + $mtddata['app_revenue'];
-                        $waba_share = ($total_rev > 0) ? round($mtddata['waba_revenue'] / $total_rev * 100) : 0;
-                    ?>
-                    <table class="mj-table">
-                        <thead><tr><th>Channel</th><th>Revenue</th><th>Refills</th></tr></thead>
-                        <tbody>
-                            <tr><td>WABA</td><td><b><?= number_format($mtddata['waba_revenue'], 0) ?></b></td><td><?= number_format($mtddata['waba_refills'], 0) ?></td></tr>
-                            <tr><td>App</td><td><b><?= number_format($mtddata['app_revenue'], 0) ?></b></td><td><?= number_format($mtddata['app_refills'], 0) ?></td></tr>
-                        </tbody>
-                    </table>
-                    <div class="mj-share">
-                        <div class="mj-share-label"><span>WABA share of revenue</span><b class="num"><?= $waba_share ?>%</b></div>
-                        <div class="mj-share-bar"><span style="width: <?= $waba_share ?>%;"></span></div>
-                    </div>
-                    <?php endforeach; ?>
-                    <?php if (empty($monthly_data)) { ?><p class="mj-empty">No data available</p><?php } ?>
-                </div>
-            </div>
+            <p class="mj-small">Total Majikans</p>
+            <p class="mj-amount num" style="margin: 4px 0 14px;"><?= number_format($majik_cust->majik_customer, 0) ?></p>
+            <ul class="mj-stat-rows">
+                <li>
+                    <span class="mj-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+                    <div><p class="ttl">New today</p><p class="sub"><?= date('d M Y') ?></p></div>
+                    <span class="val num">+<?= number_format($majik_cust_today->majik_cust, 0) ?></span>
+                </li>
+                <li>
+                    <span class="mj-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+                    <div><p class="ttl">New this month</p><p class="sub"><?= date('F Y') ?></p></div>
+                    <span class="val num">+<?= number_format($majik_cust_mtd->majik_cust, 0) ?></span>
+                </li>
+                <li>
+                    <span class="mj-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
+                    <div><p class="ttl">New this year</p><p class="sub">Year <?= date('Y') ?></p></div>
+                    <span class="val num">+<?= number_format($majik_cust_ytd->majik_cust, 0) ?></span>
+                </li>
+            </ul>
         </div>
 
     </div>
 
-    <!-- =============================== LEADERBOARDS =============================== -->
+    <!-- =============================== ROW 4 : LEADERBOARDS =============================== -->
     <div class="mj-grid mj-grid-3">
 
-        <!-- Drivers Performance -->
+        <!-- Drivers -->
         <div class="mj-card mj-tabset">
             <div class="mj-card-head">
-                <div>
-                    <h2 class="mj-card-title">Drivers Performance</h2>
-                    <p class="mj-card-sub"><?= date('M Y') ?></p>
+                <div class="mj-card-title">
+                    <span class="mj-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span>
+                    Drivers
                 </div>
-                <div class="mj-active"><span>Active</span><b class="num"><?= number_format($majik_active_drivers->majik_drivers, 0) ?></b></div>
+                <span class="mj-active">Active <b class="num"><?= number_format($majik_active_drivers->majik_drivers, 0) ?></b></span>
             </div>
-            <div class="mj-card-body">
-                <div class="mj-tabs">
-                    <button type="button" class="mj-tab is-active" data-target="driversDay">Today</button>
-                    <button type="button" class="mj-tab" data-target="driversMonth">This month</button>
-                </div>
+            <div class="mj-seg sm" style="margin-bottom: 16px; align-self: flex-start;">
+                <button type="button" class="mj-tab is-active" data-target="driversDay">Today</button>
+                <button type="button" class="mj-tab" data-target="driversMonth">This month</button>
+            </div>
 
-                <div class="mj-pane is-active" id="driversDay">
-                    <div class="mj-board">
-                        <?php
-                        $max = 0;
-                        foreach ($trip_day as $vl) { if ($vl->trips > $max) $max = $vl->trips; }
-                        $rank = 0;
-                        foreach ($trip_day as $vl) { $rank++;
-                        ?>
-                        <div class="mj-row">
-                            <span class="mj-rank"><?= $rank ?></span>
-                            <div class="mj-row-main">
-                                <div class="mj-row-top"><span class="mj-row-name"><?= htmlspecialchars($vl->md_first) ?></span><span class="mj-row-value"><?= number_format($vl->trips, 0) ?><small>trips</small></span></div>
-                                <div class="mj-row-bar"><span style="width: <?= $max > 0 ? round($vl->trips / $max * 100) : 0 ?>%;"></span></div>
-                            </div>
-                        </div>
-                        <?php } ?>
-                        <?php if (empty($trip_day)) { ?><p class="mj-empty">No trips recorded yet</p><?php } ?>
+            <div class="mj-pane is-active" id="driversDay">
+                <div class="mj-list">
+                    <?php $rank = 0; foreach ($trip_day as $vl) { $rank++; ?>
+                    <div class="mj-item">
+                        <span class="mj-avatar"><?= htmlspecialchars(substr($vl->md_first, 0, 1)) ?></span>
+                        <div class="mj-item-main"><p class="mj-item-name"><?= htmlspecialchars($vl->md_first) ?></p><p class="mj-item-sub"><?= $rank == 1 ? 'Top driver today' : 'Rank #' . $rank ?></p></div>
+                        <span class="mj-item-val"><?= number_format($vl->trips, 0) ?><small>trips</small></span>
                     </div>
+                    <?php } ?>
+                    <?php if (empty($trip_day)) { ?><p class="mj-empty">No trips recorded yet</p><?php } ?>
                 </div>
-
-                <div class="mj-pane" id="driversMonth">
-                    <div class="mj-board">
-                        <?php
-                        $max = 0;
-                        foreach ($trip_mnt as $ref) { if ($ref->trips > $max) $max = $ref->trips; }
-                        $rank = 0;
-                        foreach ($trip_mnt as $ref) { $rank++;
-                        ?>
-                        <div class="mj-row">
-                            <span class="mj-rank"><?= $rank ?></span>
-                            <div class="mj-row-main">
-                                <div class="mj-row-top"><span class="mj-row-name"><?= htmlspecialchars($ref->md_first) ?></span><span class="mj-row-value"><?= number_format($ref->trips, 0) ?><small>trips</small></span></div>
-                                <div class="mj-row-bar"><span style="width: <?= $max > 0 ? round($ref->trips / $max * 100) : 0 ?>%;"></span></div>
-                            </div>
-                        </div>
-                        <?php } ?>
-                        <?php if (empty($trip_mnt)) { ?><p class="mj-empty">No trips recorded yet</p><?php } ?>
+            </div>
+            <div class="mj-pane" id="driversMonth">
+                <div class="mj-list">
+                    <?php $rank = 0; foreach ($trip_mnt as $ref) { $rank++; ?>
+                    <div class="mj-item">
+                        <span class="mj-avatar"><?= htmlspecialchars(substr($ref->md_first, 0, 1)) ?></span>
+                        <div class="mj-item-main"><p class="mj-item-name"><?= htmlspecialchars($ref->md_first) ?></p><p class="mj-item-sub"><?= $rank == 1 ? 'Top driver this month' : 'Rank #' . $rank ?></p></div>
+                        <span class="mj-item-val"><?= number_format($ref->trips, 0) ?><small>trips</small></span>
                     </div>
+                    <?php } ?>
+                    <?php if (empty($trip_mnt)) { ?><p class="mj-empty">No trips recorded yet</p><?php } ?>
                 </div>
             </div>
         </div>
 
-        <!-- Customer Performance -->
+        <!-- Customers -->
         <div class="mj-card mj-tabset">
             <div class="mj-card-head">
-                <div>
-                    <h2 class="mj-card-title">Customer Performance</h2>
-                    <p class="mj-card-sub"><?= date('M Y') ?></p>
+                <div class="mj-card-title">
+                    <span class="mj-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+                    Customers
                 </div>
-                <div class="mj-active"><span>Active</span><b class="num"><?= number_format($majik_active_customers->Total, 0) ?></b></div>
+                <span class="mj-active">Active <b class="num"><?= number_format($majik_active_customers->Total, 0) ?></b></span>
             </div>
-            <div class="mj-card-body">
-                <div class="mj-tabs">
-                    <button type="button" class="mj-tab is-active" data-target="custRevenue">Revenue</button>
-                    <button type="button" class="mj-tab" data-target="custVolume">Volume</button>
-                    <button type="button" class="mj-tab" data-target="custRefills">Refills</button>
-                </div>
+            <div class="mj-seg sm" style="margin-bottom: 16px; align-self: flex-start;">
+                <button type="button" class="mj-tab is-active" data-target="custRevenue">Revenue</button>
+                <button type="button" class="mj-tab" data-target="custVolume">Volume</button>
+                <button type="button" class="mj-tab" data-target="custRefills">Refills</button>
+            </div>
 
-                <div class="mj-pane is-active" id="custRevenue">
-                    <div class="mj-board">
-                        <?php
-                        $max = 0;
-                        foreach ($majik_customer_revenue as $vl) { if ($vl->total_revenue > $max) $max = $vl->total_revenue; }
-                        $rank = 0;
-                        foreach ($majik_customer_revenue as $vl) { $rank++;
-                        ?>
-                        <div class="mj-row">
-                            <span class="mj-rank"><?= $rank ?></span>
-                            <div class="mj-row-main">
-                                <div class="mj-row-top"><span class="mj-row-name"><?= htmlspecialchars($vl->sub_name) ?></span><span class="mj-row-value"><?= number_format($vl->total_revenue, 0) ?></span></div>
-                                <div class="mj-row-bar"><span style="width: <?= $max > 0 ? round($vl->total_revenue / $max * 100) : 0 ?>%;"></span></div>
-                            </div>
-                        </div>
-                        <?php } ?>
-                        <?php if (empty($majik_customer_revenue)) { ?><p class="mj-empty">No data available</p><?php } ?>
+            <div class="mj-pane is-active" id="custRevenue">
+                <div class="mj-list">
+                    <?php $rank = 0; foreach ($majik_customer_revenue as $vl) { $rank++; ?>
+                    <div class="mj-item">
+                        <span class="mj-avatar"><?= htmlspecialchars(substr($vl->sub_name, 0, 1)) ?></span>
+                        <div class="mj-item-main"><p class="mj-item-name"><?= htmlspecialchars($vl->sub_name) ?></p><p class="mj-item-sub"><?= $rank == 1 ? 'Top customer' : 'Rank #' . $rank ?></p></div>
+                        <span class="mj-item-val"><?= number_format($vl->total_revenue, 0) ?></span>
                     </div>
+                    <?php } ?>
+                    <?php if (empty($majik_customer_revenue)) { ?><p class="mj-empty">No data available</p><?php } ?>
                 </div>
-
-                <div class="mj-pane" id="custVolume">
-                    <div class="mj-board">
-                        <?php
-                        $max = 0;
-                        foreach ($majik_customer_volume as $msv) { if ($msv->total_volume > $max) $max = $msv->total_volume; }
-                        $rank = 0;
-                        foreach ($majik_customer_volume as $msv) { $rank++;
-                        ?>
-                        <div class="mj-row">
-                            <span class="mj-rank"><?= $rank ?></span>
-                            <div class="mj-row-main">
-                                <div class="mj-row-top"><span class="mj-row-name"><?= htmlspecialchars($msv->sub_name) ?></span><span class="mj-row-value"><?= number_format($msv->total_volume, 0) ?><small>L</small></span></div>
-                                <div class="mj-row-bar"><span style="width: <?= $max > 0 ? round($msv->total_volume / $max * 100) : 0 ?>%;"></span></div>
-                            </div>
-                        </div>
-                        <?php } ?>
-                        <?php if (empty($majik_customer_volume)) { ?><p class="mj-empty">No data available</p><?php } ?>
+            </div>
+            <div class="mj-pane" id="custVolume">
+                <div class="mj-list">
+                    <?php $rank = 0; foreach ($majik_customer_volume as $msv) { $rank++; ?>
+                    <div class="mj-item">
+                        <span class="mj-avatar"><?= htmlspecialchars(substr($msv->sub_name, 0, 1)) ?></span>
+                        <div class="mj-item-main"><p class="mj-item-name"><?= htmlspecialchars($msv->sub_name) ?></p><p class="mj-item-sub"><?= $rank == 1 ? 'Top customer' : 'Rank #' . $rank ?></p></div>
+                        <span class="mj-item-val"><?= number_format($msv->total_volume, 0) ?><small>L</small></span>
                     </div>
+                    <?php } ?>
+                    <?php if (empty($majik_customer_volume)) { ?><p class="mj-empty">No data available</p><?php } ?>
                 </div>
-
-                <div class="mj-pane" id="custRefills">
-                    <div class="mj-board">
-                        <?php
-                        $max = 0;
-                        foreach ($majik_customer_refills as $msre) { if ($msre->order_count > $max) $max = $msre->order_count; }
-                        $rank = 0;
-                        foreach ($majik_customer_refills as $msre) { $rank++;
-                        ?>
-                        <div class="mj-row">
-                            <span class="mj-rank"><?= $rank ?></span>
-                            <div class="mj-row-main">
-                                <div class="mj-row-top"><span class="mj-row-name"><?= htmlspecialchars($msre->sub_name) ?></span><span class="mj-row-value"><?= number_format($msre->order_count, 0) ?><small>refills</small></span></div>
-                                <div class="mj-row-bar"><span style="width: <?= $max > 0 ? round($msre->order_count / $max * 100) : 0 ?>%;"></span></div>
-                            </div>
-                        </div>
-                        <?php } ?>
-                        <?php if (empty($majik_customer_refills)) { ?><p class="mj-empty">No data available</p><?php } ?>
+            </div>
+            <div class="mj-pane" id="custRefills">
+                <div class="mj-list">
+                    <?php $rank = 0; foreach ($majik_customer_refills as $msre) { $rank++; ?>
+                    <div class="mj-item">
+                        <span class="mj-avatar"><?= htmlspecialchars(substr($msre->sub_name, 0, 1)) ?></span>
+                        <div class="mj-item-main"><p class="mj-item-name"><?= htmlspecialchars($msre->sub_name) ?></p><p class="mj-item-sub"><?= $rank == 1 ? 'Top customer' : 'Rank #' . $rank ?></p></div>
+                        <span class="mj-item-val"><?= number_format($msre->order_count, 0) ?><small>refills</small></span>
                     </div>
+                    <?php } ?>
+                    <?php if (empty($majik_customer_refills)) { ?><p class="mj-empty">No data available</p><?php } ?>
                 </div>
             </div>
         </div>
 
-        <!-- Stores Performance -->
+        <!-- Stores -->
         <div class="mj-card mj-tabset">
             <div class="mj-card-head">
-                <div>
-                    <h2 class="mj-card-title">Stores Performance</h2>
-                    <p class="mj-card-sub"><?= date('M Y') ?></p>
+                <div class="mj-card-title">
+                    <span class="mj-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+                    Stores
                 </div>
-                <div class="mj-active"><span>Active</span><b class="num"><?= number_format($majik_store->majik_store, 0) ?></b></div>
+                <span class="mj-active">Active <b class="num"><?= number_format($majik_store->majik_store, 0) ?></b></span>
             </div>
-            <div class="mj-card-body">
-                <div class="mj-tabs">
-                    <button type="button" class="mj-tab is-active" data-target="storeRevenue">Revenue</button>
-                    <button type="button" class="mj-tab" data-target="storeVolume">Volume</button>
-                    <button type="button" class="mj-tab" data-target="storeRefills">Refills</button>
-                </div>
+            <div class="mj-seg sm" style="margin-bottom: 16px; align-self: flex-start;">
+                <button type="button" class="mj-tab is-active" data-target="storeRevenue">Revenue</button>
+                <button type="button" class="mj-tab" data-target="storeVolume">Volume</button>
+                <button type="button" class="mj-tab" data-target="storeRefills">Refills</button>
+            </div>
 
-                <div class="mj-pane is-active" id="storeRevenue">
-                    <div class="mj-board">
-                        <?php
-                        $max = 0;
-                        foreach ($majik_store_revenue as $msr) { if ($msr->total_revenue > $max) $max = $msr->total_revenue; }
-                        $rank = 0;
-                        foreach ($majik_store_revenue as $msr) { $rank++;
-                        ?>
-                        <div class="mj-row">
-                            <span class="mj-rank"><?= $rank ?></span>
-                            <div class="mj-row-main">
-                                <div class="mj-row-top"><span class="mj-row-name"><?= htmlspecialchars($msr->store_name) ?></span><span class="mj-row-value"><?= number_format($msr->total_revenue, 0) ?></span></div>
-                                <div class="mj-row-bar"><span style="width: <?= $max > 0 ? round($msr->total_revenue / $max * 100) : 0 ?>%;"></span></div>
-                            </div>
-                        </div>
-                        <?php } ?>
-                        <?php if (empty($majik_store_revenue)) { ?><p class="mj-empty">No data available</p><?php } ?>
+            <div class="mj-pane is-active" id="storeRevenue">
+                <div class="mj-list">
+                    <?php $rank = 0; foreach ($majik_store_revenue as $msr) { $rank++; ?>
+                    <div class="mj-item">
+                        <span class="mj-avatar"><?= htmlspecialchars(substr($msr->store_name, 0, 1)) ?></span>
+                        <div class="mj-item-main"><p class="mj-item-name"><?= htmlspecialchars($msr->store_name) ?></p><p class="mj-item-sub"><?= $rank == 1 ? 'Top store' : 'Rank #' . $rank ?></p></div>
+                        <span class="mj-item-val"><?= number_format($msr->total_revenue, 0) ?></span>
                     </div>
+                    <?php } ?>
+                    <?php if (empty($majik_store_revenue)) { ?><p class="mj-empty">No data available</p><?php } ?>
                 </div>
-
-                <div class="mj-pane" id="storeVolume">
-                    <div class="mj-board">
-                        <?php
-                        $max = 0;
-                        foreach ($majik_store_volume as $msv) { if ($msv->total_volume > $max) $max = $msv->total_volume; }
-                        $rank = 0;
-                        foreach ($majik_store_volume as $msv) { $rank++;
-                        ?>
-                        <div class="mj-row">
-                            <span class="mj-rank"><?= $rank ?></span>
-                            <div class="mj-row-main">
-                                <div class="mj-row-top"><span class="mj-row-name"><?= htmlspecialchars($msv->store_name) ?></span><span class="mj-row-value"><?= number_format($msv->total_volume, 0) ?><small>L</small></span></div>
-                                <div class="mj-row-bar"><span style="width: <?= $max > 0 ? round($msv->total_volume / $max * 100) : 0 ?>%;"></span></div>
-                            </div>
-                        </div>
-                        <?php } ?>
-                        <?php if (empty($majik_store_volume)) { ?><p class="mj-empty">No data available</p><?php } ?>
+            </div>
+            <div class="mj-pane" id="storeVolume">
+                <div class="mj-list">
+                    <?php $rank = 0; foreach ($majik_store_volume as $msv) { $rank++; ?>
+                    <div class="mj-item">
+                        <span class="mj-avatar"><?= htmlspecialchars(substr($msv->store_name, 0, 1)) ?></span>
+                        <div class="mj-item-main"><p class="mj-item-name"><?= htmlspecialchars($msv->store_name) ?></p><p class="mj-item-sub"><?= $rank == 1 ? 'Top store' : 'Rank #' . $rank ?></p></div>
+                        <span class="mj-item-val"><?= number_format($msv->total_volume, 0) ?><small>L</small></span>
                     </div>
+                    <?php } ?>
+                    <?php if (empty($majik_store_volume)) { ?><p class="mj-empty">No data available</p><?php } ?>
                 </div>
-
-                <div class="mj-pane" id="storeRefills">
-                    <div class="mj-board">
-                        <?php
-                        $max = 0;
-                        foreach ($majik_store_refills as $msre) { if ($msre->sub_count > $max) $max = $msre->sub_count; }
-                        $rank = 0;
-                        foreach ($majik_store_refills as $msre) { $rank++;
-                        ?>
-                        <div class="mj-row">
-                            <span class="mj-rank"><?= $rank ?></span>
-                            <div class="mj-row-main">
-                                <div class="mj-row-top"><span class="mj-row-name"><?= htmlspecialchars($msre->point_name) ?></span><span class="mj-row-value"><?= number_format($msre->sub_count, 0) ?><small>refills</small></span></div>
-                                <div class="mj-row-bar"><span style="width: <?= $max > 0 ? round($msre->sub_count / $max * 100) : 0 ?>%;"></span></div>
-                            </div>
-                        </div>
-                        <?php } ?>
-                        <?php if (empty($majik_store_refills)) { ?><p class="mj-empty">No data available</p><?php } ?>
+            </div>
+            <div class="mj-pane" id="storeRefills">
+                <div class="mj-list">
+                    <?php $rank = 0; foreach ($majik_store_refills as $msre) { $rank++; ?>
+                    <div class="mj-item">
+                        <span class="mj-avatar"><?= htmlspecialchars(substr($msre->point_name, 0, 1)) ?></span>
+                        <div class="mj-item-main"><p class="mj-item-name"><?= htmlspecialchars($msre->point_name) ?></p><p class="mj-item-sub"><?= $rank == 1 ? 'Top store' : 'Rank #' . $rank ?></p></div>
+                        <span class="mj-item-val"><?= number_format($msre->sub_count, 0) ?><small>refills</small></span>
                     </div>
+                    <?php } ?>
+                    <?php if (empty($majik_store_refills)) { ?><p class="mj-empty">No data available</p><?php } ?>
                 </div>
             </div>
         </div>
@@ -690,21 +702,24 @@ document.addEventListener('click', function (e) {
     for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('is-active');
     for (var j = 0; j < panes.length; j++) panes[j].classList.remove('is-active');
     tab.classList.add('is-active');
-    document.getElementById(tab.getAttribute('data-target')).classList.add('is-active');
+    var target = tab.getAttribute('data-target');
+    document.getElementById(target).classList.add('is-active');
+
+    // The refills chart is drawn the first time its tab is opened (hidden charts render at 0 width).
+    if (target === 'chartRefills' && typeof ApexCharts !== 'undefined') initRefillGraph();
 });
 
 /* ---------- Charts ---------- */
 document.addEventListener('DOMContentLoaded', function () {
     if (typeof ApexCharts !== 'undefined') {
         initRevenueGraph();
-        initRefillGraph();
         initMajikansDonut();
     }
 });
 
 var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-var chartFont = "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif";
-var axisLabel = { colors: '#6b7280', fontSize: '12px' };
+var chartFont = "Outfit, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif";
+var axisLabel = { colors: '#8b8b8b', fontSize: '12px' };
 
 // 1200000 -> 1.2M, 1500 -> 1.5K
 function shortNumber(value) {
@@ -722,37 +737,39 @@ function initRevenueGraph() {
     while (monthData.length < months.length) monthData.push(null); // future months stay empty
 
     new ApexCharts(el, {
-        chart: { height: 300, type: 'area', toolbar: { show: false }, zoom: { enabled: false }, fontFamily: chartFont },
-        colors: ['#0779BC'],
+        chart: { height: 290, type: 'area', toolbar: { show: false }, zoom: { enabled: false }, fontFamily: chartFont },
+        colors: ['#173b12'],
         series: [{ name: 'Revenue', data: monthData }],
-        stroke: { curve: 'smooth', width: 2 },
-        fill: { type: 'gradient', gradient: { opacityFrom: 0.18, opacityTo: 0, stops: [0, 100] } },
-        markers: { size: 0, hover: { size: 5 } },
+        stroke: { curve: 'smooth', width: 2.5 },
+        fill: { type: 'gradient', gradient: { gradientToColors: ['#b9ec7f'], opacityFrom: 0.45, opacityTo: 0.05, stops: [0, 100] } },
+        markers: { size: 0, strokeColors: '#b9ec7f', strokeWidth: 3, hover: { size: 6 } },
         dataLabels: { enabled: false },
-        grid: { borderColor: '#eef0f3', padding: { left: 4, right: 8 } },
+        grid: { borderColor: '#efefed', strokeDashArray: 4, padding: { left: 6, right: 10 } },
         xaxis: { categories: months, axisBorder: { show: false }, axisTicks: { show: false }, labels: { style: axisLabel } },
         yaxis: { min: 0, forceNiceScale: true, labels: { style: axisLabel, formatter: shortNumber } },
         tooltip: { y: { formatter: function (val) { return Number(val).toLocaleString(); } } }
     }).render();
 }
 
+var refillDrawn = false;
 function initRefillGraph() {
     var el = document.querySelector('#refillgraph');
-    if (!el) return;
+    if (!el || refillDrawn) return;
+    refillDrawn = true;
 
     var refillData = [<?= implode(',', array_map(function($r) { return (float) $r->sub_count; }, $refill)) ?>];
     while (refillData.length < months.length) refillData.push(0);
 
     new ApexCharts(el, {
-        chart: { height: 220, type: 'bar', toolbar: { show: false }, fontFamily: chartFont },
-        colors: ['#0779BC'],
+        chart: { height: 290, type: 'bar', toolbar: { show: false }, fontFamily: chartFont },
+        colors: ['#b9ec7f'],
         series: [{ name: 'Refills', data: refillData }],
-        plotOptions: { bar: { columnWidth: '50%', borderRadius: 3 } },
+        plotOptions: { bar: { columnWidth: '38%', borderRadius: 8, borderRadiusApplication: 'end' } },
         dataLabels: { enabled: false },
-        states: { hover: { filter: { type: 'darken', value: 0.85 } } },
-        grid: { borderColor: '#eef0f3', padding: { left: 4, right: 8 } },
-        xaxis: { categories: months, axisBorder: { show: false }, axisTicks: { show: false }, labels: { style: { colors: '#6b7280', fontSize: '11px' } } },
-        yaxis: { min: 0, forceNiceScale: true, tickAmount: 4, labels: { style: { colors: '#6b7280', fontSize: '11px' }, formatter: shortNumber } },
+        states: { hover: { filter: { type: 'none' } } },
+        grid: { borderColor: '#efefed', strokeDashArray: 4, padding: { left: 6, right: 10 } },
+        xaxis: { categories: months, axisBorder: { show: false }, axisTicks: { show: false }, labels: { style: axisLabel } },
+        yaxis: { min: 0, forceNiceScale: true, labels: { style: axisLabel, formatter: shortNumber } },
         tooltip: { y: { formatter: function (val) { return Number(val).toLocaleString(); } } }
     }).render();
 }
@@ -763,21 +780,21 @@ function initMajikansDonut() {
 
     var labels = [], values = [], colors = [];
     <?php foreach ($counts as $p) { ?>
-    <?php if ($p->sub_stat_dormancy == 'E') { ?>labels.push('Excellent'); values.push(<?= (float) $p->count ?>); colors.push('#0b4f7c');<?php } ?>
-    <?php if ($p->sub_stat_dormancy == 'G') { ?>labels.push('Good'); values.push(<?= (float) $p->count ?>); colors.push('#0779BC');<?php } ?>
-    <?php if ($p->sub_stat_dormancy == 'N') { ?>labels.push('Normal'); values.push(<?= (float) $p->count ?>); colors.push('#7fb9dc');<?php } ?>
-    <?php if ($p->sub_stat_dormancy == 'D') { ?>labels.push('Dormant'); values.push(<?= (float) $p->count ?>); colors.push('#d1d5db');<?php } ?>
+    <?php if ($p->sub_stat_dormancy == 'E') { ?>labels.push('Excellent'); values.push(<?= (float) $p->count ?>); colors.push('#173b12');<?php } ?>
+    <?php if ($p->sub_stat_dormancy == 'G') { ?>labels.push('Good'); values.push(<?= (float) $p->count ?>); colors.push('#8fd14f');<?php } ?>
+    <?php if ($p->sub_stat_dormancy == 'N') { ?>labels.push('Normal'); values.push(<?= (float) $p->count ?>); colors.push('#cdeeaa');<?php } ?>
+    <?php if ($p->sub_stat_dormancy == 'D') { ?>labels.push('Dormant'); values.push(<?= (float) $p->count ?>); colors.push('#dcdcd8');<?php } ?>
     <?php } ?>
 
     new ApexCharts(el, {
-        chart: { height: 200, type: 'donut', fontFamily: chartFont },
+        chart: { height: 210, type: 'donut', fontFamily: chartFont },
         series: values,
         labels: labels,
         colors: colors,
-        stroke: { width: 2, colors: ['#fff'] },
+        stroke: { width: 6, colors: ['#fff'] },
         legend: { show: false },
         dataLabels: { enabled: false },
-        plotOptions: { pie: { donut: { size: '76%' } } },
+        plotOptions: { pie: { donut: { size: '84%' } } },
         tooltip: { y: { formatter: function (val) { return Number(val).toLocaleString(); } } }
     }).render();
 }
