@@ -11,6 +11,10 @@
 
     // ===================== START: ChuoCredit partner API =====================
 
+    // rest_api_keys.username allowed to call the ChuoCredit endpoints.
+    // Temporarily "efa" for testing; change to "chuocredit" once its key is added.
+    private $chuocredit_sender = "efa";
+
     // Campus name => campus code (same codes as get_campus_code)
     private $chuocredit_campus_codes = [
         'Sokoine University Of Agriculture' => 'CA-000060',
@@ -229,13 +233,13 @@
         return null;
     }
 
-    // Only the ChuoCredit key (sender "chuocredit" in rest_api_keys) may call these
+    // Only the key whose username is $chuocredit_sender may call these
     private function _chuocredit_authorized()
     {
         $token = $this->input->get_request_header("auth-token", true);
         $sender = $this->input->get_request_header("sender", true);
 
-        if (empty($token) || $sender !== "chuocredit") {
+        if (empty($token) || $sender !== $this->chuocredit_sender) {
             return false;
         }
 
