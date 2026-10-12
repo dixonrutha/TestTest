@@ -4,23 +4,24 @@
 
 <style>
 /* =====================================================================
-   MAJIK DASHBOARD — soft cards, lime accent (prefix .mj-)
+   MAJIK DASHBOARD — soft cards, Majik blue #0779BC + grey #a6a9b7 (prefix .mj-)
    ===================================================================== */
 .mj-dash {
-    --frame: #f3f3f1;
+    --frame: #f1f2f5;
     --card: #ffffff;
-    --lime: #b9ec7f;
-    --lime-2: #d3f4ac;
-    --lime-3: #eefbe0;
-    --forest: #173b12;
-    --ink: #121212;
-    --ink-2: #3a3a3a;
-    --muted: #8b8b8b;
-    --line: #ececea;
+    --blue: #0779BC;
+    --blue-dark: #055d91;
+    --blue-soft: #e8f2f9;
+    --grey: #a6a9b7;
+    --grey-soft: #eceef2;
+    --ink: #1b1d26;
+    --ink-2: #444756;
+    --muted: #868a9b;
+    --line: #e7e8ee;
     --up: #2f9e44;
     --down: #e5484d;
     font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 400;
     color: var(--ink);
     background: var(--frame);
@@ -51,123 +52,127 @@
 /* ---------- Top bar ---------- */
 .mj-topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin: 4px 4px 22px; }
 .mj-hello { display: flex; align-items: center; gap: 14px; }
-.mj-logo { width: 46px; height: 46px; border-radius: 50%; background: var(--forest); color: var(--lime); display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 600; }
-.mj-hello h1 { font-size: 26px; font-weight: 400; letter-spacing: -.01em; }
+.mj-logo { width: 40px; height: 40px; border-radius: 50%; background: var(--blue); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600; }
+.mj-hello h1 { font-size: 20px; font-weight: 400; letter-spacing: -.01em; }
 .mj-hello p { font-size: 13px; color: var(--muted); margin-top: 2px; }
 .mj-topbar-right { display: flex; align-items: center; gap: 10px; }
-.mj-round { height: 44px; min-width: 44px; padding: 0 16px; border-radius: 999px; background: var(--card); display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; color: var(--ink); }
-.mj-round svg { width: 18px; height: 18px; }
+.mj-round { height: 38px; min-width: 38px; padding: 0 16px; border-radius: 999px; background: var(--card); display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; color: var(--ink-2); }
+.mj-round svg { width: 16px; height: 16px; color: var(--blue); }
 
 /* ---------- Card ---------- */
-.mj-card { background: var(--card); border-radius: 24px; padding: 26px; display: flex; flex-direction: column; min-width: 0; position: relative; overflow: hidden; }
-.mj-card-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 22px; }
-.mj-card-title { display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 400; letter-spacing: -.01em; }
-.mj-ico { width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--ink); background: #fff; }
-.mj-ico svg { width: 19px; height: 19px; }
-.mj-label { font-size: 14px; color: var(--ink-2); }
-.mj-small { font-size: 12.5px; color: var(--muted); }
+.mj-card { background: var(--card); border-radius: 20px; padding: 22px; display: flex; flex-direction: column; min-width: 0; position: relative; overflow: hidden; }
+.mj-card-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+.mj-card-title { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 500; letter-spacing: -.01em; }
+.mj-ico { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--blue); background: var(--blue-soft); border-color: transparent; }
+.mj-ico svg { width: 16px; height: 16px; }
+.mj-label { font-size: 13px; color: var(--ink-2); }
+.mj-small { font-size: 12px; color: var(--muted); }
 
 /* ---------- Segmented pills ---------- */
-.mj-seg { display: inline-flex; padding: 4px; border-radius: 999px; background: #f1f1ef; gap: 2px; flex-wrap: wrap; }
-.mj-tab { appearance: none; border: 0; background: transparent; cursor: pointer; font: inherit; font-size: 14px; color: var(--ink-2); padding: 8px 18px; border-radius: 999px; }
+.mj-seg { display: inline-flex; padding: 4px; border-radius: 999px; background: var(--grey-soft); gap: 2px; flex-wrap: wrap; }
+.mj-tab { appearance: none; border: 0; background: transparent; cursor: pointer; font: inherit; font-size: 13px; color: var(--muted); padding: 6px 14px; border-radius: 999px; }
 .mj-tab:focus { outline: none; }
-.mj-tab:focus-visible { outline: 2px solid var(--forest); outline-offset: 1px; }
-.mj-tab.is-active { background: #fff; color: var(--ink); box-shadow: 0 1px 3px rgba(0, 0, 0, .08); }
-.mj-seg.sm .mj-tab { font-size: 13px; padding: 6px 13px; }
+.mj-tab:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
+.mj-tab.is-active { background: var(--blue); color: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, .08); }
+.mj-seg.sm .mj-tab { font-size: 12px; padding: 5px 11px; }
 .mj-pane { display: none; }
 .mj-pane.is-active { display: block; }
 
 /* ---------- Pills & trends ---------- */
-.mj-pill { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; font-size: 14px; white-space: nowrap; }
-.mj-pill.dark { background: var(--forest); color: #fff; }
-.mj-pill.dark b { color: var(--lime); font-weight: 500; }
-.mj-pill.outline { border: 1px solid var(--ink); color: var(--ink); }
+.mj-pill { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px; border-radius: 999px; font-size: 12.5px; white-space: nowrap; }
+.mj-pill.dark { background: var(--blue); color: #fff; }
+.mj-pill.dark b { color: #fff; font-weight: 600; }
+.mj-pill.outline { border: 1px solid var(--grey); color: var(--ink-2); }
 .mj-pill.outline b { font-weight: 500; }
-.mj-pill svg { width: 16px; height: 16px; }
-.mj-trend { font-size: 13px; font-weight: 500; white-space: nowrap; }
+.mj-pill svg { width: 15px; height: 15px; }
+.mj-trend { font-size: 12px; font-weight: 500; white-space: nowrap; }
 .mj-trend.up { color: var(--up); }
 .mj-trend.down { color: var(--down); }
 .mj-trend.flat { color: var(--muted); }
-.mj-chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; background: #fff; font-size: 13px; }
+.mj-chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; background: #fff; font-size: 12px; color: var(--ink-2); }
 
 /* ---------- Revenue balance card ---------- */
-.mj-balance-top { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 34px; }
+.mj-balance-top { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
 .mj-balance-meta { text-align: right; }
-.mj-balance-meta b { display: block; font-size: 22px; font-weight: 400; margin-top: 4px; }
-.mj-big { font-size: 62px; font-weight: 300; letter-spacing: -.03em; line-height: 1.05; margin: 8px 0 10px; overflow-wrap: anywhere; }
-.mj-balance-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 30px; }
-.mj-go { margin-left: auto; width: 86px; height: 86px; border-radius: 50%; background: var(--lime); display: flex; align-items: center; justify-content: center; color: var(--forest); flex-shrink: 0; }
-.mj-go svg { width: 30px; height: 30px; }
-@media (max-width: 575.98px) { .mj-big { font-size: 44px; } .mj-go { display: none; } .mj-balance-meta { text-align: left; } }
+.mj-balance-meta b { display: block; font-size: 17px; color: var(--blue); font-weight: 400; margin-top: 4px; }
+.mj-big { font-size: 40px; font-weight: 400; letter-spacing: -.03em; line-height: 1.05; margin: 6px 0 8px; overflow-wrap: anywhere; }
+.mj-balance-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 22px; }
+.mj-go { margin-left: auto; width: 56px; height: 56px; border-radius: 50%; background: var(--blue); display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; }
+.mj-go svg { width: 22px; height: 22px; }
+@media (max-width: 575.98px) { .mj-big { font-size: 32px; } .mj-go { display: none; } .mj-balance-meta { text-align: left; } }
 
 /* ---------- Lime refills card ---------- */
-.mj-card.lime { background: var(--lime); }
-.mj-star { position: absolute; right: 8px; top: 12px; width: 190px; height: 190px; color: #ace06e; pointer-events: none; }
-.mj-badge { position: relative; display: inline-flex; align-items: center; gap: 12px; height: 46px; padding: 0 6px 0 18px; border-radius: 999px; border: 2px solid var(--forest); background: var(--forest); color: var(--lime); font-size: 15px; letter-spacing: .08em; }
-.mj-badge i { width: 34px; height: 34px; border-radius: 50%; background: var(--lime); color: var(--forest); display: flex; align-items: center; justify-content: center; font-style: normal; }
-.mj-badge i svg { width: 16px; height: 16px; }
-.mj-lime-body { position: relative; margin-top: 34px; }
-.mj-lime-body .mj-big { font-size: 54px; display: inline-block; margin-right: 10px; vertical-align: middle; }
-.mj-tiles { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 26px; }
-.mj-tile { background: var(--lime-2); border-radius: 16px; padding: 14px 16px; min-width: 0; }
-.mj-tile p { font-size: 13px; color: var(--ink-2); }
-.mj-tile b { display: block; font-size: 24px; font-weight: 400; margin: 6px 0 2px; overflow-wrap: anywhere; }
+.mj-card.accent { background: linear-gradient(140deg, var(--blue) 0%, var(--blue-dark) 100%); color: #fff; }
+.mj-card.accent .mj-label { color: rgba(255, 255, 255, .85); }
+.mj-star { position: absolute; right: 8px; top: 12px; width: 160px; height: 160px; color: rgba(255, 255, 255, .08); pointer-events: none; }
+.mj-badge { position: relative; display: inline-flex; align-items: center; gap: 10px; height: 36px; padding: 0 4px 0 14px; border-radius: 999px; background: rgba(255, 255, 255, .16); color: #fff; font-size: 12px; letter-spacing: .1em; }
+.mj-badge i { width: 28px; height: 28px; border-radius: 50%; background: #fff; color: var(--blue); display: flex; align-items: center; justify-content: center; font-style: normal; }
+.mj-badge i svg { width: 14px; height: 14px; }
+.mj-accent-body { position: relative; margin-top: 22px; }
+.mj-accent-body .mj-big { font-size: 38px; display: inline-block; margin-right: 10px; vertical-align: middle; }
+.mj-tiles { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+.mj-tile { background: rgba(255, 255, 255, .13); border-radius: 14px; padding: 12px 14px; min-width: 0; }
+.mj-tile .mj-trend { color: #fff; }
+.mj-tile p { font-size: 12px; color: rgba(255, 255, 255, .8); }
+.mj-tile b { display: block; font-size: 19px; font-weight: 400; margin: 6px 0 2px; overflow-wrap: anywhere; }
 
 /* ---------- Analysis chart card ---------- */
-.mj-chart { min-height: 290px; margin: -8px -10px 0; }
+.mj-chart { min-height: 260px; margin: -8px -10px 0; }
 .mj-chart-summary { display: flex; flex-wrap: wrap; gap: 28px; margin-bottom: 10px; }
-.mj-chart-summary div p { font-size: 13px; color: var(--muted); }
-.mj-chart-summary div b { display: block; font-size: 24px; font-weight: 400; margin-top: 2px; }
+.mj-chart-summary div p { font-size: 12px; color: var(--muted); }
+.mj-chart-summary div b { display: block; font-size: 18px; font-weight: 400; margin-top: 2px; }
 
 /* ---------- Majikans ring ---------- */
-.mj-ring { position: relative; width: 200px; margin: 0 auto; }
+.mj-ring { position: relative; width: 180px; margin: 0 auto; }
 .mj-ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; }
-.mj-ring-center b { font-size: 30px; font-weight: 400; letter-spacing: -.02em; }
-.mj-ring-center span { font-size: 13px; color: var(--muted); }
+.mj-ring-center b { font-size: 22px; color: var(--blue); font-weight: 400; letter-spacing: -.02em; }
+.mj-ring-center span { font-size: 12px; color: var(--muted); }
 .mj-note { display: flex; justify-content: center; margin: 16px 0 18px; }
-.mj-note span { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border: 1px solid var(--line); border-radius: 999px; font-size: 14px; }
-.mj-note b { color: var(--up); font-weight: 500; }
-.mj-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; font-size: 14px; }
+.mj-note span { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border: 1px solid var(--line); border-radius: 999px; font-size: 12.5px; }
+.mj-note svg { color: var(--blue); }
+.mj-note b { color: var(--blue); font-weight: 500; }
+.mj-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; font-size: 13px; }
 .mj-legend li { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .mj-legend i { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 .mj-legend span { color: var(--muted); margin-left: auto; }
 
 /* ---------- Apps performance (progress rows) ---------- */
-.mj-amount { font-size: 46px; font-weight: 300; letter-spacing: -.03em; line-height: 1.1; overflow-wrap: anywhere; }
-.mj-dash .mj-progress { margin-top: 24px; }
-.mj-progress li + li { margin-top: 18px; }
-.mj-progress-top { display: flex; justify-content: space-between; gap: 10px; font-size: 14px; margin-bottom: 8px; }
+.mj-amount { font-size: 30px; font-weight: 400; letter-spacing: -.03em; line-height: 1.1; overflow-wrap: anywhere; }
+.mj-dash .mj-progress { margin-top: 20px; }
+.mj-progress li + li { margin-top: 16px; }
+.mj-progress-top { display: flex; justify-content: space-between; gap: 10px; font-size: 13px; margin-bottom: 7px; }
 .mj-progress-top span { color: var(--muted); }
 .mj-progress-top b { font-weight: 400; color: var(--ink-2); }
 .mj-progress li.lead .mj-progress-top span { color: var(--ink); }
-.mj-bar { position: relative; height: 8px; border-radius: 999px; background: #eeeeec; }
-.mj-bar > span { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 999px; background: #d4d4d0; }
-.mj-progress li.lead .mj-bar > span { background: var(--lime); }
-.mj-bar em { position: absolute; top: 50%; transform: translate(-50%, -50%); padding: 3px 10px; border-radius: 999px; background: var(--forest); color: var(--lime); font-style: normal; font-size: 12px; white-space: nowrap; }
+.mj-bar { position: relative; height: 7px; border-radius: 999px; background: var(--grey-soft); }
+.mj-bar > span { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 999px; background: var(--grey); }
+.mj-progress li.lead .mj-bar > span { background: var(--blue); }
+.mj-bar em { position: absolute; top: 50%; transform: translate(-50%, -50%); padding: 2px 8px; border-radius: 999px; background: var(--blue-dark); color: #fff; font-style: normal; font-size: 11px; white-space: nowrap; }
 
 /* ---------- Customer base ---------- */
-.mj-stat-rows li { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 1px solid var(--line); }
+.mj-stat-rows li { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-top: 1px solid var(--line); }
 .mj-stat-rows li:first-child { border-top: 0; }
-.mj-stat-rows .ttl { font-size: 15px; }
-.mj-stat-rows .sub { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
-.mj-stat-rows .val { margin-left: auto; font-size: 18px; color: var(--up); white-space: nowrap; }
+.mj-stat-rows .ttl { font-size: 13.5px; }
+.mj-stat-rows .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.mj-stat-rows .val { margin-left: auto; font-size: 15px; font-weight: 500; color: var(--blue); white-space: nowrap; }
 
 /* ---------- Leaderboards (transaction style) ---------- */
 .mj-head-actions { display: flex; align-items: center; gap: 10px; }
-.mj-active { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); font-size: 13px; color: var(--muted); }
-.mj-active b { color: var(--ink); font-weight: 500; font-size: 14px; }
+.mj-active { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; background: var(--blue-soft); font-size: 12px; color: var(--muted); }
+.mj-active b { color: var(--blue); font-weight: 600; font-size: 13px; }
 .mj-list { max-height: 400px; overflow-y: auto; margin: 0 -10px; padding: 0 10px; }
 .mj-list::-webkit-scrollbar { width: 5px; }
 .mj-list::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
-.mj-item { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 1px solid var(--line); }
-.mj-item:first-child { border-top: 0; padding: 14px; margin: 0 -14px 4px; border: 1px solid var(--lime); background: var(--lime-3); border-radius: 18px; }
-.mj-avatar { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: #fff; display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--ink); text-transform: uppercase; flex-shrink: 0; }
+.mj-item { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-top: 1px solid var(--line); }
+.mj-item:first-child { border-top: 0; padding: 10px 12px; margin: 0 -12px 4px; border: 1px solid #cfe4f2; background: var(--blue-soft); border-radius: 14px; }
+.mj-avatar { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); background: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; color: var(--grey); text-transform: uppercase; flex-shrink: 0; }
 .mj-item-main { flex: 1; min-width: 0; }
-.mj-item-name { font-size: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.mj-item-sub { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
-.mj-item:first-child .mj-item-sub { color: #3d8a1d; }
-.mj-item-val { font-size: 16px; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.mj-item-val small { font-size: 12px; color: var(--muted); margin-left: 3px; }
+.mj-item-name { font-size: 13.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mj-item-sub { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+.mj-item:first-child .mj-item-sub { color: var(--blue); }
+.mj-item:first-child .mj-avatar { background: var(--blue); border-color: var(--blue); color: #fff; }
+.mj-item-val { font-size: 13.5px; font-weight: 500; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.mj-item-val small { font-size: 11px; font-weight: 400; color: var(--muted); margin-left: 3px; }
 .mj-empty { text-align: center; padding: 34px 10px; color: var(--muted); }
 </style>
 
@@ -332,27 +337,27 @@ $healthy_pct = ($sub_total > 0) ? ($sub_healthy / $sub_total * 100) : 0;
             </div>
         </div>
 
-        <!-- Refills (lime card) -->
-        <div class="mj-card lime">
+        <!-- Refills (blue card) -->
+        <div class="mj-card accent">
             <svg class="mj-star" viewBox="0 0 100 100" fill="currentColor"><path d="M50 0 C54 30 70 46 100 50 C70 54 54 70 50 100 C46 70 30 54 0 50 C30 46 46 30 50 0 Z"/></svg>
             <div>
                 <span class="mj-badge">REFILLS <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></i></span>
             </div>
-            <div class="mj-lime-body">
+            <div class="mj-accent-body">
                 <p class="mj-label">Refills today</p>
                 <p><span class="mj-big num"><?= number_format($majik_order_today->majik_order, 0) ?></span><span class="mj-chip"><span class="mj-trend <?= $ord_day_class ?>"><?= $ord_day_text ?></span> vs yesterday</span></p>
-                <p class="mj-small" style="color: #3a5a2a;">Yesterday refills: <?= number_format($yesterday_order, 0) ?></p>
+                <p class="mj-small" style="color: rgba(255, 255, 255, .75);">Yesterday refills: <?= number_format($yesterday_order, 0) ?></p>
             </div>
             <div class="mj-tiles">
                 <div class="mj-tile">
                     <p>This month</p>
                     <b class="num"><?= number_format($majik_order_mtd->majik_order, 0) ?></b>
-                    <span class="mj-trend <?= $ord_month_class ?>"><?= $ord_month_text ?></span> <span class="mj-small" style="color: #3a5a2a;">vs last month</span>
+                    <span class="mj-trend <?= $ord_month_class ?>"><?= $ord_month_text ?></span> <span class="mj-small" style="color: rgba(255, 255, 255, .75);">vs last month</span>
                 </div>
                 <div class="mj-tile">
                     <p>This year</p>
                     <b class="num"><?= number_format($majik_order_ytd->majik_order, 0) ?></b>
-                    <span class="mj-trend <?= $ord_year_class ?>"><?= $ord_year_text ?></span> <span class="mj-small" style="color: #3a5a2a;">vs last year</span>
+                    <span class="mj-trend <?= $ord_year_class ?>"><?= $ord_year_text ?></span> <span class="mj-small" style="color: rgba(255, 255, 255, .75);">vs last year</span>
                 </div>
             </div>
         </div>
@@ -365,7 +370,7 @@ $healthy_pct = ($sub_total > 0) ? ($sub_healthy / $sub_total * 100) : 0;
             <div class="mj-card-head">
                 <div class="mj-card-title">
                     <span class="mj-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
-                    Analysis <span class="mj-small" style="font-size: 14px;">Year <?= date('Y') ?></span>
+                    Analysis <span class="mj-small">Year <?= date('Y') ?></span>
                 </div>
                 <div class="mj-seg">
                     <button type="button" class="mj-tab is-active" data-target="chartRevenue">Revenue</button>
@@ -403,17 +408,17 @@ $healthy_pct = ($sub_total > 0) ? ($sub_healthy / $sub_total * 100) : 0;
                 <span class="mj-chip" style="border: 1px solid var(--line);">Performance</span>
             </div>
             <div class="mj-ring">
-                <div id="majikansdonut" style="min-height: 200px;"></div>
+                <div id="majikansdonut" style="min-height: 180px;"></div>
                 <div class="mj-ring-center"><b class="num"><?= number_format($sub_total, 0) ?></b><span>Majikans</span></div>
             </div>
             <div class="mj-note"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Excellent or good <b><?= number_format($healthy_pct, 1) ?>%</b></span></div>
             <ul class="mj-legend">
                 <?php
                 foreach ($counts as $p) {
-                    if ($p->sub_stat_dormancy == 'E') { $label = 'Excellent'; $color = '#173b12'; }
-                    elseif ($p->sub_stat_dormancy == 'G') { $label = 'Good'; $color = '#8fd14f'; }
-                    elseif ($p->sub_stat_dormancy == 'N') { $label = 'Normal'; $color = '#cdeeaa'; }
-                    elseif ($p->sub_stat_dormancy == 'D') { $label = 'Dormant'; $color = '#dcdcd8'; }
+                    if ($p->sub_stat_dormancy == 'E') { $label = 'Excellent'; $color = '#055d91'; }
+                    elseif ($p->sub_stat_dormancy == 'G') { $label = 'Good'; $color = '#0779BC'; }
+                    elseif ($p->sub_stat_dormancy == 'N') { $label = 'Normal'; $color = '#a6a9b7'; }
+                    elseif ($p->sub_stat_dormancy == 'D') { $label = 'Dormant'; $color = '#dfe1e8'; }
                     else { continue; }
                 ?>
                 <li><i style="background: <?= $color ?>;"></i><?= $label ?> <span class="num"><?= number_format($p->count, 0) ?></span></li>
@@ -719,7 +724,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 var chartFont = "Outfit, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif";
-var axisLabel = { colors: '#8b8b8b', fontSize: '12px' };
+var axisLabel = { colors: '#868a9b', fontSize: '11px' };
 
 // 1200000 -> 1.2M, 1500 -> 1.5K
 function shortNumber(value) {
@@ -737,14 +742,14 @@ function initRevenueGraph() {
     while (monthData.length < months.length) monthData.push(null); // future months stay empty
 
     new ApexCharts(el, {
-        chart: { height: 290, type: 'area', toolbar: { show: false }, zoom: { enabled: false }, fontFamily: chartFont },
-        colors: ['#173b12'],
+        chart: { height: 260, type: 'area', toolbar: { show: false }, zoom: { enabled: false }, fontFamily: chartFont },
+        colors: ['#0779BC'],
         series: [{ name: 'Revenue', data: monthData }],
         stroke: { curve: 'smooth', width: 2.5 },
-        fill: { type: 'gradient', gradient: { gradientToColors: ['#b9ec7f'], opacityFrom: 0.45, opacityTo: 0.05, stops: [0, 100] } },
-        markers: { size: 0, strokeColors: '#b9ec7f', strokeWidth: 3, hover: { size: 6 } },
+        fill: { type: 'gradient', gradient: { opacityFrom: 0.28, opacityTo: 0.02, stops: [0, 100] } },
+        markers: { size: 0, strokeColors: '#ffffff', strokeWidth: 3, hover: { size: 6 } },
         dataLabels: { enabled: false },
-        grid: { borderColor: '#efefed', strokeDashArray: 4, padding: { left: 6, right: 10 } },
+        grid: { borderColor: '#eceef2', strokeDashArray: 4, padding: { left: 6, right: 22 } },
         xaxis: { categories: months, axisBorder: { show: false }, axisTicks: { show: false }, labels: { style: axisLabel } },
         yaxis: { min: 0, forceNiceScale: true, labels: { style: axisLabel, formatter: shortNumber } },
         tooltip: { y: { formatter: function (val) { return Number(val).toLocaleString(); } } }
@@ -761,13 +766,13 @@ function initRefillGraph() {
     while (refillData.length < months.length) refillData.push(0);
 
     new ApexCharts(el, {
-        chart: { height: 290, type: 'bar', toolbar: { show: false }, fontFamily: chartFont },
-        colors: ['#b9ec7f'],
+        chart: { height: 260, type: 'bar', toolbar: { show: false }, fontFamily: chartFont },
+        colors: ['#a6a9b7'],
         series: [{ name: 'Refills', data: refillData }],
         plotOptions: { bar: { columnWidth: '38%', borderRadius: 8, borderRadiusApplication: 'end' } },
         dataLabels: { enabled: false },
-        states: { hover: { filter: { type: 'none' } } },
-        grid: { borderColor: '#efefed', strokeDashArray: 4, padding: { left: 6, right: 10 } },
+        states: { hover: { filter: { type: 'darken', value: 0.75 } } },
+        grid: { borderColor: '#eceef2', strokeDashArray: 4, padding: { left: 6, right: 22 } },
         xaxis: { categories: months, axisBorder: { show: false }, axisTicks: { show: false }, labels: { style: axisLabel } },
         yaxis: { min: 0, forceNiceScale: true, labels: { style: axisLabel, formatter: shortNumber } },
         tooltip: { y: { formatter: function (val) { return Number(val).toLocaleString(); } } }
@@ -780,14 +785,14 @@ function initMajikansDonut() {
 
     var labels = [], values = [], colors = [];
     <?php foreach ($counts as $p) { ?>
-    <?php if ($p->sub_stat_dormancy == 'E') { ?>labels.push('Excellent'); values.push(<?= (float) $p->count ?>); colors.push('#173b12');<?php } ?>
-    <?php if ($p->sub_stat_dormancy == 'G') { ?>labels.push('Good'); values.push(<?= (float) $p->count ?>); colors.push('#8fd14f');<?php } ?>
-    <?php if ($p->sub_stat_dormancy == 'N') { ?>labels.push('Normal'); values.push(<?= (float) $p->count ?>); colors.push('#cdeeaa');<?php } ?>
-    <?php if ($p->sub_stat_dormancy == 'D') { ?>labels.push('Dormant'); values.push(<?= (float) $p->count ?>); colors.push('#dcdcd8');<?php } ?>
+    <?php if ($p->sub_stat_dormancy == 'E') { ?>labels.push('Excellent'); values.push(<?= (float) $p->count ?>); colors.push('#055d91');<?php } ?>
+    <?php if ($p->sub_stat_dormancy == 'G') { ?>labels.push('Good'); values.push(<?= (float) $p->count ?>); colors.push('#0779BC');<?php } ?>
+    <?php if ($p->sub_stat_dormancy == 'N') { ?>labels.push('Normal'); values.push(<?= (float) $p->count ?>); colors.push('#a6a9b7');<?php } ?>
+    <?php if ($p->sub_stat_dormancy == 'D') { ?>labels.push('Dormant'); values.push(<?= (float) $p->count ?>); colors.push('#dfe1e8');<?php } ?>
     <?php } ?>
 
     new ApexCharts(el, {
-        chart: { height: 210, type: 'donut', fontFamily: chartFont },
+        chart: { height: 190, type: 'donut', fontFamily: chartFont },
         series: values,
         labels: labels,
         colors: colors,
