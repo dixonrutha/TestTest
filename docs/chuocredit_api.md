@@ -1,52 +1,78 @@
-# ecoPlus Student Registration API – ChuoCredit
+# Ecowater ecoPlus – Student Registration API
 
-Base URL: `https://ecowatercloud.com`
+Integration guide for ChuoCredit.
 
-All requests and responses are JSON. Every request must send these headers:
+**Base URL:** `https://ecowatercloud.com`
 
-| Header         | Value                                   |
-|----------------|-----------------------------------------|
-| `Content-Type` | `application/json`                      |
-| `auth-token`   | Token issued to ChuoCredit by Ecowater  |
-| `sender`       | `chuocredit`                            |
+## Authentication
 
-A missing or wrong header returns `401`.
+Send these headers with every request:
+
+| Header         | Value                               |
+|----------------|-------------------------------------|
+| `Content-Type` | `application/json`                  |
+| `auth-token`   | Your token (shared separately)      |
+| `sender`       | Your sender name (shared separately)|
+
+Wrong or missing headers return `401 Authorization Failed`.
 
 ---
 
-## 1. Register a student
+## 1. Get campuses
 
-`POST /student_register`
+Use this to fill the campus dropdown. Show `campus_name` to the student and send `campus_code` when registering.
 
-Send this once ChuoCredit has collected the registration fee. The student gets
-an SMS with a registration code and collects their card at any Ecowater store with their ID.
+**GET** `/campus_list`
 
-### Request body
+```bash
+curl -X GET "https://ecowatercloud.com/campus_list" \
+  -H "auth-token: YOUR_TOKEN" \
+  -H "sender: YOUR_SENDER"
+```
 
-| Field               | Required | Description |
-|---------------------|----------|-------------|
-| `full_name`         | yes      | Student's full name |
-| `gender`            | yes      | `M`, `F`, `Male` or `Female` |
-| `mobile`            | yes      | `07XXXXXXXX`, `7XXXXXXXX` or `255XXXXXXXXX` |
-| `campus`            | yes      | `campus_code` from `GET /campus_list` (recommended), or the campus name |
-| `amount`            | yes      | Fee paid, at least `5000` (TZS) |
-| `email`             | no       | Student's email |
-
+**Response**
 ```json
 {
-  "full_name": "Asha Juma",
-  "gender": "F",
-  "mobile": "0712345678",
-  "email": "asha@example.com",
-  "campus": "CA-000059",
-  "amount": 5000
+  "status": "success",
+  "data": [
+    { "campus_name": "St. John University Of Tanzania", "campus_code": "CA-000057" }
+  ]
 }
 ```
 
-### Responses
+---
 
-`201 Created`: student registered
+## 2. Register a student
 
+Call this after the student has paid the registration fee. The student receives an SMS with a registration code and collects their card at any Ecowater store with their ID.
+
+**POST** `/student_register`
+
+| Field       | Required | Example                | Notes                          |
+|-------------|----------|------------------------|--------------------------------|
+| `full_name` | Yes      | `Asha Juma`            |                                |
+| `gender`    | Yes      | `F`                    | `M` or `F`                     |
+| `mobile`    | Yes      | `0712345678`           | `07XXXXXXXX` or `255XXXXXXXXX` |
+| `campus`    | Yes      | `CA-000057`            | `campus_code` from campus list |
+| `amount`    | Yes      | `5000`                 | Registration fee (TZS 5,000)   |
+| `email`     | No       | `asha@example.com`     |                                |
+
+```bash
+curl -X POST "https://ecowatercloud.com/student_register" \
+  -H "Content-Type: application/json" \
+  -H "auth-token: YOUR_TOKEN" \
+  -H "sender: YOUR_SENDER" \
+  -d '{
+    "full_name": "Asha Juma",
+    "gender": "F",
+    "mobile": "0712345678",
+    "email": "asha@example.com",
+    "campus": "CA-000057",
+    "amount": 5000
+  }'
+```
+
+**Success – 201**
 ```json
 {
   "status": "success",
@@ -54,17 +80,19 @@ an SMS with a registration code and collects their card at any Ecowater store wi
   "data": {
     "registration_code": "5410000127",
     "mobile": "255712345678",
-    "campus_code": "CA-000059"
+    "campus_code": "CA-000057"
   }
 }
 ```
 
-| Code  | Meaning |
-|-------|---------|
-| `401` | Authorization failed |
-| `409` | Mobile number already has an Ecowater account or registration |
-| `422` | Validation failed; `errors` lists each bad field |
-| `500` | Server error; safe to retry (a successful earlier attempt returns `409`) |
+**Errors**
+
+| Code  | Meaning                                         |
+|-------|-------------------------------------------------|
+| `401` | Wrong or missing `auth-token` / `sender`        |
+| `409` | Mobile number is already registered             |
+| `422` | Invalid data – `errors` shows which field       |
+| `500` | Server error – try again                        |
 
 ```json
 {
@@ -76,36 +104,28 @@ an SMS with a registration code and collects their card at any Ecowater store wi
 
 ---
 
-## 2. Check a registration
+## 3. Check registration status
 
-`GET /student_status?registration_code=5410000127`
+**GET** `/student_status?mobile=0712345678`
 
-Returns the registration `data` plus `record_stat` and `registered_at`, or `404`.
+```bash
+curl -X GET "https://ecowatercloud.com/student_status?mobile=0712345678" \
+  -H "auth-token: YOUR_TOKEN" \
+  -H "sender: YOUR_SENDER"
+```
 
----
-
-## 3. List campuses
-
-`GET /campus_list`
-
+**Response – 200**
 ```json
 {
   "status": "success",
-  "data": [
-    { "campus_code": "CA-000060", "campus_name": "Sokoine University Of Agriculture" },
-    { "campus_code": "CA-000059", "campus_name": "University Of Dodoma" }
-  ]
+  "data": {
+    "registration_code": "5410000127",
+    "mobile": "255712345678",
+    "campus_code": "CA-000057",
+    "record_stat": "OPEN",
+    "registered_at": "2026-10-12 10:15:00"
+  }
 }
 ```
 
----
-
-## Example
-
-```bash
-curl -X POST https://ecowatercloud.com/student_register \
-  -H "Content-Type: application/json" \
-  -H "auth-token: <TOKEN>" \
-  -H "sender: chuocredit" \
-  -d '{"full_name":"Asha Juma","gender":"F","mobile":"0712345678","campus":"CA-000059","amount":5000}'
-```
+Returns `404 Registration not found` if the mobile number was not registered through ChuoCredit.
