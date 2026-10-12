@@ -233,18 +233,26 @@
         return null;
     }
 
-    // Only the key whose username is $chuocredit_sender may call these
+    // Only the key whose username is $chuocredit_sender may call these.
+    // Headers are read with getallheaders(), same as _validate_header().
     private function _chuocredit_authorized()
     {
-        $token = $this->input->get_request_header("auth-token", true);
-        $sender = $this->input->get_request_header("sender", true);
+        $token = null;
+        $sender = null;
+        foreach (getallheaders() as $name => $value) {
+            if (strtoupper($name) === "AUTH-TOKEN") {
+                $token = trim($value);
+            } elseif (strtoupper($name) === "SENDER") {
+                $sender = trim($value);
+            }
+        }
 
         if (empty($token) || $sender !== $this->chuocredit_sender) {
             return false;
         }
 
         return $this->db->where(["cert" => $token, "username" => $sender])
-                ->count_all_results("rest_api_keys") === 1;
+                ->count_all_results("rest_api_keys") >= 1;
     }
 
     // ====================== END: ChuoCredit partner API ======================
