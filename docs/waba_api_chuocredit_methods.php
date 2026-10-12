@@ -28,7 +28,7 @@
         'Mzumbe University' => 'CA-000069',
     ];
 
-    // POST api/v1/students/register
+    // POST student_register
     public function chuocredit_register_post()
     {
         if (!$this->_chuocredit_authorized()) {
@@ -66,7 +66,7 @@
 
         $campus_code = $this->_chuocredit_campus_code($campus_in);
         if ($campus_code === null) {
-            $errors["campus"] = "Unknown campus. Use a campus_code from GET api/v1/campuses";
+            $errors["campus"] = "Unknown campus. Use a campus_code from GET campus_list";
         }
 
         if (!is_numeric($amount) || (float)$amount < 5000) {
@@ -153,14 +153,14 @@
         ], 201);
     }
 
-    // GET api/v1/students/{registration_code}
-    public function chuocredit_status_get($registration_code = "")
+    // GET student_status?registration_code=...
+    public function chuocredit_status_get()
     {
         if (!$this->_chuocredit_authorized()) {
             return $this->response(["status" => "error", "message" => "Authorization Failed"], 401);
         }
 
-        $registration_code = trim((string)$registration_code);
+        $registration_code = trim((string)$this->get("registration_code"));
         $reg = $registration_code === "" ? null : $this->db->get_where("ecoplus_paid_reg", [
             "waba_reg_code" => $registration_code,
             "registered_by" => "chuocredit",
@@ -182,7 +182,7 @@
         ], 200);
     }
 
-    // GET api/v1/campuses
+    // GET campus_list
     public function chuocredit_campuses_get()
     {
         if (!$this->_chuocredit_authorized()) {

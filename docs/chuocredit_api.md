@@ -1,6 +1,6 @@
 # ecoPlus Student Registration API – ChuoCredit
 
-Base URL: `https://ecowatercloud.com/api/v1`
+Base URL: `https://ecowatercloud.com`
 
 All requests and responses are JSON. Every request must send these headers:
 
@@ -16,7 +16,7 @@ A missing or wrong header returns `401`.
 
 ## 1. Register a student
 
-`POST /students/register`
+`POST /student_register`
 
 Send this once ChuoCredit has collected the registration fee. The student gets
 an SMS with a registration code and collects their card at any Ecowater store with their ID.
@@ -28,7 +28,7 @@ an SMS with a registration code and collects their card at any Ecowater store wi
 | `full_name`         | yes      | Student's full name |
 | `gender`            | yes      | `M`, `F`, `Male` or `Female` |
 | `mobile`            | yes      | `07XXXXXXXX`, `7XXXXXXXX` or `255XXXXXXXXX` |
-| `campus`            | yes      | `campus_code` from `GET /campuses` (recommended), or the campus name |
+| `campus`            | yes      | `campus_code` from `GET /campus_list` (recommended), or the campus name |
 | `amount`            | yes      | Fee paid, at least `5000` (TZS) |
 | `email`             | no       | Student's email |
 
@@ -78,7 +78,7 @@ an SMS with a registration code and collects their card at any Ecowater store wi
 
 ## 2. Check a registration
 
-`GET /students/5410000127`
+`GET /student_status?registration_code=5410000127`
 
 Returns the registration `data` plus `record_stat` and `registered_at`, or `404`.
 
@@ -86,7 +86,7 @@ Returns the registration `data` plus `record_stat` and `registered_at`, or `404`
 
 ## 3. List campuses
 
-`GET /campuses`
+`GET /campus_list`
 
 ```json
 {
@@ -103,7 +103,7 @@ Returns the registration `data` plus `record_stat` and `registered_at`, or `404`
 ## Example
 
 ```bash
-curl -X POST https://ecowatercloud.com/api/v1/students/register \
+curl -X POST https://ecowatercloud.com/student_register \
   -H "Content-Type: application/json" \
   -H "auth-token: <TOKEN>" \
   -H "sender: chuocredit" \
