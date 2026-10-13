@@ -214,6 +214,103 @@
   <text x="235" y="207" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="800" font-size="36" fill="#fff" letter-spacing="2">FAVOURED</text>
 </g>
 
+<linearGradient id="pvc" x1="0" x2="1"><stop offset="0" stop-color="#8E8E8E"/><stop offset=".25" stop-color="#F7F7F7"/><stop offset=".5" stop-color="#D2D2D2"/><stop offset=".7" stop-color="#FFFFFF"/><stop offset="1" stop-color="#7E7E7E"/></linearGradient>
+<linearGradient id="roll" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#E4E4E4"/><stop offset="1" stop-color="#9A9A9A"/></linearGradient>
+<linearGradient id="bristle" x1="0" x2="1"><stop offset="0" stop-color="#111"/><stop offset=".5" stop-color="#3C3C3C"/><stop offset="1" stop-color="#0C0C0C"/></linearGradient>
+
+<mask id="sawMask" maskUnits="userSpaceOnUse" x="-200" y="-100" width="400" height="900">
+  <rect x="-200" y="-100" width="400" height="900" fill="#fff"/>
+  <rect x="-48" y="40" width="96" height="120" rx="30" fill="#000"/>
+</mask>
+
+<g id="paintbrush">
+  <path d="M-54 6 Q0 -10 54 6 L58 124 L-58 124 Z" fill="url(#bristle)"/>
+  <path d="M-36 14 V118 M-18 10 V120 M0 8 V120 M18 10 V120 M36 14 V118" stroke="#555" stroke-width="2"/>
+  <rect x="-62" y="118" width="124" height="84" rx="6" fill="url(#steel)"/>
+  <path d="M-62 140 H62 M-62 180 H62" stroke="#777" stroke-width="3"/>
+  <path d="M-34 200 L34 200 L26 520 Q26 560 0 560 Q-26 560 -26 520 Z" fill="url(#black)"/>
+  <circle cx="0" cy="524" r="9" fill="none" stroke="#9A9A9A" stroke-width="4"/>
+</g>
+
+<g id="square">
+  <rect x="-22" y="0" width="44" height="560" fill="url(#steel)"/>
+  <path d="M22 70 h-16 M22 82 h-8 M22 94 h-8 M22 106 h-8 M22 118 h-8 M22 130 h-16 M22 142 h-8 M22 154 h-8 M22 166 h-8 M22 178 h-8 M22 190 h-16 M22 202 h-8 M22 214 h-8 M22 226 h-8 M22 238 h-8 M22 250 h-16 M22 262 h-8 M22 274 h-8 M22 286 h-8 M22 298 h-8 M22 310 h-16 M22 322 h-8 M22 334 h-8 M22 346 h-8 M22 358 h-8 M22 370 h-16 M22 382 h-8 M22 394 h-8 M22 406 h-8 M22 418 h-8 M22 430 h-16 M22 442 h-8 M22 454 h-8 M22 466 h-8 M22 478 h-8 M22 490 h-16 M22 502 h-8 M22 514 h-8 M22 526 h-8 M22 538 h-8 M22 550 h-16" stroke="#333" stroke-width="2"/>
+  <rect x="-30" y="-8" width="270" height="70" rx="6" fill="url(#blackV)"/>
+  <circle cx="60" cy="27" r="7" fill="url(#steelV)"/><circle cx="150" cy="27" r="7" fill="url(#steelV)"/>
+</g>
+
+<g id="tape">
+  <rect x="60" y="150" width="220" height="36" fill="#EFEFEF"/>
+  <path d="M70 150 v14 M80 150 v8 M90 150 v8 M100 150 v8 M110 150 v14 M120 150 v8 M130 150 v8 M140 150 v8 M150 150 v14 M160 150 v8 M170 150 v8 M180 150 v8 M190 150 v14 M200 150 v8 M210 150 v8 M220 150 v8 M230 150 v14 M240 150 v8 M250 150 v8 M260 150 v8 M270 150 v14" stroke="#111" stroke-width="2"/>
+  <rect x="276" y="144" width="10" height="48" rx="2" fill="url(#steelV)"/>
+  <rect x="-100" y="0" width="200" height="200" rx="46" fill="url(#blackV)"/>
+  <circle cx="0" cy="100" r="62" fill="url(#roll)"/>
+  <circle cx="0" cy="100" r="20" fill="#CC0000"/>
+  <rect x="-22" y="-10" width="44" height="16" rx="5" fill="#CC0000"/>
+</g>
+
+<g id="knife">
+  <path d="M-22 64 L22 64 L22 6 L-22 -46 Z" fill="url(#steel)"/>
+  <path d="M-22 -4 L22 40 M-22 26 L22 60" stroke="#777" stroke-width="2"/>
+  <path d="M-30 60 L30 60 L30 430 Q30 456 0 456 Q-30 456 -30 430 Z" fill="url(#black)"/>
+  <rect x="-30" y="250" width="60" height="150" rx="10" fill="#2E2E2E"/>
+  <rect x="-9" y="110" width="18" height="44" rx="5" fill="#9A9A9A"/>
+</g>
+
+<g id="pliers">
+  <path d="M-4 0 Q-34 60 -26 150 L-4 178 Z" fill="url(#steel)"/>
+  <path d="M4 0 Q34 60 26 150 L4 178 Z" fill="url(#steel)"/>
+  <path d="M-4 30 h-14 M-4 50 h-18 M-4 70 h-20 M4 30 h14 M4 50 h18 M4 70 h20" stroke="#6A6A6A" stroke-width="2"/>
+  <path d="M-16 186 Q-42 330 -72 540 L-42 546 Q-16 340 4 192 Z" fill="url(#black)"/>
+  <path d="M16 186 Q42 330 72 540 L42 546 Q16 340 -4 192 Z" fill="url(#black)"/>
+  <circle cx="0" cy="178" r="22" fill="url(#steelV)"/>
+  <circle cx="0" cy="178" r="7" fill="#555"/>
+</g>
+<g id="pliers-r">
+  <path d="M-4 0 Q-34 60 -26 150 L-4 178 Z" fill="url(#steel)"/>
+  <path d="M4 0 Q34 60 26 150 L4 178 Z" fill="url(#steel)"/>
+  <path d="M-4 30 h-14 M-4 50 h-18 M-4 70 h-20 M4 30 h14 M4 50 h18 M4 70 h20" stroke="#6A6A6A" stroke-width="2"/>
+  <path d="M-16 186 Q-42 330 -72 540 L-42 546 Q-16 340 4 192 Z" fill="url(#red)"/>
+  <path d="M16 186 Q42 330 72 540 L42 546 Q16 340 -4 192 Z" fill="url(#red)"/>
+  <circle cx="0" cy="178" r="22" fill="url(#steelV)"/>
+  <circle cx="0" cy="178" r="7" fill="#555"/>
+</g>
+
+<g id="pipe">
+  <rect x="-34" y="0" width="68" height="440" fill="url(#pvc)"/>
+  <rect x="-41" y="430" width="82" height="100" rx="4" fill="url(#pvc)"/>
+  <ellipse cx="0" cy="0" rx="34" ry="11" fill="#D9D9D9" stroke="#9A9A9A" stroke-width="2"/>
+  <ellipse cx="0" cy="0" rx="25" ry="7" fill="#5A5A5A"/>
+  <path d="M-34 430 H34" stroke="#9A9A9A" stroke-width="2"/>
+</g>
+
+<g id="saw">
+  <polygon points="70,220 70.0,220.0 78.7,225.0 69.4,230.0 78.2,235.0 68.9,240.0 77.6,245.0 68.3,250.0 77.0,255.0 67.7,260.0 76.5,265.0 67.2,270.0 75.9,275.0 66.6,280.0 75.3,285.0 66.0,290.0 74.8,295.0 65.5,300.0 74.2,305.0 64.9,310.0 73.6,315.0 64.3,320.0 73.1,325.0 63.8,330.0 72.5,335.0 63.2,340.0 71.9,345.0 62.7,350.0 71.4,355.0 62.1,360.0 70.8,365.0 61.5,370.0 70.2,375.0 61.0,380.0 69.7,385.0 60.4,390.0 69.1,395.0 59.8,400.0 68.5,405.0 59.3,410.0 68.0,415.0 58.7,420.0 67.4,425.0 58.1,430.0 66.8,435.0 57.6,440.0 66.3,445.0 57.0,450.0 65.7,455.0 56.4,460.0 65.2,465.0 55.9,470.0 64.6,475.0 55.3,480.0 64.0,485.0 54.7,490.0 63.5,495.0 54.2,500.0 62.9,505.0 53.6,510.0 62.3,515.0 53.0,520.0 61.8,525.0 52.5,530.0 61.2,535.0 51.9,540.0 60.6,545.0 51.3,550.0 60.1,555.0 50.8,560.0 59.5,565.0 50.2,570.0 58.9,575.0 49.7,580.0 58.4,585.0 49.1,590.0 57.8,595.0 48.5,600.0 57.2,605.0 48.0,610.0 56.7,615.0 47.4,620.0 56.1,625.0 46.8,630.0 55.5,635.0 46.3,640.0 55.0,645.0 45.7,650.0 54.4,655.0 45.1,660.0 53.8,665.0 44.6,670.0 53.3,675.0 44.0,680.0 44,680 -6,680 -70,220" fill="url(#steel)"/>
+  <g mask="url(#sawMask)">
+    <path d="M-86 0 H70 Q92 0 92 22 V236 H-86 Q-96 236 -96 220 V16 Q-96 0 -86 0 Z" fill="url(#red)"/>
+  </g>
+  <circle cx="-40" cy="214" r="6" fill="url(#steelV)"/><circle cx="40" cy="214" r="6" fill="url(#steelV)"/>
+</g>
+
+<g id="roller">
+  <path d="M120 43 H152 V160 H0 V236" fill="none" stroke="url(#steelV)" stroke-width="12" stroke-linejoin="round"/>
+  <rect x="-124" y="0" width="248" height="86" rx="16" fill="url(#roll)"/>
+  <path d="M-110 20 H110 M-110 44 H110 M-110 66 H110" stroke="#BDBDBD" stroke-width="2" stroke-dasharray="3 6"/>
+  <rect x="-22" y="226" width="44" height="330" rx="18" fill="url(#red)"/>
+  <rect x="-22" y="440" width="44" height="116" rx="18" fill="url(#black)"/>
+</g>
+
+<g id="level">
+  <rect x="-40" y="0" width="80" height="640" rx="6" fill="url(#red)"/>
+  <rect x="-40" y="0" width="80" height="44" rx="6" fill="url(#black)"/>
+  <rect x="-40" y="596" width="80" height="44" rx="6" fill="url(#black)"/>
+  <rect x="-16" y="290" width="32" height="64" rx="9" fill="#F4F4F4" stroke="#111" stroke-width="3"/>
+  <path d="M-16 310 H16 M-16 334 H16" stroke="#111" stroke-width="2"/>
+  <ellipse cx="0" cy="322" rx="7" ry="9" fill="#D7D7D7"/>
+  <rect x="-15" y="430" width="30" height="120" rx="15" fill="#0A0A0A"/>
+  <circle cx="0" cy="130" r="16" fill="#F4F4F4" stroke="#111" stroke-width="3"/>
+</g>
+
       <filter id="sh" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="6" dy="10" stdDeviation="7" flood-color="#000" flood-opacity=".5"/></filter>
     </defs>
   </svg>
@@ -248,7 +345,7 @@
 
   <!-- card 1: red -->
   <div class="card c1">
-    <svg class="tools" width="960" height="380" viewBox="0 0 960 380" aria-hidden="true"><g filter="url(#sh)"><use href="#hammer-k" transform="translate(196 -24) rotate(45) scale(0.42)"/><use href="#trowel-k" transform="translate(264 44) rotate(45) scale(0.42)"/><use href="#wrench-k" transform="translate(332 112) rotate(45) scale(0.4)"/><use href="#screwdriver-k" transform="translate(400 180) rotate(45) scale(0.44)"/><use href="#spanner-k" transform="translate(468 248) rotate(45) scale(0.42)"/></g></svg>
+    <svg class="tools" width="960" height="380" viewBox="0 0 960 380" aria-hidden="true"><g filter="url(#sh)"><use href="#wrench-k" transform="translate(120 26) rotate(45) scale(0.38)"/><use href="#square" transform="translate(262 20) rotate(45) scale(0.55)"/><use href="#tape" transform="translate(392 6) rotate(15) scale(0.42)"/><use href="#paintbrush" transform="translate(205 192) rotate(45) scale(0.46)"/><use href="#knife" transform="translate(330 166) rotate(45) scale(0.48)"/><use href="#screwdriver-k" transform="translate(402 198) rotate(45) scale(0.42)"/><use href="#pliers" transform="translate(462 236) rotate(45) scale(0.44)"/></g></svg>
     <div class="text">
       <div class="title"><svg class="mark" viewBox="0 0 76 76" aria-hidden="true">
   <rect width="76" height="76" rx="14" fill="#0A0A0A"/>
@@ -271,7 +368,7 @@
 
   <!-- card 2: black -->
   <div class="card c2">
-    <svg class="tools" width="960" height="380" viewBox="0 0 960 380" aria-hidden="true"><g filter="url(#sh)"><use href="#hammer" transform="translate(764 -24) rotate(-45) scale(0.42)"/><use href="#trowel" transform="translate(696 44) rotate(-45) scale(0.42)"/><use href="#wrench" transform="translate(628 112) rotate(-45) scale(0.4)"/><use href="#screwdriver" transform="translate(560 180) rotate(-45) scale(0.44)"/><use href="#spanner" transform="translate(492 248) rotate(-45) scale(0.42)"/></g></svg>
+    <svg class="tools" width="960" height="380" viewBox="0 0 960 380" aria-hidden="true"><g filter="url(#sh)"><use href="#level" transform="translate(548 40) rotate(-45) scale(0.34)"/><use href="#hammer" transform="translate(628 24) rotate(-45) scale(0.34)"/><use href="#saw" transform="translate(716 4) rotate(-45) scale(0.36)"/><use href="#screwdriver" transform="translate(814 -6) rotate(-45) scale(0.34)"/><use href="#roller" transform="translate(610 232) rotate(-45) scale(0.36)"/><use href="#pliers-r" transform="translate(735 255) rotate(-45) scale(0.36)"/><use href="#drill" transform="translate(862 206) rotate(0) scale(0.28)"/></g></svg>
     <div class="text">
       <h1>Vifaa vya<br><span>ujenzi</span></h1>
       <div class="hexes"><div class="hx"><svg viewBox="0 0 56 56"><polygon points="28,2 51,15 51,41 28,54 5,41 5,15" fill="none" stroke="#CC0000" stroke-width="2.4"/>
