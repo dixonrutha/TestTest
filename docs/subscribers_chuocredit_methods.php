@@ -22,8 +22,57 @@
         $this->data["subview"] = 'subscribers/chuocredit_subscribers';
         $this->data['pageurl'] = '12bea52c7aed0fd541eff5b4308b4db9'; // subscribers/chuocreditSubscribers
 
-        $this->data['subscribers'] = $this->Subscriber_model->get_chuocredit_subscribers();
+        $subscribers = $this->Subscriber_model->get_chuocredit_subscribers();
+        $this->data['subscribers'] = $subscribers;
+        $this->data['stats'] = $this->_chuocredit_stats($subscribers);
         $this->load->view('_layout_main', $this->data);
+    }
+
+    // Dashboard figures for the ChuoCredit subscribers page
+    private function _chuocredit_stats($subscribers)
+    {
+        $stats = [
+            'total' => count($subscribers),
+            'today' => 0,
+            'month' => 0,
+            'fees' => 0,
+            'female' => 0,
+            'male' => 0,
+            'female_pct' => 0,
+            'male_pct' => 0,
+            'campuses' => [],
+        ];
+
+        $today = date('Y-m-d');
+        $month = date('Y-m');
+
+        foreach ($subscribers as $s) {
+            $reg_day = date('Y-m-d', strtotime($s->sub_registration_date));
+            if ($reg_day === $today) {
+                $stats['today']++;
+            }
+            if (substr($reg_day, 0, 7) === $month) {
+                $stats['month']++;
+            }
+            $stats['fees'] += (float)$s->sub_fee_amount;
+
+            if ($s->gender === 'F') {
+                $stats['female']++;
+            } else {
+                $stats['male']++;
+            }
+
+            $campus = !empty($s->campus_name) ? $s->campus_name : $s->campus_code;
+            $stats['campuses'][$campus] = ($stats['campuses'][$campus] ?? 0) + 1;
+        }
+
+        if ($stats['total'] > 0) {
+            $stats['female_pct'] = round($stats['female'] * 100 / $stats['total']);
+            $stats['male_pct'] = 100 - $stats['female_pct'];
+        }
+        arsort($stats['campuses']);
+
+        return $stats;
     }
 
 // ---------------- Subscriber_model ----------------
