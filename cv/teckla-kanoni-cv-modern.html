@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Teckla Robert Kanoni — CV</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --wine:#6B1E33; --wine-d:#4A1222; --rose:#C98B6B; --ink:#22242A; --muted:#6A6E78; --line:#E8E3E0; --tint:#F7F2F0 }
+  @page{ size:A4; margin:0 }
+  *{ box-sizing:border-box; margin:0; padding:0 }
+  html,body{ background:#ddd }
+  body{ font-family:"DM Sans",sans-serif; color:var(--ink); font-size:9.2pt; line-height:1.5; -webkit-print-color-adjust:exact; print-color-adjust:exact }
+  .page{ width:210mm; height:297mm; margin:10mm auto; background:#fff; position:relative; overflow:hidden; display:flex; flex-direction:column }
+  @media print{ html,body{background:#fff} .page{margin:0; page-break-after:always} .page:last-child{page-break-after:auto} }
+
+  /* Header */
+  .top{ background:var(--wine); color:#fff; padding:13mm 14mm 10mm; position:relative; overflow:hidden }
+  .top::after{ content:""; position:absolute; right:-28mm; top:-34mm; width:95mm; height:95mm; border-radius:50%; border:16mm solid rgba(255,255,255,.05) }
+  .top::before{ content:""; position:absolute; right:22mm; bottom:-30mm; width:48mm; height:48mm; border-radius:50%; background:rgba(201,139,107,.16) }
+  .top h1{ font-family:"Playfair Display",serif; font-size:33pt; line-height:1; font-weight:700; letter-spacing:.3px; position:relative; z-index:1 }
+  .top h1 span{ color:var(--rose) }
+  .top .role{ margin-top:3mm; font-size:9.5pt; letter-spacing:3.5px; text-transform:uppercase; color:#F1D9CE; font-weight:500; position:relative; z-index:1 }
+  .contact-bar{ display:flex; gap:7mm; flex-wrap:wrap; background:var(--wine-d); color:#F3E6E0; padding:3.2mm 14mm; font-size:8.4pt }
+  .contact-bar span{ display:flex; align-items:center; gap:2mm }
+  .contact-bar svg{ width:3.4mm; height:3.4mm; stroke:var(--rose); fill:none; stroke-width:1.8 }
+
+  .body{ flex:1; display:grid; grid-template-columns:1fr 62mm; min-height:0 }
+  .main{ padding:8mm 9mm 10mm 14mm }
+  .side{ background:var(--tint); padding:8mm 9mm 10mm 8mm; border-left:1px solid var(--line) }
+
+  h2{ font-family:"Playfair Display",serif; font-size:13.5pt; color:var(--wine); font-weight:700; margin-bottom:3.5mm; display:flex; align-items:center; gap:3mm }
+  h2::after{ content:""; flex:1; height:1px; background:var(--line) }
+  .side h2{ font-size:12pt }
+  .block{ margin-bottom:7mm }
+
+  .profile{ font-size:9.4pt; line-height:1.65; color:#33363D; border-left:3px solid var(--rose); padding-left:4mm }
+  .profile b{ color:var(--wine); font-weight:600 }
+
+  .job{ margin-bottom:4.6mm; break-inside:avoid }
+  .job-top{ display:flex; justify-content:space-between; align-items:baseline; gap:3mm }
+  .job h3{ font-size:10.4pt; font-weight:700; color:var(--ink) }
+  .when{ flex:none; font-size:7.6pt; font-weight:700; color:#fff; background:var(--wine); padding:.6mm 2.4mm; border-radius:1mm; letter-spacing:.5px }
+  .job.current .when{ background:var(--rose) }
+  .org{ font-size:8.8pt; font-weight:600; color:var(--rose); margin:.5mm 0 1.6mm }
+  .job li{ list-style:none; padding-left:4.2mm; position:relative; margin-bottom:.9mm; color:#3A3D44; font-size:8.9pt }
+  .job li::before{ content:"›"; position:absolute; left:.3mm; top:-.4mm; color:var(--wine); font-weight:700; font-size:10.5pt }
+  .job li b{ color:var(--ink); font-weight:600 }
+
+  .highlights{ display:grid; grid-template-columns:1fr 1fr; gap:2.5mm; margin-top:4mm }
+  .hl{ background:#fff; border:1px solid var(--line); border-radius:2mm; padding:2.8mm 2mm; text-align:center }
+  .hl b{ display:block; font-family:"Playfair Display",serif; font-size:19pt; line-height:1; color:var(--wine) }
+  .hl span{ font-size:6.8pt; text-transform:uppercase; letter-spacing:1px; color:var(--muted); font-weight:600 }
+
+  .chips{ display:flex; flex-wrap:wrap; gap:1.6mm }
+  .chips.tint span{ background:var(--tint) }
+  .chips span{ background:#fff; border:1px solid #E2D3CD; color:#4A2A33; font-size:7.8pt; padding:1mm 2.3mm; border-radius:5mm; font-weight:500 }
+  .award{ display:flex; gap:2.6mm; align-items:flex-start; margin-bottom:3mm }
+  .award i{ flex:0 0 6.5mm; height:6.5mm; border-radius:50%; background:var(--wine); color:var(--rose); display:grid; place-items:center; font-style:normal; font-size:8pt }
+  .award b{ display:block; font-size:8.6pt; line-height:1.3 }
+  .award small{ color:var(--muted); font-size:7.6pt }
+  .edu{ margin-bottom:3.4mm }
+  .edu b{ display:block; font-size:8.6pt; line-height:1.35 }
+  .edu span{ display:block; font-size:7.9pt; color:var(--muted) }
+  .edu em{ font-style:normal; font-size:7.6pt; font-weight:700; color:var(--rose) }
+  .side ul.plain li{ list-style:none; font-size:8.5pt; padding:1.2mm 0; border-bottom:1px dashed #E2D3CD }
+
+  .vol{ display:grid; grid-template-columns:1fr 1fr; gap:3.5mm }
+  .vol div{ border-top:2px solid var(--rose); padding-top:2mm }
+  .vol b{ display:block; font-size:9pt }
+  .vol em{ font-style:normal; display:block; font-size:7.8pt; color:var(--rose); font-weight:600; margin-bottom:.8mm }
+  .vol p{ font-size:8.4pt; color:#3A3D44 }
+  .ref{ margin-bottom:3.6mm }
+  .ref b{ display:block; font-size:8.8pt }
+  .ref span{ display:block; font-size:7.8pt; color:var(--muted); line-height:1.4 }
+  .ref a{ display:block; font-size:8.2pt; font-weight:600; color:var(--wine); text-decoration:none; margin-top:.4mm }
+
+  .mini-top{ background:var(--wine); color:#fff; padding:6mm 14mm; display:flex; justify-content:space-between; align-items:center }
+  .mini-top b{ font-family:"Playfair Display",serif; font-size:16pt }
+  .mini-top span{ font-size:7.6pt; letter-spacing:2.5px; text-transform:uppercase; color:#F1D9CE }
+  .closing{ margin-top:0; background:var(--tint); border-radius:2mm; padding:4.5mm 5.5mm; border-left:3px solid var(--wine) }
+  .closing p{ font-family:"Playfair Display",serif; font-style:italic; font-size:11.5pt; color:var(--wine); line-height:1.4 }
+  .closing small{ display:block; margin-top:1.6mm; font-size:7.6pt; letter-spacing:1.8px; text-transform:uppercase; color:var(--muted); font-weight:600 }
+  .pn{ position:absolute; right:9mm; bottom:4.5mm; font-size:7pt; color:#AAA; letter-spacing:2px }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 ============ -->
+<section class="page">
+  <header class="top">
+    <h1>Teckla Robert <span>Kanoni</span></h1>
+    <div class="role">Reservations · Sales &amp; Marketing Manager</div>
+  </header>
+  <div class="contact-bar">
+    <span><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>+255 685 298 392</span>
+    <span><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>tecklakanoni@gmail.com</span>
+    <span><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>P.O. Box 1729, Dar es Salaam, Tanzania</span>
+  </div>
+
+  <div class="body">
+    <div class="main">
+      <div class="block">
+        <h2>Profile</h2>
+        <p class="profile">
+          Award-winning hospitality professional with <b>6+ years</b> of progressive experience across <b>Wyndham</b>,
+          <b>Golden Tulip</b> and leading Tanzanian properties — rising from front desk to reservations leadership and now
+          heading <b>reservations, sales &amp; marketing</b>. Combines hands-on command of inventory, rates and occupancy
+          with a commercial drive to win corporate, travel-trade and conference business. Trusted with VIP guests and key
+          accounts, and recognised as <b>Employee of the Year</b> for consistently raising the standard of guest experience.
+        </p>
+      </div>
+
+      <div class="block">
+        <h2>Experience</h2>
+        <div class="job current">
+          <div class="job-top"><h3>Reservations, Sales &amp; Marketing Manager</h3><span class="when">JUL 2026 – PRESENT</span></div>
+          <div class="org">Zabibu Hotels &amp; Apartments</div>
+          <ul>
+            <li><b>Lead the full commercial function</b> — reservations, sales and marketing — owning availability, rates and booking flow.</li>
+            <li><b>Drive occupancy and revenue</b> through business development with corporate clients, travel agencies and tour operators.</li>
+            <li>Manage conference, group and corporate business end-to-end, from first inquiry to confirmed booking.</li>
+            <li>Build quotations, proposals, corporate rate agreements and promotional packages that convert.</li>
+            <li>Run digital and offline marketing and track competitors and market trends to sharpen pricing strategy.</li>
+            <li>Deliver reservations and sales reporting and align operational departments on every arrival.</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="job-top"><h3>Acting Assistant Reservations Manager</h3><span class="when">JAN 2025 – JUN 2026</span></div>
+          <div class="org">Ramada Resort by Wyndham, Dar es Salaam</div>
+          <ul>
+            <li><b>Stepped up to lead daily reservations operations</b>, coordinating reservations, front office and sales.</li>
+            <li>Managed inventory, booking pace and occupancy forecasts, <b>supporting revenue growth</b> through disciplined rate management.</li>
+            <li>Owned VIP, corporate-account and group reservations and special requests to brand standard.</li>
+            <li><b>Supervised and trained the reservations team</b>; produced reservation reports and occupancy analysis.</li>
+            <li>Improved departmental coordination and efficiency while ensuring full compliance with hotel procedures.</li>
+            <li>Resolved booking-related concerns promptly, <b>enhancing guest satisfaction</b> and protecting repeat business.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <aside class="side">
+      <div class="block">
+        <h2>At a Glance</h2>
+        <div class="highlights">
+          <div class="hl"><b>6+</b><span>Years</span></div>
+          <div class="hl"><b>5</b><span>Hotels</span></div>
+          <div class="hl"><b>3</b><span>Awards</span></div>
+          <div class="hl"><b>2</b><span>Int'l Brands</span></div>
+        </div>
+      </div>
+      <div class="block">
+        <h2>Expertise</h2>
+        <div class="chips">
+          <span>Reservations Management</span><span>Revenue &amp; Occupancy</span><span>Hotel Sales</span>
+          <span>Business Development</span><span>Corporate Accounts</span><span>Travel Trade</span>
+          <span>Groups &amp; MICE</span><span>Front Office</span><span>VIP Relations</span>
+          <span>Team Leadership</span><span>Staff Training</span><span>Forecasting</span>
+          <span>Reporting</span><span>Conflict Resolution</span><span>MS Office</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+  <div class="pn">01 / 02</div>
+</section>
+
+<!-- ============ PAGE 2 ============ -->
+<section class="page">
+  <div class="mini-top"><b>Teckla Robert Kanoni</b><span>Reservations · Sales &amp; Marketing</span></div>
+  <div class="body">
+    <div class="main">
+      <div class="block">
+        <h2>Experience <span style="font-family:'DM Sans';font-size:8pt;color:var(--muted);font-weight:500">(continued)</span></h2>
+        <div class="job">
+          <div class="job-top"><h3>Reservations Agent</h3><span class="when">JAN 2023 – JAN 2025</span></div>
+          <div class="org">Ramada Resort by Wyndham, Dar es Salaam</div>
+          <ul>
+            <li>Handled bookings across phone, email, online platforms and travel agencies with accurate records and payments.</li>
+            <li><b>Coordinated complex group, conference and event bookings</b>, supporting occupancy and revenue targets.</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="job-top"><h3>Receptionist / Reservations Agent</h3><span class="when">SEP 2021 – DEC 2022</span></div>
+          <div class="org">Golden Tulip Zanzibar Airport</div>
+          <ul>
+            <li>Ran front office and reservation operations: check-in/out, payments, booking management and inquiries.</li>
+            <li><b>Delivered exceptional guest service</b>, resolving concerns quickly while keeping records and daily reports accurate.</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="job-top"><h3>Sales Executive</h3><span class="when">JUN 2021 – AUG 2021</span></div>
+          <div class="org">Zanzibar Beach Resort</div>
+          <ul>
+            <li>Identified new business opportunities and promoted accommodation packages to grow the client base.</li>
+            <li>Strengthened client relationships and supported promotional, marketing and sales-reporting activities.</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="job-top"><h3>Receptionist / Reservations Agent</h3><span class="when">2019 – 2020</span></div>
+          <div class="org">Ramada Resort by Wyndham, Dar es Salaam</div>
+          <ul>
+            <li>Provided guest reception, reservation handling and administrative support for smooth, professional front office operations.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="block">
+        <h2>Volunteer Work</h2>
+        <div class="vol">
+          <div><b>Protocol &amp; PR Volunteer</b><em>AICC / JNICC · 2018</em><p>Protocol and public relations support for diplomatic, government and corporate events.</p></div>
+          <div><b>Youth Program Volunteer</b><em>SOS Children’s Village · 2018</em><p>Youth development, educational support and community outreach programmes.</p></div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h2>Strengths</h2>
+        <div class="chips tint"><span>Service Excellence Mindset</span><span>Confident Communicator</span><span>Calm Under Pressure</span><span>Mentoring &amp; Team Building</span><span>Continuous Learner</span></div>
+      </div>
+
+      <div class="closing">
+        <p>“Every booking is the first impression of a stay — I make it count.”</p>
+        <small>Available for interview · +255 685 298 392</small>
+      </div>
+    </div>
+
+    <aside class="side">
+      <div class="block">
+        <h2>Awards</h2>
+        <div class="award"><i>★</i><div><b>Employee of the Year</b><small>Ramada Resort by Wyndham</small></div></div>
+        <div class="award"><i>★</i><div><b>Employee of the Month</b><small>Ramada Resort by Wyndham</small></div></div>
+        <div class="award"><i>★</i><div><b>Best Receptionist &amp; Reservations Agent</b><small>Ramada Resort by Wyndham</small></div></div>
+      </div>
+      <div class="block">
+        <h2>Education</h2>
+        <div class="edu"><em>2015 – 2018</em><b>Bachelor of Arts with Education</b><span>Dar es Salaam University College of Education</span></div>
+        <div class="edu"><em>2013 – 2015</em><b>Advanced Certificate of Secondary Education</b><span>St. Mary Goreti Secondary School</span></div>
+        <div class="edu"><em>2010 – 2012</em><b>Certificate of Secondary Education</b><span>St. Teresa of Avila Secondary School</span></div>
+      </div>
+      <div class="block">
+        <h2>References</h2>
+        <div class="ref"><b>Mr. Bharath Swarup</b><span>Cluster Asst. General Manager<br>Ramada Resort by Wyndham</span><a>+91 78457 34395</a></div>
+        <div class="ref"><b>Mr. Kunambi Ignas</b><span>Front Office Manager<br>Ramada Resort by Wyndham</span><a>+255 718 127 079</a></div>
+        <div class="ref"><b>Mr. Makale George</b><span>Reservations Manager<br>Golden Tulip Zanzibar Airport</span><a>+255 718 108 032</a></div>
+      </div>
+    </aside>
+  </div>
+  <div class="pn">02 / 02</div>
+</section>
+</body>
+</html>
