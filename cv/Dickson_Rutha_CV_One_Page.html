@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dickson Rutha – CV (One Page)</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --ink: #17202b;
+    --muted: #5d6877;
+    --accent: #2b59c3;
+    --soft: #eef2fb;
+    --rule: #dfe4ec;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Inter", "DejaVu Sans", sans-serif; color: var(--ink); font-size: 8.9pt; line-height: 1.45; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 210mm; height: 297mm; padding: 12mm 13mm 10mm; overflow: hidden; }
+
+  header { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 4mm; border-bottom: 2.5px solid var(--accent); }
+  header h1 { font-size: 24pt; font-weight: 800; letter-spacing: -.4px; line-height: 1; }
+  header .role { font-size: 10.5pt; color: var(--accent); font-weight: 600; margin-top: 1.8mm; }
+  header .contact { text-align: right; font-size: 8.4pt; color: var(--muted); line-height: 1.6; }
+  header .contact b { color: var(--ink); font-weight: 600; }
+
+  .summary { margin-top: 4mm; font-size: 8.9pt; color: #2c3644; }
+
+  .body { display: grid; grid-template-columns: 1fr 58mm; gap: 7mm; margin-top: 4.5mm; }
+  h2 { font-size: 8.4pt; text-transform: uppercase; letter-spacing: 1.8px; color: var(--accent); font-weight: 700; margin: 4.5mm 0 2.2mm; }
+  .col > h2:first-child { margin-top: 0; }
+
+  .job { margin-bottom: 3mm; }
+  .job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 3mm; }
+  .job h3 { font-size: 9.6pt; font-weight: 700; }
+  .job h3 span { font-weight: 500; color: var(--muted); }
+  .job .dates { font-size: 8pt; color: var(--muted); white-space: nowrap; font-weight: 600; }
+  .job ul { margin: 1mm 0 0 3.8mm; }
+  .job li { margin-bottom: .5mm; }
+  .job li::marker { color: var(--accent); }
+
+  .side { background: var(--soft); border-radius: 6px; padding: 4.5mm 4.5mm 3mm; }
+  .side h2 { margin-top: 4mm; }
+  .side h2:first-child { margin-top: 0; }
+  .skills div { margin-bottom: 1.4mm; }
+  .skills b { display: block; font-size: 7.6pt; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
+  .proj { margin-bottom: 1.3mm; }
+  .proj b { font-weight: 700; }
+  .proj span { color: var(--muted); }
+  .edu { margin-bottom: 1.5mm; }
+  .edu b { display: block; }
+  .edu span { color: var(--muted); }
+  .plain { list-style: none; }
+  .plain li { margin-bottom: .7mm; }
+  .foot { margin-top: 3mm; font-size: 8.2pt; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div>
+      <h1>Dickson Rutha</h1>
+      <div class="role">Software Engineer · Head of Systems</div>
+    </div>
+    <div class="contact">
+      <b>+255 672 944 649</b><br>
+      dixonruthaa@gmail.com<br>
+      Tanzania
+    </div>
+  </header>
+
+  <p class="summary">I'm a software engineer who builds software that businesses rely on every day. Over the last eight years I've built web systems, mobile apps and WhatsApp chatbots for companies in Tanzania, Uganda and Malawi, and I've led the projects and teams behind them. Today I'm Head of Systems at ChemCheemi Africa, where I look after our IoT platform and AI work, and I also build software for Ecowater International.</p>
+
+  <div class="body">
+    <div class="col">
+      <h2>Experience</h2>
+
+      <div class="job">
+        <div class="job-head"><h3>Head of Systems <span>· ChemCheemi Africa</span></h3><span class="dates">2023 – Present</span></div>
+        <ul>
+          <li>Responsible for all of the company's systems, from planning and architecture through to delivery and support.</li>
+          <li>Built TapCloud, our IoT platform for connecting and monitoring devices remotely.</li>
+          <li>Added AI features to our products and internal workflows.</li>
+          <li>Integrated our systems with banks, mobile money and SMS providers.</li>
+          <li>Work with management to decide what we build next and make sure it gets delivered.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-head"><h3>Software Engineer <span>· Ecowater International, Dodoma</span></h3><span class="dates">2023 – Present</span></div>
+        <ul>
+          <li>Build and maintain the software behind water ordering, deliveries, retail and payments.</li>
+          <li>Part of the team that built Ecowater's new cloud system for Uganda and Malawi, including integrations with local banks and mobile money providers.</li>
+          <li>Built an Android app for our new stores that sends store data to the cloud.</li>
+          <li>Built Mr. Majik, a WhatsApp bot customers use to order water, and MajikDrive, the app our drivers use for deliveries.</li>
+          <li>Built ESMS for managing stores remotely and EFA, the cashier system for water card top-ups.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-head"><h3>Technical Team Member <span>· Gasify Energy</span></h3></div>
+        <ul>
+          <li>Connected our meters to our cloud so meter data comes in automatically.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-head"><h3>Freelance Web &amp; Software Developer</h3><span class="dates">2019 – Present</span></div>
+        <ul>
+          <li>Design and build websites and custom systems for businesses and individuals, from first conversation to launch.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-head"><h3>MITz Kits &amp; StadiSpace Manager <span>· MITz Group, Mwanza</span></h3><span class="dates">2018 – 2023</span></div>
+        <ul>
+          <li>Managed the company's main projects and the teams working on them.</li>
+          <li>Sent monthly financial and technical reports to senior management.</li>
+          <li>Started student programmes and designed STEM kits for hands-on learning.</li>
+        </ul>
+      </div>
+
+      <h2>Other Projects</h2>
+      <div class="proj"><b>EcoPlus</b> <span>· WhatsApp chatbot that lets university students register, check timetables and vote.</span></div>
+      <div class="proj"><b>Bookify</b> <span>· Hotel and apartment booking system with room availability.</span></div>
+    </div>
+
+    <div class="side">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div><b>Languages</b>PHP, JavaScript, Dart, SQL</div>
+        <div><b>Frameworks</b>Laravel, CodeIgniter, Flutter</div>
+        <div><b>Web &amp; Data</b>HTML, CSS, MySQL, REST APIs, system design, Excel</div>
+        <div><b>Integrations</b>Bank APIs, mobile money, SMS gateways, WhatsApp API</div>
+        <div><b>AI &amp; IoT</b>AI integration, chatbots, IoT platforms</div>
+        <div><b>Tools</b>Git, VS Code, Android Studio</div>
+      </div>
+
+      <h2>Strengths</h2>
+      <ul class="plain">
+        <li>Team leadership</li>
+        <li>Project and delivery management</li>
+        <li>Explaining technical things to non-technical people</li>
+        <li>Owning a project from start to finish</li>
+        <li>Problem solving under tight deadlines</li>
+      </ul>
+
+      <h2>Education</h2>
+      <div class="edu"><b>BSc in Software Engineering</b><span>University of Dodoma, 2014 – 2018</span></div>
+      <div class="edu"><b>ACSEE (A-Level)</b><span>Galanos Secondary School, 2012 – 2014</span></div>
+      <div class="edu"><b>CSEE (O-Level)</b><span>Hai Day Secondary School, 2008 – 2011</span></div>
+
+      <h2>Languages</h2>
+      <ul class="plain">
+        <li>English (fluent)</li>
+        <li>Swahili (native)</li>
+      </ul>
+
+      <p class="foot">References available on request.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
