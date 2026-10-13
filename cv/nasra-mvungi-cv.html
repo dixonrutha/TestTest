@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Nasra Aron Mvungi — CV</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --navy:#14213D; --navy-d:#0C1529; --brass:#B8935A; --ink:#1F2430; --muted:#646B78; --line:#E3E1DC; --tint:#F5F3EE }
+  @page{ size:A4; margin:0 }
+  *{ box-sizing:border-box; margin:0; padding:0 }
+  html,body{ background:#ddd }
+  body{ font-family:"DM Sans",sans-serif; color:var(--ink); font-size:9.4pt; line-height:1.55; -webkit-print-color-adjust:exact; print-color-adjust:exact }
+  .page{ width:210mm; height:297mm; margin:10mm auto; background:#fff; position:relative; overflow:hidden; display:flex; flex-direction:column }
+  @media print{ html,body{background:#fff} .page{margin:0} }
+
+  .top{ background:var(--navy); color:#fff; padding:11mm 14mm 9mm; position:relative; overflow:hidden }
+  .top::after{ content:"§"; position:absolute; right:12mm; top:-8mm; font-family:"Libre Baskerville",serif; font-size:120pt; color:rgba(184,147,90,.13); line-height:1 }
+  .top h1{ font-family:"Libre Baskerville",serif; font-size:28pt; line-height:1.05; font-weight:700; letter-spacing:.5px; position:relative; z-index:1 }
+  .top h1 span{ color:var(--brass) }
+  .top .role{ margin-top:3.5mm; font-size:9.3pt; letter-spacing:3.2px; text-transform:uppercase; color:#D9DEE8; font-weight:500; position:relative; z-index:1 }
+  .top .role b{ color:var(--brass); font-weight:600 }
+  .contact-bar{ display:flex; gap:6.5mm; flex-wrap:wrap; background:var(--navy-d); color:#E6E9F0; padding:3.3mm 14mm; font-size:8.4pt; border-bottom:1.2mm solid var(--brass) }
+  .contact-bar span{ display:flex; align-items:center; gap:2mm }
+  .contact-bar svg{ width:3.4mm; height:3.4mm; stroke:var(--brass); fill:none; stroke-width:1.8 }
+
+  .body{ flex:1; display:grid; grid-template-columns:1fr 64mm; min-height:0 }
+  .main{ padding:8mm 9mm 8mm 14mm }
+  .side{ background:var(--tint); padding:8mm 10mm 8mm 8mm; border-left:1px solid var(--line) }
+
+  h2{ font-family:"Libre Baskerville",serif; font-size:12.5pt; color:var(--navy); font-weight:700; margin-bottom:3.8mm; display:flex; align-items:center; gap:3mm }
+  h2::after{ content:""; flex:1; height:1px; background:var(--line) }
+  .side h2{ font-size:11.2pt }
+  .block{ margin-bottom:6.5mm }
+
+  .profile{ font-size:9.5pt; line-height:1.7; color:#30353F; border-left:3px solid var(--brass); padding-left:4mm }
+  .profile b{ color:var(--navy); font-weight:600 }
+
+  .job{ margin-bottom:5mm }
+  .job-top{ display:flex; justify-content:space-between; align-items:baseline; gap:3mm }
+  .job h3{ font-size:10.5pt; font-weight:700; color:var(--ink) }
+  .tag{ flex:none; font-size:7.4pt; font-weight:700; color:#fff; background:var(--navy); padding:.6mm 2.4mm; border-radius:1mm; letter-spacing:.8px; text-transform:uppercase }
+  .tag.gold{ background:var(--brass) }
+  .org{ font-size:8.9pt; font-weight:600; color:var(--brass); margin:.5mm 0 1.8mm }
+  .job li{ list-style:none; padding-left:4.4mm; position:relative; margin-bottom:1.1mm; color:#363B45; font-size:9pt }
+  .job li::before{ content:""; position:absolute; left:.4mm; top:2mm; width:1.6mm; height:1.6mm; border:1.2px solid var(--brass); transform:rotate(45deg) }
+  .job li b{ color:var(--ink); font-weight:600 }
+
+  .edu{ display:grid; grid-template-columns:22mm 1fr; gap:3mm; margin-bottom:3.6mm }
+  .edu .yr{ font-size:8pt; font-weight:700; color:var(--brass); padding-top:.5mm }
+  .edu b{ display:block; font-size:9.4pt; color:var(--ink) }
+  .edu span{ display:block; font-size:8.6pt; color:var(--muted) }
+  .edu .pill{ display:inline-block; margin-top:1mm; font-size:7.2pt; font-weight:600; letter-spacing:.6px; text-transform:uppercase; color:var(--navy); background:#EEE6D6; padding:.4mm 2mm; border-radius:3mm }
+
+  .glance{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.8mm }
+  .gl{ background:#fff; border:1px solid var(--line); border-radius:2mm; padding:3mm 1.5mm; text-align:center }
+  .gl b{ display:block; font-family:"Libre Baskerville",serif; font-size:14pt; line-height:1.05; color:var(--navy) }
+  .gl span{ font-size:5.6pt; text-transform:uppercase; letter-spacing:.3px; color:var(--muted); font-weight:600 }
+  .gl.wide{ grid-column:span 2 }
+
+  .lang{ margin-bottom:3.2mm }
+  .lang-top{ display:flex; justify-content:space-between; font-size:8.8pt; font-weight:600 }
+  .lang-top em{ font-style:normal; font-weight:500; color:var(--muted); font-size:7.8pt }
+  .bar{ height:1.6mm; background:#E4DFD4; border-radius:1mm; margin-top:1.2mm; overflow:hidden }
+  .bar i{ display:block; height:100%; background:linear-gradient(90deg,var(--navy),#2F4470); border-radius:1mm }
+
+  .skills li{ list-style:none; font-size:8.7pt; padding:1.2mm 0 1.2mm 4.4mm; position:relative; border-bottom:1px dashed #DCD5C6 }
+  .skills li:last-child{ border-bottom:none }
+  .skills li::before{ content:""; position:absolute; left:0; top:50%; width:1.6mm; height:1.6mm; background:var(--brass); transform:translateY(-50%) rotate(45deg) }
+
+  .refs{ display:grid; grid-template-columns:1fr 1fr; gap:4mm }
+  .ref{ border-top:2px solid var(--navy); padding-top:2mm; margin-bottom:3.5mm }
+  .ref b{ display:block; font-size:9.2pt }
+  .ref span{ display:block; font-size:8.2pt; color:var(--muted); line-height:1.45 }
+  .ref a{ display:block; font-size:8.3pt; font-weight:600; color:var(--navy); text-decoration:none; margin-top:.4mm }
+
+  .xclosing{ margin-top:auto; background:var(--navy); color:#fff; border-radius:2mm; padding:4.5mm 5.5mm }
+  .closing p{ font-family:"Libre Baskerville",serif; font-style:italic; font-size:10.5pt; line-height:1.5 }
+  .closing small{ display:block; margin-top:1.8mm; font-size:7.4pt; letter-spacing:1.8px; text-transform:uppercase; color:var(--brass); font-weight:600 }
+  .main{ display:flex; flex-direction:column }
+</style>
+</head>
+<body>
+<section class="page">
+  <header class="top">
+    <h1>Nasra Aron <span>Mvungi</span></h1>
+    <div class="role">Law Graduate (LLB) <b>·</b> Legal Practice Candidate</div>
+  </header>
+  <div class="contact-bar">
+    <span><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>+255 744 341 942 &nbsp;/&nbsp; +255 678 341 942</span>
+    <span><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>aronnasra@gmail.com</span>
+    <span><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Tabata, Dar es Salaam</span>
+  </div>
+
+  <div class="body">
+    <div class="main">
+      <div class="block">
+        <h2>Profile</h2>
+        <p class="profile">
+          Driven <b>Bachelor of Laws (LLB)</b> graduate of Dar es Salaam Tumaini University with hands-on experience on
+          <b>both sides of practice</b> — public prosecution at the <b>National Prosecution Service</b> and private advocacy
+          at Nyangarika &amp; Company Advocates. Completing the Postgraduate Diploma in Legal Practice at the
+          <b>Law School of Tanzania</b> (results awaited). Brings sharp legal research, precise drafting and analytical
+          rigour, plus a rare <b>trilingual edge in English, Kiswahili and Chinese</b> — valuable for international
+          clients, trade and investment matters.
+        </p>
+      </div>
+
+      <div class="block">
+        <h2>Legal Experience</h2>
+        <div class="job">
+          <div class="job-top"><h3>Legal Intern / Field Trainee</h3><span class="tag">Public Prosecution</span></div>
+          <div class="org">National Prosecution Service (NPS)</div>
+          <ul>
+            <li><b>Assisted State Attorneys</b> with criminal investigations and the decision-making process for charging suspects.</li>
+            <li><b>Drafted charge sheets and witness statements</b> for review by State Attorneys.</li>
+            <li>Organised and maintained case files and observed courtroom procedure in criminal proceedings.</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="job-top"><h3>Legal Intern</h3><span class="tag gold">Private Practice</span></div>
+          <div class="org">Nyangarika &amp; Company Advocates</div>
+          <ul>
+            <li><b>Conducted legal research</b> on land disputes and probate &amp; administration matters.</li>
+            <li><b>Drafted court documents</b> including chamber summons, affidavits and pleadings.</li>
+            <li>Participated in client interviews and attended civil litigation sessions in court.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="block">
+        <h2>Education</h2>
+        <div class="edu"><div class="yr">2025 – Present</div><div><b>Postgraduate Diploma in Legal Practice</b><span>Law School of Tanzania (LST)</span><span class="pill">Results awaited</span></div></div>
+        <div class="edu"><div class="yr">2021 – 2024</div><div><b>Bachelor of Laws (LLB)</b><span>Dar es Salaam Tumaini University</span></div></div>
+        <div class="edu"><div class="yr">2019 – 2021</div><div><b>Advanced Certificate of Secondary Education</b><span>Tusiime High School</span></div></div>
+        <div class="edu"><div class="yr">2015 – 2018</div><div><b>Certificate of Secondary Education</b><span>Baobab Girls Secondary School</span></div></div>
+      </div>
+
+    </div>
+
+    <aside class="side">
+      <div class="block">
+        <h2>At a Glance</h2>
+        <div class="glance">
+          <div class="gl"><b>LLB</b><span>Degree</span></div>
+          <div class="gl"><b>3</b><span>Languages</span></div>
+          <div class="gl"><b>2</b><span>Internships</span></div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h2>Core Skills</h2>
+        <ul class="skills">
+          <li>Legal Drafting</li>
+          <li>Legal Research</li>
+          <li>Case Analysis</li>
+          <li>Criminal Procedure</li>
+          <li>Civil Litigation Support</li>
+          <li>Land &amp; Probate Matters</li>
+          <li>Client Interviewing</li>
+          <li>Case File Management</li>
+                    <li>MS Office</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h2>Languages</h2>
+        <div class="lang"><div class="lang-top">Kiswahili <em>Native</em></div><div class="bar"><i style="width:100%"></i></div></div>
+        <div class="lang"><div class="lang-top">English <em>Very Good</em></div><div class="bar"><i style="width:88%"></i></div></div>
+        <div class="lang"><div class="lang-top">Chinese <em>Working</em></div><div class="bar"><i style="width:60%"></i></div></div>
+      </div>
+
+      <div class="block" style="margin-bottom:0">
+        <h2>Referees</h2>
+        <div class="ref"><b>Tumaini Gadson</b><span>Accountant, Usangu Logistics Tanzania Ltd.</span><a>+255 788 402 260</a><span>tumainigadson15@gmail.com</span></div>
+        <div class="ref"><b>Elia Kaira</b><span>Verification Officer, Watu Tanzania Ltd.</span><a>+255 627 585 498</a><span>eliakaira3701@gmail.com</span></div>
+      </div>
+    </aside>
+  </div>
+</section>
+</body>
+</html>
