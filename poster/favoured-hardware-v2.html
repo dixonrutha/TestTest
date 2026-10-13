@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="sw">
+<head>
+<meta charset="utf-8">
+<title>Favoured Hardware Poster v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #D0142F;
+    --bg-a: #2E3743;
+    --bg-b: #11151A;
+    --text: #FFFFFF;
+    --muted: rgba(255,255,255,0.72);
+    --rule: rgba(255,255,255,0.18);
+    --footer: #0B0E12;
+    --shadow-op: 0.6;
+  }
+  .light {
+    --bg-a: #FAFAFA;
+    --bg-b: #E4E6E8;
+    --text: #15171A;
+    --muted: rgba(21,23,26,0.68);
+    --rule: rgba(21,23,26,0.16);
+    --footer: #15171A;
+    --shadow-op: 0.28;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #888; }
+  .poster {
+    width: 1080px; height: 1350px; position: relative; overflow: hidden;
+    background: radial-gradient(120% 80% at 75% 30%, var(--bg-a) 0%, var(--bg-b) 100%);
+    font-family: "Inter", system-ui, sans-serif; color: var(--text);
+  }
+
+  /* ---------- left column ---------- */
+  .copy { position: absolute; left: 80px; top: 96px; width: 470px; }
+  .mark { width: 64px; height: 64px; display: block; }
+  .rule { width: 72px; height: 6px; background: var(--red); margin: 44px 0 30px; }
+  .rule.after { margin: 30px 0 30px; }
+  h1 {
+    font-family: "Archivo", sans-serif; font-weight: 900; text-transform: uppercase;
+    font-size: 92px; line-height: 0.92; letter-spacing: -1.5px;
+  }
+  .sub {
+    font-family: "Archivo", sans-serif; font-weight: 600; text-transform: uppercase;
+    font-size: 27px; line-height: 1.2; letter-spacing: 0.5px;
+  }
+  .boxed {
+    display: inline-block; margin-top: 26px;
+    border: 2px solid var(--text); padding: 10px 16px;
+    font-family: "Archivo", sans-serif; font-weight: 700; text-transform: uppercase;
+    font-size: 22px; letter-spacing: 1px;
+  }
+  .pitch { margin-top: 64px; font-size: 26px; line-height: 1.4; color: var(--muted); max-width: 400px; }
+  .pitch strong { color: var(--red); font-weight: 800; font-family: "Archivo", sans-serif; }
+
+  .list { margin-top: 40px; list-style: none; border-top: 1px solid var(--rule); max-width: 360px; }
+  .list li {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 13px 0; border-bottom: 1px solid var(--rule);
+    font-family: "Archivo", sans-serif; font-weight: 700; font-size: 24px; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .list li span { font-family: "Inter", sans-serif; font-weight: 500; font-size: 17px; color: var(--muted); text-transform: none; letter-spacing: 0; }
+
+  /* ---------- tools ---------- */
+  .tools { position: absolute; right: 0; top: 230px; }
+
+  /* ---------- footer ---------- */
+  .footer {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 200px;
+    background: var(--footer); color: #fff;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 80px;
+    border-top: 6px solid var(--red);
+  }
+  .call small { display: block; font-size: 16px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 10px; }
+  .nums { display: flex; gap: 40px; }
+  .num { display: flex; align-items: center; gap: 12px; font-family: "Archivo", sans-serif; font-weight: 800; font-size: 44px; letter-spacing: 0.5px; font-variant-numeric: tabular-nums; }
+  .num svg { width: 30px; height: 30px; fill: none; stroke: var(--red); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+</style>
+</head>
+<body>
+<div class="poster" id="poster">
+
+  <div class="copy">
+    <svg class="mark" viewBox="0 0 76 76" aria-hidden="true">
+      <rect width="76" height="76" rx="14" fill="#D0142F"/>
+      <path d="M14 38 L38 17 L62 38" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M21 33 V59 H55 V33" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M33 59 V39 H45 M33 48 H42" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="rule"></div>
+    <h1>Favoured<br>Hardware</h1>
+    <div class="rule after"></div>
+    <div class="sub">Vifaa vya ujenzi<br>kwa kila kazi</div>
+    <div class="boxed">Karibu tujenge pamoja</div>
+
+    <p class="pitch">Unatafuta vifaa vya ujenzi? <strong>Usijali.</strong> Kila kitu unapata sehemu moja.</p>
+
+    <ul class="list">
+      <li>Saruji <span>Cement</span></li>
+      <li>Mabati <span>Roofing sheets</span></li>
+      <li>Nondo <span>Steel bars</span></li>
+      <li>Mabomba <span>Pipes</span></li>
+      <li>Zana <span>Tools</span></li>
+    </ul>
+  </div>
+
+  <!-- flat-lay tools -->
+  <svg class="tools" width="560" height="960" viewBox="0 0 560 960" aria-hidden="true">
+    <defs>
+      <linearGradient id="steel" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0" stop-color="#6F767E"/>
+        <stop offset="0.22" stop-color="#D9DEE2"/>
+        <stop offset="0.45" stop-color="#9DA4AB"/>
+        <stop offset="0.62" stop-color="#F4F6F7"/>
+        <stop offset="1" stop-color="#5E656C"/>
+      </linearGradient>
+      <linearGradient id="steelV" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stop-color="#E9ECEE"/>
+        <stop offset="0.35" stop-color="#A8AFB5"/>
+        <stop offset="0.6" stop-color="#D3D8DC"/>
+        <stop offset="1" stop-color="#5F666D"/>
+      </linearGradient>
+      <linearGradient id="red" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0" stop-color="#7A0A1B"/>
+        <stop offset="0.3" stop-color="#E0213D"/>
+        <stop offset="0.45" stop-color="#FF6377"/>
+        <stop offset="0.6" stop-color="#D0142F"/>
+        <stop offset="1" stop-color="#6A0716"/>
+      </linearGradient>
+      <linearGradient id="black" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0" stop-color="#0A0B0D"/>
+        <stop offset="0.4" stop-color="#3B3D42"/>
+        <stop offset="0.55" stop-color="#25272B"/>
+        <stop offset="1" stop-color="#08090A"/>
+      </linearGradient>
+      <filter id="sh" x="-50%" y="-10%" width="200%" height="130%">
+        <feDropShadow dx="10" dy="18" stdDeviation="11" flood-color="#000" flood-opacity="0.6"/>
+      </filter>
+
+      <mask id="spannerMask">
+        <rect x="-100" y="-100" width="200" height="900" fill="#fff"/>
+        <rect x="-21" y="-20" width="42" height="74" rx="4" fill="#000" transform="rotate(-15 0 58)"/>
+        <polygon points="24,620 12,640.8 -12,640.8 -24,620 -12,599.2 12,599.2" fill="#000"/>
+      </mask>
+      <mask id="wrenchMask">
+        <rect x="-100" y="-100" width="200" height="900" fill="#fff"/>
+        <rect x="-19" y="-20" width="38" height="92" rx="3" fill="#000"/>
+        <ellipse cx="0" cy="702" rx="10" ry="17" fill="#000"/>
+      </mask>
+    </defs>
+
+    <g filter="url(#sh)">
+      <!-- screwdriver -->
+      <g transform="translate(70 240)">
+        <path d="M-3 0 L3 0 L7 22 L6 40 L-6 40 L-7 22 Z" fill="url(#steel)"/>
+        <rect x="-6" y="36" width="12" height="290" fill="url(#steel)"/>
+        <rect x="-15" y="318" width="30" height="24" rx="5" fill="url(#black)"/>
+        <rect x="-25" y="336" width="50" height="304" rx="22" fill="url(#red)"/>
+        <rect x="-25" y="430" width="50" height="150" rx="12" fill="url(#black)"/>
+        <rect x="-6" y="444" width="12" height="122" rx="6" fill="url(#red)"/>
+        <rect x="-25" y="598" width="50" height="42" rx="21" fill="url(#black)"/>
+      </g>
+
+      <!-- combination spanner -->
+      <g transform="translate(168 200)" mask="url(#spannerMask)">
+        <circle cx="0" cy="58" r="50" fill="url(#steel)"/>
+        <rect x="-17" y="90" width="34" height="500" rx="10" fill="url(#steel)"/>
+        <circle cx="0" cy="620" r="44" fill="url(#steel)"/>
+        <rect x="-7" y="160" width="14" height="370" rx="7" fill="#000" opacity="0.18"/>
+      </g>
+
+      <!-- adjustable wrench -->
+      <g transform="translate(282 140)" mask="url(#wrenchMask)">
+        <circle cx="0" cy="78" r="64" fill="url(#steel)"/>
+        <path d="M-26 132 L26 132 L31 700 Q31 742 0 742 Q-31 742 -31 700 Z" fill="url(#steel)"/>
+        <rect x="-12" y="230" width="24" height="390" rx="12" fill="#000" opacity="0.16"/>
+        <rect x="-17" y="112" width="34" height="26" rx="4" fill="#4A5056"/>
+        <path d="M-17 118 H17 M-17 124 H17 M-17 130 H17" stroke="#C9CED2" stroke-width="2"/>
+      </g>
+
+      <!-- mason's trowel -->
+      <g transform="translate(404 232)">
+        <path d="M0 0 C40 80 80 170 95 250 Q0 276 -95 250 C-80 170 -40 80 0 0 Z" fill="url(#steel)"/>
+        <path d="M0 34 L0 252" stroke="#fff" stroke-opacity="0.35" stroke-width="3"/>
+        <rect x="-5" y="252" width="10" height="90" fill="#6A7076"/>
+        <rect x="-13" y="334" width="26" height="20" rx="4" fill="url(#black)"/>
+        <rect x="-22" y="350" width="44" height="300" rx="20" fill="url(#red)"/>
+        <rect x="-22" y="604" width="44" height="46" rx="20" fill="url(#black)"/>
+      </g>
+
+      <!-- claw hammer (cropped by edge) -->
+      <g transform="translate(522 100)">
+        <rect x="-20" y="70" width="40" height="670" rx="16" fill="url(#red)"/>
+        <rect x="-21" y="400" width="42" height="340" rx="18" fill="url(#black)"/>
+        <path d="M-21 440 H21 M-21 470 H21 M-21 500 H21 M-21 530 H21 M-21 560 H21" stroke="#000" stroke-opacity="0.5" stroke-width="3"/>
+        <path d="M-32 16 C-72 16 -112 32 -142 72 L-124 84 C-100 60 -72 52 -32 76 Z" fill="url(#steelV)"/>
+        <rect x="-34" y="14" width="80" height="64" rx="6" fill="url(#steelV)"/>
+        <rect x="40" y="6" width="68" height="80" rx="12" fill="url(#steelV)"/>
+      </g>
+    </g>
+  </svg>
+
+  <footer class="footer">
+    <div class="call">
+      <small>Piga simu au WhatsApp</small>
+      <div class="nums">
+        <div class="num"><svg viewBox="0 0 36 36"><path d="M10 4 h5 l2 8 l-4 3 a18 18 0 0 0 8 8 l3 -4 l8 2 v5 a3 3 0 0 1 -3 3 A26 26 0 0 1 7 7 a3 3 0 0 1 3 -3 z"/></svg>0718 468 748</div>
+        <div class="num"><svg viewBox="0 0 36 36"><path d="M10 4 h5 l2 8 l-4 3 a18 18 0 0 0 8 8 l3 -4 l8 2 v5 a3 3 0 0 1 -3 3 A26 26 0 0 1 7 7 a3 3 0 0 1 3 -3 z"/></svg>0744 215 657</div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
