@@ -12,25 +12,45 @@
   body { background: #777; }
   .poster { width: 1080px; height: 1920px; position: relative; overflow: hidden; font-family: "Barlow", sans-serif; }
   .panel { position: absolute; left: 0; right: 0; }
-  .dark  { top: 0; height: 900px; background: radial-gradient(90% 90% at 75% 40%, #2C2C2C 0%, #101010 70%, #060606 100%); }
-  .light { top: 900px; bottom: 0; background: radial-gradient(100% 80% at 65% 35%, #FFFFFF 0%, #EFEFEF 60%, #DEDEDE 100%); }
+  .dark  { top: 0; height: 820px; background: radial-gradient(90% 90% at 75% 40%, #2C2C2C 0%, #101010 70%, #060606 100%); }
+  .light { top: 820px; height: 760px; background: radial-gradient(100% 80% at 65% 35%, #FFFFFF 0%, #EFEFEF 60%, #DEDEDE 100%); }
   .art { position: absolute; inset: 0; }
   .copy { position: absolute; left: 72px; }
-  .mark { width: 52px; height: 52px; display: block; margin-bottom: 34px; }
+  .mark { width: 52px; height: 52px; display: block; }
   .rule { width: 72px; height: 6px; background: var(--red); }
-  h1 {
-    font-family: "Barlow Condensed", sans-serif; font-weight: 800; text-transform: uppercase;
-    font-size: 116px; line-height: .86; letter-spacing: 1px; margin: 24px 0;
+  h1, h2 { font-family: "Barlow Condensed", sans-serif; font-weight: 800; text-transform: uppercase; line-height: .86; letter-spacing: 1px; }
+
+  /* dark panel */
+  .dark-copy { top: 0; height: 820px; display: flex; flex-direction: column; justify-content: center; color: #fff; }
+  .dark-copy .mark { margin-bottom: 30px; }
+  .dark-copy h1 { font-size: 116px; margin: 22px 0; }
+  .sub { font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 38px; line-height: 1.05; text-transform: uppercase; letter-spacing: .5px; margin-top: 22px; }
+  .boxed { align-self: flex-start; margin-top: 22px; border: 2px solid #fff; padding: 8px 16px; font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 28px; letter-spacing: 1.5px; text-transform: uppercase; }
+
+  /* light panel */
+  .light-copy { top: 904px; color: #0A0A0A; width: 580px; }
+  .light-copy h2 { font-size: 100px; margin: 22px 0 26px; }
+  .light-copy h2 span { color: var(--red); }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chips li { list-style: none; font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 26px; letter-spacing: 1px; text-transform: uppercase; padding: 6px 14px; border: 2px solid #0A0A0A; }
+  .chips li:first-child { background: var(--red); border-color: var(--red); color: #fff; }
+
+  /* footer */
+  .footer {
+    position: absolute; left: 0; right: 0; top: 1580px; bottom: 0;
+    background: #0A0A0A; color: #fff; border-top: 6px solid var(--red);
+    padding: 0 72px; display: flex; flex-direction: column; justify-content: center;
   }
-  .dark-copy { top: 0; height: 900px; display: flex; flex-direction: column; justify-content: center; color: #fff; }
-  .sub { font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 38px; line-height: 1.05; text-transform: uppercase; letter-spacing: .5px; margin-top: 24px; }
-  .boxed { align-self: flex-start; margin-top: 24px; border: 2px solid #fff; padding: 8px 16px; font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 28px; letter-spacing: 1.5px; text-transform: uppercase; }
-  .light-copy { top: 996px; color: #0A0A0A; }
-  .light-copy h1 { margin: 24px 0 28px; }
-  .tag { display: inline-block; background: var(--red); color: #fff; padding: 8px 18px; font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 32px; letter-spacing: 1.5px; text-transform: uppercase; }
-  .phones { margin-top: 26px; display: flex; flex-direction: column; gap: 6px; font-weight: 700; font-size: 30px; font-variant-numeric: tabular-nums; }
-  .phones span { display: flex; align-items: center; gap: 12px; }
-  .phones svg { width: 24px; height: 24px; fill: none; stroke: var(--red); stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; }
+  .brandrow { display: flex; align-items: center; justify-content: space-between; padding-bottom: 26px; border-bottom: 1px solid rgba(255,255,255,.16); }
+  .brand { display: flex; align-items: center; gap: 16px; }
+  .brand .mark { width: 46px; height: 46px; }
+  .brand b { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 40px; letter-spacing: 1.5px; text-transform: uppercase; }
+  .welcome { font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 26px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,.7); }
+  .contacts { display: grid; grid-template-columns: 1fr 1fr 1.25fr; gap: 28px; padding-top: 28px; }
+  .c { display: flex; gap: 14px; }
+  .c svg { flex: none; width: 30px; height: 30px; margin-top: 2px; fill: none; stroke: var(--red); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .c small { display: block; font-size: 15px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 6px; }
+  .c p { font-size: 24px; font-weight: 600; line-height: 1.3; font-variant-numeric: tabular-nums; }
 </style>
 </head>
 <body>
@@ -129,26 +149,27 @@
 </g>
 
       <filter id="shD" x="-30%" y="-20%" width="160%" height="150%"><feDropShadow dx="7" dy="14" stdDeviation="9" flood-color="#000" flood-opacity=".65"/></filter>
-      <filter id="shL" x="-30%" y="-20%" width="160%" height="150%"><feDropShadow dx="7" dy="14" stdDeviation="9" flood-color="#000" flood-opacity=".28"/></filter>
-      <clipPath id="clipD"><rect x="0" y="0" width="1080" height="900"/></clipPath>
+      <filter id="shL" x="-30%" y="-20%" width="160%" height="150%"><feDropShadow dx="6" dy="12" stdDeviation="8" flood-color="#000" flood-opacity=".28"/></filter>
+      <clipPath id="clipD"><rect x="0" y="0" width="1080" height="820"/></clipPath>
+      <clipPath id="clipL"><rect x="0" y="820" width="1080" height="760"/></clipPath>
     </defs>
     <g clip-path="url(#clipD)"><g filter="url(#shD)">
-      <use href="#spanner" transform="translate(610 300) scale(0.6)"/>
-      <use href="#screwdriver" transform="translate(690 330) scale(0.6)"/>
-      <use href="#wrench" transform="translate(782 280) scale(0.6)"/>
-      <use href="#trowel" transform="translate(880 330) scale(0.54)"/>
-      <use href="#drill" transform="translate(905 170) scale(0.7)"/>
-      <use href="#toolbox" transform="translate(905 610) scale(0.72)"/>
+      <use href="#spanner" transform="translate(610 250) scale(0.6)"/>
+      <use href="#screwdriver" transform="translate(690 280) scale(0.6)"/>
+      <use href="#wrench" transform="translate(782 230) scale(0.6)"/>
+      <use href="#trowel" transform="translate(880 280) scale(0.54)"/>
+      <use href="#drill" transform="translate(905 130) scale(0.7)"/>
+      <use href="#toolbox" transform="translate(905 560) scale(0.72)"/>
     </g></g>
-    <g filter="url(#shL)">
-      <use href="#wrench" transform="translate(112 1500) scale(0.5)"/>
-      <use href="#screwdriver" transform="translate(205 1544) scale(0.5)"/>
-      <use href="#spanner" transform="translate(292 1520) scale(0.5)"/>
-      <use href="#hammer" transform="translate(462 1490) scale(0.5)"/>
-      <use href="#trowel" transform="translate(600 1546) scale(0.48)"/>
-      <use href="#drill" transform="translate(700 1000) scale(0.82)"/>
-      <use href="#toolbox" transform="translate(735 1590) scale(0.86)"/>
-    </g>
+    <g clip-path="url(#clipL)"><g filter="url(#shL)">
+      <use href="#wrench" transform="translate(112 1270) scale(0.37)"/>
+      <use href="#screwdriver" transform="translate(182 1302) scale(0.37)"/>
+      <use href="#spanner" transform="translate(248 1286) scale(0.37)"/>
+      <use href="#hammer" transform="translate(372 1262) scale(0.37)"/>
+      <use href="#trowel" transform="translate(478 1306) scale(0.36)"/>
+      <use href="#drill" transform="translate(700 900) scale(0.78)"/>
+      <use href="#toolbox" transform="translate(760 1330) scale(0.72)"/>
+    </g></g>
   </svg>
 
   <div class="copy dark-copy">
@@ -167,10 +188,28 @@
 
   <div class="copy light-copy">
     <div class="rule"></div>
-    <h1>Favoured<br>Hardware</h1>
-    <div class="tag">Vifaa vya ujenzi</div>
-    <div class="phones"><span><svg viewBox="0 0 36 36"><path d="M10 4 h5 l2 8 l-4 3 a18 18 0 0 0 8 8 l3 -4 l8 2 v5 a3 3 0 0 1 -3 3 A26 26 0 0 1 7 7 a3 3 0 0 1 3 -3 z"/></svg>0718 468 748</span><span><svg viewBox="0 0 36 36"><path d="M10 4 h5 l2 8 l-4 3 a18 18 0 0 0 8 8 l3 -4 l8 2 v5 a3 3 0 0 1 -3 3 A26 26 0 0 1 7 7 a3 3 0 0 1 3 -3 z"/></svg>0744 215 657</span></div>
+    <h2>Vifaa vya<br><span>ujenzi</span></h2>
+    <ul class="chips">
+      <li>Saruji</li><li>Mabati</li><li>Nondo</li><li>Mabomba</li><li>Zana</li>
+    </ul>
   </div>
+
+  <footer class="footer">
+    <div class="brandrow">
+      <div class="brand"><svg class="mark" viewBox="0 0 76 76" aria-hidden="true">
+  <rect width="76" height="76" rx="14" fill="#CC0000"/>
+  <path d="M14 38 L38 17 L62 38" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M21 33 V59 H55 V33" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M33 59 V39 H45 M33 48 H42" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><b>Favoured Hardware</b></div>
+      <div class="welcome">Karibu tujenge pamoja</div>
+    </div>
+    <div class="contacts">
+      <div class="c"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg><div><small>Mahali</small><p>Dar es Salaam,<br>Tanzania</p></div></div>
+      <div class="c"><svg viewBox="0 0 36 36"><path d="M10 4 h5 l2 8 l-4 3 a18 18 0 0 0 8 8 l3 -4 l8 2 v5 a3 3 0 0 1 -3 3 A26 26 0 0 1 7 7 a3 3 0 0 1 3 -3 z"/></svg><div><small>Simu / WhatsApp</small><p>+255 718 468 748<br>+255 744 215 657</p></div></div>
+      <div class="c"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 L12 13 L20.5 6.5"/></svg><div><small>Barua pepe</small><p>favoredhardware@gmail.com</p></div></div>
+    </div>
+  </footer>
 </div>
 </body>
 </html>
