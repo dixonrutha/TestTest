@@ -55,7 +55,7 @@
   .job ul { margin: 2mm 0 0 4.2mm; }
   .job li { margin-bottom: 1.1mm; padding-left: .6mm; }
   .job li::marker { color: var(--accent); }
-  .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+  .projects { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3mm; }
   .proj { border: 1px solid var(--rule); border-left: 3px solid var(--accent); border-radius: 4px; padding: 2.4mm 3mm; break-inside: avoid; }
   .proj h4 { font-size: 9.4pt; font-weight: 700; }
   .proj h4 small { font-weight: 500; color: var(--muted); font-size: 7.8pt; }
@@ -72,6 +72,25 @@
   .ref b { display: block; font-size: 9.4pt; }
   .ref .pos { color: var(--muted); font-size: 8.4pt; }
   .ref .c { font-size: 8.4pt; margin-top: .6mm; }
+  .tagline { font-size: 12.5pt; font-weight: 600; color: var(--ink); margin-top: 3.5mm; line-height: 1.35; }
+  .tagline em { font-style: normal; color: var(--accent); }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5mm; margin-top: 5mm; }
+  .stat { background: var(--accent-soft); border-radius: 6px; padding: 2.4mm 2.6mm; }
+  .stat b { display: block; font-size: 15pt; line-height: 1.1; color: var(--accent); font-weight: 800; }
+  .stat span { font-size: 7.6pt; color: #33505a; line-height: 1.3; display: block; margin-top: .6mm; }
+  .job li b { color: var(--ink); font-weight: 700; }
+  .integr { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; }
+  .int { border-radius: 6px; padding: 3mm; color: #fff; }
+  .int:nth-child(1) { background: #0f766e; } .int:nth-child(2) { background: #12303a; } .int:nth-child(3) { background: #b45309; }
+  .int .ic { font-size: 14pt; line-height: 1; }
+  .int h4 { font-size: 9.6pt; margin-top: 1.4mm; }
+  .int p { font-size: 8pt; opacity: .9; margin-top: .6mm; line-height: 1.4; }
+  .chip { display: inline-block; font-size: 7pt; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; padding: .2mm 1.6mm; border-radius: 8px; background: var(--accent-soft); color: var(--accent); margin-bottom: .8mm; }
+  .chip.ai { background: #f3e8ff; color: #7e22ce; } .chip.mob { background: #e0f2fe; color: #0369a1; } .chip.web { background: #fef3c7; color: #b45309; } .chip.iot { background: #dcfce7; color: #15803d; }
+  .sedu { margin-bottom: 2.6mm; }
+  .sedu span { display: block; font-size: 7.4pt; color: #7fd1c6; font-weight: 600; }
+  .sedu b { display: block; font-size: 8.8pt; }
+  .sedu em { font-style: normal; font-size: 8pt; color: var(--side-muted); }
 </style>
 </head>
 <body>
@@ -92,9 +111,9 @@
     <div class="skill-group"><div class="lbl">Languages</div><div class="tags"><span>PHP</span><span>JavaScript</span><span>Dart</span><span>SQL</span></div></div>
     <div class="skill-group"><div class="lbl">Frameworks</div><div class="tags"><span>Laravel</span><span>CodeIgniter</span><span>Flutter</span></div></div>
     <div class="skill-group"><div class="lbl">Web &amp; Data</div><div class="tags"><span>HTML</span><span>CSS</span><span>MySQL</span><span>REST APIs</span><span>Excel</span></div></div>
+    <div class="skill-group"><div class="lbl">Payments &amp; Messaging</div><div class="tags"><span>Bank APIs</span><span>Mobile money</span><span>SMS gateways</span><span>WhatsApp API</span></div></div>
     <div class="skill-group"><div class="lbl">AI &amp; IoT</div><div class="tags"><span>AI integration</span><span>Chatbots</span><span>IoT platforms</span></div></div>
     <div class="skill-group"><div class="lbl">Tools</div><div class="tags"><span>Git</span><span>SVN</span><span>VS Code</span><span>Android Studio</span></div></div>
-    <div class="skill-group"><div class="lbl">Platforms</div><div class="tags"><span>Windows</span><span>macOS</span><span>Android</span></div></div>
 
     <h2>Core Strengths</h2>
     <ul>
@@ -112,11 +131,18 @@
     <header>
       <h1>Dickson <span>Rutha</span></h1>
       <div class="role">Head of Systems · Software Engineer · Project Manager</div>
+      <div class="tagline">I build the systems that move <em>money</em>, <em>messages</em> and <em>machines</em>: payments, chatbots, IoT and AI.</div>
+      <div class="stats">
+        <div class="stat"><b>8+</b><span>years building &amp; leading tech</span></div>
+        <div class="stat"><b>7+</b><span>products shipped to real users</span></div>
+        <div class="stat"><b>3</b><span>integration types: banks, mobile money, SMS</span></div>
+        <div class="stat"><b>2</b><span>current roles: ChemCheemi &amp; Ecowater</span></div>
+      </div>
     </header>
 
     <section>
       <h2>Profile</h2>
-      <p class="summary">Software engineer with a BSc in Software Engineering and 5+ years of experience building web and mobile products and managing technology projects. Currently Head of Systems at ChemCheemi Africa, where I lead the building of IoT and AI-powered products, and a Software Engineer at Ecowater International. I have built WhatsApp chatbots, booking systems and Flutter mobile apps used in day-to-day operations, and I have led teams that delivered STEM education programmes. I work well where technical delivery has to meet business goals, and I'm used to running several projects at once while keeping management informed.</p>
+      <p class="summary">Software engineer (BSc, University of Dodoma) who turns business problems into working products. As Head of Systems at ChemCheemi Africa I lead our IoT and AI products; at Ecowater International I build the apps and chatbots behind ordering, deliveries and payments. I connect systems to banks, mobile money and SMS providers, and I'm at my best running several projects at once.</p>
     </section>
 
     <section>
@@ -128,11 +154,10 @@
           <span class="dates">2023 – Present</span>
         </div>
         <ul>
-          <li>Lead the company's systems and technology, from planning and architecture to delivery and support.</li>
-          <li>Built <b>TapCloud</b>, an IoT platform for connecting, monitoring and managing devices.</li>
-          <li>Develop AI-powered features and integrate AI tools into the company's products and workflows.</li>
-          <li>Design, develop and maintain web and mobile applications that support the company's operations.</li>
-          <li>Work with stakeholders to turn business requirements into reliable, well-tested software.</li>
+          <li><b>Lead systems &amp; technology</b> for the company, from planning and architecture to delivery and support.</li>
+          <li><b>Built TapCloud</b>, an IoT platform for connecting, monitoring and managing devices remotely.</li>
+          <li><b>Bring AI into the product</b>: develop AI-powered features and integrate AI tools into company workflows.</li>
+          <li><b>Integrate payments &amp; messaging</b>: connect our systems to bank APIs, mobile money and SMS providers.</li>
         </ul>
       </div>
 
@@ -142,10 +167,9 @@
           <span class="dates">2023 – Present</span>
         </div>
         <ul>
-          <li>Design, build and maintain software for Ecowater's water-delivery, retail and payment operations (see Key Projects).</li>
-          <li>Deliver customer-facing WhatsApp chatbots and Flutter mobile apps for ordering, deliveries and store management.</li>
-          <li>Work with the team to design, build and test applications against business requirements.</li>
-          <li>Take part in code reviews, debugging and troubleshooting to keep releases high-quality.</li>
+          <li><b>Own the software</b> behind Ecowater's water ordering, delivery, retail and payment operations.</li>
+          <li><b>Ship chatbots &amp; apps</b>: WhatsApp chatbots and Flutter apps for customers, drivers, cashiers and stores.</li>
+          <li><b>Keep quality high</b> through design reviews, code reviews, testing and fast troubleshooting.</li>
         </ul>
       </div>
 
@@ -155,10 +179,9 @@
           <span class="dates">2018 – 2023</span>
         </div>
         <ul>
-          <li>Managed delivery of the company's key projects, keeping them on schedule and to requirements.</li>
-          <li>Provided management support across all company projects: led project teams and coordinated resources.</li>
-          <li>Gave senior management monthly financial and technical status reports, raising issues and risks early.</li>
-          <li>Started student programmes and designed hands-on STEM learning kits so students could learn by doing.</li>
+          <li><b>Delivered key projects</b> on schedule and to requirements, leading teams and coordinating resources.</li>
+          <li><b>Reported to senior management</b> monthly on finances and progress, raising issues and risks early.</li>
+          <li><b>Launched STEM programmes</b> and designed hands-on learning kits so students could learn by doing.</li>
         </ul>
       </div>
     </section>
@@ -173,6 +196,11 @@
     <div class="contact">
       <div><span class="lbl">Nationality</span><span class="val">Tanzanian</span></div>
     </div>
+
+    <h2>Education</h2>
+    <div class="sedu"><span>2014 – 2018</span><b>BSc Software Engineering</b><em>University of Dodoma</em></div>
+    <div class="sedu"><span>2012 – 2014</span><b>ACSEE (A-Level)</b><em>Galanos Secondary School</em></div>
+    <div class="sedu"><span>2008 – 2011</span><b>CSEE (O-Level)</b><em>Hai Day Secondary School</em></div>
 
     <h2>Languages</h2>
     <div class="lang">English <em>Fluent</em></div>
@@ -200,31 +228,24 @@
 
   <main>
     <section style="margin-top:0">
-      <h2>Key Projects</h2>
-      <div class="projects">
-        <div class="proj"><h4>TapCloud <small>· IoT platform · ChemCheemi</small></h4><p>IoT cloud platform for connecting, monitoring and managing devices remotely.</p></div>
-        <div class="proj"><h4>EcoPlus <small>· WhatsApp chatbot</small></h4><p>University chatbot for student registration, timetable lookups and voting.</p></div>
-        <div class="proj"><h4>Mr. Majik <small>· Chatbot</small></h4><p>Customer-facing chatbot for ordering water products.</p></div>
-        <div class="proj"><h4>Bookify <small>· Web system</small></h4><p>Reservation system for hotels and apartments with room-availability tracking.</p></div>
-        <div class="proj"><h4>ESMS <small>· Mobile app</small></h4><p>Mobile app for managing and controlling stores remotely.</p></div>
-        <div class="proj"><h4>EFA <small>· Cashier system</small></h4><p>Lets cashiers register students and top up their water-card balances.</p></div>
-        <div class="proj"><h4>MajikDrive <small>· Mobile app</small></h4><p>Driver app for managing and tracking water deliveries to customers.</p></div>
+      <h2>What I Connect</h2>
+      <div class="integr">
+        <div class="int"><div class="ic">🏦</div><h4>Banks</h4><p>Bank API integrations for payments, collections and reconciliation.</p></div>
+        <div class="int"><div class="ic">📱</div><h4>Mobile Money</h4><p>Mobile money payment and collection flows built into our apps.</p></div>
+        <div class="int"><div class="ic">💬</div><h4>SMS &amp; WhatsApp</h4><p>SMS gateways and WhatsApp chatbots for alerts, orders and support.</p></div>
       </div>
     </section>
 
     <section>
-      <h2>Education</h2>
-      <div class="edu">
-        <div class="yr">2014 – 2018</div>
-        <div><h3>BSc in Software Engineering</h3><p>University of Dodoma</p></div>
-      </div>
-      <div class="edu">
-        <div class="yr">2012 – 2014</div>
-        <div><h3>Advanced Certificate of Secondary Education (ACSEE)</h3><p>Galanos Secondary School</p></div>
-      </div>
-      <div class="edu">
-        <div class="yr">2008 – 2011</div>
-        <div><h3>Certificate of Secondary Education (CSEE)</h3><p>Hai Day Secondary School</p></div>
+      <h2>Key Projects</h2>
+      <div class="projects">
+        <div class="proj"><span class="chip iot">IoT</span><h4>TapCloud</h4><p>Cloud platform for connecting, monitoring and managing devices remotely.</p></div>
+        <div class="proj"><span class="chip ai">Chatbot</span><h4>EcoPlus</h4><p>WhatsApp bot for university students: registration, timetables and voting.</p></div>
+        <div class="proj"><span class="chip ai">Chatbot</span><h4>Mr. Majik</h4><p>Customer chatbot for ordering water products.</p></div>
+        <div class="proj"><span class="chip web">Web</span><h4>Bookify</h4><p>Hotel and apartment reservations with live room-availability tracking.</p></div>
+        <div class="proj"><span class="chip mob">Mobile</span><h4>ESMS</h4><p>App for managing and controlling stores remotely.</p></div>
+        <div class="proj"><span class="chip web">Payments</span><h4>EFA</h4><p>Cashier system to register students and top up water-card balances.</p></div>
+        <div class="proj"><span class="chip mob">Mobile</span><h4>MajikDrive</h4><p>Driver app for managing and tracking water deliveries.</p></div>
       </div>
     </section>
 
