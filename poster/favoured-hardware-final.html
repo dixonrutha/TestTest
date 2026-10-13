@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="sw">
+<head>
+<meta charset="utf-8">
+<title>Favoured Hardware Poster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Company colours: #CC0000, white, black */
+  :root { --red: #CC0000; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #777; }
+  .poster { width: 1080px; height: 1920px; position: relative; overflow: hidden; font-family: "Barlow", sans-serif; }
+  .panel { position: absolute; left: 0; right: 0; }
+  .dark  { top: 0; height: 900px; background: radial-gradient(90% 90% at 75% 40%, #2C2C2C 0%, #101010 70%, #060606 100%); }
+  .light { top: 900px; bottom: 0; background: radial-gradient(100% 80% at 65% 35%, #FFFFFF 0%, #EFEFEF 60%, #DEDEDE 100%); }
+  .art { position: absolute; inset: 0; }
+  .copy { position: absolute; left: 72px; }
+  .mark { width: 52px; height: 52px; display: block; margin-bottom: 34px; }
+  .rule { width: 72px; height: 6px; background: var(--red); }
+  h1 {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 800; text-transform: uppercase;
+    font-size: 116px; line-height: .86; letter-spacing: 1px; margin: 24px 0;
+  }
+  .dark-copy { top: 0; height: 900px; display: flex; flex-direction: column; justify-content: center; color: #fff; }
+  .sub { font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 38px; line-height: 1.05; text-transform: uppercase; letter-spacing: .5px; margin-top: 24px; }
+  .boxed { align-self: flex-start; margin-top: 24px; border: 2px solid #fff; padding: 8px 16px; font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 28px; letter-spacing: 1.5px; text-transform: uppercase; }
+  .light-copy { top: 996px; color: #0A0A0A; }
+  .light-copy h1 { margin: 24px 0 28px; }
+  .tag { display: inline-block; background: var(--red); color: #fff; padding: 8px 18px; font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 32px; letter-spacing: 1.5px; text-transform: uppercase; }
+  .phones { margin-top: 26px; display: flex; flex-direction: column; gap: 6px; font-weight: 700; font-size: 30px; font-variant-numeric: tabular-nums; }
+  .phones span { display: flex; align-items: center; gap: 12px; }
+  .phones svg { width: 24px; height: 24px; fill: none; stroke: var(--red); stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; }
+</style>
+</head>
+<body>
+<div class="poster" id="poster">
+  <div class="panel dark"></div>
+  <div class="panel light"></div>
+
+  <svg class="art" width="1080" height="1920" viewBox="0 0 1080 1920" aria-hidden="true">
+    <defs>
+<linearGradient id="steel" x1="0" x2="1"><stop offset="0" stop-color="#6E7276"/><stop offset=".22" stop-color="#DADDDF"/><stop offset=".45" stop-color="#9EA2A6"/><stop offset=".62" stop-color="#F5F6F7"/><stop offset="1" stop-color="#5C6064"/></linearGradient>
+<linearGradient id="steelV" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ECEEEF"/><stop offset=".35" stop-color="#A9ADB1"/><stop offset=".6" stop-color="#D5D8DA"/><stop offset="1" stop-color="#5E6266"/></linearGradient>
+<linearGradient id="red" x1="0" x2="1"><stop offset="0" stop-color="#6B0000"/><stop offset=".3" stop-color="#DD1111"/><stop offset=".45" stop-color="#FF5A5A"/><stop offset=".6" stop-color="#CC0000"/><stop offset="1" stop-color="#5A0000"/></linearGradient>
+<linearGradient id="redV" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#FF4A4A"/><stop offset=".25" stop-color="#CC0000"/><stop offset="1" stop-color="#6B0000"/></linearGradient>
+<linearGradient id="black" x1="0" x2="1"><stop offset="0" stop-color="#050505"/><stop offset=".4" stop-color="#3A3A3A"/><stop offset=".55" stop-color="#222"/><stop offset="1" stop-color="#050505"/></linearGradient>
+<linearGradient id="blackV" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#4A4A4A"/><stop offset=".18" stop-color="#262626"/><stop offset="1" stop-color="#0A0A0A"/></linearGradient>
+
+<mask id="spannerMask" maskUnits="userSpaceOnUse" x="-100" y="-100" width="200" height="900">
+  <rect x="-100" y="-100" width="200" height="900" fill="#fff"/>
+  <rect x="-21" y="-20" width="42" height="74" rx="4" fill="#000" transform="rotate(-15 0 58)"/>
+  <polygon points="24,620 12,640.8 -12,640.8 -24,620 -12,599.2 12,599.2" fill="#000"/>
+</mask>
+<mask id="wrenchMask" maskUnits="userSpaceOnUse" x="-100" y="-100" width="200" height="900">
+  <rect x="-100" y="-100" width="200" height="900" fill="#fff"/>
+  <rect x="-19" y="-20" width="38" height="92" rx="3" fill="#000"/>
+  <ellipse cx="0" cy="702" rx="10" ry="17" fill="#000"/>
+</mask>
+
+<g id="screwdriver">
+  <path d="M-3 0 L3 0 L7 22 L6 40 L-6 40 L-7 22 Z" fill="url(#steel)"/>
+  <rect x="-6" y="36" width="12" height="290" fill="url(#steel)"/>
+  <rect x="-15" y="318" width="30" height="24" rx="5" fill="url(#black)"/>
+  <rect x="-25" y="336" width="50" height="304" rx="22" fill="url(#red)"/>
+  <rect x="-25" y="430" width="50" height="150" rx="12" fill="url(#black)"/>
+  <rect x="-6" y="444" width="12" height="122" rx="6" fill="url(#red)"/>
+  <rect x="-25" y="598" width="50" height="42" rx="21" fill="url(#black)"/>
+</g>
+<g id="spanner">
+  <g mask="url(#spannerMask)">
+    <circle cx="0" cy="58" r="50" fill="url(#steel)"/>
+    <rect x="-17" y="90" width="34" height="500" rx="10" fill="url(#steel)"/>
+    <circle cx="0" cy="620" r="44" fill="url(#steel)"/>
+    <rect x="-7" y="160" width="14" height="370" rx="7" fill="#000" opacity=".18"/>
+  </g>
+</g>
+<g id="wrench">
+  <g mask="url(#wrenchMask)">
+    <circle cx="0" cy="78" r="64" fill="url(#steel)"/>
+    <path d="M-26 132 L26 132 L31 700 Q31 742 0 742 Q-31 742 -31 700 Z" fill="url(#steel)"/>
+    <rect x="-12" y="230" width="24" height="390" rx="12" fill="#000" opacity=".16"/>
+    <rect x="-17" y="112" width="34" height="26" rx="4" fill="#45494D"/>
+    <path d="M-17 118 H17 M-17 124 H17 M-17 130 H17" stroke="#C9CCCF" stroke-width="2"/>
+  </g>
+</g>
+<g id="trowel">
+  <path d="M0 0 C40 80 80 170 95 250 Q0 276 -95 250 C-80 170 -40 80 0 0 Z" fill="url(#steel)"/>
+  <path d="M0 34 L0 252" stroke="#fff" stroke-opacity=".35" stroke-width="3"/>
+  <rect x="-5" y="252" width="10" height="90" fill="#62666A"/>
+  <rect x="-13" y="334" width="26" height="20" rx="4" fill="url(#black)"/>
+  <rect x="-22" y="350" width="44" height="300" rx="20" fill="url(#red)"/>
+  <rect x="-22" y="604" width="44" height="46" rx="20" fill="url(#black)"/>
+</g>
+<g id="hammer">
+  <rect x="-20" y="70" width="40" height="670" rx="16" fill="url(#red)"/>
+  <rect x="-21" y="400" width="42" height="340" rx="18" fill="url(#black)"/>
+  <path d="M-21 440 H21 M-21 470 H21 M-21 500 H21 M-21 530 H21 M-21 560 H21" stroke="#000" stroke-opacity=".5" stroke-width="3"/>
+  <path d="M-32 16 C-72 16 -112 32 -142 72 L-124 84 C-100 60 -72 52 -32 76 Z" fill="url(#steelV)"/>
+  <rect x="-34" y="14" width="80" height="64" rx="6" fill="url(#steelV)"/>
+  <rect x="40" y="6" width="68" height="80" rx="12" fill="url(#steelV)"/>
+</g>
+<g id="drill">
+  <rect x="0" y="57" width="72" height="12" rx="2" fill="url(#steelV)"/>
+  <path d="M0 57 L-14 63 L0 69 Z" fill="#8A8E92"/>
+  <rect x="62" y="34" width="74" height="58" rx="10" fill="url(#blackV)"/>
+  <path d="M76 36 V90 M90 36 V90 M104 36 V90 M118 36 V90" stroke="#555" stroke-width="3"/>
+  <rect x="130" y="26" width="38" height="74" rx="8" fill="url(#steelV)"/>
+  <path d="M160 14 H360 Q412 14 412 66 V82 Q412 134 360 134 H160 Z" fill="url(#blackV)"/>
+  <path d="M190 22 H350 Q392 22 396 50" stroke="#CC0000" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <circle cx="372" cy="74" r="22" fill="#151515" stroke="#3A3A3A" stroke-width="3"/>
+  <path d="M362 74 H382 M372 64 V84" stroke="#555" stroke-width="3"/>
+  <path d="M244 128 H344 L326 366 H236 Z" fill="url(#black)"/>
+  <path d="M262 150 H326 L314 340 H254 Z" fill="url(#red)"/>
+  <rect x="214" y="150" width="34" height="58" rx="12" fill="url(#redV)"/>
+  <rect x="186" y="352" width="210" height="100" rx="14" fill="url(#redV)"/>
+  <rect x="186" y="352" width="210" height="28" rx="10" fill="url(#blackV)"/>
+  <path d="M206 420 H376" stroke="#000" stroke-opacity=".25" stroke-width="3"/>
+</g>
+<g id="toolbox">
+  <path d="M130 58 V28 Q130 6 152 6 H288 Q310 6 310 28 V58" fill="none" stroke="#111" stroke-width="22" stroke-linejoin="round"/>
+  <rect x="0" y="48" width="440" height="230" rx="24" fill="url(#blackV)"/>
+  <path d="M0 112 H440" stroke="#000" stroke-width="4"/>
+  <path d="M0 116 H440" stroke="#444" stroke-width="2"/>
+  <rect x="40" y="92" width="44" height="46" rx="7" fill="url(#redV)"/>
+  <rect x="356" y="92" width="44" height="46" rx="7" fill="url(#redV)"/>
+  <rect x="120" y="164" width="230" height="64" rx="8" fill="#CC0000"/>
+  <text x="235" y="207" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="800" font-size="36" fill="#fff" letter-spacing="2">FAVOURED</text>
+</g>
+
+      <filter id="shD" x="-30%" y="-20%" width="160%" height="150%"><feDropShadow dx="7" dy="14" stdDeviation="9" flood-color="#000" flood-opacity=".65"/></filter>
+      <filter id="shL" x="-30%" y="-20%" width="160%" height="150%"><feDropShadow dx="7" dy="14" stdDeviation="9" flood-color="#000" flood-opacity=".28"/></filter>
+      <clipPath id="clipD"><rect x="0" y="0" width="1080" height="900"/></clipPath>
+    </defs>
+    <g clip-path="url(#clipD)"><g filter="url(#shD)">
+      <use href="#spanner" transform="translate(610 300) scale(0.6)"/>
+      <use href="#screwdriver" transform="translate(690 330) scale(0.6)"/>
+      <use href="#wrench" transform="translate(782 280) scale(0.6)"/>
+      <use href="#trowel" transform="translate(880 330) scale(0.54)"/>
+      <use href="#drill" transform="translate(905 170) scale(0.7)"/>
+      <use href="#toolbox" transform="translate(905 610) scale(0.72)"/>
+    </g></g>
+    <g filter="url(#shL)">
+      <use href="#wrench" transform="translate(112 1500) scale(0.5)"/>
+      <use href="#screwdriver" transform="translate(205 1544) scale(0.5)"/>
+      <use href="#spanner" transform="translate(292 1520) scale(0.5)"/>
+      <use href="#hammer" transform="translate(462 1490) scale(0.5)"/>
+      <use href="#trowel" transform="translate(600 1546) scale(0.48)"/>
+      <use href="#drill" transform="translate(700 1000) scale(0.82)"/>
+      <use href="#toolbox" transform="translate(735 1590) scale(0.86)"/>
+    </g>
+  </svg>
+
+  <div class="copy dark-copy">
+    <svg class="mark" viewBox="0 0 76 76" aria-hidden="true">
+  <rect width="76" height="76" rx="14" fill="#CC0000"/>
+  <path d="M14 38 L38 17 L62 38" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M21 33 V59 H55 V33" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M33 59 V39 H45 M33 48 H42" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+    <div class="rule"></div>
+    <h1>Favoured<br>Hardware</h1>
+    <div class="rule"></div>
+    <div class="sub">Vifaa vya ujenzi<br>kwa kila kazi</div>
+    <div class="boxed">Tujenge pamoja</div>
+  </div>
+
+  <div class="copy light-copy">
+    <div class="rule"></div>
+    <h1>Favoured<br>Hardware</h1>
+    <div class="tag">Vifaa vya ujenzi</div>
+    <div class="phones"><span><svg viewBox="0 0 36 36"><path d="M10 4 h5 l2 8 l-4 3 a18 18 0 0 0 8 8 l3 -4 l8 2 v5 a3 3 0 0 1 -3 3 A26 26 0 0 1 7 7 a3 3 0 0 1 3 -3 z"/></svg>0718 468 748</span><span><svg viewBox="0 0 36 36"><path d="M10 4 h5 l2 8 l-4 3 a18 18 0 0 0 8 8 l3 -4 l8 2 v5 a3 3 0 0 1 -3 3 A26 26 0 0 1 7 7 a3 3 0 0 1 3 -3 z"/></svg>0744 215 657</span></div>
+  </div>
+</div>
+</body>
+</html>
