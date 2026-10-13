@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dickson Rutha – CV</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --ink: #1c2430;
+    --muted: #5b6676;
+    --accent: #0f766e;
+    --accent-soft: #e6f4f2;
+    --side: #12303a;
+    --side-ink: #e8f0f2;
+    --side-muted: #9fb6bd;
+    --rule: #e3e7ec;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Inter", "DejaVu Sans", sans-serif; color: var(--ink); font-size: 9.4pt; line-height: 1.5; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 210mm; height: 297mm; display: grid; grid-template-columns: 68mm 1fr; page-break-after: always; overflow: hidden; }
+  .page:last-child { page-break-after: auto; }
+
+  /* Sidebar */
+  aside { background: var(--side); color: var(--side-ink); padding: 16mm 8mm 12mm 10mm; }
+  .initials { width: 26mm; height: 26mm; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 22pt; font-weight: 700; letter-spacing: 1px; margin-bottom: 9mm; }
+  aside h2 { font-size: 8.5pt; text-transform: uppercase; letter-spacing: 2px; color: #7fd1c6; font-weight: 700; margin: 7mm 0 3mm; padding-bottom: 1.5mm; border-bottom: 1px solid rgba(255,255,255,.15); }
+  aside h2:first-of-type { margin-top: 0; }
+  .contact div { margin-bottom: 2.4mm; }
+  .contact .lbl { display: block; font-size: 7.2pt; text-transform: uppercase; letter-spacing: 1px; color: var(--side-muted); }
+  .contact .val { font-size: 8.8pt; word-break: break-word; }
+  .skill-group { margin-bottom: 3mm; }
+  .skill-group .lbl { font-size: 7.6pt; color: var(--side-muted); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 1.2mm; }
+  .tags { display: flex; flex-wrap: wrap; gap: 1.4mm; }
+  .tags span { background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.14); border-radius: 3px; padding: .5mm 2mm; font-size: 8pt; }
+  aside ul { list-style: none; }
+  aside li { font-size: 8.6pt; margin-bottom: 1.6mm; padding-left: 3.5mm; position: relative; }
+  aside li::before { content: ""; position: absolute; left: 0; top: 2mm; width: 1.3mm; height: 1.3mm; border-radius: 50%; background: #7fd1c6; }
+  .lang { display: flex; justify-content: space-between; font-size: 8.8pt; margin-bottom: 1.6mm; }
+  .lang em { font-style: normal; color: var(--side-muted); font-size: 8pt; }
+
+  /* Main */
+  main { padding: 16mm 13mm 12mm 11mm; }
+  header h1 { font-size: 27pt; line-height: 1.05; font-weight: 800; letter-spacing: -.5px; }
+  header h1 span { color: var(--accent); }
+  header .role { font-size: 11.5pt; color: var(--muted); font-weight: 500; margin-top: 1.5mm; }
+  section { margin-top: 6mm; }
+  section > h2 { font-size: 10pt; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); font-weight: 700; display: flex; align-items: center; gap: 3mm; margin-bottom: 3.5mm; }
+  section > h2::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+  .summary { color: #2e3846; }
+  .job { margin-bottom: 5mm; break-inside: avoid; }
+  .job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
+  .job h3 { font-size: 10.6pt; font-weight: 700; }
+  .job .org { color: var(--accent); font-weight: 600; font-size: 9.4pt; }
+  .job .dates { font-size: 8.4pt; color: var(--muted); background: var(--accent-soft); color: var(--accent); padding: .4mm 2.2mm; border-radius: 10px; white-space: nowrap; font-weight: 600; }
+  .job ul { margin: 2mm 0 0 4.2mm; }
+  .job li { margin-bottom: 1.1mm; padding-left: .6mm; }
+  .job li::marker { color: var(--accent); }
+  .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+  .proj { border: 1px solid var(--rule); border-left: 3px solid var(--accent); border-radius: 4px; padding: 2.4mm 3mm; break-inside: avoid; }
+  .proj h4 { font-size: 9.4pt; font-weight: 700; }
+  .proj h4 small { font-weight: 500; color: var(--muted); font-size: 7.8pt; }
+  .proj p { font-size: 8.3pt; color: #3b4554; margin-top: .6mm; line-height: 1.4; }
+  .edu { display: grid; grid-template-columns: 22mm 1fr; gap: 1mm 4mm; margin-bottom: 3.4mm; }
+  .edu .yr { font-size: 8.6pt; color: var(--accent); font-weight: 600; }
+  .edu h3 { font-size: 9.8pt; font-weight: 700; }
+  .edu p { color: var(--muted); font-size: 8.8pt; }
+  .strengths { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4mm 6mm; }
+  .strengths div { font-size: 8.9pt; }
+  .strengths b { display: block; font-size: 9.2pt; }
+  .strengths span { color: var(--muted); }
+  .refs { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm 6mm; }
+  .ref b { display: block; font-size: 9.4pt; }
+  .ref .pos { color: var(--muted); font-size: 8.4pt; }
+  .ref .c { font-size: 8.4pt; margin-top: .6mm; }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="page">
+  <aside>
+    <div class="initials">DR</div>
+
+    <h2>Contact</h2>
+    <div class="contact">
+      <div><span class="lbl">Phone</span><span class="val">+255 672 944 649</span></div>
+      <div><span class="lbl">Email</span><span class="val">dixonruthaa@gmail.com</span></div>
+      <div><span class="lbl">Location</span><span class="val">Tanzania</span></div>
+    </div>
+
+    <h2>Technical Skills</h2>
+    <div class="skill-group"><div class="lbl">Languages</div><div class="tags"><span>PHP</span><span>JavaScript</span><span>Dart</span><span>SQL</span></div></div>
+    <div class="skill-group"><div class="lbl">Frameworks</div><div class="tags"><span>Laravel</span><span>CodeIgniter</span><span>Flutter</span></div></div>
+    <div class="skill-group"><div class="lbl">Web &amp; Data</div><div class="tags"><span>HTML</span><span>CSS</span><span>MySQL</span><span>REST APIs</span><span>Excel</span></div></div>
+    <div class="skill-group"><div class="lbl">AI &amp; IoT</div><div class="tags"><span>AI integration</span><span>Chatbots</span><span>IoT platforms</span></div></div>
+    <div class="skill-group"><div class="lbl">Tools</div><div class="tags"><span>Git</span><span>SVN</span><span>VS Code</span><span>Android Studio</span></div></div>
+    <div class="skill-group"><div class="lbl">Platforms</div><div class="tags"><span>Windows</span><span>macOS</span><span>Android</span></div></div>
+
+    <h2>Core Strengths</h2>
+    <ul>
+      <li>Team leadership</li>
+      <li>Project &amp; delivery management</li>
+      <li>Stakeholder communication</li>
+      <li>Problem solving</li>
+      <li>IT troubleshooting</li>
+      <li>Data analysis &amp; reporting</li>
+    </ul>
+
+  </aside>
+
+  <main>
+    <header>
+      <h1>Dickson <span>Rutha</span></h1>
+      <div class="role">Software Engineer · Project Manager</div>
+    </header>
+
+    <section>
+      <h2>Profile</h2>
+      <p class="summary">Software engineer with a BSc in Software Engineering and 5+ years of experience building web and mobile products and managing technology projects. Currently a Software Engineer at Chemcheemi, building IoT and AI-powered products. I have built WhatsApp chatbots, booking systems and Flutter mobile apps used in day-to-day operations, and I have led teams that delivered STEM education programmes. I work well where technical delivery has to meet business goals, and I'm used to running several projects at once while keeping management informed.</p>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+
+      <div class="job">
+        <div class="job-head">
+          <div><h3>Software Engineer</h3><div class="org">Chemcheemi</div></div>
+          <span class="dates">2023 – Present</span>
+        </div>
+        <ul>
+          <li>Built <b>TapCloud</b>, an IoT platform for connecting, monitoring and managing devices.</li>
+          <li>Develop AI-powered features and integrate AI tools into the company's products and workflows.</li>
+          <li>Design, develop and maintain web and mobile applications that support the company's operations.</li>
+          <li>Work with stakeholders to turn business requirements into reliable, well-tested software.</li>
+          <li>Take part in code reviews, debugging and releases to keep quality high.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <div><h3>Software Engineer</h3><div class="org">Ecowater</div></div>
+          <span class="dates">2022 – 2023</span>
+        </div>
+        <ul>
+          <li>Designed, built and maintained software for Ecowater's water-delivery, retail and payment operations (see Key Projects).</li>
+          <li>Delivered customer-facing WhatsApp chatbots and Flutter mobile apps for ordering, deliveries and store management.</li>
+          <li>Worked with the team to design, build and test applications against business requirements.</li>
+          <li>Took part in code reviews, debugging and troubleshooting to keep releases high-quality.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <div><h3>MITz Kits &amp; StadiSpace Manager</h3><div class="org">MITz Group Company · Mwanza</div></div>
+          <span class="dates">2018 – 2023</span>
+        </div>
+        <ul>
+          <li>Managed delivery of the company's key projects, keeping them on schedule and to requirements.</li>
+          <li>Provided management support across all company projects: led project teams and coordinated resources.</li>
+          <li>Gave senior management monthly financial and technical status reports, raising issues and risks early.</li>
+          <li>Started student programmes and designed hands-on STEM learning kits so students could learn by doing.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+  <aside>
+    <h2>Personal Details</h2>
+    <div class="contact">
+      <div><span class="lbl">Nationality</span><span class="val">Tanzanian</span></div>
+    </div>
+
+    <h2>Languages</h2>
+    <div class="lang">English <em>Fluent</em></div>
+    <div class="lang">Swahili <em>Native</em></div>
+
+    <h2>Professional Qualities</h2>
+    <ul>
+      <li>Gets results through others</li>
+      <li>Delivers under pressure and tight deadlines</li>
+      <li>Self-starter, works with little supervision</li>
+      <li>Responsible, tactful, patient and courteous</li>
+      <li>Conflict management and prioritisation</li>
+      <li>Keeps learning new technologies</li>
+    </ul>
+
+    <h2>Interests</h2>
+    <ul>
+      <li>Reading</li>
+      <li>Music</li>
+      <li>Football (playing &amp; watching)</li>
+      <li>Travel</li>
+      <li>Meeting people</li>
+    </ul>
+  </aside>
+
+  <main>
+    <section style="margin-top:0">
+      <h2>Key Projects</h2>
+      <div class="projects">
+        <div class="proj"><h4>TapCloud <small>· IoT platform · Chemcheemi</small></h4><p>IoT cloud platform for connecting, monitoring and managing devices remotely.</p></div>
+        <div class="proj"><h4>EcoPlus <small>· WhatsApp chatbot</small></h4><p>University chatbot for student registration, timetable lookups and voting.</p></div>
+        <div class="proj"><h4>Mr. Majik <small>· Chatbot</small></h4><p>Customer-facing chatbot for ordering water products.</p></div>
+        <div class="proj"><h4>Bookify <small>· Web system</small></h4><p>Reservation system for hotels and apartments with room-availability tracking.</p></div>
+        <div class="proj"><h4>ESMS <small>· Mobile app</small></h4><p>Mobile app for managing and controlling stores remotely.</p></div>
+        <div class="proj"><h4>EFA <small>· Cashier system</small></h4><p>Lets cashiers register students and top up their water-card balances.</p></div>
+        <div class="proj"><h4>MajikDrive <small>· Mobile app</small></h4><p>Driver app for managing and tracking water deliveries to customers.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="edu">
+        <div class="yr">2014 – 2018</div>
+        <div><h3>BSc in Software Engineering</h3><p>University of Dodoma</p></div>
+      </div>
+      <div class="edu">
+        <div class="yr">2012 – 2014</div>
+        <div><h3>Advanced Certificate of Secondary Education (ACSEE)</h3><p>Galanos Secondary School</p></div>
+      </div>
+      <div class="edu">
+        <div class="yr">2008 – 2011</div>
+        <div><h3>Certificate of Secondary Education (CSEE)</h3><p>Hai Day Secondary School</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>References</h2>
+      <div class="refs">
+        <div class="ref"><b>Wilson Richard</b><div class="pos">CEO &amp; Founder, MITz Group Company, Mwanza</div><div class="c">0786 670 537 · wilson.m@mitzgroup.com</div></div>
+        <div class="ref"><b>Kelvin Paul</b><div class="pos">CEO, Chemcheemi</div><div class="c">0757 244 306 · kelvin.p@mitzgroup.com</div></div>
+        <div class="ref"><b>Justice Donatus</b><div class="pos">CEO &amp; Founder, Moyocco, Moshi</div><div class="c">+255 765 083 540 · justiceshayo@gmail.com</div></div>
+        <div class="ref"><b>Emanuel T. Lyaruu</b><div class="pos">CEO &amp; Founder, Emandy Adventure, Moshi</div><div class="c">+255 718 229 146 · ematibruc@yahoo.com</div></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Declaration</h2>
+      <p class="summary">I certify that, to the best of my knowledge and belief, this CV correctly describes my qualifications, my experience and me. <span style="color:var(--muted)">— Dickson Rutha</span></p>
+    </section>
+  </main>
+</div>
+
+</body>
+</html>
