@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sipora PureTouch – Services Poster</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* 1080 x 1350 (4:5) */
+  :root { --lime: #8DC73F; --lime-hi: #A4E03A; --green: #6FAE26; --deep: #1F4A0C; --night: #12300A; --ink: #15200F; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Poppins', sans-serif; background: #ccc; }
+  .poster { width: 1080px; height: 1350px; position: relative; overflow: hidden; background: #E6DCC8; color: var(--ink); }
+  .scene { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+  svg.i { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* header */
+  .brand { position: absolute; left: 70px; top: 52px; display: flex; align-items: center; gap: 14px; }
+  .brand .icon { height: 104px; }
+  .brand .wm { height: 66px; }
+  .loc { position: absolute; right: 70px; top: 76px; display: inline-flex; align-items: center; gap: 8px; background: var(--deep); color: #fff; font-weight: 600; font-size: 19px; letter-spacing: 2px; padding: 11px 22px; border-radius: 30px; box-shadow: 0 8px 20px rgba(31,74,12,.25); }
+  .loc svg { color: var(--lime-hi); font-size: 22px; }
+
+  /* title blocks */
+  .t1 { position: absolute; left: 300px; top: 205px; background: linear-gradient(100deg, var(--night), var(--deep)); color: #fff; font-size: 66px; font-weight: 900; letter-spacing: 2px; padding: 4px 34px 6px; transform: rotate(-2deg); box-shadow: 0 14px 30px rgba(18,48,10,.3); }
+  .t2 { position: absolute; left: 262px; top: 300px; background: #fff; color: var(--green); font-size: 104px; font-weight: 900; letter-spacing: 3px; line-height: 1.12; padding: 0 44px; box-shadow: 0 16px 40px rgba(0,0,0,.12); }
+  .t2 span { background: linear-gradient(180deg, var(--lime-hi), var(--green)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .t3 { position: absolute; left: 252px; top: 446px; background: linear-gradient(100deg, var(--lime), var(--lime-hi)); color: var(--night); font-size: 24px; font-weight: 600; padding: 12px 36px; transform: rotate(-3deg); box-shadow: 0 10px 24px rgba(111,174,38,.35); }
+
+  /* service pills */
+  .list { position: absolute; left: 70px; top: 548px; width: 520px; }
+  .list::before { content: ""; position: absolute; left: 33px; top: 30px; bottom: 30px; border-left: 3px dotted rgba(31,74,12,.5); }
+  .item { position: relative; height: 56px; margin-bottom: 10px; }
+  .item .pill { position: absolute; left: 30px; right: 0; top: 0; height: 56px; border-radius: 0 30px 30px 0; background: #fff; box-shadow: 0 8px 22px rgba(60,50,20,.14);
+    display: flex; align-items: center; justify-content: flex-end; padding: 0 28px; font-size: 23px; font-weight: 800; white-space: nowrap; }
+  .item .pill em { font-style: normal; color: var(--green); margin-left: 7px; }
+  .item .ic { position: absolute; left: 0; top: -5px; width: 66px; height: 66px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 30px; z-index: 1;
+    background: linear-gradient(140deg, #2E6A12, var(--night)); box-shadow: 0 0 0 5px #fff, 0 8px 18px rgba(0,0,0,.2); }
+  .item:nth-child(even) .ic { background: linear-gradient(140deg, var(--lime-hi), var(--green)); color: var(--night); }
+
+  /* bottom */
+  .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 112px; background: linear-gradient(95deg, var(--night) 0%, var(--deep) 40%, var(--green) 85%, var(--lime-hi) 100%); border-top-right-radius: 120px 112px; }
+  .qr { position: absolute; left: 70px; bottom: 34px; width: 206px; height: 206px; padding: 16px; border-radius: 24px; background: #fff; box-shadow: 0 0 0 8px rgba(141,199,63,.35), 0 16px 40px rgba(0,0,0,.25); z-index: 2; }
+  .qr img { width: 100%; height: 100%; display: block; }
+  .qr .badge { position: absolute; left: 50%; top: 50%; width: 52px; height: 52px; margin: -26px 0 0 -26px; border-radius: 50%; background: #fff; padding: 4px; }
+  .qr .badge img { width: 100%; height: 100%; }
+  .scan { position: absolute; left: 70px; bottom: 252px; width: 206px; text-align: center; font-size: 15px; font-weight: 700; letter-spacing: 3px; color: var(--deep); }
+  .contacts { position: absolute; left: 310px; right: 40px; bottom: 30px; display: flex; align-items: center; gap: 34px; color: #fff; }
+  .contacts div { display: flex; align-items: center; gap: 12px; font-size: 25px; font-weight: 600; }
+  .contacts .c { width: 50px; height: 50px; border-radius: 50%; background: #fff; color: var(--deep); display: grid; place-items: center; font-size: 25px; flex: none; }
+  .contacts small { display: block; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; opacity: .8; font-weight: 600; line-height: 1.1; }
+  .contacts b { font-weight: 700; line-height: 1.1; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="insta" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></symbol>
+    <symbol id="office" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"/></symbol>
+    <symbol id="home" viewBox="0 0 24 24"><path d="M3 9.5 12 2l9 7.5V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol>
+    <symbol id="hotel" viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2M10 6h4M10 10h4M10 14h4M10 18h4"/></symbol>
+    <symbol id="hat" viewBox="0 0 24 24"><path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2z"/><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5M4 15v-3a6 6 0 0 1 6-6M14 6a6 6 0 0 1 6 6v3"/></symbol>
+    <symbol id="window" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 3v18M3 12h18"/></symbol>
+    <symbol id="sofa" viewBox="0 0 24 24"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 11v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H6v-2a2 2 0 0 0-4 0Z"/><path d="M4 18v2M20 18v2"/></symbol>
+    <symbol id="tiles" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></symbol>
+    <symbol id="bug" viewBox="0 0 24 24"><path d="m8 2 1.88 1.88M14.12 3.88 16 2M9 7.13v-1a3.003 3.003 0 1 1 6 0v1"/><path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6"/><path d="M12 20v-9M6.53 9C4.6 8.8 3 7.1 3 5M6 13H2M3 21c0-2.1 1.7-3.9 3.8-4M20.97 5c0 2.1-1.6 3.8-3.5 4M22 13h-4M17.2 17c2.1.1 3.8 1.9 3.8 4"/></symbol>
+    <symbol id="shirt" viewBox="0 0 24 24"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></symbol>
+  </defs>
+</svg>
+
+<div class="poster" id="poster">
+  <!-- ROOM + CLEANING CART ILLUSTRATION -->
+  <svg class="scene" viewBox="0 0 1080 1350" aria-hidden="true">
+    <defs>
+      <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EEE6D6"/><stop offset=".55" stop-color="#E2D6C0"/><stop offset="1" stop-color="#D3C4A8"/></linearGradient>
+      <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E4DCCB"/><stop offset="1" stop-color="#F3EEE4"/></linearGradient>
+      <linearGradient id="chrome" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8E948C"/><stop offset=".45" stop-color="#F4F6F2"/><stop offset="1" stop-color="#7C827A"/></linearGradient>
+      <linearGradient id="chromeH" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4F6F2"/><stop offset="1" stop-color="#8E948C"/></linearGradient>
+      <linearGradient id="pole" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#174008"/><stop offset=".45" stop-color="#3E8A18"/><stop offset="1" stop-color="#174008"/></linearGradient>
+      <linearGradient id="limeP" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6FAE26"/><stop offset=".45" stop-color="#C6F07A"/><stop offset="1" stop-color="#6FAE26"/></linearGradient>
+      <linearGradient id="white" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E4E4DE"/><stop offset=".35" stop-color="#FFFFFF"/><stop offset="1" stop-color="#D8D8D0"/></linearGradient>
+      <linearGradient id="jug" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4E8F1A"/><stop offset=".4" stop-color="#A4E03A"/><stop offset="1" stop-color="#3F7A14"/></linearGradient>
+      <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9CC98A" stop-opacity=".55"/><stop offset=".4" stop-color="#E6F5DD" stop-opacity=".7"/><stop offset="1" stop-color="#7DB06A" stop-opacity=".55"/></linearGradient>
+      <linearGradient id="towelW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DCDAD2"/></linearGradient>
+      <linearGradient id="towelG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B9E66E"/><stop offset="1" stop-color="#6FAE26"/></linearGradient>
+      <linearGradient id="towelD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4C8A22"/><stop offset="1" stop-color="#245A0E"/></linearGradient>
+      <linearGradient id="towelS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E6E8E2"/><stop offset="1" stop-color="#B9BDB4"/></linearGradient>
+      <linearGradient id="beam" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFBEE" stop-opacity="1"/><stop offset=".7" stop-color="#FFF8E6" stop-opacity=".55"/><stop offset="1" stop-color="#FFF8E6" stop-opacity=".1"/></linearGradient>
+      <filter id="blur"><feGaussianBlur stdDeviation="18"/></filter>
+      <filter id="soft"><feGaussianBlur stdDeviation="8"/></filter>
+    </defs>
+
+    <!-- wall, floor, sunlight -->
+    <rect width="1080" height="1350" fill="url(#wall)"/>
+    <g filter="url(#blur)" opacity="1">
+      <path d="M760 0 H900 L380 1350 H210 Z" fill="url(#beam)"/>
+      <path d="M960 0 H1040 L560 1350 H460 Z" fill="url(#beam)" opacity=".7"/>
+      <path d="M560 0 H620 L120 1350 H40 Z" fill="url(#beam)" opacity=".5"/>
+    </g>
+    <rect x="0" y="1048" width="1080" height="302" fill="url(#floor)"/>
+    <rect x="0" y="1036" width="1080" height="14" fill="#D6CCB7"/>
+    <rect x="0" y="1048" width="1080" height="3" fill="#C9BEA6"/>
+
+    <!-- floor shadows -->
+    <g filter="url(#soft)" fill="#5A4C2E" opacity=".22">
+      <ellipse cx="770" cy="1112" rx="200" ry="20"/>
+      <ellipse cx="985" cy="1132" rx="100" ry="14"/>
+      <ellipse cx="420" cy="1128" rx="110" ry="12"/>
+    </g>
+    <!-- wall shadows of mops -->
+    <g filter="url(#soft)" stroke="#5A4C2E" stroke-width="12" opacity=".12" stroke-linecap="round">
+      <path d="M1030 300 L1012 1050"/><path d="M960 470 L930 1040"/>
+    </g>
+
+    <!-- BROOM (behind cart) : head up -->
+    <path d="M905 1080 L928 486" stroke="url(#limeP)" stroke-width="12" stroke-linecap="round"/>
+    <rect x="858" y="466" width="146" height="24" rx="6" fill="#1F4A0C"/>
+    <rect x="864" y="452" width="134" height="16" rx="3" fill="#8DC73F"/>
+    <path d="M866 452 v-14 M878 452 v-16 M890 452 v-14 M902 452 v-17 M914 452 v-14 M926 452 v-16 M938 452 v-15 M950 452 v-17 M962 452 v-14 M974 452 v-16 M986 452 v-14" stroke="#A4E03A" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- DUSTPAN -->
+    <path d="M948 560 L944 900" stroke="url(#pole)" stroke-width="10" stroke-linecap="round"/>
+    <path d="M900 890 h90 q8 0 9 8 l14 150 q1 12 -11 12 h-114 q-12 0 -11 -12 l14 -150 q1 -8 9 -8z" fill="#2E6A12"/>
+    <path d="M908 900 h74 l12 140 h-98z" fill="#3E8A18"/>
+
+    <!-- MOP RIGHT -->
+    <path d="M1036 290 L1014 1104" stroke="url(#pole)" stroke-width="14" stroke-linecap="round"/>
+    <rect x="1028" y="282" width="16" height="44" rx="6" fill="#8DC73F"/>
+    <path d="M1000 1098 h30 l6 14 h-42z" fill="#1F4A0C"/>
+    <path d="M920 1112 h190 q10 0 10 10 v6 h-210 v-6 q0 -10 10 -10z" fill="#3E8A18"/>
+    <path d="M912 1128 h214 v10 h-214z" fill="#9A9C92"/>
+    <path d="M914 1138 v8 M922 1138 v10 M930 1138 v8 M938 1138 v10 M946 1138 v8 M954 1138 v10 M962 1138 v8 M970 1138 v10 M978 1138 v8 M986 1138 v10 M994 1138 v8 M1002 1138 v10 M1010 1138 v8 M1018 1138 v10 M1026 1138 v8 M1034 1138 v10 M1042 1138 v8 M1050 1138 v10 M1058 1138 v8 M1066 1138 v10 M1074 1138 v8" stroke="#86887F" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- MOP LEFT (leaning across) -->
+    <path d="M640 520 L440 1092" stroke="url(#pole)" stroke-width="13" stroke-linecap="round"/>
+    <rect x="632" y="500" width="16" height="40" rx="6" fill="#8DC73F" transform="rotate(19 640 520)"/>
+    <path d="M420 1090 h34 l8 14 h-50z" fill="#1F4A0C"/>
+    <path d="M340 1104 h190 q8 0 8 8 v8 h-206 v-8 q0 -8 8 -8z" fill="#8DC73F"/>
+    <path d="M330 1120 h214 v12 h-214z" fill="#9A9C92"/>
+    <path d="M334 1132 v8 M342 1132 v10 M350 1132 v8 M358 1132 v10 M366 1132 v8 M374 1132 v10 M382 1132 v8 M390 1132 v10 M398 1132 v8 M406 1132 v10 M414 1132 v8 M422 1132 v10 M430 1132 v8 M438 1132 v10 M446 1132 v8 M454 1132 v10 M462 1132 v8 M470 1132 v10 M478 1132 v8 M486 1132 v10 M494 1132 v8 M502 1132 v10 M510 1132 v8 M518 1132 v10 M526 1132 v8 M534 1132 v10 M542 1132 v8" stroke="#86887F" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- CART: back poles -->
+    <g fill="url(#chrome)">
+      <rect x="676" y="660" width="9" height="400" rx="4"/>
+      <rect x="906" y="660" width="9" height="400" rx="4"/>
+    </g>
+
+    <!-- shelves (top faces + front rails) -->
+    <g>
+      <!-- shelf 1 y=690 -->
+      <path d="M636 690 H876 L912 664 H672 Z" fill="#E9ECE5" stroke="#A4A9A0" stroke-width="2"/>
+      <!-- shelf 2 y=820 -->
+      <path d="M636 820 H876 L912 794 H672 Z" fill="#E9ECE5" stroke="#A4A9A0" stroke-width="2"/>
+      <!-- shelf 3 y=950 -->
+      <path d="M636 950 H876 L912 924 H672 Z" fill="#E9ECE5" stroke="#A4A9A0" stroke-width="2"/>
+      <!-- shelf 4 y=1060 -->
+      <path d="M636 1060 H876 L912 1034 H672 Z" fill="#E9ECE5" stroke="#A4A9A0" stroke-width="2"/>
+    </g>
+
+    <!-- TOP SHELF ITEMS -->
+    <!-- spray bottle -->
+    <path d="M652 600 h44 v12 q14 6 14 24 v42 q0 10 -10 10 h-52 q-10 0 -10 -10 v-42 q0 -18 14 -24z" fill="url(#white)"/>
+    <rect x="660" y="580" width="30" height="22" rx="3" fill="#F2F2EC" stroke="#D2D2CA"/>
+    <path d="M654 556 h50 q8 0 8 8 v10 q0 6 -6 6 h-52z" fill="#F7F7F2" stroke="#D2D2CA"/>
+    <path d="M708 562 h22 v10 h-22z" fill="#EDEDE6" stroke="#D2D2CA"/>
+    <path d="M666 580 q-6 18 -18 26" stroke="#E6E6DE" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <rect x="652" y="630" width="56" height="34" rx="4" fill="#8DC73F"/>
+    <!-- pump bottle -->
+    <rect x="720" y="618" width="42" height="70" rx="8" fill="url(#white)"/>
+    <rect x="733" y="604" width="16" height="16" fill="#E8E8E0"/>
+    <path d="M736 604 v-14 h22 v6" stroke="#CFCFC6" stroke-width="5" fill="none"/>
+    <!-- plant jar -->
+    <g stroke="#3E7A14" stroke-width="3" fill="none" stroke-linecap="round">
+      <path d="M800 680 q-6 -70 -30 -130"/><path d="M806 680 q4 -80 30 -150"/><path d="M802 680 q-2 -60 6 -110"/>
+    </g>
+    <g fill="#5FA120">
+      <ellipse cx="772" cy="556" rx="12" ry="7" transform="rotate(-30 772 556)"/><ellipse cx="760" cy="584" rx="12" ry="7" transform="rotate(20 760 584)"/>
+      <ellipse cx="782" cy="604" rx="11" ry="6" transform="rotate(-20 782 604)"/><ellipse cx="834" cy="536" rx="12" ry="7" transform="rotate(30 834 536)"/>
+      <ellipse cx="846" cy="566" rx="12" ry="7" transform="rotate(-20 846 566)"/><ellipse cx="822" cy="590" rx="11" ry="6" transform="rotate(25 822 590)"/>
+      <ellipse cx="808" cy="572" rx="10" ry="6" transform="rotate(-40 808 572)"/><ellipse cx="796" cy="630" rx="10" ry="6" transform="rotate(30 796 630)"/>
+    </g>
+    <g fill="#8DC73F">
+      <ellipse cx="826" cy="612" rx="10" ry="6" transform="rotate(-30 826 612)"/><ellipse cx="768" cy="620" rx="10" ry="6"/><ellipse cx="812" cy="548" rx="9" ry="5" transform="rotate(40 812 548)"/>
+    </g>
+    <rect x="776" y="632" width="54" height="56" rx="10" fill="url(#glass)" stroke="#A9CF98" stroke-width="2"/>
+    <rect x="782" y="652" width="42" height="32" rx="6" fill="#6FAE26" opacity=".35"/>
+    <!-- detergent jug -->
+    <path d="M846 598 h46 q12 0 12 12 v68 q0 10 -10 10 h-60 q-10 0 -10 -10 v-56 q0 -14 14 -24z" fill="url(#jug)"/>
+    <rect x="852" y="582" width="22" height="18" rx="3" fill="#1F4A0C"/>
+    <path d="M880 604 q20 0 20 24 v18" stroke="#3F7A14" stroke-width="8" fill="none"/>
+    <rect x="846" y="628" width="44" height="40" rx="5" fill="#fff" opacity=".9"/>
+    <image href="assets/logo-icon.png" x="853" y="633" width="30" height="30"/>
+
+    <!-- front rail shelf 1 -->
+    <rect x="632" y="688" width="248" height="9" rx="4" fill="url(#chromeH)"/>
+
+    <!-- MIDDLE SHELF ITEMS -->
+    <rect x="646" y="784" width="160" height="30" rx="10" fill="url(#towelW)"/>
+    <rect x="652" y="756" width="150" height="30" rx="10" fill="url(#towelW)"/>
+    <rect x="648" y="728" width="156" height="30" rx="10" fill="url(#towelW)"/>
+    <path d="M700 728 q20 -10 40 0 l10 44 q-10 26 -24 30 q-10 -14 -16 -40z" fill="url(#towelG)"/>
+    <rect x="818" y="740" width="40" height="74" rx="10" fill="url(#glass)" stroke="#A9CF98" stroke-width="2"/>
+    <rect x="826" y="728" width="22" height="14" rx="3" fill="#E6F2DA"/>
+    <rect x="862" y="770" width="24" height="44" rx="6" fill="#3E8A18"/>
+    <rect x="868" y="760" width="12" height="12" fill="#1F4A0C"/>
+    <rect x="632" y="818" width="248" height="9" rx="4" fill="url(#chromeH)"/>
+
+    <!-- LOWER SHELF ITEMS -->
+    <rect x="648" y="920" width="100" height="26" rx="8" fill="url(#towelD)"/>
+    <rect x="652" y="896" width="94" height="26" rx="8" fill="url(#towelG)"/>
+    <rect x="648" y="872" width="98" height="26" rx="8" fill="url(#towelG)" opacity=".85"/>
+    <rect x="758" y="918" width="112" height="28" rx="9" fill="url(#towelS)"/>
+    <rect x="762" y="892" width="106" height="28" rx="9" fill="url(#towelS)"/>
+    <rect x="632" y="948" width="248" height="9" rx="4" fill="url(#chromeH)"/>
+
+    <!-- BOTTOM SHELF: bucket -->
+    <path d="M690 990 h120 l-10 64 h-100z" fill="url(#jug)"/>
+    <rect x="684" y="982" width="132" height="12" rx="5" fill="#2E6A12"/>
+    <path d="M696 986 q54 -60 108 0" stroke="#174008" stroke-width="4" fill="none"/>
+    <rect x="632" y="1058" width="248" height="9" rx="4" fill="url(#chromeH)"/>
+
+    <!-- front poles -->
+    <g fill="url(#chrome)">
+      <rect x="630" y="682" width="11" height="402" rx="5"/>
+      <rect x="871" y="682" width="11" height="402" rx="5"/>
+    </g>
+    <!-- wheels -->
+    <g>
+      <rect x="626" y="1076" width="19" height="14" rx="3" fill="#7C827A"/>
+      <circle cx="636" cy="1100" r="17" fill="#3B3F3A"/><circle cx="636" cy="1100" r="6" fill="#B9BDB4"/>
+      <rect x="867" y="1076" width="19" height="14" rx="3" fill="#7C827A"/>
+      <circle cx="877" cy="1100" r="17" fill="#3B3F3A"/><circle cx="877" cy="1100" r="6" fill="#B9BDB4"/>
+      <circle cx="681" cy="1072" r="13" fill="#3B3F3A"/><circle cx="911" cy="1072" r="13" fill="#3B3F3A"/>
+    </g>
+  </svg>
+
+  <!-- header -->
+  <div class="brand">
+    <img class="icon" src="assets/logo-icon.png" alt="">
+    <img class="wm" src="assets/logo-wordmark.png" alt="Sipora PureTouch">
+  </div>
+  <div class="loc"><svg class="i"><use href="#pin"/></svg>DODOMA</div>
+
+  <!-- title -->
+  <div class="t1">PROFESSIONAL</div>
+  <div class="t2"><span>CLEANING</span></div>
+  <div class="t3">Ofisi • Nyumbani • Hotel &amp; Apartments</div>
+
+  <!-- services -->
+  <div class="list">
+    <div class="item"><span class="ic"><svg class="i"><use href="#office"/></svg></span><div class="pill">Ofisi<em>&amp; Majengo</em></div></div>
+    <div class="item"><span class="ic"><svg class="i"><use href="#hat"/></svg></span><div class="pill">Nyumba<em>Mpya</em></div></div>
+    <div class="item"><span class="ic"><svg class="i"><use href="#hotel"/></svg></span><div class="pill">Nyumbani,<em>Hotel &amp; Apartments</em></div></div>
+    <div class="item"><span class="ic"><svg class="i"><use href="#window"/></svg></span><div class="pill">Usafi wa<em>Madirisha</em></div></div>
+    <div class="item"><span class="ic"><svg class="i"><use href="#sofa"/></svg></span><div class="pill">Makochi,<em>Mazulia &amp; Magodoro</em></div></div>
+    <div class="item"><span class="ic"><svg class="i"><use href="#tiles"/></svg></span><div class="pill">Vigae<em>(Pavings)</em></div></div>
+    <div class="item"><span class="ic"><svg class="i"><use href="#bug"/></svg></span><div class="pill">Fumigation<em>(Dawa ya Wadudu)</em></div></div>
+    <div class="item"><span class="ic"><svg class="i"><use href="#shirt"/></svg></span><div class="pill">Kufua<em>Nguo</em></div></div>
+  </div>
+
+  <!-- bottom -->
+  <div class="bar"></div>
+  <div class="scan">FOLLOW US</div>
+  <div class="qr"><img src="assets/qr-instagram.svg" alt="Instagram QR code"></div>
+  <div class="contacts">
+    <div><span class="c"><svg class="i"><use href="#phone"/></svg></span><p><small>Call us now</small><b>+255 718 846 550</b></p></div>
+    <div><span class="c"><svg class="i"><use href="#insta"/></svg></span><p><small>Instagram</small><b>@sipora_pure_touch</b></p></div>
+  </div>
+</div>
+</body>
+</html>
