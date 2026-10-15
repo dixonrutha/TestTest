@@ -45,6 +45,13 @@ const fs = require('fs');
   await poster.pdf({ path: path.join(out, 'poster.pdf'), width: '1080px', height: '1350px', printBackground: true,
     margin: { top: 0, right: 0, bottom: 0, left: 0 } });
 
+  // Premium poster (dark, vibrant)
+  await poster.goto('file://' + path.join(__dirname, 'poster-premium.html'));
+  await poster.evaluate(() => document.fonts.ready);
+  await (await poster.$('#poster')).screenshot({ path: path.join(out, 'poster-premium.png') });
+  await poster.pdf({ path: path.join(out, 'poster-premium.pdf'), width: '1080px', height: '1350px', printBackground: true,
+    margin: { top: 0, right: 0, bottom: 0, left: 0 } });
+
   await browser.close();
   console.log('done');
 })();

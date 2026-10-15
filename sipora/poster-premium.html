@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sipora PureTouch – Premium Poster</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* 1080 x 1350 (4:5) */
+  :root {
+    --lime: #A4E03A;
+    --green: #8DC73F;
+    --green-mid: #6FAE26;
+    --deep: #163609;
+    --night: #0A1C03;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Poppins', sans-serif; background: #111; }
+  .poster { width: 1080px; height: 1350px; position: relative; overflow: hidden; color: #fff;
+    background:
+      radial-gradient(circle at 78% 46%, rgba(164,224,58,.35) 0%, rgba(164,224,58,0) 38%),
+      radial-gradient(circle at 10% 0%, #2D6410 0%, rgba(45,100,16,0) 45%),
+      linear-gradient(170deg, #1D4A0B 0%, var(--deep) 45%, var(--night) 100%); }
+  .rays { position: absolute; inset: 0; background: repeating-conic-gradient(from 200deg at 78% 46%, rgba(255,255,255,.035) 0 6deg, transparent 6deg 18deg);
+    -webkit-mask: radial-gradient(circle at 78% 46%, #000 0, transparent 70%); }
+  svg.i { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* header */
+  .head { position: absolute; left: 60px; right: 60px; top: 46px; display: flex; align-items: center; justify-content: space-between; z-index: 5; }
+  .brand { display: flex; align-items: center; gap: 18px; }
+  .brand .icon { width: 92px; height: 92px; border-radius: 50%; background: #fff; padding: 8px; box-shadow: 0 0 0 4px rgba(164,224,58,.35), 0 10px 30px rgba(0,0,0,.35); }
+  .brand .icon img { width: 100%; display: block; }
+  .brand .wm { height: 62px; }
+  .pill { display: inline-flex; align-items: center; gap: 10px; border: 2px solid rgba(164,224,58,.6); color: #fff; font-weight: 600; font-size: 18px; letter-spacing: 3px; padding: 11px 22px; border-radius: 40px; background: rgba(255,255,255,.06); }
+  .pill svg { color: var(--lime); font-size: 22px; }
+
+  /* headline */
+  .hl { position: absolute; left: 60px; top: 190px; z-index: 4; }
+  .hl .pre { font-size: 36px; font-weight: 300; letter-spacing: 9px; text-transform: uppercase; }
+  .hl .pre b { font-weight: 700; }
+  .hl .big { font-size: 172px; font-weight: 900; line-height: .92; letter-spacing: -3px; margin-top: 4px;
+    background: linear-gradient(180deg, #EBFFB8 0%, var(--lime) 45%, #5FA120 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 8px 30px rgba(164,224,58,.35)); }
+  .hl .where { margin-top: 20px; display: flex; gap: 14px; }
+  .hl .where span { display: inline-flex; align-items: center; gap: 10px; font-size: 21px; font-weight: 600; padding: 10px 20px 10px 14px; border-radius: 30px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); }
+  .hl .where svg { font-size: 24px; color: var(--lime); }
+
+  /* hero art */
+  .art { position: absolute; right: -20px; top: 330px; width: 560px; height: 620px; z-index: 2; }
+
+  /* features */
+  .feat { position: absolute; left: 60px; top: 528px; width: 470px; display: grid; gap: 18px; z-index: 3; }
+  .feat div { display: flex; align-items: center; gap: 18px; padding: 16px 20px; border-radius: 22px; background: linear-gradient(110deg, rgba(255,255,255,.13), rgba(255,255,255,.04)); border: 1px solid rgba(255,255,255,.16); backdrop-filter: blur(6px); }
+  .feat .ic { width: 62px; height: 62px; border-radius: 18px; flex: none; display: grid; place-items: center; font-size: 30px; color: var(--deep); background: linear-gradient(140deg, #D6FF8E, var(--lime) 50%, var(--green-mid)); box-shadow: 0 8px 20px rgba(164,224,58,.3); }
+  .feat b { display: block; font-size: 23px; font-weight: 700; line-height: 1.2; }
+  .feat small { font-size: 16px; color: rgba(255,255,255,.75); }
+
+  /* services */
+  .svc { position: absolute; left: 60px; right: 60px; top: 958px; z-index: 3; }
+  .svc h2 { display: flex; align-items: center; gap: 18px; font-size: 20px; font-weight: 700; letter-spacing: 6px; text-transform: uppercase; color: var(--lime); margin-bottom: 18px; }
+  .svc h2::before, .svc h2::after { content: ""; flex: 1; height: 2px; background: linear-gradient(90deg, transparent, rgba(164,224,58,.7)); }
+  .svc h2::after { background: linear-gradient(90deg, rgba(164,224,58,.7), transparent); }
+  .svc .grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+  .svc .t { text-align: center; padding: 16px 6px 14px; border-radius: 20px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); }
+  .svc .t svg { font-size: 40px; color: var(--lime); display: block; margin: 0 auto 8px; }
+  .svc .t span { font-size: 15px; font-weight: 600; line-height: 1.2; display: block; }
+
+  /* CTA */
+  .cta { position: absolute; left: 60px; right: 60px; bottom: 56px; height: 158px; border-radius: 34px; z-index: 3;
+    background: linear-gradient(110deg, #D6FF8E 0%, var(--lime) 40%, var(--green-mid) 100%); color: var(--deep);
+    display: flex; align-items: center; padding: 0 34px; gap: 24px; box-shadow: 0 20px 60px rgba(164,224,58,.35); overflow: hidden; }
+  .cta::after { content: ""; position: absolute; right: -60px; top: -80px; width: 260px; height: 260px; border-radius: 50%; border: 36px solid rgba(255,255,255,.18); }
+  .cta .ic { width: 96px; height: 96px; border-radius: 50%; background: var(--deep); color: var(--lime); display: grid; place-items: center; font-size: 46px; flex: none; box-shadow: 0 0 0 10px rgba(22,54,9,.15); }
+  .cta small { display: block; font-size: 18px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; }
+  .cta b { display: block; font-size: 58px; font-weight: 900; letter-spacing: 1px; line-height: 1.05; }
+  .cta .loc { margin-left: auto; text-align: right; position: relative; z-index: 1; }
+  .cta .loc .btn { display: inline-block; background: var(--deep); color: #fff; font-weight: 800; font-size: 22px; letter-spacing: 2px; padding: 12px 26px; border-radius: 30px; }
+  .cta .loc div { margin-top: 10px; font-size: 19px; font-weight: 600; display: flex; align-items: center; justify-content: flex-end; gap: 6px; }
+  .tagsw { position: absolute; left: 0; right: 0; bottom: 18px; text-align: center; font-size: 15px; letter-spacing: 6px; text-transform: uppercase; color: rgba(255,255,255,.7); z-index: 3; }
+  .tagsw b { color: var(--lime); font-weight: 700; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="office" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"/></symbol>
+    <symbol id="home" viewBox="0 0 24 24"><path d="M3 9.5 12 2l9 7.5V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol>
+    <symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+    <symbol id="shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol>
+    <symbol id="users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="spark" viewBox="0 0 24 24"><path d="M12 3l1.9 5.8L20 10.7l-6.1 1.9L12 18.5l-1.9-5.9L4 10.7l6.1-1.9z"/><path d="M19 3v4M17 5h4M5 17v4M3 19h4"/></symbol>
+    <symbol id="sofa" viewBox="0 0 24 24"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 11v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H6v-2a2 2 0 0 0-4 0Z"/><path d="M4 18v2M20 18v2"/></symbol>
+    <symbol id="window" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 3v18M3 12h18"/></symbol>
+    <symbol id="hat" viewBox="0 0 24 24"><path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2z"/><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5M4 15v-3a6 6 0 0 1 6-6M14 6a6 6 0 0 1 6 6v3"/></symbol>
+  </defs>
+</svg>
+
+<div class="poster" id="poster">
+  <div class="rays"></div>
+
+  <header class="head">
+    <div class="brand">
+      <div class="icon"><img src="assets/logo-icon.png" alt=""></div>
+      <img class="wm" src="assets/logo-wordmark-white.png" alt="Sipora PureTouch">
+    </div>
+    <div class="pill"><svg class="i"><use href="#pin"/></svg>DODOMA</div>
+  </header>
+
+  <section class="hl">
+    <div class="pre">We make every space</div>
+    <div class="big">SPARKLE</div>
+    <div class="where">
+      <span><svg class="i"><use href="#office"/></svg>Offices</span>
+      <span><svg class="i"><use href="#home"/></svg>Homes</span>
+      <span><svg class="i"><use href="#globe"/></svg>Every Place</span>
+    </div>
+  </section>
+
+  <!-- HERO ART: branded spray bottle with glossy bubbles -->
+  <svg class="art" viewBox="0 0 560 620" aria-hidden="true">
+    <defs>
+      <radialGradient id="blob" cx="45%" cy="40%" r="60%"><stop offset="0" stop-color="#C9F57A"/><stop offset=".55" stop-color="#8DC73F"/><stop offset="1" stop-color="#3F7A14"/></radialGradient>
+      <linearGradient id="head" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2F6612"/><stop offset="1" stop-color="#0F2905"/></linearGradient>
+      <linearGradient id="body" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff" stop-opacity=".95"/><stop offset=".55" stop-color="#F2FBE6" stop-opacity=".92"/><stop offset="1" stop-color="#C9E6A4" stop-opacity=".95"/></linearGradient>
+      <linearGradient id="liq" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C9F57A"/><stop offset="1" stop-color="#4E8F1A"/></linearGradient>
+      <radialGradient id="bub" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".18" stop-color="#fff" stop-opacity=".25"/><stop offset=".7" stop-color="#E9FFD0" stop-opacity=".08"/><stop offset="1" stop-color="#fff" stop-opacity=".55"/></radialGradient>
+      <clipPath id="bottle"><path d="M190 260 q0 -70 80 -74 h50 q80 4 80 74 v270 q0 36 -36 36 h-138 q-36 0 -36 -36 z"/></clipPath>
+      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="24" stdDeviation="22" flood-color="#000" flood-opacity=".45"/></filter>
+      <symbol id="star" viewBox="-10 -10 20 20"><path d="M0-10C1-3 3-1 10 0 3 1 1 3 0 10-1 3-3 1-10 0-3-1-1-3 0-10z"/></symbol>
+    </defs>
+
+    <!-- glow blob + rings -->
+    <circle cx="300" cy="330" r="250" fill="url(#blob)"/>
+    <circle cx="300" cy="330" r="272" fill="none" stroke="#A4E03A" stroke-width="2" stroke-dasharray="3 12" stroke-linecap="round" opacity=".8"/>
+    <circle cx="300" cy="330" r="300" fill="none" stroke="#A4E03A" stroke-width="1.5" opacity=".25"/>
+    <circle cx="300" cy="330" r="200" fill="none" stroke="#fff" stroke-width="2" opacity=".18"/>
+
+    <!-- bottle -->
+    <g filter="url(#shadow)">
+      <!-- trigger head -->
+      <path d="M190 80 h170 q26 0 26 26 v34 q0 20 -20 20 h-160 q-18 0 -18 -18 z" fill="url(#head)"/>
+      <path d="M204 92 h140" stroke="#5FA120" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+      <rect x="380" y="94" width="64" height="30" rx="8" fill="url(#head)"/>
+      <rect x="440" y="99" width="16" height="20" rx="4" fill="#A4E03A"/>
+      <path d="M232 160 q-10 54 -58 80" stroke="url(#head)" stroke-width="22" stroke-linecap="round" fill="none"/>
+      <!-- neck -->
+      <rect x="252" y="156" width="96" height="40" rx="6" fill="#A4E03A"/>
+      <path d="M256 168 h88 M256 180 h88" stroke="#5FA120" stroke-width="3"/>
+      <!-- body -->
+      <path d="M190 260 q0 -70 80 -74 h50 q80 4 80 74 v270 q0 36 -36 36 h-138 q-36 0 -36 -36 z" fill="url(#body)"/>
+      <g clip-path="url(#bottle)">
+        <path d="M180 330 q40 -18 80 0 t80 0 t80 0 V600 H180z" fill="url(#liq)" opacity=".92"/>
+        <circle cx="240" cy="520" r="8" fill="#fff" opacity=".5"/><circle cx="360" cy="480" r="5" fill="#fff" opacity=".5"/><circle cx="330" cy="540" r="10" fill="#fff" opacity=".35"/>
+        <rect x="204" y="230" width="18" height="300" rx="9" fill="#fff" opacity=".65"/>
+        <rect x="376" y="250" width="8" height="270" rx="4" fill="#fff" opacity=".35"/>
+      </g>
+      <!-- label -->
+      <rect x="226" y="330" width="148" height="176" rx="22" fill="#fff"/>
+      <image href="assets/logo-icon.png" x="250" y="344" width="100" height="100"/>
+      <text x="300" y="472" text-anchor="middle" font-family="Poppins" font-weight="800" font-size="22" fill="#163609" letter-spacing="2">SIPORA</text>
+      <text x="300" y="492" text-anchor="middle" font-family="Poppins" font-weight="500" font-size="11" fill="#6FAE26" letter-spacing="4">PURETOUCH</text>
+    </g>
+
+    <!-- spray mist -->
+    <g fill="#fff" filter="url(#glow)">
+      <circle cx="478" cy="108" r="6"/><circle cx="496" cy="92" r="4"/><circle cx="500" cy="122" r="5"/><circle cx="518" cy="104" r="7"/>
+      <circle cx="530" cy="84" r="3"/><circle cx="538" cy="128" r="4"/><circle cx="512" cy="140" r="3"/><circle cx="546" cy="106" r="3"/>
+    </g>
+
+    <!-- glossy bubbles -->
+    <g stroke="#fff" stroke-opacity=".7" stroke-width="2">
+      <circle cx="90" cy="230" r="62" fill="url(#bub)"/>
+      <circle cx="140" cy="140" r="26" fill="url(#bub)"/>
+      <circle cx="470" cy="300" r="48" fill="url(#bub)"/>
+      <circle cx="500" cy="420" r="20" fill="url(#bub)"/>
+      <circle cx="110" cy="470" r="40" fill="url(#bub)"/>
+      <circle cx="170" cy="560" r="18" fill="url(#bub)"/>
+      <circle cx="450" cy="545" r="30" fill="url(#bub)"/>
+    </g>
+
+    <!-- sparkles -->
+    <g fill="#fff" filter="url(#glow)">
+      <use href="#star" x="410" y="180" width="56" height="56"/>
+      <use href="#star" x="168" y="292" width="34" height="34"/>
+      <use href="#star" x="420" y="470" width="30" height="30"/>
+    </g>
+    <g fill="#D6FF8E" filter="url(#glow)">
+      <use href="#star" x="40" y="340" width="40" height="40"/>
+      <use href="#star" x="230" y="12" width="30" height="30"/>
+    </g>
+  </svg>
+
+  <section class="feat">
+    <div><span class="ic"><svg class="i"><use href="#users"/></svg></span><p><b>Trained Professionals</b><small>Reliable, uniformed &amp; trusted team</small></p></div>
+    <div><span class="ic"><svg class="i"><use href="#leaf"/></svg></span><p><b>Safe, Eco-Friendly Products</b><small>Gentle on people, tough on dirt</small></p></div>
+    <div><span class="ic"><svg class="i"><use href="#shield"/></svg></span><p><b>Affordable &amp; On Time</b><small>Quality cleaning that fits your budget</small></p></div>
+  </section>
+
+  <section class="svc">
+    <h2>Our Services</h2>
+    <div class="grid">
+      <div class="t"><svg class="i"><use href="#office"/></svg><span>Office<br>Cleaning</span></div>
+      <div class="t"><svg class="i"><use href="#home"/></svg><span>Home<br>Cleaning</span></div>
+      <div class="t"><svg class="i"><use href="#spark"/></svg><span>Deep<br>Cleaning</span></div>
+      <div class="t"><svg class="i"><use href="#sofa"/></svg><span>Carpet<br>&amp; Sofa</span></div>
+      <div class="t"><svg class="i"><use href="#window"/></svg><span>Windows<br>&amp; Glass</span></div>
+      <div class="t"><svg class="i"><use href="#hat"/></svg><span>After<br>Construction</span></div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="ic"><svg class="i"><use href="#phone"/></svg></div>
+    <div><small>Call / WhatsApp</small><b>+255 718 846 550</b></div>
+    <div class="loc">
+      <span class="btn">BOOK NOW</span>
+      <div><svg class="i"><use href="#pin"/></svg>Dodoma, Tanzania</div>
+    </div>
+  </section>
+  <div class="tagsw"><b>Usafi ni Afya</b> · Cleanliness is Health</div>
+</div>
+</body>
+</html>
