@@ -77,9 +77,6 @@
                 $registered_by = $this->session->userdata('username');
             }
 
-            // Initial recharge: ChuoCredit TZS 11,000 (55L), everyone else TZS 1,000 (5L)
-            $initial_amount = $is_chuocredit_reg ? 11000 : 1000;
-
             if (!empty($topup_amount)) {
                 $this->form_validation->set_rules('amount', 'Initial Racharge', 'trim|callback_validate_recharge');
                 $this->form_validation->set_rules('topup_category', 'Topup Category', 'trim|required');
@@ -190,13 +187,13 @@
                 $this->db->where('franchisee_id !=', '');
                 $this->db->update('cashiers');
 
-                // Initial recharge (11,000 for ChuoCredit, 1,000 otherwise)
-                $topup_amount = $this->_initial_recharge($card_no, $sub_id, $initial_amount);
+                // Initial recharge (11,000 for ChuoCredit, 1,000 otherwise – decided inside)
+                $topup_amount = $this->_initial_recharge($card_no, $sub_id);
 
                 //send sms if cashier enabled for SMS sent
                 if ($cashier->send_sms == 'Y') {
                     $msisdn = $this->input->post('mobile');
-                    $litres = $initial_amount / 200; // 1L = TZS 200
+                    $litres = $topup_amount / 200; // 1L = TZS 200
                     $message = 'Ecowater account successfully created on ' . date('d/m/y H:i') . ' Cost: Tsh 5,000 and initial ' . $litres . 'L offer. Tap validator to validate. Customer Care ' . $system_param->customer_care_1 . '/' . $system_param->customer_care_2;
                     $sms_out = array('receiver' => $msisdn, 'message' => $message, 'maker_id' => 'SYSTEM');
                     $this->db->insert('sms_outgoing', $sms_out);
@@ -220,9 +217,13 @@
         $this->load->view('_layout_cashier', $this->data);
     }
 
-    function _initial_recharge($card_no, $sub_id, $amount = 1000)
+    function _initial_recharge($card_no, $sub_id)
     {
         $sub_data = $this->db->get_where('sub_card_vw', array('sub_id' => $sub_id))->row();
+
+        // ChuoCredit students get TZS 11,000 (55L), everyone else TZS 1,000 (5L)
+        $sub = $this->db->select('registered_by')->get_where('subscribers', array('id' => $sub_id))->row();
+        $amount = ($sub && $sub->registered_by === 'chuocredit') ? 11000 : 1000;
 
         $maker_id = $this->session->userdata('username');
         $pos = 'VAL';
