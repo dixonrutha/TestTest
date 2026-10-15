@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sipora PureTouch – Poster</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* 1080 x 1350 (4:5 – social media & print) */
+  :root {
+    --green: #8DC73F;
+    --green-mid: #7CAD30;
+    --green-dark: #4E8A22;
+    --green-deep: #24470F;
+    --ink: #1F2A1A;
+    --mist: #F3F9EA;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Poppins', sans-serif; background: #ddd; }
+  .poster { width: 1080px; height: 1350px; position: relative; overflow: hidden;
+    background: radial-gradient(circle at 85% 30%, #E4F3CF 0%, var(--mist) 40%, #fff 75%); color: var(--ink); }
+  svg.i { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .bubble { position: absolute; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #fff 0 12%, rgba(141,199,63,.12) 40%, rgba(141,199,63,.28) 100%); border: 2px solid rgba(124,173,48,.35); }
+
+  /* header */
+  .head { position: absolute; left: 60px; right: 60px; top: 44px; display: flex; align-items: center; justify-content: space-between; }
+  .head .brand { display: flex; align-items: center; gap: 18px; }
+  .head .brand .icon { height: 96px; }
+  .head .brand .wm { height: 66px; }
+  .pill { display: inline-flex; align-items: center; gap: 10px; background: var(--green-deep); color: #fff; font-weight: 600; font-size: 20px; padding: 12px 24px; border-radius: 40px; }
+  .pill svg { font-size: 24px; color: var(--green); }
+
+  /* hero */
+  .hero { position: absolute; left: 60px; top: 190px; width: 600px; z-index: 1; }
+  .kicker { display: inline-block; font-size: 18px; font-weight: 600; letter-spacing: 4px; color: var(--green-dark); text-transform: uppercase; margin-bottom: 14px; }
+  h1 { font-size: 58px; line-height: 1.02; font-weight: 800; letter-spacing: -1.5px; }
+  h1 .g { color: var(--green-mid); }
+  .sub { margin-top: 18px; font-size: 21px; line-height: 1.5; color: #44513C; max-width: 540px; }
+  .sub b { color: var(--ink); }
+  .trust { margin-top: 24px; display: grid; gap: 14px; }
+  .trust div { display: flex; align-items: center; gap: 14px; font-size: 21px; font-weight: 600; }
+  .trust span { width: 44px; height: 44px; border-radius: 50%; background: var(--green-mid); color: #fff; display: grid; place-items: center; font-size: 22px; flex: none; }
+
+  .art { position: absolute; right: -40px; top: 190px; width: 470px; height: 470px; }
+
+  /* where we clean */
+  .where { position: absolute; left: 60px; right: 60px; top: 720px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .where .c { background: #fff; border-radius: 26px; padding: 22px 18px 20px; text-align: center; box-shadow: 0 14px 34px rgba(46,90,22,.12); border-top: 6px solid var(--green); }
+  .where .c .ic { width: 72px; height: 72px; margin: 0 auto 10px; border-radius: 50%; background: linear-gradient(140deg, var(--green), var(--green-dark)); color: #fff; display: grid; place-items: center; font-size: 36px; }
+  .where h3 { font-size: 27px; font-weight: 700; }
+  .where p { font-size: 17px; color: #5A6652; margin-top: 4px; line-height: 1.35; }
+
+  /* services */
+  .svc { position: absolute; left: 60px; right: 60px; top: 962px; }
+  .svc h2 { font-size: 22px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--green-dark); display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+  .svc h2::after { content: ""; flex: 1; height: 2px; background: linear-gradient(90deg, var(--green), transparent); }
+  .svc ul { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px 20px; }
+  .svc li { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 500; }
+  .svc li svg { color: var(--green-mid); font-size: 24px; stroke-width: 3; flex: none; }
+
+  /* banner */
+  .banner { position: absolute; left: 50%; top: 1100px; z-index: 3; transform: translateX(-50%) rotate(-1.5deg); background: var(--green-mid); color: #fff; padding: 12px 46px; border-radius: 8px 40px 8px 40px; font-size: 26px; font-weight: 700; white-space: nowrap; box-shadow: 0 10px 24px rgba(78,138,34,.35); }
+  .banner span { font-weight: 400; opacity: .95; }
+
+  /* footer */
+  .foot { position: absolute; left: 0; right: 0; bottom: 0; height: 150px; background: linear-gradient(100deg, var(--green-deep), #36681A); color: #fff; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; }
+  .foot::before { content: ""; position: absolute; left: 0; right: 0; top: -38px; height: 40px; background: var(--green-deep); clip-path: ellipse(60% 100% at 50% 100%); }
+  .call { display: flex; align-items: center; gap: 20px; }
+  .call .ic { width: 78px; height: 78px; border-radius: 50%; background: var(--green); display: grid; place-items: center; font-size: 38px; color: var(--green-deep); flex: none; }
+  .call small { display: block; font-size: 17px; letter-spacing: 2px; text-transform: uppercase; opacity: .85; }
+  .call b { font-size: 46px; font-weight: 800; letter-spacing: 1px; line-height: 1.05; }
+  .loc { text-align: right; }
+  .loc .cta { display: inline-block; background: var(--green); color: var(--green-deep); font-weight: 800; font-size: 21px; padding: 10px 24px; border-radius: 30px; margin-bottom: 10px; }
+  .loc div { font-size: 21px; display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+  .loc svg { color: var(--green); font-size: 24px; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="office" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"/></symbol>
+    <symbol id="home" viewBox="0 0 24 24"><path d="M3 9.5 12 2l9 7.5V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol>
+    <symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+    <symbol id="shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol>
+    <symbol id="users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  </defs>
+</svg>
+
+<div class="poster" id="poster">
+  <div class="bubble" style="width:90px;height:90px;left:610px;top:120px"></div>
+  <div class="bubble" style="width:40px;height:40px;left:560px;top:600px"></div>
+  <div class="bubble" style="width:60px;height:60px;left:-20px;top:640px"></div>
+  <div class="bubble" style="width:28px;height:28px;left:1010px;top:690px"></div>
+
+  <header class="head">
+    <div class="brand">
+      <img class="icon" src="assets/logo-icon.png" alt="">
+      <img class="wm" src="assets/logo-wordmark.png" alt="Sipora PureTouch">
+    </div>
+    <div class="pill"><svg class="i"><use href="#pin"/></svg>Dodoma</div>
+  </header>
+
+  <section class="hero">
+    <div class="kicker">Professional Cleaning Services</div>
+    <h1>Spotless Spaces,<br><span class="g">Happier Places.</span></h1>
+    <p class="sub">We take care of the mess so you can focus on what matters — at the <b>office</b>, at <b>home</b> and <b>everywhere in between.</b></p>
+    <div class="trust">
+      <div><span><svg class="i"><use href="#users"/></svg></span>Trained &amp; Trusted Cleaners</div>
+      <div><span><svg class="i"><use href="#leaf"/></svg></span>Safe, Eco-Friendly Products</div>
+      <div><span><svg class="i"><use href="#shield"/></svg></span>Reliable &amp; Affordable Rates</div>
+    </div>
+  </section>
+
+  <!-- hero illustration -->
+  <svg class="art" viewBox="0 0 460 460" aria-hidden="true">
+    <defs>
+      <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A6D65E"/><stop offset="1" stop-color="#4E8A22"/></linearGradient>
+      <linearGradient id="btl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#E3F0D2"/></linearGradient>
+      <clipPath id="cc"><circle cx="230" cy="230" r="215"/></clipPath>
+      <symbol id="spark" viewBox="-10 -10 20 20"><path d="M0-10C1-3 3-1 10 0 3 1 1 3 0 10-1 3-3 1-10 0-3-1-1-3 0-10z"/></symbol>
+    </defs>
+    <circle cx="230" cy="230" r="228" fill="none" stroke="#8DC73F" stroke-width="4" stroke-dasharray="2 14" stroke-linecap="round"/>
+    <circle cx="230" cy="230" r="215" fill="url(#bg)"/>
+    <g clip-path="url(#cc)">
+      <!-- light rays -->
+      <path d="M230 230 L120 -20 L200 -20Z M230 230 L330 -20 L420 -20Z" fill="#fff" opacity=".08"/>
+      <!-- office tower -->
+      <rect x="70" y="110" width="130" height="320" rx="8" fill="#fff"/>
+      <rect x="70" y="110" width="130" height="18" rx="8" fill="#DCEFC4"/>
+      <g fill="#B8DC8A">
+        <rect x="88" y="145" width="24" height="30" rx="3"/><rect x="123" y="145" width="24" height="30" rx="3"/><rect x="158" y="145" width="24" height="30" rx="3"/>
+        <rect x="88" y="190" width="24" height="30" rx="3"/><rect x="123" y="190" width="24" height="30" rx="3"/><rect x="158" y="190" width="24" height="30" rx="3"/>
+        <rect x="88" y="235" width="24" height="30" rx="3"/><rect x="123" y="235" width="24" height="30" rx="3"/><rect x="158" y="235" width="24" height="30" rx="3"/>
+        <rect x="88" y="280" width="24" height="30" rx="3"/><rect x="123" y="280" width="24" height="30" rx="3"/><rect x="158" y="280" width="24" height="30" rx="3"/>
+      </g>
+      <path d="M92 150 l8 -4 M127 195 l8 -4 M162 240 l8 -4" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+      <!-- house -->
+      <path d="M180 300 L255 236 L330 300 Z" fill="#24470F"/>
+      <rect x="192" y="296" width="126" height="130" fill="#F4FAEC"/>
+      <rect x="240" y="340" width="32" height="66" rx="4" fill="#7CAD30"/>
+      <rect x="204" y="318" width="26" height="26" rx="3" fill="#B8DC8A"/>
+      <rect x="282" y="318" width="26" height="26" rx="3" fill="#B8DC8A"/>
+      <!-- ground -->
+      <ellipse cx="230" cy="440" rx="240" ry="44" fill="#24470F" opacity=".55"/>
+      <!-- spray bottle -->
+      <g transform="translate(16 0)">
+        <path d="M300 214 h62 q10 0 10 10 v16 q0 8 -8 8 h-58 z" fill="#24470F"/>
+        <rect x="368" y="222" width="22" height="12" rx="3" fill="#24470F"/>
+        <path d="M318 248 q-4 22 -24 32" stroke="#24470F" stroke-width="9" stroke-linecap="round" fill="none"/>
+        <rect x="316" y="246" width="34" height="28" fill="#E3F0D2"/>
+        <path d="M300 300 q0-26 26-28 h14 q26 2 26 28 v108 q0 16 -16 16 h-34 q-16 0 -16 -16z" fill="url(#btl)"/>
+        <rect x="306" y="320" width="54" height="64" rx="8" fill="#8DC73F"/>
+        <path d="M333 334 q-14 18 0 36 q14 -18 0 -36z" fill="#fff"/>
+        <path d="M311 300 v100" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".9"/>
+        <!-- mist -->
+        <g fill="#fff">
+          <circle cx="402" cy="222" r="5"/><circle cx="414" cy="234" r="4"/><circle cx="420" cy="214" r="6"/>
+          <circle cx="434" cy="226" r="3"/><circle cx="430" cy="244" r="5"/><circle cx="410" cy="250" r="3"/>
+        </g>
+      </g>
+    </g>
+    <!-- bubbles & sparkles over edge -->
+    <g fill="rgba(255,255,255,.55)" stroke="#fff" stroke-width="2.5">
+      <circle cx="60" cy="90" r="26"/><circle cx="100" cy="52" r="12"/><circle cx="400" cy="100" r="18"/><circle cx="430" cy="150" r="9"/>
+    </g>
+    <g fill="#fff">
+      <use href="#spark" x="240" y="100" width="44" height="44"/>
+      <use href="#spark" x="290" y="150" width="26" height="26"/>
+      <use href="#spark" x="40" y="300" width="30" height="30"/>
+    </g>
+    <g fill="#8DC73F"><use href="#spark" x="395" y="20" width="40" height="40"/><use href="#spark" x="5" y="170" width="28" height="28"/></g>
+  </svg>
+
+  <!-- where -->
+  <section class="where">
+    <div class="c"><div class="ic"><svg class="i"><use href="#office"/></svg></div><h3>Offices</h3><p>Desks, floors, washrooms<br>&amp; reception areas</p></div>
+    <div class="c"><div class="ic"><svg class="i"><use href="#home"/></svg></div><h3>Homes</h3><p>Kitchens, bedrooms, sofas<br>&amp; bathrooms</p></div>
+    <div class="c"><div class="ic"><svg class="i"><use href="#globe"/></svg></div><h3>Every Place</h3><p>Shops, schools, clinics,<br>hotels &amp; events</p></div>
+  </section>
+
+  <!-- services -->
+  <section class="svc">
+    <h2>Our Services</h2>
+    <ul>
+      <li><svg class="i"><use href="#check"/></svg>Deep Cleaning</li>
+      <li><svg class="i"><use href="#check"/></svg>Carpet &amp; Sofa</li>
+      <li><svg class="i"><use href="#check"/></svg>Windows &amp; Glass</li>
+      <li><svg class="i"><use href="#check"/></svg>Kitchen &amp; Bathroom</li>
+      <li><svg class="i"><use href="#check"/></svg>Move-In / Move-Out</li>
+      <li><svg class="i"><use href="#check"/></svg>After-Construction</li>
+    </ul>
+  </section>
+
+  <div class="banner">Usafi ni Afya <span>— Cleanliness is Health</span></div>
+
+  <!-- footer -->
+  <footer class="foot">
+    <div class="call">
+      <div class="ic"><svg class="i"><use href="#phone"/></svg></div>
+      <div><small>Call / WhatsApp</small><b>+255 718 846 550</b></div>
+    </div>
+    <div class="loc">
+      <span class="cta">Book Today!</span>
+      <div><svg class="i"><use href="#pin"/></svg>Dodoma, Tanzania</div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
