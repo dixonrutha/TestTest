@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sipora PureTouch – Business Card v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* 3.5in x 2in at 300dpi = 1050 x 600 px */
+  :root {
+    --green: #8DC73F;
+    --green-mid: #7CAD30;
+    --green-deep: #24470F;
+    --green-night: #183208;
+    --mist: #EEF4E6;
+    --ink: #1F2A1A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Poppins', sans-serif; background: #e9ece6; padding: 40px; display: flex; flex-direction: column; gap: 40px; align-items: center; }
+  .card { width: 1050px; height: 600px; position: relative; overflow: hidden; border-radius: 36px; box-shadow: 0 20px 50px rgba(0,0,0,.18); }
+  svg.i { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ---------- FRONT (dark) ---------- */
+  .front { background: linear-gradient(135deg, #2C5A14 0%, var(--green-deep) 45%, var(--green-night) 100%); color: #fff; }
+  .front .tab-l { position: absolute; left: -46px; top: 300px; width: 96px; height: 230px; border-radius: 48px; background: var(--green); }
+  .front .tab-l::after { content: ""; position: absolute; inset: 22px 22px 22px auto; width: 10px; border-radius: 5px; background: var(--green-deep); }
+  .front .brand { position: absolute; left: 110px; top: 185px; }
+  .front .brand .row { display: flex; align-items: center; gap: 24px; }
+  .front .brand .icon { height: 150px; }
+  .front .brand .wm { height: 96px; }
+  .front .tagline { margin-top: 34px; font-size: 21px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,.9); }
+  .front .tagline i { font-style: normal; color: var(--green); padding: 0 10px; }
+  .front .rule { margin-top: 18px; width: 90px; height: 5px; border-radius: 3px; background: var(--green); }
+
+  .front .panel { position: absolute; right: 0; top: 0; width: 330px; height: 420px; background: #fff; border-bottom-left-radius: 56px; }
+  .front .qr { position: absolute; left: 36px; top: 70px; width: 220px; height: 220px; padding: 22px; border-radius: 30px; background: #fff; }
+  .front .qr::before { content: ""; position: absolute; inset: 0; border-radius: 30px; border: 6px solid var(--green);
+    -webkit-mask: linear-gradient(#000 0 0) top left / 70px 70px no-repeat, linear-gradient(#000 0 0) top right / 70px 70px no-repeat,
+                  linear-gradient(#000 0 0) bottom left / 70px 70px no-repeat, linear-gradient(#000 0 0) bottom right / 70px 70px no-repeat; }
+  .front .qr img { width: 100%; height: 100%; display: block; }
+  .front .scan { position: absolute; left: 36px; top: 318px; width: 220px; text-align: center; color: var(--green-deep); font-weight: 700; font-size: 19px; letter-spacing: 1px; }
+  .front .scan small { display: block; font-weight: 500; font-size: 14px; color: var(--green-mid); letter-spacing: 2px; }
+  .front .vert { position: absolute; right: 18px; top: 70px; writing-mode: vertical-rl; font-weight: 700; font-size: 18px; letter-spacing: 4px; color: var(--green-deep); }
+  .front .vert span { color: var(--green-mid); }
+  .front .tab-r { position: absolute; right: 0; top: 452px; width: 64px; height: 110px; background: var(--green); border-radius: 32px 0 0 32px; }
+
+  /* ---------- BACK (white) ---------- */
+  .back { background: #fff; color: var(--ink); }
+  .back .tab-o { position: absolute; left: -60px; top: 330px; width: 150px; height: 320px; border-radius: 0 70px 0 0; background: var(--green); }
+  .back .tab-d { position: absolute; left: -60px; top: 352px; width: 128px; height: 320px; border-radius: 0 60px 0 0; background: var(--green-deep); }
+  .back .logo { position: absolute; left: 120px; top: 110px; height: 300px; }
+  .back .band { position: absolute; right: 0; top: 0; bottom: 0; width: 520px; background: var(--mist); clip-path: polygon(70px 0, 100% 0, 100% 100%, 0 100%); }
+  .back ul { position: absolute; right: 44px; top: 66px; width: 470px; list-style: none; display: grid; gap: 20px; }
+  .back li { display: flex; align-items: center; gap: 18px; background: #fff; border-radius: 50px; padding: 10px 26px 10px 10px; font-size: 22px; font-weight: 500; line-height: 1.25; box-shadow: 0 6px 16px rgba(36,71,15,.08); }
+  .back li .ic { width: 62px; height: 62px; flex: none; border-radius: 50%; background: var(--green-deep); color: var(--green); display: grid; place-items: center; font-size: 28px; }
+  .back li small { display: block; font-size: 14px; font-weight: 500; color: var(--green-mid); letter-spacing: 1.5px; text-transform: uppercase; }
+  .back li.hl { background: var(--green-deep); color: #fff; margin-left: -48px; padding-top: 14px; padding-bottom: 14px; box-shadow: 0 10px 24px rgba(36,71,15,.3); }
+  .back li.hl .ic { background: var(--green); color: var(--green-deep); width: 68px; height: 68px; }
+  .back li.hl b { font-size: 30px; font-weight: 800; letter-spacing: 1px; }
+  .back li.hl b span { color: var(--green); }
+  .back li.hl small { color: rgba(255,255,255,.85); }
+  .back .phone { font-size: 27px; font-weight: 700; letter-spacing: .5px; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="spark" viewBox="0 0 24 24"><path d="M12 3l1.9 5.8L20 10.7l-6.1 1.9L12 18.5l-1.9-5.9L4 10.7l6.1-1.9z"/><path d="M19 3v4M17 5h4M5 17v4M3 19h4"/></symbol>
+    <symbol id="leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol>
+  </defs>
+</svg>
+
+<!-- FRONT -->
+<div class="card front" id="front">
+  <div class="tab-l"></div>
+  <div class="brand">
+    <div class="row">
+      <img class="icon" src="assets/logo-icon.png" alt="">
+      <img class="wm" src="assets/logo-wordmark-white.png" alt="Sipora PureTouch">
+    </div>
+    <div class="tagline">Offices<i>|</i>Homes<i>|</i>Every Place</div>
+    <div class="rule"></div>
+  </div>
+
+  <div class="panel">
+    <div class="qr"><img src="assets/qr-whatsapp.svg" alt="WhatsApp QR code"></div>
+    <div class="scan">CHAT ON WHATSAPP<small>Scan to book</small></div>
+    <div class="vert">SCAN <span>ME</span> ➜</div>
+  </div>
+  <div class="tab-r"></div>
+</div>
+
+<!-- BACK -->
+<div class="card back" id="back">
+  <div class="band"></div>
+  <div class="tab-o"></div><div class="tab-d"></div>
+  <img class="logo" src="assets/logo-full.png" alt="Sipora PureTouch">
+
+  <ul>
+    <li>
+      <span class="ic"><svg class="i"><use href="#phone"/></svg></span>
+      <div><small>Call / WhatsApp</small><span class="phone">+255 718 846 550</span></div>
+    </li>
+    <li class="hl">
+      <span class="ic"><svg class="i"><use href="#spark"/></svg></span>
+      <div><b>SIPORA <span>PURETOUCH</span></b><small>Professional Cleaning Services</small></div>
+    </li>
+    <li>
+      <span class="ic"><svg class="i"><use href="#leaf"/></svg></span>
+      <div><small>We clean</small>Offices · Homes · Every Place</div>
+    </li>
+    <li>
+      <span class="ic"><svg class="i"><use href="#pin"/></svg></span>
+      <div><small>Location</small>Dodoma, Tanzania</div>
+    </li>
+  </ul>
+</div>
+
+</body>
+</html>

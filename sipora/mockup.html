@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sipora PureTouch – Card Mockup</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #222; }
+  .scene { width: 1400px; height: 1400px; position: relative; overflow: hidden;
+    background: radial-gradient(circle at 50% 40%, #4a4d4a 0%, #2b2d2b 55%, #161716 100%); perspective: 2600px; }
+  .card { position: absolute; width: 700px; height: 400px; transform-style: preserve-3d; }
+  .card img { width: 100%; height: 100%; display: block; border-radius: 24px; }
+  /* stacked-paper edge */
+  .card .stack { position: absolute; inset: 0; border-radius: 24px; }
+  .card.f { left: 170px; top: 230px; transform: rotateX(38deg) rotateZ(-32deg); }
+  .card.b { left: 520px; top: 690px; transform: rotateX(38deg) rotateZ(-32deg); }
+  .card.f .stack { background: #1a3509; box-shadow: 0 6px 0 #234410, 0 12px 0 #8DC73F, 0 18px 0 #183208, 0 50px 60px rgba(0,0,0,.55); }
+  .card.b .stack { background: #e6e6e6; box-shadow: 0 6px 0 #dadada, 0 12px 0 #ececec, 0 18px 0 #d4d4d4, 0 50px 60px rgba(0,0,0,.55); }
+</style>
+</head>
+<body>
+<div class="scene" id="scene">
+  <div class="card f"><div class="stack"></div><img src="output/business-card-v2-front.png" alt="" style="position:relative"></div>
+  <div class="card b"><div class="stack"></div><img src="output/business-card-v2-back.png" alt="" style="position:relative"></div>
+</div>
+</body>
+</html>
