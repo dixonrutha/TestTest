@@ -3,316 +3,447 @@
 <meta name="description" content="Dickson Rutha, software engineer and Head of Systems at ChemCheemi Africa. Web systems, mobile apps, chatbots, IoT and payment integrations in Tanzania, Uganda and Malawi.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-  /* Layout: one calm column, left-aligned; mono labels in a left gutter on wide screens, stacked on phones. */
+  /* Layout: a deep-navy hero band holding a live "system log", then calm light sections; featured work as large panels, the rest as a tight index. */
   :root {
-    --bg: #f4f6f8;
+    --bg: #f3f6f8;
     --surface: #ffffff;
-    --fg: #17212b;
-    --muted: #5b6876;
-    --line: #dde3ea;
-    --accent: #3b6a93;
-    --accent-soft: #e3ecf5;
-    --sage: #5f8a7c;
-    --font-display: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
-    --font-body: "IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
-    --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+    --fg: #142231;
+    --muted: #5a6a7a;
+    --line: #dbe3ea;
+    --accent: #2f7d95;
+    --accent-soft: #e0eff3;
+    --band: #0f2236;
+    --band-2: #16304a;
+    --band-fg: #e7eff6;
+    --band-muted: #93a9bd;
+    --glow: #7cc6d6;
+    --ok: #74c69d;
+    --font-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --font-body: "Figtree", "Segoe UI", Roboto, Arial, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #10161d; --surface: #161f28; --fg: #e5ebf1; --muted: #9aa8b6; --line: #26323e;
-      --accent: #8fb4d8; --accent-soft: #1c2b3a; --sage: #8fbfae; color-scheme: dark;
+      --bg: #0b1724; --surface: #11202f; --fg: #e3ebf2; --muted: #93a5b6; --line: #1f3243;
+      --accent: #7cc6d6; --accent-soft: #15303d; --band: #08121d; --band-2: #102234; color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #10161d; --surface: #161f28; --fg: #e5ebf1; --muted: #9aa8b6; --line: #26323e;
-    --accent: #8fb4d8; --accent-soft: #1c2b3a; --sage: #8fbfae; color-scheme: dark;
+    --bg: #0b1724; --surface: #11202f; --fg: #e3ebf2; --muted: #93a5b6; --line: #1f3243;
+    --accent: #7cc6d6; --accent-soft: #15303d; --band: #08121d; --band-2: #102234; color-scheme: dark;
   }
 
   * { box-sizing: border-box; }
-  body {
-    background: var(--bg); color: var(--fg);
-    font-family: var(--font-body); font-size: 16px; line-height: 1.6;
-    padding-left: max(16px, env(safe-area-inset-left, 0px));
-    padding-right: max(16px, env(safe-area-inset-right, 0px));
-    -webkit-font-smoothing: antialiased;
-  }
+  body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
   a { color: var(--accent); text-underline-offset: 3px; }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-  .wrap { max-width: 980px; margin: 0 auto; }
-
-  /* Top bar */
-  .top { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 24px; flex-wrap: wrap; }
-  .mark { font-family: var(--font-display); font-weight: 700; font-size: 18px; letter-spacing: -.2px; color: var(--fg); text-decoration: none; }
-  .nav { display: flex; gap: 20px; flex-wrap: wrap; font-size: 14px; }
-  .nav a { color: var(--muted); text-decoration: none; }
-  .nav a:hover { color: var(--fg); }
-
-  /* Hero */
-  .hero { padding-block: 48px 56px; display: grid; gap: 28px; }
-  .eyebrow { font-family: var(--font-mono); font-size: 13px; color: var(--sage); letter-spacing: .4px; }
-  h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(40px, 7vw, 76px); line-height: 1.02; letter-spacing: -1.5px; margin: 0; text-wrap: balance; max-width: 15ch; }
-  .lead { font-size: clamp(17px, 2.1vw, 20px); color: var(--muted); max-width: 60ch; margin: 0; }
-  .lead strong { color: var(--fg); font-weight: 500; }
-  .actions { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 8px; font-weight: 500; font-size: 15px; text-decoration: none; border: 1px solid var(--line); color: var(--fg); background: var(--surface); }
-  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
-  .btn:hover { border-color: var(--accent); }
-  .where { font-family: var(--font-mono); font-size: 13px; color: var(--muted); display: flex; gap: 18px; flex-wrap: wrap; }
-  .where span::before { content: "● "; color: var(--sage); }
-
-  /* Sections */
-  section { padding-block: 56px; border-top: 1px solid var(--line); display: grid; grid-template-columns: 180px 1fr; gap: 32px; }
-  section > h2 { font-family: var(--font-mono); font-weight: 500; font-size: 13px; text-transform: uppercase; letter-spacing: 1.4px; color: var(--accent); margin: 6px 0 0; }
-  .body { min-width: 0; }
-  h3 { font-family: var(--font-display); font-weight: 600; font-size: 22px; letter-spacing: -.3px; margin: 0; text-wrap: balance; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--glow); outline-offset: 3px; border-radius: 6px; }
   p { margin: 0; }
-  .about p + p { margin-top: 14px; }
-  .about p { max-width: 64ch; }
+  h1, h2, h3, h4 { margin: 0; text-wrap: balance; }
 
-  /* Systems diagram */
-  .diagram { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; overflow-x: auto; }
-  .diagram svg { display: block; width: 100%; min-width: 560px; height: auto; }
-  .diagram .caption { font-size: 14px; color: var(--muted); margin-top: 12px; max-width: 64ch; }
-  .node rect { fill: var(--bg); stroke: var(--line); }
-  .node text { fill: var(--fg); font-family: var(--font-body); font-size: 14px; font-weight: 500; }
-  .node .sub { fill: var(--muted); font-size: 11.5px; font-weight: 400; font-family: var(--font-mono); }
-  .hub rect { fill: var(--accent); stroke: var(--accent); }
-  .hub text { fill: var(--bg); font-family: var(--font-display); font-size: 17px; font-weight: 700; }
-  .hub .sub { fill: var(--bg); opacity: .85; font-family: var(--font-mono); font-size: 11.5px; font-weight: 400; }
-  .wire { stroke: var(--accent); stroke-width: 1.5; fill: none; opacity: .55; }
-  .dot { fill: var(--sage); }
-  @media (prefers-reduced-motion: no-preference) {
-    .dot { animation: pulse 2.6s ease-in-out infinite; }
-    .dot:nth-of-type(2n) { animation-delay: 1.3s; }
-    @keyframes pulse { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
-  }
+  .gutter { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+
+  /* ---------- Hero band ---------- */
+  .band { background: var(--band); color: var(--band-fg); }
+  .nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 22px; flex-wrap: wrap; }
+  .mark { font-family: var(--font-display); font-weight: 700; font-size: 19px; color: var(--band-fg); text-decoration: none; letter-spacing: -.2px; }
+  .mark i { font-style: normal; color: var(--glow); }
+  .links { display: flex; gap: 22px; flex-wrap: wrap; font-size: 14.5px; }
+  .links a { color: var(--band-muted); text-decoration: none; }
+  .links a:hover { color: var(--band-fg); }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 56px; align-items: center; padding-block: 48px 72px; }
+  .status { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12.5px; color: var(--band-muted); border: 1px solid var(--band-2); border-radius: 999px; padding: 5px 12px; }
+  .status b { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); display: inline-block; }
+  .hero h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(40px, 6.4vw, 72px); line-height: 1.0; letter-spacing: -2px; margin-top: 22px; }
+  .hero h1 em { font-style: normal; color: var(--glow); }
+  .hero .lead { margin-top: 22px; font-size: clamp(17px, 2vw, 19px); color: var(--band-muted); max-width: 52ch; }
+  .hero .lead strong { color: var(--band-fg); font-weight: 600; }
+  .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+  .btn { display: inline-flex; align-items: center; padding: 12px 20px; border-radius: 10px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1px solid var(--band-2); color: var(--band-fg); background: transparent; }
+  .btn:hover { border-color: var(--glow); }
+  .btn.solid { background: var(--glow); border-color: var(--glow); color: var(--band); }
+  .countries { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 28px; font-family: var(--font-mono); font-size: 12.5px; }
+  .countries span { padding: 4px 10px; border-radius: 6px; background: var(--band-2); color: var(--band-fg); }
+
+  /* System log card */
+  .log { background: var(--band-2); border: 1px solid rgba(124,198,214,.18); border-radius: 16px; padding: 18px 18px 14px; font-family: var(--font-mono); font-size: 13px; min-width: 0; }
+  .log-head { display: flex; justify-content: space-between; align-items: center; color: var(--band-muted); font-size: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(147,169,189,.18); margin-bottom: 8px; }
+  .log-head span:first-child::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--ok); margin-right: 8px; vertical-align: 1px; }
+  .ev { display: grid; grid-template-columns: 54px 1fr; gap: 10px; padding: 9px 8px; border-radius: 8px; color: var(--band-muted); transition: background .4s, color .4s; }
+  .ev time { color: #6f879c; font-variant-numeric: tabular-nums; }
+  .ev .src { display: block; font-size: 11px; letter-spacing: .6px; text-transform: uppercase; color: var(--glow); opacity: .8; }
+  .ev .msg { color: var(--band-fg); font-family: var(--font-body); font-size: 14px; }
+  .ev.on { background: rgba(124,198,214,.10); }
+  .log-foot { font-size: 11.5px; color: #6f879c; margin-top: 10px; padding: 0 8px; }
+
+  /* ---------- Sections ---------- */
+  main section { padding-block: 84px; }
+  main section + section { border-top: 1px solid var(--line); }
+  .kicker { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--accent); }
+  .title { font-family: var(--font-display); font-weight: 700; font-size: clamp(30px, 4.2vw, 46px); letter-spacing: -1px; line-height: 1.08; margin-top: 10px; max-width: 22ch; }
+  .intro { margin-top: 14px; color: var(--muted); max-width: 60ch; font-size: 17px; }
+
+  /* About */
+  .about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 56px; align-items: start; }
+  .about-text { display: grid; gap: 16px; font-size: 17px; }
+  .about-text p { max-width: 62ch; }
+  .now { margin-top: 28px; display: grid; gap: 10px; }
+  .now div { display: flex; gap: 12px; align-items: baseline; font-size: 15px; }
+  .now b { font-family: var(--font-mono); font-weight: 500; font-size: 12px; color: var(--accent); width: 46px; flex: none; text-transform: uppercase; letter-spacing: .8px; }
+
+  /* Featured work */
+  .featured { display: grid; gap: 22px; margin-top: 44px; }
+  .panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+  .panel:nth-child(even) .viz { order: -1; }
+  .panel-text { padding: 36px; display: grid; gap: 12px; align-content: center; min-width: 0; }
+  .panel-text .meta { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); }
+  .panel-text h3 { font-family: var(--font-display); font-weight: 700; font-size: 30px; letter-spacing: -.6px; }
+  .panel-text p { color: var(--muted); max-width: 46ch; }
+  .panel-text ul { margin: 4px 0 0; padding-left: 18px; display: grid; gap: 4px; font-size: 15px; }
+  .panel-text li::marker { color: var(--accent); }
+  .viz { background: var(--band); padding: 32px; display: grid; place-items: center; min-height: 260px; min-width: 0; }
+
+  /* viz: TapCloud devices */
+  .grid-dev { display: grid; grid-template-columns: repeat(4, 54px); gap: 12px; }
+  .dev { height: 54px; border-radius: 10px; background: var(--band-2); border: 1px solid rgba(124,198,214,.2); position: relative; }
+  .dev::after { content: ""; position: absolute; top: 9px; right: 9px; width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
+  .dev.idle::after { background: #5b7286; }
+  .dev span { position: absolute; left: 9px; bottom: 7px; font-family: var(--font-mono); font-size: 10px; color: var(--band-muted); }
+  /* viz: countries */
+  .route { display: grid; gap: 12px; width: min(100%, 300px); }
+  .country { display: flex; justify-content: space-between; align-items: center; background: var(--band-2); border-radius: 10px; padding: 12px 16px; color: var(--band-fg); font-weight: 600; border: 1px solid rgba(124,198,214,.18); }
+  .country small { font-family: var(--font-mono); font-weight: 400; font-size: 11.5px; color: var(--band-muted); }
+  .country.hub { background: var(--glow); color: var(--band); border-color: var(--glow); }
+  .country.hub small { color: var(--band); opacity: .75; }
+  /* viz: chat */
+  .chat { width: min(100%, 290px); display: grid; gap: 8px; font-size: 14px; }
+  .bubble { padding: 9px 13px; border-radius: 14px; max-width: 85%; line-height: 1.4; }
+  .bubble.in { background: var(--band-2); color: var(--band-fg); border-bottom-left-radius: 4px; }
+  .bubble.out { background: var(--glow); color: var(--band); justify-self: end; border-bottom-right-radius: 4px; }
+  .chat .who { font-family: var(--font-mono); font-size: 11px; color: var(--band-muted); }
+
+  /* More work index */
+  .index { margin-top: 56px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 32px; }
+  .index h4 { grid-column: 1 / -1; font-family: var(--font-mono); font-weight: 500; font-size: 12.5px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); padding-bottom: 8px; }
+  .row { padding-block: 18px; border-top: 1px solid var(--line); display: grid; gap: 4px; align-content: start; }
+  .row-top { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+  .row h5 { font-family: var(--font-display); font-weight: 700; font-size: 19px; margin: 0; }
+  .row .t { font-family: var(--font-mono); font-size: 11.5px; color: var(--accent); white-space: nowrap; }
+  .row p { color: var(--muted); font-size: 15px; }
 
   /* Experience */
-  .jobs { display: grid; gap: 34px; }
-  .job { display: grid; gap: 6px; }
-  .job-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-  .when { font-family: var(--font-mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
-  .org { color: var(--accent); font-weight: 500; font-size: 15px; }
-  .job ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; max-width: 66ch; }
-  .job li::marker { color: var(--sage); }
+  .timeline { margin-top: 44px; display: grid; }
+  .tl { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 32px; padding-block: 28px; border-top: 1px solid var(--line); }
+  .tl .yrs { font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--accent); letter-spacing: -.4px; font-variant-numeric: tabular-nums; line-height: 1.2; }
+  .tl .yrs small { display: block; font-family: var(--font-mono); font-weight: 400; font-size: 12px; color: var(--muted); letter-spacing: 0; margin-top: 4px; }
+  .tl h3 { font-family: var(--font-display); font-weight: 700; font-size: 24px; letter-spacing: -.4px; }
+  .tl .org { color: var(--muted); font-weight: 500; margin-top: 2px; }
+  .tl ul { margin: 12px 0 0; padding-left: 18px; display: grid; gap: 5px; max-width: 64ch; }
+  .tl li::marker { color: var(--accent); }
 
-  /* Work */
-  .work { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
-  .item { padding-block: 18px; border-bottom: 1px solid var(--line); display: grid; gap: 4px; align-content: start; }
-  .item:nth-last-child(-n+2) { border-bottom: 0; }
-  .item-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-  .item h4 { font-family: var(--font-display); font-weight: 600; font-size: 18px; margin: 0; }
-  .tag { font-family: var(--font-mono); font-size: 12px; color: var(--sage); white-space: nowrap; }
-  .item p { color: var(--muted); font-size: 15px; }
-  .item .at { font-family: var(--font-mono); font-size: 12px; color: var(--muted); opacity: .8; }
-
-  /* Skills */
-  .skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 32px; }
-  .skills h4 { font-family: var(--font-mono); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin: 0 0 8px; }
+  /* Connect + skills */
+  .split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; margin-top: 44px; }
+  .partners { display: grid; gap: 12px; }
+  .partner { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 16px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; align-items: baseline; }
+  .partner b { font-family: var(--font-display); font-size: 17px; }
+  .partner span { color: var(--muted); font-size: 15px; }
+  .skills { display: grid; gap: 18px; }
+  .skills div h4 { font-family: var(--font-mono); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px; }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-  .chips span { font-size: 14px; padding: 3px 10px; border-radius: 6px; background: var(--accent-soft); color: var(--fg); }
+  .chips span { padding: 4px 11px; border-radius: 999px; background: var(--accent-soft); font-size: 14px; }
 
-  /* Contact */
-  .contact h3 { font-size: clamp(26px, 4vw, 36px); max-width: 20ch; }
-  .contact > .body > p { color: var(--muted); margin-top: 12px; max-width: 56ch; }
-  .lines { display: grid; gap: 10px; margin-top: 24px; }
-  .line { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
-  .line .k { font-family: var(--font-mono); font-size: 12px; color: var(--muted); width: 64px; text-transform: uppercase; letter-spacing: .8px; }
-  .line .v { font-size: 16px; font-weight: 500; user-select: all; flex: 1; min-width: 0; overflow-wrap: anywhere; }
-  .copy { font: inherit; font-size: 13px; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; }
-  .copy:hover { border-color: var(--accent); }
+  /* Contact band */
+  .contact { padding-block: 84px 40px; }
+  .contact h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(34px, 5.4vw, 60px); letter-spacing: -1.6px; line-height: 1.02; max-width: 16ch; }
+  .contact h2 em { font-style: normal; color: var(--glow); }
+  .contact .lead { margin-top: 18px; color: var(--band-muted); max-width: 54ch; font-size: 17px; }
+  .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 36px; max-width: 760px; }
+  .card { background: var(--band-2); border-radius: 14px; padding: 18px 20px; display: grid; gap: 6px; min-width: 0; }
+  .card .k { font-family: var(--font-mono); font-size: 12px; color: var(--band-muted); text-transform: uppercase; letter-spacing: 1px; }
+  .card .v { font-size: 19px; font-weight: 600; user-select: all; overflow-wrap: anywhere; }
+  .copy { justify-self: start; margin-top: 6px; font: inherit; font-size: 13px; padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(147,169,189,.3); background: transparent; color: var(--band-fg); cursor: pointer; }
+  .copy:hover { border-color: var(--glow); }
+  .foot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--band-2); margin-top: 64px; padding-top: 22px; font-size: 13.5px; color: var(--band-muted); }
+  .foot a { color: var(--band-muted); }
 
-  footer { padding-block: 32px 48px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-
-  @media (max-width: 760px) {
-    section { grid-template-columns: 1fr; gap: 18px; padding-block: 44px; }
-    .work { grid-template-columns: 1fr; }
-    .item:nth-last-child(2) { border-bottom: 1px solid var(--line); }
-    .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .hero { padding-block: 24px 44px; }
+  @media (max-width: 900px) {
+    .hero, .about, .split { grid-template-columns: 1fr; gap: 40px; }
+    .index { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
-  @media (max-width: 440px) {
-    .skills { grid-template-columns: 1fr; }
-    .nav { gap: 14px; }
+  @media (max-width: 720px) {
+    main section { padding-block: 60px; }
+    .panel { grid-template-columns: 1fr; }
+    .panel:nth-child(even) .viz { order: 0; }
+    .panel-text { padding: 26px 22px; }
+    .viz { min-height: 220px; padding: 26px 16px; }
+    .tl { grid-template-columns: 1fr; gap: 8px; }
+    .index { grid-template-columns: 1fr; }
+    .cards { grid-template-columns: 1fr; }
+    .partner { grid-template-columns: 1fr; gap: 2px; }
+    .hero { padding-block: 28px 56px; }
+  }
+  @media (max-width: 380px) {
+    .grid-dev { grid-template-columns: repeat(4, 46px); gap: 9px; }
+    .dev { height: 46px; }
   }
 </style>
 
-<div class="wrap">
-  <header class="top">
-    <a class="mark" href="#top" id="top">Dickson Rutha</a>
-    <nav class="nav" aria-label="Sections">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#work">Work</a>
-      <a href="#contact">Contact</a>
+<div class="band gutter">
+  <div class="wrap">
+    <nav class="nav" aria-label="Main">
+      <a class="mark" href="#top" id="top">Dickson<i>.</i>Rutha</a>
+      <div class="links">
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
     </nav>
-  </header>
 
-  <div class="hero">
-    <div class="eyebrow">Software Engineer · Head of Systems</div>
-    <h1>I build the software businesses run on.</h1>
-    <p class="lead">I'm <strong>Dickson Rutha</strong>, a software engineer from Tanzania. For eight years I've been building web systems, mobile apps, WhatsApp chatbots and IoT platforms, and connecting them to the banks, mobile money and SMS providers people actually use.</p>
-    <div class="actions">
-      <a class="btn primary" href="#contact">Get in touch</a>
-      <a class="btn" href="https://github.com/dixonrutha/TestTest/raw/claude/adoring-brown-el222p/cv/Dickson_Rutha_CV.pdf" target="_blank" rel="noopener">Full CV (PDF)</a>
-      <a class="btn" href="https://github.com/dixonrutha/TestTest/raw/claude/adoring-brown-el222p/cv/Dickson_Rutha_CV_One_Page.pdf" target="_blank" rel="noopener">One-page CV</a>
+    <div class="hero">
+      <div>
+        <span class="status"><b></b> Head of Systems at ChemCheemi Africa</span>
+        <h1>I build the systems that move <em>orders, payments</em> and <em>data</em>.</h1>
+        <p class="lead">I'm <strong>Dickson Rutha</strong>, a software engineer from Tanzania. I build web systems, mobile apps, WhatsApp chatbots and IoT platforms, and connect them to the banks, mobile money and SMS providers people use every day.</p>
+        <div class="cta">
+          <a class="btn solid" href="#work">See my work</a>
+          <a class="btn" href="https://github.com/dixonrutha/TestTest/raw/claude/adoring-brown-el222p/cv/Dickson_Rutha_CV.pdf" target="_blank" rel="noopener">Download CV</a>
+        </div>
+        <div class="countries"><span>Tanzania</span><span>Uganda</span><span>Malawi</span></div>
+      </div>
+
+      <div class="log" aria-label="Example of one order moving through a system I built">
+        <div class="log-head"><span>water-order · example</span><span>live flow</span></div>
+        <div class="ev"><time>09:14</time><div><span class="src">WhatsApp · Mr. Majik</span><span class="msg">Customer orders 2 × 20L water</span></div></div>
+        <div class="ev"><time>09:14</time><div><span class="src">Mobile money</span><span class="msg">Payment received and confirmed</span></div></div>
+        <div class="ev"><time>09:15</time><div><span class="src">SMS gateway</span><span class="msg">Receipt sent to customer</span></div></div>
+        <div class="ev"><time>09:15</time><div><span class="src">MajikDrive</span><span class="msg">Delivery assigned to nearest driver</span></div></div>
+        <div class="ev"><time>09:41</time><div><span class="src">Cloud</span><span class="msg">Delivered · store stock updated</span></div></div>
+        <p class="log-foot">An illustration of how the pieces I've built work together.</p>
+      </div>
     </div>
-    <div class="where"><span>Tanzania</span><span>Uganda</span><span>Malawi</span></div>
   </div>
+</div>
 
-  <section id="about" class="about">
-    <h2>About</h2>
-    <div class="body">
-      <p>Today I'm Head of Systems at ChemCheemi Africa, where I look after our systems, our IoT platform TapCloud and our AI work. I also build software for Ecowater International, including the cloud system we launched in Uganda and Malawi.</p>
-      <p>Most of what I build sits between a business and the services it depends on. A customer orders water on WhatsApp, a driver gets the delivery on their phone, the payment comes in through mobile money or the bank, and an SMS confirms it. I like owning that whole chain, from the first conversation about what the business needs to keeping the system running after launch.</p>
-      <p>Before this I spent five years at MITz Group in Mwanza, managing projects and teams and starting STEM programmes for students. Since 2019 I've also built websites and custom systems for clients on the side.</p>
+<main class="gutter">
+  <div class="wrap">
+
+    <section id="work">
+      <div class="kicker">Selected work</div>
+      <h2 class="title">Things I've built that people use every day</h2>
+
+      <div class="featured">
+        <article class="panel">
+          <div class="panel-text">
+            <span class="meta">ChemCheemi Africa · IoT platform</span>
+            <h3>TapCloud</h3>
+            <p>Our platform for connecting devices and watching them remotely. Devices report in, and the team can see what's online and what needs attention from one place.</p>
+          </div>
+          <div class="viz" aria-hidden="true">
+            <div class="grid-dev">
+              <div class="dev"><span>01</span></div><div class="dev"><span>02</span></div><div class="dev idle"><span>03</span></div><div class="dev"><span>04</span></div>
+              <div class="dev"><span>05</span></div><div class="dev"><span>06</span></div><div class="dev"><span>07</span></div><div class="dev idle"><span>08</span></div>
+              <div class="dev"><span>09</span></div><div class="dev idle"><span>10</span></div><div class="dev"><span>11</span></div><div class="dev"><span>12</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-text">
+            <span class="meta">Ecowater International · Cloud system</span>
+            <h3>Ecowater Cloud</h3>
+            <p>A new cloud system for Ecowater's operations in Uganda and Malawi. I was part of the team that built it.</p>
+            <ul>
+              <li>Integrated with local banks and mobile money in each country</li>
+              <li>Android store app sends store data straight to the cloud</li>
+            </ul>
+          </div>
+          <div class="viz" aria-hidden="true">
+            <div class="route">
+              <div class="country hub">Ecowater Cloud <small>central</small></div>
+              <div class="country">Uganda <small>banks · mobile money</small></div>
+              <div class="country">Malawi <small>banks · mobile money</small></div>
+              <div class="country">Stores <small>Android app</small></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-text">
+            <span class="meta">Ecowater International · WhatsApp bot</span>
+            <h3>Mr. Majik</h3>
+            <p>A WhatsApp bot customers use to order water. Orders flow on to MajikDrive, the app our drivers use to manage and track deliveries.</p>
+          </div>
+          <div class="viz" aria-hidden="true">
+            <div class="chat">
+              <span class="who">Mr. Majik · example chat</span>
+              <div class="bubble in">Habari! I'd like 2 bottles of 20L please.</div>
+              <div class="bubble out">Sawa! Pay by mobile money and we'll deliver today.</div>
+              <div class="bubble in">Done ✓</div>
+              <div class="bubble out">Payment received. Your driver is on the way.</div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="index">
+        <h4>More projects</h4>
+        <div class="row"><div class="row-top"><h5>MajikDrive</h5><span class="t">Mobile app</span></div><p>Drivers manage and track water deliveries to customers.</p></div>
+        <div class="row"><div class="row-top"><h5>Ecowater Store App</h5><span class="t">Android</span></div><p>Lets our new stores send their data to the cloud.</p></div>
+        <div class="row"><div class="row-top"><h5>EFA</h5><span class="t">Cashier system</span></div><p>Cashiers register students and top up water card balances.</p></div>
+        <div class="row"><div class="row-top"><h5>ESMS</h5><span class="t">Mobile app</span></div><p>For managing stores remotely.</p></div>
+        <div class="row"><div class="row-top"><h5>EcoPlus</h5><span class="t">WhatsApp bot</span></div><p>University students register, check timetables and vote.</p></div>
+        <div class="row"><div class="row-top"><h5>Bookify</h5><span class="t">Web system</span></div><p>Hotel and apartment bookings with room availability.</p></div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="kicker">Experience</div>
+      <h2 class="title">Eight years of building and leading</h2>
+      <div class="timeline">
+        <div class="tl">
+          <div class="yrs">2023 – now<small>Current</small></div>
+          <div>
+            <h3>Head of Systems</h3>
+            <div class="org">ChemCheemi Africa</div>
+            <ul>
+              <li>Responsible for all of the company's systems, from planning and architecture through to delivery and support.</li>
+              <li>Built TapCloud, our IoT platform, and added AI features to our products and workflows.</li>
+              <li>Integrated our systems with banks, mobile money and SMS providers.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl">
+          <div class="yrs">2023 – now<small>Current</small></div>
+          <div>
+            <h3>Software Engineer</h3>
+            <div class="org">Ecowater International · Dodoma</div>
+            <ul>
+              <li>Build and maintain the software behind water ordering, deliveries, retail and payments.</li>
+              <li>Part of the team that built the new cloud system for Uganda and Malawi.</li>
+              <li>Built Mr. Majik, MajikDrive, ESMS, EFA and the Android store app.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl">
+          <div class="yrs">Gasify<small>Technical team</small></div>
+          <div>
+            <h3>Technical Team</h3>
+            <div class="org">Gasify Energy</div>
+            <ul><li>Connected our meters to our cloud so meter data comes in automatically.</li></ul>
+          </div>
+        </div>
+        <div class="tl">
+          <div class="yrs">2019 – now<small>Alongside full-time work</small></div>
+          <div>
+            <h3>Freelance Web &amp; Software Developer</h3>
+            <div class="org">Self-employed</div>
+            <ul><li>Websites and custom systems for businesses and individuals, from first conversation to launch.</li></ul>
+          </div>
+        </div>
+        <div class="tl">
+          <div class="yrs">2018 – 2023<small>5 years</small></div>
+          <div>
+            <h3>MITz Kits &amp; StadiSpace Manager</h3>
+            <div class="org">MITz Group Company · Mwanza</div>
+            <ul>
+              <li>Managed the company's main projects and the teams working on them.</li>
+              <li>Started student programmes and designed STEM kits for hands-on learning.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="about">
+        <div>
+          <div class="kicker">About</div>
+          <h2 class="title">I like owning the whole chain</h2>
+          <div class="now">
+            <div><b>Now</b>Head of Systems, ChemCheemi Africa</div>
+            <div><b>Also</b>Software Engineer, Ecowater International</div>
+            <div><b>Study</b>BSc Software Engineering, University of Dodoma</div>
+            <div><b>Speak</b>English and Swahili</div>
+          </div>
+        </div>
+        <div class="about-text">
+          <p>Most of what I build sits between a business and the services it depends on. A customer orders on WhatsApp, a driver gets the job on their phone, the payment comes in through mobile money or the bank, and an SMS confirms it. I enjoy making all of those pieces work together.</p>
+          <p>I'm comfortable with the parts that aren't code too: sitting with the business to understand what they need, explaining technical choices to people who aren't technical, and keeping a system healthy after launch.</p>
+          <p>Before moving fully into software I spent five years at MITz Group managing projects and teams, and starting STEM programmes so students could learn by building things.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="kicker">Integrations &amp; skills</div>
+      <h2 class="title">What my systems talk to</h2>
+      <div class="split">
+        <div class="partners">
+          <div class="partner"><b>Banks</b><span>Payments, collections and reconciliation in Tanzania, Uganda and Malawi</span></div>
+          <div class="partner"><b>Mobile money</b><span>Payment and collection flows built into our apps</span></div>
+          <div class="partner"><b>SMS &amp; WhatsApp</b><span>Receipts, alerts and ordering chatbots</span></div>
+          <div class="partner"><b>Devices &amp; meters</b><span>TapCloud devices, Gasify meters and Android store apps</span></div>
+        </div>
+        <div class="skills">
+          <div><h4>Languages</h4><div class="chips"><span>PHP</span><span>JavaScript</span><span>Dart</span><span>SQL</span></div></div>
+          <div><h4>Frameworks</h4><div class="chips"><span>Laravel</span><span>CodeIgniter</span><span>Flutter</span></div></div>
+          <div><h4>Web &amp; data</h4><div class="chips"><span>MySQL</span><span>REST APIs</span><span>System design</span></div></div>
+          <div><h4>AI &amp; IoT</h4><div class="chips"><span>AI features</span><span>Chatbots</span><span>IoT platforms</span></div></div>
+          <div><h4>Tools</h4><div class="chips"><span>Git</span><span>VS Code</span><span>Android Studio</span></div></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<div class="band gutter" id="contact">
+  <div class="wrap contact">
+    <h2>Got a system that needs <em>building</em> or <em>connecting</em>?</h2>
+    <p class="lead">I'm open to full-time roles, freelance projects and integration work. Call, WhatsApp or email me.</p>
+    <div class="cards">
+      <div class="card"><span class="k">Phone · WhatsApp</span><span class="v" id="v-phone">+255 672 944 649</span><button class="copy" type="button" id="copy-phone" data-target="v-phone">Copy number</button></div>
+      <div class="card"><span class="k">Email</span><span class="v" id="v-email">dixonruthaa@gmail.com</span><button class="copy" type="button" id="copy-email" data-target="v-email">Copy email</button></div>
     </div>
-  </section>
-
-  <section aria-labelledby="systems-h">
-    <h2 id="systems-h">What I connect</h2>
-    <div class="body">
-      <div class="diagram">
-        <svg viewBox="0 0 640 300" role="img" aria-labelledby="dg-title">
-          <title id="dg-title">A cloud system in the middle, connected to banks, mobile money, SMS, WhatsApp, store devices and meters</title>
-          <!-- wires -->
-          <path class="wire" d="M240 150 C 190 150, 190 50, 150 50"/>
-          <path class="wire" d="M240 150 L 150 150"/>
-          <path class="wire" d="M240 150 C 190 150, 190 250, 150 250"/>
-          <path class="wire" d="M400 150 C 450 150, 450 50, 490 50"/>
-          <path class="wire" d="M400 150 L 490 150"/>
-          <path class="wire" d="M400 150 C 450 150, 450 250, 490 250"/>
-          <circle class="dot" cx="195" cy="100" r="3.5"/>
-          <circle class="dot" cx="195" cy="150" r="3.5"/>
-          <circle class="dot" cx="195" cy="200" r="3.5"/>
-          <circle class="dot" cx="445" cy="100" r="3.5"/>
-          <circle class="dot" cx="445" cy="150" r="3.5"/>
-          <circle class="dot" cx="445" cy="200" r="3.5"/>
-          <!-- left nodes -->
-          <g class="node"><rect x="10" y="24" width="140" height="52" rx="8"/><text x="24" y="47">Banks</text><text class="sub" x="24" y="65">payments</text></g>
-          <g class="node"><rect x="10" y="124" width="140" height="52" rx="8"/><text x="24" y="147">Mobile money</text><text class="sub" x="24" y="165">collections</text></g>
-          <g class="node"><rect x="10" y="224" width="140" height="52" rx="8"/><text x="24" y="247">SMS</text><text class="sub" x="24" y="265">alerts, receipts</text></g>
-          <!-- hub -->
-          <g class="hub"><rect x="240" y="108" width="160" height="84" rx="10"/><text x="320" y="146" text-anchor="middle">Cloud system</text><text class="sub" x="320" y="168" text-anchor="middle">TZ · UG · MW</text></g>
-          <!-- right nodes -->
-          <g class="node"><rect x="490" y="24" width="140" height="52" rx="8"/><text x="504" y="47">WhatsApp</text><text class="sub" x="504" y="65">ordering bots</text></g>
-          <g class="node"><rect x="490" y="124" width="140" height="52" rx="8"/><text x="504" y="147">Store app</text><text class="sub" x="504" y="165">Android</text></g>
-          <g class="node"><rect x="490" y="224" width="140" height="52" rx="8"/><text x="504" y="247">Meters &amp; IoT</text><text class="sub" x="504" y="265">TapCloud, Gasify</text></g>
-        </svg>
-        <p class="caption">The pieces I've connected across ChemCheemi, Ecowater and Gasify. Data from stores, meters and chat comes into one cloud system, and payments and messages go out through local banks, mobile money and SMS.</p>
-      </div>
+    <div class="foot">
+      <span>Dickson Rutha · Software Engineer · Tanzania</span>
+      <span><a href="https://github.com/dixonrutha/TestTest/raw/claude/adoring-brown-el222p/cv/Dickson_Rutha_CV.pdf" target="_blank" rel="noopener">Full CV</a> · <a href="https://github.com/dixonrutha/TestTest/raw/claude/adoring-brown-el222p/cv/Dickson_Rutha_CV_One_Page.pdf" target="_blank" rel="noopener">One-page CV</a></span>
     </div>
-  </section>
-
-  <section id="experience">
-    <h2>Experience</h2>
-    <div class="body jobs">
-      <div class="job">
-        <div class="job-top"><h3>Head of Systems</h3><span class="when">2023 – now</span></div>
-        <div class="org">ChemCheemi Africa</div>
-        <ul>
-          <li>Responsible for all of the company's systems, from planning and architecture through to delivery and support.</li>
-          <li>Built TapCloud, our IoT platform for connecting and monitoring devices remotely.</li>
-          <li>Added AI features to our products and internal workflows.</li>
-          <li>Integrated our systems with banks, mobile money and SMS providers.</li>
-        </ul>
-      </div>
-      <div class="job">
-        <div class="job-top"><h3>Software Engineer</h3><span class="when">2023 – now</span></div>
-        <div class="org">Ecowater International · Dodoma</div>
-        <ul>
-          <li>Build and maintain the software behind water ordering, deliveries, retail and payments.</li>
-          <li>Part of the team that built Ecowater's new cloud system for Uganda and Malawi, including integrations with local banks and mobile money.</li>
-          <li>Built the Android app our new stores use to send data to the cloud.</li>
-        </ul>
-      </div>
-      <div class="job">
-        <div class="job-top"><h3>Technical Team</h3></div>
-        <div class="org">Gasify Energy</div>
-        <ul>
-          <li>Connected our meters to our cloud so meter data comes in automatically.</li>
-        </ul>
-      </div>
-      <div class="job">
-        <div class="job-top"><h3>Freelance Web &amp; Software Developer</h3><span class="when">2019 – now</span></div>
-        <div class="org">Self-employed</div>
-        <ul>
-          <li>Websites and custom systems for businesses and individuals, from first conversation to launch.</li>
-        </ul>
-      </div>
-      <div class="job">
-        <div class="job-top"><h3>MITz Kits &amp; StadiSpace Manager</h3><span class="when">2018 – 2023</span></div>
-        <div class="org">MITz Group Company · Mwanza</div>
-        <ul>
-          <li>Managed the company's main projects and the teams working on them.</li>
-          <li>Started student programmes and designed STEM kits for hands-on learning.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="work">
-    <h2>Selected work</h2>
-    <div class="body work">
-      <div class="item"><div class="item-top"><h4>TapCloud</h4><span class="tag">IoT platform</span></div><p>Connects and monitors devices remotely.</p><span class="at">ChemCheemi</span></div>
-      <div class="item"><div class="item-top"><h4>Ecowater Cloud</h4><span class="tag">Cloud system</span></div><p>Runs Ecowater's operations in Uganda and Malawi, linked to local banks and mobile money.</p><span class="at">Ecowater</span></div>
-      <div class="item"><div class="item-top"><h4>Ecowater Store App</h4><span class="tag">Android</span></div><p>Lets our new stores send their data straight to the cloud.</p><span class="at">Ecowater</span></div>
-      <div class="item"><div class="item-top"><h4>Mr. Majik</h4><span class="tag">WhatsApp bot</span></div><p>Customers use it to order water products.</p><span class="at">Ecowater</span></div>
-      <div class="item"><div class="item-top"><h4>MajikDrive</h4><span class="tag">Mobile app</span></div><p>Drivers manage and track water deliveries to customers.</p><span class="at">Ecowater</span></div>
-      <div class="item"><div class="item-top"><h4>EFA</h4><span class="tag">Cashier system</span></div><p>Cashiers register students and top up water card balances.</p><span class="at">Ecowater</span></div>
-      <div class="item"><div class="item-top"><h4>ESMS</h4><span class="tag">Mobile app</span></div><p>For managing stores remotely.</p><span class="at">Ecowater</span></div>
-      <div class="item"><div class="item-top"><h4>EcoPlus</h4><span class="tag">WhatsApp bot</span></div><p>University students register, check timetables and vote.</p><span class="at">University chatbot</span></div>
-      <div class="item"><div class="item-top"><h4>Bookify</h4><span class="tag">Web system</span></div><p>Hotel and apartment bookings with room availability.</p><span class="at">Booking system</span></div>
-      <div class="item"><div class="item-top"><h4>Integrations</h4><span class="tag">APIs</span></div><p>Banks, mobile money and SMS providers in Tanzania, Uganda and Malawi.</p><span class="at">ChemCheemi · Ecowater</span></div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Skills</h2>
-    <div class="body skills">
-      <div><h4>Languages</h4><div class="chips"><span>PHP</span><span>JavaScript</span><span>Dart</span><span>SQL</span></div></div>
-      <div><h4>Frameworks</h4><div class="chips"><span>Laravel</span><span>CodeIgniter</span><span>Flutter</span></div></div>
-      <div><h4>Web &amp; data</h4><div class="chips"><span>MySQL</span><span>REST APIs</span><span>System design</span></div></div>
-      <div><h4>Integrations</h4><div class="chips"><span>Bank APIs</span><span>Mobile money</span><span>SMS</span><span>WhatsApp API</span></div></div>
-      <div><h4>AI &amp; IoT</h4><div class="chips"><span>AI features</span><span>Chatbots</span><span>IoT platforms</span></div></div>
-      <div><h4>Tools</h4><div class="chips"><span>Git</span><span>VS Code</span><span>Android Studio</span></div></div>
-    </div>
-  </section>
-
-  <section id="contact" class="contact">
-    <h2>Contact</h2>
-    <div class="body">
-      <h3>Have a system that needs building or connecting?</h3>
-      <p>I'm happy to talk about full-time roles, freelance projects or integrations. Call, WhatsApp or email me.</p>
-      <div class="lines">
-        <div class="line"><span class="k">Phone</span><span class="v" id="v-phone">+255 672 944 649</span><button class="copy" type="button" id="copy-phone" data-target="v-phone">Copy</button></div>
-        <div class="line"><span class="k">Email</span><span class="v" id="v-email">dixonruthaa@gmail.com</span><button class="copy" type="button" id="copy-email" data-target="v-email">Copy</button></div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <span>Dickson Rutha · Software Engineer</span>
-    <span>Tanzania</span>
-  </footer>
+  </div>
 </div>
 
 <script>
+  // Step a highlight through the example log; every line stays visible at rest.
+  (function () {
+    var evs = document.querySelectorAll('.ev');
+    if (!evs.length) return;
+    evs[0].classList.add('on');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var i = 0;
+    setInterval(function () {
+      evs[i].classList.remove('on');
+      i = (i + 1) % evs.length;
+      evs[i].classList.add('on');
+    }, 1600);
+  })();
+
   document.querySelectorAll('.copy').forEach(function (btn) {
+    var label = btn.textContent;
     btn.addEventListener('click', function () {
       var el = document.getElementById(btn.dataset.target);
       var text = el.textContent.trim();
-      function done(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = 'Copy'; }, 1600); }
+      function done(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = label; }, 1600); }
       function fallback() {
         var r = document.createRange(); r.selectNodeContents(el);
         var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
         done('Selected');
       }
-      try {
-        navigator.clipboard.writeText(text).then(function () { done('Copied'); }, fallback);
-      } catch (e) { fallback(); }
+      try { navigator.clipboard.writeText(text).then(function () { done('Copied'); }, fallback); }
+      catch (e) { fallback(); }
     });
   });
 </script>
