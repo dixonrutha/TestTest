@@ -3,441 +3,407 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Dickson Rutha</title>
+<title>Dickson Rutha Portfolio</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Dickson Rutha, software engineer and Head of Systems at ChemCheemi Africa. Web systems, mobile apps, chatbots, IoT and payment integrations in Tanzania, Uganda and Malawi.">
+<meta name="description" content="Dickson Rutha, software engineer in Tanzania. Websites, web systems, mobile apps, chatbots, IoT and payment integrations.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-  /* Layout: a deep-navy hero band holding a live "system log", then calm light sections; featured work as large panels, the rest as a tight index. */
+  /* Layout: one quiet reading column (max ~760px text) on a soft blue-white page; generous spacing, big readable type, cards only where you click. */
   :root {
-    --bg: #f3f6f8;
+    --bg: #f6f9fb;
     --surface: #ffffff;
-    --fg: #142231;
-    --muted: #5a6a7a;
-    --line: #dbe3ea;
-    --accent: #2f7d95;
-    --accent-soft: #e0eff3;
-    --band: #0f2236;
-    --band-2: #16304a;
-    --band-fg: #e7eff6;
-    --band-muted: #93a9bd;
-    --glow: #7cc6d6;
-    --ok: #74c69d;
-    --font-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
-    --font-body: "Figtree", "Segoe UI", Roboto, Arial, sans-serif;
-    --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+    --fg: #1a2632;
+    --muted: #536373;
+    --line: #e0e7ed;
+    --accent: #2a6b8c;
+    --accent-soft: #e5f0f5;
+    --font-head: "Lexend", "Segoe UI", Roboto, Arial, sans-serif;
+    --font-body: "Atkinson Hyperlegible", "Segoe UI", Roboto, Arial, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #0b1724; --surface: #11202f; --fg: #e3ebf2; --muted: #93a5b6; --line: #1f3243;
-      --accent: #7cc6d6; --accent-soft: #15303d; --band: #08121d; --band-2: #102234; color-scheme: dark;
+      --bg: #111a22; --surface: #17222c; --fg: #e4ebf1; --muted: #a0afbd; --line: #25333f;
+      --accent: #86c0dc; --accent-soft: #1b2e3a; color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #0b1724; --surface: #11202f; --fg: #e3ebf2; --muted: #93a5b6; --line: #1f3243;
-    --accent: #7cc6d6; --accent-soft: #15303d; --band: #08121d; --band-2: #102234; color-scheme: dark;
+    --bg: #111a22; --surface: #17222c; --fg: #e4ebf1; --muted: #a0afbd; --line: #25333f;
+    --accent: #86c0dc; --accent-soft: #1b2e3a; color-scheme: dark;
   }
 
   * { box-sizing: border-box; }
-  body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    background: var(--bg); color: var(--fg);
+    font-family: var(--font-body); font-size: 18px; line-height: 1.7;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
   a { color: var(--accent); text-underline-offset: 3px; }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--glow); outline-offset: 3px; border-radius: 6px; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
   p { margin: 0; }
-  h1, h2, h3, h4 { margin: 0; text-wrap: balance; }
+  h1, h2, h3 { font-family: var(--font-head); margin: 0; text-wrap: balance; }
 
-  .gutter { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-  .wrap { max-width: 1080px; margin: 0 auto; }
+  .page { max-width: 980px; margin: 0 auto; }
+  .read { max-width: 720px; }
 
-  /* ---------- Hero band ---------- */
-  .band { background: var(--band); color: var(--band-fg); }
-  .nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 22px; flex-wrap: wrap; }
-  .mark { font-family: var(--font-display); font-weight: 700; font-size: 19px; color: var(--band-fg); text-decoration: none; letter-spacing: -.2px; }
-  .mark i { font-style: normal; color: var(--glow); }
-  .links { display: flex; gap: 22px; flex-wrap: wrap; font-size: 14.5px; }
-  .links a { color: var(--band-muted); text-decoration: none; }
-  .links a:hover { color: var(--band-fg); }
+  /* Header */
+  header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+  .bar { max-width: 980px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px 24px; padding-block: 16px; flex-wrap: wrap; }
+  .name { font-family: var(--font-head); font-weight: 600; font-size: 18px; color: var(--fg); text-decoration: none; }
+  nav { display: flex; gap: 6px 22px; flex-wrap: wrap; font-size: 16px; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--accent); }
 
-  .hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 56px; align-items: center; padding-block: 48px 72px; }
-  .status { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12.5px; color: var(--band-muted); border: 1px solid var(--band-2); border-radius: 999px; padding: 5px 12px; }
-  .status b { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); display: inline-block; }
-  .hero h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(40px, 6.4vw, 72px); line-height: 1.0; letter-spacing: -2px; margin-top: 22px; }
-  .hero h1 em { font-style: normal; color: var(--glow); }
-  .hero .lead { margin-top: 22px; font-size: clamp(17px, 2vw, 19px); color: var(--band-muted); max-width: 52ch; }
-  .hero .lead strong { color: var(--band-fg); font-weight: 600; }
-  .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
-  .btn { display: inline-flex; align-items: center; padding: 12px 20px; border-radius: 10px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1px solid var(--band-2); color: var(--band-fg); background: transparent; }
-  .btn:hover { border-color: var(--glow); }
-  .btn.solid { background: var(--glow); border-color: var(--glow); color: var(--band); }
-  .countries { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 28px; font-family: var(--font-mono); font-size: 12.5px; }
-  .countries span { padding: 4px 10px; border-radius: 6px; background: var(--band-2); color: var(--band-fg); }
+  /* Hero */
+  .hero { padding-block: 72px 64px; display: grid; gap: 24px; }
+  .hello { font-family: var(--font-mono); font-size: 15px; color: var(--accent); }
+  .hero h1 { font-weight: 700; font-size: clamp(36px, 5.6vw, 58px); line-height: 1.12; letter-spacing: -1px; max-width: 18ch; }
+  .hero .lead { font-size: 20px; color: var(--muted); max-width: 58ch; }
+  .buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
+  .btn { display: inline-flex; align-items: center; padding: 13px 22px; border-radius: 10px; font-family: var(--font-head); font-weight: 500; font-size: 16px; text-decoration: none; border: 1.5px solid var(--line); color: var(--fg); background: var(--surface); }
+  .btn:hover { border-color: var(--accent); }
+  .btn.main { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+  .facts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+  .facts span { font-size: 15px; padding: 6px 14px; border-radius: 999px; background: var(--accent-soft); }
 
-  /* System log card */
-  .log { background: var(--band-2); border: 1px solid rgba(124,198,214,.18); border-radius: 16px; padding: 18px 18px 14px; font-family: var(--font-mono); font-size: 13px; min-width: 0; }
-  .log-head { display: flex; justify-content: space-between; align-items: center; color: var(--band-muted); font-size: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(147,169,189,.18); margin-bottom: 8px; }
-  .log-head span:first-child::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--ok); margin-right: 8px; vertical-align: 1px; }
-  .ev { display: grid; grid-template-columns: 54px 1fr; gap: 10px; padding: 9px 8px; border-radius: 8px; color: var(--band-muted); transition: background .4s, color .4s; }
-  .ev time { color: #6f879c; font-variant-numeric: tabular-nums; }
-  .ev .src { display: block; font-size: 11px; letter-spacing: .6px; text-transform: uppercase; color: var(--glow); opacity: .8; }
-  .ev .msg { color: var(--band-fg); font-family: var(--font-body); font-size: 14px; }
-  .ev.on { background: rgba(124,198,214,.10); }
-  .log-foot { font-size: 11.5px; color: #6f879c; margin-top: 10px; padding: 0 8px; }
+  /* Sections */
+  section { padding-block: 72px; border-top: 1px solid var(--line); scroll-margin-top: 70px; }
+  .eyebrow { font-family: var(--font-mono); font-size: 14px; color: var(--accent); letter-spacing: .6px; text-transform: uppercase; }
+  section h2 { font-weight: 600; font-size: clamp(28px, 4vw, 38px); letter-spacing: -.5px; line-height: 1.2; margin-top: 8px; }
+  .sub { color: var(--muted); margin-top: 12px; max-width: 60ch; }
 
-  /* ---------- Sections ---------- */
-  main section { padding-block: 84px; }
-  main section + section { border-top: 1px solid var(--line); }
-  .kicker { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--accent); }
-  .title { font-family: var(--font-display); font-weight: 700; font-size: clamp(30px, 4.2vw, 46px); letter-spacing: -1px; line-height: 1.08; margin-top: 10px; max-width: 22ch; }
-  .intro { margin-top: 14px; color: var(--muted); max-width: 60ch; font-size: 17px; }
+  /* What I do */
+  .do { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px; margin-top: 40px; }
+  .do h3 { font-weight: 600; font-size: 20px; }
+  .do p { color: var(--muted); margin-top: 8px; font-size: 17px; }
 
-  /* About */
-  .about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 56px; align-items: start; }
-  .about-text { display: grid; gap: 16px; font-size: 17px; }
-  .about-text p { max-width: 62ch; }
-  .now { margin-top: 28px; display: grid; gap: 10px; }
-  .now div { display: flex; gap: 12px; align-items: baseline; font-size: 15px; }
-  .now b { font-family: var(--font-mono); font-weight: 500; font-size: 12px; color: var(--accent); width: 46px; flex: none; text-transform: uppercase; letter-spacing: .8px; }
+  /* Websites */
+  .sites { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 40px; }
+  .site { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: 18px; align-items: center; padding: 20px 22px; background: var(--surface); border: 1.5px solid var(--line); border-radius: 14px; text-decoration: none; color: var(--fg); transition: border-color .2s, transform .2s; }
+  .site:hover { border-color: var(--accent); }
+  @media (prefers-reduced-motion: no-preference) { .site:hover { transform: translateY(-2px); } }
+  .logo { width: 56px; height: 56px; border-radius: 12px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-family: var(--font-head); font-weight: 700; font-size: 19px; }
+  .site h3 { font-weight: 600; font-size: 19px; }
+  .site p { color: var(--muted); font-size: 16px; line-height: 1.5; margin-top: 2px; }
+  .site .url { display: block; font-family: var(--font-mono); font-size: 13px; color: var(--accent); margin-top: 6px; overflow-wrap: anywhere; }
+  .arrow { font-family: var(--font-head); font-size: 20px; color: var(--muted); }
+  .site:hover .arrow { color: var(--accent); }
 
-  /* Featured work */
-  .featured { display: grid; gap: 22px; margin-top: 44px; }
-  .panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
-  .panel:nth-child(even) .viz { order: -1; }
-  .panel-text { padding: 36px; display: grid; gap: 12px; align-content: center; min-width: 0; }
-  .panel-text .meta { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); }
-  .panel-text h3 { font-family: var(--font-display); font-weight: 700; font-size: 30px; letter-spacing: -.6px; }
-  .panel-text p { color: var(--muted); max-width: 46ch; }
-  .panel-text ul { margin: 4px 0 0; padding-left: 18px; display: grid; gap: 4px; font-size: 15px; }
-  .panel-text li::marker { color: var(--accent); }
-  .viz { background: var(--band); padding: 32px; display: grid; place-items: center; min-height: 260px; min-width: 0; }
-
-  /* viz: TapCloud devices */
-  .grid-dev { display: grid; grid-template-columns: repeat(4, 54px); gap: 12px; }
-  .dev { height: 54px; border-radius: 10px; background: var(--band-2); border: 1px solid rgba(124,198,214,.2); position: relative; }
-  .dev::after { content: ""; position: absolute; top: 9px; right: 9px; width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
-  .dev.idle::after { background: #5b7286; }
-  .dev span { position: absolute; left: 9px; bottom: 7px; font-family: var(--font-mono); font-size: 10px; color: var(--band-muted); }
-  /* viz: countries */
-  .route { display: grid; gap: 12px; width: min(100%, 300px); }
-  .country { display: flex; justify-content: space-between; align-items: center; background: var(--band-2); border-radius: 10px; padding: 12px 16px; color: var(--band-fg); font-weight: 600; border: 1px solid rgba(124,198,214,.18); }
-  .country small { font-family: var(--font-mono); font-weight: 400; font-size: 11.5px; color: var(--band-muted); }
-  .country.hub { background: var(--glow); color: var(--band); border-color: var(--glow); }
-  .country.hub small { color: var(--band); opacity: .75; }
-  /* viz: chat */
-  .chat { width: min(100%, 290px); display: grid; gap: 8px; font-size: 14px; }
-  .bubble { padding: 9px 13px; border-radius: 14px; max-width: 85%; line-height: 1.4; }
-  .bubble.in { background: var(--band-2); color: var(--band-fg); border-bottom-left-radius: 4px; }
-  .bubble.out { background: var(--glow); color: var(--band); justify-self: end; border-bottom-right-radius: 4px; }
-  .chat .who { font-family: var(--font-mono); font-size: 11px; color: var(--band-muted); }
-
-  /* More work index */
-  .index { margin-top: 56px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 32px; }
-  .index h4 { grid-column: 1 / -1; font-family: var(--font-mono); font-weight: 500; font-size: 12.5px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); padding-bottom: 8px; }
-  .row { padding-block: 18px; border-top: 1px solid var(--line); display: grid; gap: 4px; align-content: start; }
-  .row-top { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
-  .row h5 { font-family: var(--font-display); font-weight: 700; font-size: 19px; margin: 0; }
-  .row .t { font-family: var(--font-mono); font-size: 11.5px; color: var(--accent); white-space: nowrap; }
-  .row p { color: var(--muted); font-size: 15px; }
+  /* Projects */
+  .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px; margin-top: 32px; }
+  .proj { padding-block: 20px; border-bottom: 1px solid var(--line); }
+  .proj-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .proj h3 { font-weight: 600; font-size: 19px; }
+  .type { font-family: var(--font-mono); font-size: 13px; color: var(--accent); }
+  .proj p { color: var(--muted); font-size: 17px; margin-top: 4px; }
 
   /* Experience */
-  .timeline { margin-top: 44px; display: grid; }
-  .tl { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 32px; padding-block: 28px; border-top: 1px solid var(--line); }
-  .tl .yrs { font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--accent); letter-spacing: -.4px; font-variant-numeric: tabular-nums; line-height: 1.2; }
-  .tl .yrs small { display: block; font-family: var(--font-mono); font-weight: 400; font-size: 12px; color: var(--muted); letter-spacing: 0; margin-top: 4px; }
-  .tl h3 { font-family: var(--font-display); font-weight: 700; font-size: 24px; letter-spacing: -.4px; }
-  .tl .org { color: var(--muted); font-weight: 500; margin-top: 2px; }
-  .tl ul { margin: 12px 0 0; padding-left: 18px; display: grid; gap: 5px; max-width: 64ch; }
-  .tl li::marker { color: var(--accent); }
+  .jobs { display: grid; gap: 40px; margin-top: 40px; }
+  .job { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 28px; }
+  .when { font-family: var(--font-mono); font-size: 14px; color: var(--muted); padding-top: 4px; font-variant-numeric: tabular-nums; }
+  .job h3 { font-weight: 600; font-size: 21px; }
+  .org { color: var(--accent); font-size: 17px; margin-top: 2px; }
+  .job ul { margin: 12px 0 0; padding-left: 20px; display: grid; gap: 6px; max-width: 62ch; }
+  .job li { font-size: 17px; }
+  .job li::marker { color: var(--accent); }
 
-  /* Connect + skills */
-  .split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; margin-top: 44px; }
-  .partners { display: grid; gap: 12px; }
-  .partner { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 16px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; align-items: baseline; }
-  .partner b { font-family: var(--font-display); font-size: 17px; }
-  .partner span { color: var(--muted); font-size: 15px; }
-  .skills { display: grid; gap: 18px; }
-  .skills div h4 { font-family: var(--font-mono); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px; }
-  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-  .chips span { padding: 4px 11px; border-radius: 999px; background: var(--accent-soft); font-size: 14px; }
+  /* Skills */
+  .skills { display: grid; gap: 18px; margin-top: 32px; }
+  .skill { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 28px; align-items: baseline; }
+  .skill b { font-family: var(--font-head); font-weight: 500; font-size: 16px; color: var(--muted); }
+  .skill span { font-size: 17px; }
 
-  /* Contact band */
-  .contact { padding-block: 84px 40px; }
-  .contact h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(34px, 5.4vw, 60px); letter-spacing: -1.6px; line-height: 1.02; max-width: 16ch; }
-  .contact h2 em { font-style: normal; color: var(--glow); }
-  .contact .lead { margin-top: 18px; color: var(--band-muted); max-width: 54ch; font-size: 17px; }
-  .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 36px; max-width: 760px; }
-  .card { background: var(--band-2); border-radius: 14px; padding: 18px 20px; display: grid; gap: 6px; min-width: 0; }
-  .card .k { font-family: var(--font-mono); font-size: 12px; color: var(--band-muted); text-transform: uppercase; letter-spacing: 1px; }
-  .card .v { font-size: 19px; font-weight: 600; user-select: all; overflow-wrap: anywhere; }
-  .copy { justify-self: start; margin-top: 6px; font: inherit; font-size: 13px; padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(147,169,189,.3); background: transparent; color: var(--band-fg); cursor: pointer; }
-  .copy:hover { border-color: var(--glow); }
-  .foot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--band-2); margin-top: 64px; padding-top: 22px; font-size: 13.5px; color: var(--band-muted); }
-  .foot a { color: var(--band-muted); }
+  /* Contact */
+  .contact-box { margin-top: 32px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: 760px; }
+  .cbox { background: var(--surface); border: 1.5px solid var(--line); border-radius: 14px; padding: 20px 22px; display: grid; gap: 6px; min-width: 0; }
+  .cbox .k { font-family: var(--font-mono); font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: .6px; }
+  .cbox .v { font-family: var(--font-head); font-size: 20px; font-weight: 500; user-select: all; overflow-wrap: anywhere; }
+  .copy { justify-self: start; margin-top: 6px; font: inherit; font-size: 15px; padding: 7px 14px; border-radius: 8px; border: 1.5px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; }
+  .copy:hover { border-color: var(--accent); }
 
-  @media (max-width: 900px) {
-    .hero, .about, .split { grid-template-columns: 1fr; gap: 40px; }
-    .index { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  footer { padding-block: 40px 56px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+  @media (max-width: 820px) {
+    .do { grid-template-columns: 1fr; gap: 26px; }
+    .sites, .projects, .contact-box { grid-template-columns: 1fr; }
+    .job, .skill { grid-template-columns: 1fr; gap: 4px; }
+    .hero { padding-block: 48px 52px; }
+    section { padding-block: 56px; }
   }
-  @media (max-width: 720px) {
-    main section { padding-block: 60px; }
-    .panel { grid-template-columns: 1fr; }
-    .panel:nth-child(even) .viz { order: 0; }
-    .panel-text { padding: 26px 22px; }
-    .viz { min-height: 220px; padding: 26px 16px; }
-    .tl { grid-template-columns: 1fr; gap: 8px; }
-    .index { grid-template-columns: 1fr; }
-    .cards { grid-template-columns: 1fr; }
-    .partner { grid-template-columns: 1fr; gap: 2px; }
-    .hero { padding-block: 28px 56px; }
+  @media (max-width: 420px) {
+    body { font-size: 17px; }
+    .site { grid-template-columns: 48px minmax(0, 1fr); gap: 14px; padding: 18px; }
+    .logo { width: 48px; height: 48px; font-size: 17px; }
+    .arrow { display: none; }
   }
-  @media (max-width: 380px) {
-    .grid-dev { grid-template-columns: repeat(4, 46px); gap: 9px; }
-    .dev { height: 46px; }
+  @media print {
+    @page { size: A4; margin: 14mm 14mm 16mm; }
+    :root, :root[data-theme="dark"] { --bg: #ffffff; --surface: #ffffff; --fg: #1a2632; --muted: #4e5e6e; --line: #dde4ea; --accent: #2a6b8c; --accent-soft: #e8f2f6; color-scheme: light; }
+    body { font-size: 11.5pt; line-height: 1.55; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body::before, header.top, .buttons, .copy, .site[href="#contact"] { display: none !important; }
+    .hero { padding-block: 0 26px; gap: 14px; }
+    .hero h1 { font-size: 28pt; }
+    .hero .lead { font-size: 13pt; }
+    section { padding-block: 24px; }
+    section h2 { font-size: 19pt; }
+    .do { grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 18px; }
+    .sites, .projects, .contact-box { grid-template-columns: 1fr 1fr; }
+    .sites { margin-top: 18px; gap: 10px; }
+    .site { padding: 12px 14px; grid-template-columns: 40px minmax(0,1fr); gap: 12px; }
+    .logo { width: 40px; height: 40px; font-size: 13pt; }
+    .arrow { display: none; }
+    .projects, .skills, .jobs, .contact-box { margin-top: 16px; }
+    .proj { padding-block: 10px; }
+    .jobs { gap: 18px; }
+    .job, .skill { grid-template-columns: 110px minmax(0,1fr); gap: 18px; }
+    .site, .proj, .job, .cbox, .do > div { break-inside: avoid; }
+    section > .read { break-after: avoid; }
+    footer { padding-block: 14px 0; }
+    .sites { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .site h3 { font-size: 12pt; }
+    .site p { font-size: 10pt; }
+    #projects { break-before: page; border-top: 0; padding-top: 0; }
+    .job h3 { font-size: 13pt; }
+    .job li, .proj p, .skill span { font-size: 10.5pt; }
+    .jobs { gap: 14px; }
+    .job ul { margin-top: 6px; gap: 2px; }
+    .hero h1 { font-size: 24pt; }
+    .hero .lead { font-size: 11.5pt; }
+    .hero { gap: 10px; padding-bottom: 18px; }
+    section { padding-block: 16px; }
+    .do { margin-top: 10px; }
+    .do h3 { font-size: 12pt; }
+    .do p { font-size: 10pt; margin-top: 4px; }
+    .sub { margin-top: 4px; font-size: 10.5pt; }
+    .sites { margin-top: 10px; gap: 8px; }
+    .site { padding: 10px 12px; }
+    .site .url { margin-top: 2px; font-size: 8.5pt; }
+    .skills { grid-template-columns: 1fr 1fr; gap: 8px 24px; margin-top: 10px; }
+    .skill { grid-template-columns: 95px minmax(0,1fr); gap: 10px; }
+    .contact-box { margin-top: 10px; }
+    .cbox { padding: 12px 16px; }
+    .cbox .v { font-size: 13pt; }
   }
 </style>
 </head>
 <body>
 
-<div class="band gutter">
-  <div class="wrap">
-    <nav class="nav" aria-label="Main">
-      <a class="mark" href="#top" id="top">Dickson<i>.</i>Rutha</a>
-      <div class="links">
-        <a href="#work">Work</a>
-        <a href="#experience">Experience</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </div>
+<header class="top">
+  <div class="bar">
+    <a class="name" href="#top">Dickson Rutha</a>
+    <nav aria-label="Sections">
+      <a href="#websites">Websites</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
     </nav>
+  </div>
+</header>
 
-    <div class="hero">
+<div class="page" id="top">
+
+  <div class="hero">
+    <div class="hello">Hello, I'm Dickson</div>
+    <h1>Software engineer building websites, apps and connected systems.</h1>
+    <p class="lead">I'm Head of Systems at ChemCheemi Africa and a software engineer at Ecowater International. I build websites, web systems, mobile apps and chatbots, and connect them to banks, mobile money and SMS.</p>
+    <div class="buttons">
+      <a class="btn main" href="#contact">Contact me</a>
+      <a class="btn" href="https://github.com/dixonrutha/TestTest/raw/claude/adoring-brown-el222p/cv/Dickson_Rutha_CV.pdf" target="_blank" rel="noopener">Download CV</a>
+    </div>
+    <div class="facts">
+      <span>8 years experience</span>
+      <span>Based in Tanzania</span>
+      <span>Work in Tanzania, Uganda &amp; Malawi</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="read">
+      <div class="eyebrow">What I do</div>
+      <h2>Three things I'm good at</h2>
+    </div>
+    <div class="do">
       <div>
-        <span class="status"><b></b> Head of Systems at ChemCheemi Africa</span>
-        <h1>I build the systems that move <em>orders, payments</em> and <em>data</em>.</h1>
-        <p class="lead">I'm <strong>Dickson Rutha</strong>, a software engineer from Tanzania. I build web systems, mobile apps, WhatsApp chatbots and IoT platforms, and connect them to the banks, mobile money and SMS providers people use every day.</p>
-        <div class="cta">
-          <a class="btn solid" href="#work">See my work</a>
-          <a class="btn" href="https://github.com/dixonrutha/TestTest/raw/claude/adoring-brown-el222p/cv/Dickson_Rutha_CV.pdf" target="_blank" rel="noopener">Download CV</a>
-        </div>
-        <div class="countries"><span>Tanzania</span><span>Uganda</span><span>Malawi</span></div>
+        <h3>Websites &amp; web systems</h3>
+        <p>Company websites and custom systems, from the first conversation to launch and support.</p>
       </div>
-
-      <div class="log" aria-label="Example of one order moving through a system I built">
-        <div class="log-head"><span>water-order · example</span><span>live flow</span></div>
-        <div class="ev"><time>09:14</time><div><span class="src">WhatsApp · Mr. Majik</span><span class="msg">Customer orders 2 × 20L water</span></div></div>
-        <div class="ev"><time>09:14</time><div><span class="src">Mobile money</span><span class="msg">Payment received and confirmed</span></div></div>
-        <div class="ev"><time>09:15</time><div><span class="src">SMS gateway</span><span class="msg">Receipt sent to customer</span></div></div>
-        <div class="ev"><time>09:15</time><div><span class="src">MajikDrive</span><span class="msg">Delivery assigned to nearest driver</span></div></div>
-        <div class="ev"><time>09:41</time><div><span class="src">Cloud</span><span class="msg">Delivered · store stock updated</span></div></div>
-        <p class="log-foot">An illustration of how the pieces I've built work together.</p>
+      <div>
+        <h3>Mobile apps &amp; chatbots</h3>
+        <p>Flutter and Android apps, and WhatsApp bots that take orders and answer customers.</p>
+      </div>
+      <div>
+        <h3>Integrations &amp; IoT</h3>
+        <p>Connecting systems to banks, mobile money, SMS, meters and devices, and bringing it all into one cloud.</p>
       </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<main class="gutter">
-  <div class="wrap">
+  <section id="websites">
+    <div class="read">
+      <div class="eyebrow">Websites</div>
+      <h2>Websites I've worked on</h2>
+      <p class="sub">Click any of them to visit the live site.</p>
+    </div>
+    <div class="sites">
+      <a class="site" href="https://safarinodes.com/" target="_blank" rel="noopener">
+        <span class="logo" aria-hidden="true">SN</span>
+        <span><h3>Safari Nodes</h3><p>Company website</p><span class="url">safarinodes.com</span></span>
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="site" href="https://datafarm.co.tz/" target="_blank" rel="noopener">
+        <span class="logo" aria-hidden="true">DF</span>
+        <span><h3>DataFarm</h3><p>Company website</p><span class="url">datafarm.co.tz</span></span>
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="site" href="https://mviwaarusha.datafarm.co.tz/" target="_blank" rel="noopener">
+        <span class="logo" aria-hidden="true">MA</span>
+        <span><h3>MVIWA Arusha</h3><p>Web system built on the DataFarm platform</p><span class="url">mviwaarusha.datafarm.co.tz</span></span>
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="site" href="http://ecowaterinternational.com/" target="_blank" rel="noopener">
+        <span class="logo" aria-hidden="true">EW</span>
+        <span><h3>Ecowater International</h3><p>Company website</p><span class="url">ecowaterinternational.com</span></span>
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="site" href="https://onekite.io/" target="_blank" rel="noopener">
+        <span class="logo" aria-hidden="true">OK</span>
+        <span><h3>OneKite</h3><p>Company website</p><span class="url">onekite.io</span></span>
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="site" href="#contact">
+        <span class="logo" aria-hidden="true">+</span>
+        <span><h3>Your website next?</h3><p>I take on freelance website and system projects.</p><span class="url">Get in touch</span></span>
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
 
-    <section id="work">
-      <div class="kicker">Selected work</div>
-      <h2 class="title">Things I've built that people use every day</h2>
+  <section id="projects">
+    <div class="read">
+      <div class="eyebrow">Projects</div>
+      <h2>Systems and apps I've built</h2>
+    </div>
+    <div class="projects">
+      <div class="proj"><div class="proj-top"><h3>TapCloud</h3><span class="type">IoT platform</span></div><p>Connects and monitors devices remotely. Built at ChemCheemi.</p></div>
+      <div class="proj"><div class="proj-top"><h3>Ecowater Cloud</h3><span class="type">Cloud system</span></div><p>Runs Ecowater's operations in Uganda and Malawi, linked to local banks and mobile money.</p></div>
+      <div class="proj"><div class="proj-top"><h3>Ecowater Store App</h3><span class="type">Android</span></div><p>Lets our new stores send their data straight to the cloud.</p></div>
+      <div class="proj"><div class="proj-top"><h3>Mr. Majik</h3><span class="type">WhatsApp bot</span></div><p>Customers use it to order water products.</p></div>
+      <div class="proj"><div class="proj-top"><h3>MajikDrive</h3><span class="type">Mobile app</span></div><p>Drivers manage and track water deliveries.</p></div>
+      <div class="proj"><div class="proj-top"><h3>EFA</h3><span class="type">Cashier system</span></div><p>Cashiers register students and top up water cards.</p></div>
+      <div class="proj"><div class="proj-top"><h3>ESMS</h3><span class="type">Mobile app</span></div><p>For managing stores remotely.</p></div>
+      <div class="proj"><div class="proj-top"><h3>EcoPlus</h3><span class="type">WhatsApp bot</span></div><p>University students register, check timetables and vote.</p></div>
+      <div class="proj"><div class="proj-top"><h3>Bookify</h3><span class="type">Web system</span></div><p>Hotel and apartment bookings with room availability.</p></div>
+      <div class="proj"><div class="proj-top"><h3>Meter integration</h3><span class="type">IoT</span></div><p>Connected Gasify Energy's meters to the cloud so data comes in automatically.</p></div>
+    </div>
+  </section>
 
-      <div class="featured">
-        <article class="panel">
-          <div class="panel-text">
-            <span class="meta">ChemCheemi Africa · IoT platform</span>
-            <h3>TapCloud</h3>
-            <p>Our platform for connecting devices and watching them remotely. Devices report in, and the team can see what's online and what needs attention from one place.</p>
-          </div>
-          <div class="viz" aria-hidden="true">
-            <div class="grid-dev">
-              <div class="dev"><span>01</span></div><div class="dev"><span>02</span></div><div class="dev idle"><span>03</span></div><div class="dev"><span>04</span></div>
-              <div class="dev"><span>05</span></div><div class="dev"><span>06</span></div><div class="dev"><span>07</span></div><div class="dev idle"><span>08</span></div>
-              <div class="dev"><span>09</span></div><div class="dev idle"><span>10</span></div><div class="dev"><span>11</span></div><div class="dev"><span>12</span></div>
-            </div>
-          </div>
-        </article>
-
-        <article class="panel">
-          <div class="panel-text">
-            <span class="meta">Ecowater International · Cloud system</span>
-            <h3>Ecowater Cloud</h3>
-            <p>A new cloud system for Ecowater's operations in Uganda and Malawi. I was part of the team that built it.</p>
-            <ul>
-              <li>Integrated with local banks and mobile money in each country</li>
-              <li>Android store app sends store data straight to the cloud</li>
-            </ul>
-          </div>
-          <div class="viz" aria-hidden="true">
-            <div class="route">
-              <div class="country hub">Ecowater Cloud <small>central</small></div>
-              <div class="country">Uganda <small>banks · mobile money</small></div>
-              <div class="country">Malawi <small>banks · mobile money</small></div>
-              <div class="country">Stores <small>Android app</small></div>
-            </div>
-          </div>
-        </article>
-
-        <article class="panel">
-          <div class="panel-text">
-            <span class="meta">Ecowater International · WhatsApp bot</span>
-            <h3>Mr. Majik</h3>
-            <p>A WhatsApp bot customers use to order water. Orders flow on to MajikDrive, the app our drivers use to manage and track deliveries.</p>
-          </div>
-          <div class="viz" aria-hidden="true">
-            <div class="chat">
-              <span class="who">Mr. Majik · example chat</span>
-              <div class="bubble in">Habari! I'd like 2 bottles of 20L please.</div>
-              <div class="bubble out">Sawa! Pay by mobile money and we'll deliver today.</div>
-              <div class="bubble in">Done ✓</div>
-              <div class="bubble out">Payment received. Your driver is on the way.</div>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="index">
-        <h4>More projects</h4>
-        <div class="row"><div class="row-top"><h5>MajikDrive</h5><span class="t">Mobile app</span></div><p>Drivers manage and track water deliveries to customers.</p></div>
-        <div class="row"><div class="row-top"><h5>Ecowater Store App</h5><span class="t">Android</span></div><p>Lets our new stores send their data to the cloud.</p></div>
-        <div class="row"><div class="row-top"><h5>EFA</h5><span class="t">Cashier system</span></div><p>Cashiers register students and top up water card balances.</p></div>
-        <div class="row"><div class="row-top"><h5>ESMS</h5><span class="t">Mobile app</span></div><p>For managing stores remotely.</p></div>
-        <div class="row"><div class="row-top"><h5>EcoPlus</h5><span class="t">WhatsApp bot</span></div><p>University students register, check timetables and vote.</p></div>
-        <div class="row"><div class="row-top"><h5>Bookify</h5><span class="t">Web system</span></div><p>Hotel and apartment bookings with room availability.</p></div>
-      </div>
-    </section>
-
-    <section id="experience">
-      <div class="kicker">Experience</div>
-      <h2 class="title">Eight years of building and leading</h2>
-      <div class="timeline">
-        <div class="tl">
-          <div class="yrs">2023 – now<small>Current</small></div>
-          <div>
-            <h3>Head of Systems</h3>
-            <div class="org">ChemCheemi Africa</div>
-            <ul>
-              <li>Responsible for all of the company's systems, from planning and architecture through to delivery and support.</li>
-              <li>Built TapCloud, our IoT platform, and added AI features to our products and workflows.</li>
-              <li>Integrated our systems with banks, mobile money and SMS providers.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="tl">
-          <div class="yrs">2023 – now<small>Current</small></div>
-          <div>
-            <h3>Software Engineer</h3>
-            <div class="org">Ecowater International · Dodoma</div>
-            <ul>
-              <li>Build and maintain the software behind water ordering, deliveries, retail and payments.</li>
-              <li>Part of the team that built the new cloud system for Uganda and Malawi.</li>
-              <li>Built Mr. Majik, MajikDrive, ESMS, EFA and the Android store app.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="tl">
-          <div class="yrs">Gasify<small>Technical team</small></div>
-          <div>
-            <h3>Technical Team</h3>
-            <div class="org">Gasify Energy</div>
-            <ul><li>Connected our meters to our cloud so meter data comes in automatically.</li></ul>
-          </div>
-        </div>
-        <div class="tl">
-          <div class="yrs">2019 – now<small>Alongside full-time work</small></div>
-          <div>
-            <h3>Freelance Web &amp; Software Developer</h3>
-            <div class="org">Self-employed</div>
-            <ul><li>Websites and custom systems for businesses and individuals, from first conversation to launch.</li></ul>
-          </div>
-        </div>
-        <div class="tl">
-          <div class="yrs">2018 – 2023<small>5 years</small></div>
-          <div>
-            <h3>MITz Kits &amp; StadiSpace Manager</h3>
-            <div class="org">MITz Group Company · Mwanza</div>
-            <ul>
-              <li>Managed the company's main projects and the teams working on them.</li>
-              <li>Started student programmes and designed STEM kits for hands-on learning.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="about">
+  <section id="experience">
+    <div class="read">
+      <div class="eyebrow">Experience</div>
+      <h2>Where I've worked</h2>
+    </div>
+    <div class="jobs">
+      <div class="job">
+        <div class="when">2023 – now</div>
         <div>
-          <div class="kicker">About</div>
-          <h2 class="title">I like owning the whole chain</h2>
-          <div class="now">
-            <div><b>Now</b>Head of Systems, ChemCheemi Africa</div>
-            <div><b>Also</b>Software Engineer, Ecowater International</div>
-            <div><b>Study</b>BSc Software Engineering, University of Dodoma</div>
-            <div><b>Speak</b>English and Swahili</div>
-          </div>
-        </div>
-        <div class="about-text">
-          <p>Most of what I build sits between a business and the services it depends on. A customer orders on WhatsApp, a driver gets the job on their phone, the payment comes in through mobile money or the bank, and an SMS confirms it. I enjoy making all of those pieces work together.</p>
-          <p>I'm comfortable with the parts that aren't code too: sitting with the business to understand what they need, explaining technical choices to people who aren't technical, and keeping a system healthy after launch.</p>
-          <p>Before moving fully into software I spent five years at MITz Group managing projects and teams, and starting STEM programmes so students could learn by building things.</p>
+          <h3>Head of Systems</h3>
+          <div class="org">ChemCheemi Africa</div>
+          <ul>
+            <li>Responsible for all of the company's systems, from planning to delivery and support.</li>
+            <li>Built TapCloud, our IoT platform, and added AI features to our products.</li>
+            <li>Integrated our systems with banks, mobile money and SMS providers.</li>
+          </ul>
         </div>
       </div>
-    </section>
-
-    <section>
-      <div class="kicker">Integrations &amp; skills</div>
-      <h2 class="title">What my systems talk to</h2>
-      <div class="split">
-        <div class="partners">
-          <div class="partner"><b>Banks</b><span>Payments, collections and reconciliation in Tanzania, Uganda and Malawi</span></div>
-          <div class="partner"><b>Mobile money</b><span>Payment and collection flows built into our apps</span></div>
-          <div class="partner"><b>SMS &amp; WhatsApp</b><span>Receipts, alerts and ordering chatbots</span></div>
-          <div class="partner"><b>Devices &amp; meters</b><span>TapCloud devices, Gasify meters and Android store apps</span></div>
-        </div>
-        <div class="skills">
-          <div><h4>Languages</h4><div class="chips"><span>PHP</span><span>JavaScript</span><span>Dart</span><span>SQL</span></div></div>
-          <div><h4>Frameworks</h4><div class="chips"><span>Laravel</span><span>CodeIgniter</span><span>Flutter</span></div></div>
-          <div><h4>Web &amp; data</h4><div class="chips"><span>MySQL</span><span>REST APIs</span><span>System design</span></div></div>
-          <div><h4>AI &amp; IoT</h4><div class="chips"><span>AI features</span><span>Chatbots</span><span>IoT platforms</span></div></div>
-          <div><h4>Tools</h4><div class="chips"><span>Git</span><span>VS Code</span><span>Android Studio</span></div></div>
+      <div class="job">
+        <div class="when">2023 – now</div>
+        <div>
+          <h3>Software Engineer</h3>
+          <div class="org">Ecowater International, Dodoma</div>
+          <ul>
+            <li>Build the software behind water ordering, deliveries, retail and payments.</li>
+            <li>Part of the team that built the new cloud system for Uganda and Malawi.</li>
+            <li>Built Mr. Majik, MajikDrive, ESMS, EFA and the Android store app.</li>
+          </ul>
         </div>
       </div>
-    </section>
-
-  </div>
-</main>
-
-<div class="band gutter" id="contact">
-  <div class="wrap contact">
-    <h2>Got a system that needs <em>building</em> or <em>connecting</em>?</h2>
-    <p class="lead">I'm open to full-time roles, freelance projects and integration work. Call, WhatsApp or email me.</p>
-    <div class="cards">
-      <div class="card"><span class="k">Phone · WhatsApp</span><span class="v" id="v-phone">+255 672 944 649</span><button class="copy" type="button" id="copy-phone" data-target="v-phone">Copy number</button></div>
-      <div class="card"><span class="k">Email</span><span class="v" id="v-email">dixonruthaa@gmail.com</span><button class="copy" type="button" id="copy-email" data-target="v-email">Copy email</button></div>
+      <div class="job">
+        <div class="when">2019 – now</div>
+        <div>
+          <h3>Freelance Web &amp; Software Developer</h3>
+          <div class="org">Self-employed</div>
+          <ul><li>Websites and custom systems for businesses and individuals.</li></ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when">Gasify</div>
+        <div>
+          <h3>Technical Team</h3>
+          <div class="org">Gasify Energy</div>
+          <ul><li>Connected our meters to our cloud system.</li></ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when">2018 – 2023</div>
+        <div>
+          <h3>MITz Kits &amp; StadiSpace Manager</h3>
+          <div class="org">MITz Group Company, Mwanza</div>
+          <ul>
+            <li>Managed the company's main projects and teams.</li>
+            <li>Started student programmes and designed STEM learning kits.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when">2014 – 2018</div>
+        <div>
+          <h3>BSc in Software Engineering</h3>
+          <div class="org">University of Dodoma</div>
+        </div>
+      </div>
     </div>
-    <div class="foot">
-      <span>Dickson Rutha · Software Engineer · Tanzania</span>
-      <span><a href="https://github.com/dixonrutha/TestTest/raw/claude/adoring-brown-el222p/cv/Dickson_Rutha_CV.pdf" target="_blank" rel="noopener">Full CV</a> · <a href="https://github.com/dixonrutha/TestTest/raw/claude/adoring-brown-el222p/cv/Dickson_Rutha_CV_One_Page.pdf" target="_blank" rel="noopener">One-page CV</a></span>
+  </section>
+
+  <section>
+    <div class="read">
+      <div class="eyebrow">Skills</div>
+      <h2>Tools I use</h2>
     </div>
-  </div>
+    <div class="skills">
+      <div class="skill"><b>Languages</b><span>PHP, JavaScript, Dart, SQL</span></div>
+      <div class="skill"><b>Frameworks</b><span>Laravel, CodeIgniter, Flutter</span></div>
+      <div class="skill"><b>Web &amp; data</b><span>MySQL, REST APIs, system design</span></div>
+      <div class="skill"><b>Integrations</b><span>Bank APIs, mobile money, SMS, WhatsApp</span></div>
+      <div class="skill"><b>AI &amp; IoT</b><span>AI features, chatbots, IoT platforms</span></div>
+      <div class="skill"><b>Languages I speak</b><span>English and Swahili</span></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="read">
+      <div class="eyebrow">Contact</div>
+      <h2>Let's talk</h2>
+      <p class="sub">I'm open to full-time roles, freelance websites and systems, and integration work. Call, WhatsApp or email me.</p>
+    </div>
+    <div class="contact-box">
+      <div class="cbox"><span class="k">Phone · WhatsApp</span><span class="v" id="v-phone">+255 672 944 649</span><button class="copy" type="button" id="copy-phone" data-target="v-phone">Copy number</button></div>
+      <div class="cbox"><span class="k">Email</span><span class="v" id="v-email">dixonruthaa@gmail.com</span><button class="copy" type="button" id="copy-email" data-target="v-email">Copy email</button></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Dickson Rutha · Software Engineer · Tanzania</span>
+    <span><a href="https://github.com/dixonrutha/TestTest/raw/claude/adoring-brown-el222p/cv/Dickson_Rutha_CV.pdf" target="_blank" rel="noopener">Full CV</a> · <a href="https://github.com/dixonrutha/TestTest/raw/claude/adoring-brown-el222p/cv/Dickson_Rutha_CV_One_Page.pdf" target="_blank" rel="noopener">One-page CV</a></span>
+  </footer>
 </div>
 
 <script>
-  // Step a highlight through the example log; every line stays visible at rest.
-  (function () {
-    var evs = document.querySelectorAll('.ev');
-    if (!evs.length) return;
-    evs[0].classList.add('on');
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var i = 0;
-    setInterval(function () {
-      evs[i].classList.remove('on');
-      i = (i + 1) % evs.length;
-      evs[i].classList.add('on');
-    }, 1600);
-  })();
-
   document.querySelectorAll('.copy').forEach(function (btn) {
     var label = btn.textContent;
     btn.addEventListener('click', function () {
