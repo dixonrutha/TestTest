@@ -5,132 +5,132 @@
 <title>Invoice INV-2026-001</title>
 <style>
   @page { size: A4; margin: 0; }
-  :root { --ink: #1a2632; --muted: #5a6876; --line: #dfe5eb; --accent: #2a6b8c; --soft: #eef4f8; --todo: #b45309; --todo-bg: #fdf3e7; }
+  :root {
+    --ink: #1b2733;
+    --muted: #64717e;
+    --line: #d9e6ee;
+    --deep: #1f4f6e;
+    --mid: #2f7fa3;
+    --light: #6fb6d3;
+    --pale: #e3f1f7;
+  }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: "Inter", "DejaVu Sans", sans-serif; color: var(--ink); font-size: 9.6pt; line-height: 1.5; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .page { width: 210mm; height: 297mm; padding: 16mm 16mm 14mm; display: flex; flex-direction: column; }
-  .todo { color: var(--todo); background: var(--todo-bg); padding: 0 1.5mm; border-radius: 3px; font-weight: 600; }
+  .page { position: relative; width: 210mm; height: 297mm; padding: 20mm 18mm 0; overflow: hidden; background: #fff; }
 
-  header { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 7mm; border-bottom: 2.5px solid var(--accent); }
-  .from h1 { font-size: 19pt; font-weight: 800; letter-spacing: -.3px; }
-  .from .role { color: var(--accent); font-weight: 600; margin-top: .5mm; }
-  .from .contact { color: var(--muted); margin-top: 2.5mm; font-size: 9pt; line-height: 1.6; }
-  .title { text-align: right; }
-  .title h2 { font-size: 26pt; font-weight: 800; letter-spacing: 2px; color: var(--accent); }
-  .meta { margin-top: 3mm; display: grid; grid-template-columns: auto auto; gap: 1mm 5mm; justify-content: end; font-size: 9pt; }
-  .meta span:nth-child(odd) { color: var(--muted); text-align: right; }
-  .meta span:nth-child(even) { font-weight: 600; text-align: right; }
+  /* Banner: two overlapping rounded shapes running off the right edge */
+  .banner { position: absolute; top: 16mm; right: 0; width: 108mm; height: 34mm; }
+  .banner .back { position: absolute; inset: 0 0 0 0; background: var(--light); border-radius: 17mm 0 0 17mm; }
+  .banner .front { position: absolute; top: 0; bottom: 0; left: 14mm; right: 0; background: linear-gradient(100deg, var(--mid), var(--deep)); border-radius: 17mm 0 0 17mm; color: #fff; padding: 5mm 18mm 0 12mm; text-align: right; }
+  .banner h1 { font-size: 24pt; font-weight: 800; letter-spacing: 3px; line-height: 1; }
+  .banner .meta { margin-top: 2.6mm; font-size: 8.4pt; line-height: 1.55; opacity: .95; }
+  .banner .meta b { font-weight: 600; }
 
-  .parties { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; margin-top: 8mm; }
-  .label { font-size: 7.8pt; text-transform: uppercase; letter-spacing: 1.4px; color: var(--accent); font-weight: 700; margin-bottom: 2mm; }
-  .parties p { line-height: 1.6; }
-  .project { background: var(--soft); border-radius: 6px; padding: 4mm 5mm; }
-  .project b { display: block; font-size: 10.5pt; }
-  .project span { color: var(--muted); }
+  /* Wordmark */
+  .brand { height: 34mm; display: flex; flex-direction: column; justify-content: center; margin-top: -4mm; }
+  .brand .name { font-size: 22pt; letter-spacing: -.4px; line-height: 1; }
+  .brand .name span { font-weight: 300; }
+  .brand .name b { font-weight: 800; color: var(--deep); margin-left: 1.6mm; }
+  .brand .tag { font-size: 8.4pt; color: var(--muted); margin-top: 2mm; letter-spacing: .3px; }
 
-  table { width: 100%; border-collapse: collapse; margin-top: 9mm; }
-  thead th { text-align: left; font-size: 7.8pt; text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); font-weight: 700; padding: 0 3mm 2.5mm; border-bottom: 1.5px solid var(--ink); }
-  thead th.num, td.num { text-align: right; }
-  td { padding: 4.5mm 3mm; border-bottom: 1px solid var(--line); vertical-align: top; }
-  td .item { font-weight: 700; font-size: 10pt; }
-  td .desc { color: var(--muted); font-size: 8.8pt; margin-top: .8mm; max-width: 95mm; }
-  td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
-  td.idx { color: var(--muted); width: 8mm; }
+  .to { margin-top: 8mm; display: flex; justify-content: space-between; align-items: flex-end; }
+  .to .lbl { font-size: 8.6pt; color: var(--muted); }
+  .to .who { font-size: 15pt; font-weight: 800; margin-top: .5mm; }
+  .to .proj { text-align: right; font-size: 9pt; color: var(--muted); }
+  .to .proj b { display: block; color: var(--ink); font-size: 10pt; }
 
-  .totals { margin-top: 5mm; margin-left: auto; width: 82mm; }
-  .totals div { display: flex; justify-content: space-between; padding: 2mm 3mm; font-variant-numeric: tabular-nums; }
-  .totals div span:first-child { color: var(--muted); }
-  .totals .grand { background: var(--accent); color: #fff; border-radius: 6px; padding: 3.5mm 4mm; margin-top: 2mm; font-size: 12pt; font-weight: 800; }
-  .totals .grand span:first-child { color: #fff; font-weight: 600; font-size: 10pt; align-self: center; }
-  .words { text-align: right; color: var(--muted); font-size: 8.6pt; margin-top: 2mm; font-style: italic; }
+  /* Items: one grid template shared by header and rows */
+  .items { margin-top: 8mm; }
+  .hrow, .irow { display: grid; grid-template-columns: 1fr 16mm 28mm 30mm; column-gap: 3mm; padding: 0 6mm; }
+  .hrow { background: linear-gradient(100deg, var(--deep), var(--mid)); color: #fff; border-radius: 6mm; padding-block: 2.6mm; font-size: 8.6pt; font-weight: 600; }
+  .irow { padding-block: 5mm; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  .c { text-align: center; } .r { text-align: right; }
+  .irow > div:last-child { font-weight: 600; }
+  .irow .item { font-weight: 700; font-size: 9.8pt; }
+  .irow .desc { color: var(--muted); font-size: 8.6pt; margin-top: .8mm; max-width: 82mm; line-height: 1.45; }
 
-  .bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; margin-top: auto; padding-top: 8mm; }
-  .box { border: 1px solid var(--line); border-radius: 6px; padding: 4mm 5mm; }
-  .box p { line-height: 1.65; }
-  .box ul { list-style: none; }
-  .box li { margin-bottom: 1mm; padding-left: 3.5mm; position: relative; }
-  .box li::before { content: ""; position: absolute; left: 0; top: 2mm; width: 1.4mm; height: 1.4mm; border-radius: 50%; background: var(--accent); }
-  footer { margin-top: 7mm; padding-top: 4mm; border-top: 1px solid var(--line); display: flex; justify-content: space-between; color: var(--muted); font-size: 8.6pt; }
-  footer b { color: var(--ink); }
+  /* Payment + totals */
+  .lower { display: grid; grid-template-columns: 1fr 78mm; gap: 12mm; margin-top: 9mm; }
+  .pay h3, .terms h3 { font-size: 9.6pt; color: var(--mid); font-weight: 700; margin-bottom: 2.5mm; }
+  .pay dl { display: grid; grid-template-columns: 26mm 4mm 1fr; row-gap: 1.6mm; font-size: 9pt; }
+  .pay dt { color: var(--muted); }
+  .pay dd b { letter-spacing: .4px; }
+  .sums div { display: grid; grid-template-columns: 1fr 5mm auto; padding: 1.4mm 2mm; font-size: 9.2pt; font-variant-numeric: tabular-nums; }
+  .sums div span:first-child { font-weight: 600; }
+  .sums div span:last-child { text-align: right; font-weight: 600; }
+  .grand { display: flex; margin-top: 4mm; border-radius: 8mm; overflow: hidden; font-weight: 700; color: #fff; }
+  .grand span:first-child { flex: 1; background: var(--light); color: var(--deep); padding: 3mm 5mm; font-size: 10pt; }
+  .grand span:last-child { background: linear-gradient(100deg, var(--mid), var(--deep)); padding: 3mm 6mm; font-size: 11.5pt; border-radius: 8mm 0 0 8mm; margin-left: -6mm; white-space: nowrap; }
+  .words { text-align: right; color: var(--muted); font-size: 8.4pt; font-style: italic; margin-top: 2mm; }
+
+  .sign { display: flex; justify-content: flex-end; margin-top: 18mm; }
+  .sign div { width: 62mm; text-align: center; }
+  .sign .line { border-top: 1.5px solid var(--light); padding-top: 2mm; font-weight: 700; font-size: 10.5pt; }
+  .sign small { display: block; color: var(--muted); font-size: 8.2pt; font-weight: 400; }
+
+  /* Thank-you badge, bottom-left, off the edge */
+  .thanks { position: absolute; left: 0; bottom: 14mm; background: var(--pale); color: var(--deep); font-size: 15pt; font-weight: 700; font-style: italic; padding: 5mm 14mm 5mm 18mm; border-radius: 0 13mm 13mm 0; }
+  .contact { position: absolute; right: 18mm; bottom: 17mm; text-align: right; font-size: 8.6pt; color: var(--muted); line-height: 1.6; }
 </style>
 </head>
 <body>
 <div class="page">
-  <header>
-    <div class="from">
-      <h1>Dickson Rutha</h1>
-      <div class="role">Software Engineer · Web &amp; Systems Development</div>
-      <div class="contact">+255 672 944 649<br>dixonruthaa@gmail.com<br>Tanzania</div>
-    </div>
-    <div class="title">
-      <h2>INVOICE</h2>
+  <div class="banner">
+    <div class="back"></div>
+    <div class="front">
+      <h1>INVOICE</h1>
       <div class="meta">
-        <span>Invoice no.</span><span>INV-2026-001</span>
-        <span>Date</span><span>1 November 2026</span>
-        <span>Due date</span><span>15 November 2026</span>
-        <span>Currency</span><span>TZS</span>
+        Invoice no: <b>INV-2026-001</b><br>
+        Invoice date: <b>1 Nov 2026</b><br>
+        Due date: <b>15 Nov 2026</b>
       </div>
     </div>
-  </header>
+  </div>
 
-  <div class="parties">
+  <div class="brand">
+    <div class="name"><span>Dickson</span><b>Rutha</b></div>
+    <div class="tag">Software Engineer · Websites &amp; Systems</div>
+  </div>
+
+  <div class="to">
     <div>
-      <div class="label">Bill to</div>
-      <p style="font-size:12pt;font-weight:700">Asha</p>
+      <div class="lbl">Invoice to:</div>
+      <div class="who">Asha</div>
+    </div>
+    <div class="proj"><b>Website system development</b>Design, build and launch with online payments</div>
+  </div>
+
+  <div class="items">
+    <div class="hrow"><div>Item description</div><div class="c">Qty</div><div class="r">Unit price</div><div class="r">Total</div></div>
+    <div class="irow"><div><div class="item">Website design &amp; development</div><div class="desc">Design and build of the website system, including page layouts, admin features, testing and launch.</div></div><div class="c">1</div><div class="r">700,000</div><div class="r">700,000</div></div>
+    <div class="irow"><div><div class="item">Domain &amp; hosting</div><div class="desc">Domain name registration and web hosting setup.</div></div><div class="c">1</div><div class="r">200,000</div><div class="r">200,000</div></div>
+    <div class="irow"><div><div class="item">Snippe account setup</div><div class="desc">Setting up the Snippe account and connecting it to the website for online payments.</div></div><div class="c">1</div><div class="r">100,000</div><div class="r">100,000</div></div>
+  </div>
+
+  <div class="lower">
+    <div class="pay">
+      <h3>Payment info</h3>
+      <dl>
+        <dt>Bank</dt><dd>:</dd><dd>CRDB Bank</dd>
+        <dt>Account name</dt><dd>:</dd><dd>Dickson Rutha</dd>
+        <dt>Account no.</dt><dd>:</dd><dd><b>10058855877</b></dd>
+      </dl>
     </div>
     <div>
-      <div class="label">Project</div>
-      <div class="project"><b>Website system development</b><span>Design, development and launch of a website system with online payments.</span></div>
+      <div class="sums">
+        <div><span>Sub total</span><span>:</span><span>TZS 1,000,000</span></div>
+      </div>
+      <div class="grand"><span>Grand total</span><span>TZS 1,000,000</span></div>
+      <p class="words">Tanzanian Shillings One Million only</p>
     </div>
   </div>
 
-  <table>
-    <thead>
-      <tr><th>#</th><th>Description</th><th class="num">Amount (TZS)</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="idx">1</td>
-        <td><div class="item">Website design &amp; development</div><div class="desc">Design and build of the website system, including page layouts, admin features, testing and launch.</div></td>
-        <td class="num">700,000</td>
-      </tr>
-      <tr>
-        <td class="idx">2</td>
-        <td><div class="item">Domain &amp; hosting</div><div class="desc">Domain name registration and web hosting setup.</div></td>
-        <td class="num">200,000</td>
-      </tr>
-      <tr>
-        <td class="idx">3</td>
-        <td><div class="item">Snippe account setup</div><div class="desc">Setting up the Snippe account and connecting it to the website for online payments.</div></td>
-        <td class="num">100,000</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="totals">
-    <div><span>Subtotal</span><span>1,000,000</span></div>
-    <div class="grand"><span>Total due</span><span>TZS 1,000,000</span></div>
-  </div>
-  <p class="words">Tanzanian Shillings One Million only</p>
-
-  <div class="bottom">
-    <div class="box">
-      <div class="label">Payment details</div>
-      <p>Bank: <b>CRDB Bank</b><br>Account name: <b>Dickson Rutha</b><br>Account no.: <b style="font-size:11pt;letter-spacing:.5px">10058855877</b></p>
-    </div>
-    <div class="box">
-      <div class="label">Notes</div>
-      <ul>
-        <li>Please pay by the due date and use the invoice number as the payment reference.</li>
-        <li>Send proof of payment to dixonruthaa@gmail.com or WhatsApp +255 672 944 649.</li>
-      </ul>
-    </div>
+  <div class="sign">
+    <div><div class="line">Dickson Rutha<small>Software Engineer</small></div></div>
   </div>
 
-  <footer>
-    <span>Thank you for your business.</span>
-    <span><b>Dickson Rutha</b> · +255 672 944 649</span>
-  </footer>
+  <div class="thanks">Thank you for your business!</div>
+  <div class="contact">+255 672 944 649<br>dixonruthaa@gmail.com</div>
 </div>
 </body>
 </html>
