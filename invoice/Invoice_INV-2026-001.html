@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Invoice INV-2026-001</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root { --ink: #1a2632; --muted: #5a6876; --line: #dfe5eb; --accent: #2a6b8c; --soft: #eef4f8; --todo: #b45309; --todo-bg: #fdf3e7; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Inter", "DejaVu Sans", sans-serif; color: var(--ink); font-size: 9.6pt; line-height: 1.5; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 210mm; height: 297mm; padding: 16mm 16mm 14mm; display: flex; flex-direction: column; }
+  .todo { color: var(--todo); background: var(--todo-bg); padding: 0 1.5mm; border-radius: 3px; font-weight: 600; }
+
+  header { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 7mm; border-bottom: 2.5px solid var(--accent); }
+  .from h1 { font-size: 19pt; font-weight: 800; letter-spacing: -.3px; }
+  .from .role { color: var(--accent); font-weight: 600; margin-top: .5mm; }
+  .from .contact { color: var(--muted); margin-top: 2.5mm; font-size: 9pt; line-height: 1.6; }
+  .title { text-align: right; }
+  .title h2 { font-size: 26pt; font-weight: 800; letter-spacing: 2px; color: var(--accent); }
+  .meta { margin-top: 3mm; display: grid; grid-template-columns: auto auto; gap: 1mm 5mm; justify-content: end; font-size: 9pt; }
+  .meta span:nth-child(odd) { color: var(--muted); text-align: right; }
+  .meta span:nth-child(even) { font-weight: 600; text-align: right; }
+
+  .parties { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; margin-top: 8mm; }
+  .label { font-size: 7.8pt; text-transform: uppercase; letter-spacing: 1.4px; color: var(--accent); font-weight: 700; margin-bottom: 2mm; }
+  .parties p { line-height: 1.6; }
+  .project { background: var(--soft); border-radius: 6px; padding: 4mm 5mm; }
+  .project b { display: block; font-size: 10.5pt; }
+  .project span { color: var(--muted); }
+
+  table { width: 100%; border-collapse: collapse; margin-top: 9mm; }
+  thead th { text-align: left; font-size: 7.8pt; text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); font-weight: 700; padding: 0 3mm 2.5mm; border-bottom: 1.5px solid var(--ink); }
+  thead th.num, td.num { text-align: right; }
+  td { padding: 4.5mm 3mm; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td .item { font-weight: 700; font-size: 10pt; }
+  td .desc { color: var(--muted); font-size: 8.8pt; margin-top: .8mm; max-width: 95mm; }
+  td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td.idx { color: var(--muted); width: 8mm; }
+
+  .totals { margin-top: 5mm; margin-left: auto; width: 82mm; }
+  .totals div { display: flex; justify-content: space-between; padding: 2mm 3mm; font-variant-numeric: tabular-nums; }
+  .totals div span:first-child { color: var(--muted); }
+  .totals .grand { background: var(--accent); color: #fff; border-radius: 6px; padding: 3.5mm 4mm; margin-top: 2mm; font-size: 12pt; font-weight: 800; }
+  .totals .grand span:first-child { color: #fff; font-weight: 600; font-size: 10pt; align-self: center; }
+  .words { text-align: right; color: var(--muted); font-size: 8.6pt; margin-top: 2mm; font-style: italic; }
+
+  .bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; margin-top: auto; padding-top: 8mm; }
+  .box { border: 1px solid var(--line); border-radius: 6px; padding: 4mm 5mm; }
+  .box p { line-height: 1.65; }
+  .box ul { list-style: none; }
+  .box li { margin-bottom: 1mm; padding-left: 3.5mm; position: relative; }
+  .box li::before { content: ""; position: absolute; left: 0; top: 2mm; width: 1.4mm; height: 1.4mm; border-radius: 50%; background: var(--accent); }
+  footer { margin-top: 7mm; padding-top: 4mm; border-top: 1px solid var(--line); display: flex; justify-content: space-between; color: var(--muted); font-size: 8.6pt; }
+  footer b { color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="from">
+      <h1>Dickson Rutha</h1>
+      <div class="role">Software Engineer · Web &amp; Systems Development</div>
+      <div class="contact">+255 672 944 649<br>dixonruthaa@gmail.com<br>Tanzania</div>
+    </div>
+    <div class="title">
+      <h2>INVOICE</h2>
+      <div class="meta">
+        <span>Invoice no.</span><span>INV-2026-001</span>
+        <span>Date</span><span>1 November 2026</span>
+        <span>Due date</span><span>15 November 2026</span>
+        <span>Currency</span><span>TZS</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="parties">
+    <div>
+      <div class="label">Bill to</div>
+      <p><span class="todo">Client name</span><br><span class="todo">Company (if any)</span><br><span class="todo">Phone / email</span><br><span class="todo">Address</span></p>
+    </div>
+    <div>
+      <div class="label">Project</div>
+      <div class="project"><b>Website system development</b><span>Design, development and launch of a website system with online payments.</span></div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>#</th><th>Description</th><th class="num">Amount (TZS)</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="idx">1</td>
+        <td><div class="item">Website design &amp; development</div><div class="desc">Design and build of the website system, including page layouts, admin features, testing and launch.</div></td>
+        <td class="num">700,000</td>
+      </tr>
+      <tr>
+        <td class="idx">2</td>
+        <td><div class="item">Domain &amp; hosting</div><div class="desc">Domain name registration and web hosting setup.</div></td>
+        <td class="num">200,000</td>
+      </tr>
+      <tr>
+        <td class="idx">3</td>
+        <td><div class="item">Snippe account setup</div><div class="desc">Setting up the Snippe account and connecting it to the website for online payments.</div></td>
+        <td class="num">100,000</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="totals">
+    <div><span>Subtotal</span><span>1,000,000</span></div>
+    <div class="grand"><span>Total due</span><span>TZS 1,000,000</span></div>
+  </div>
+  <p class="words">Tanzanian Shillings One Million only</p>
+
+  <div class="bottom">
+    <div class="box">
+      <div class="label">Payment details</div>
+      <p>Bank: <span class="todo">Bank name</span><br>Account name: <span class="todo">Account name</span><br>Account no.: <span class="todo">Account number</span><br>Mobile money: <span class="todo">Number &amp; name</span></p>
+    </div>
+    <div class="box">
+      <div class="label">Notes</div>
+      <ul>
+        <li>Please pay by the due date and use the invoice number as the payment reference.</li>
+        <li>Send proof of payment to dixonruthaa@gmail.com or WhatsApp +255 672 944 649.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>Thank you for your business.</span>
+    <span><b>Dickson Rutha</b> · +255 672 944 649</span>
+  </footer>
+</div>
+</body>
+</html>
