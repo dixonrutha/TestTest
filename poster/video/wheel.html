@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Scroll wheel promo</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; }
+  body { font-family: "Inter", sans-serif; background: #dfe4e9; }
+  .disp { font-family: "Inter Display", "Inter", sans-serif; }
+  .stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; }
+  body.green, body.green .stage { background: #00ff00; }
+  body.green .bg, body.green .mouse, body.green .label, body.green .cta, body.green .shadow { display: none; }
+
+  /* bright room + wooden desk, softly out of focus */
+  .bg { position: absolute; inset: -60px; filter: blur(22px); }
+  .wall { position: absolute; inset: 0 0 38% 0; background: linear-gradient(180deg, #eef1f4 0%, #e1e6eb 60%, #cfd6dd 100%); }
+  .panel1 { position: absolute; left: 120px; top: 0; width: 18px; height: 62%; background: rgba(255,255,255,.7); }
+  .panel2 { position: absolute; left: 560px; top: 0; width: 14px; height: 62%; background: rgba(160,170,182,.35); }
+  .panel3 { position: absolute; right: 120px; top: 0; width: 16px; height: 62%; background: rgba(255,255,255,.6); }
+  .shelf { position: absolute; left: -40px; top: 46%; width: 520px; height: 220px; background: #a7b1bd; opacity: .45; transform: skewY(-14deg); }
+  .bed { position: absolute; left: 0; right: 0; top: 54%; height: 120px; background: #9aa3ae; opacity: .35; }
+  .desk { position: absolute; inset: 62% 0 0 0; background: linear-gradient(180deg, #a5643a 0%, #8a4f2c 45%, #6e3d22 100%); }
+  .grain { position: absolute; inset: 62% 0 0 0; background: repeating-linear-gradient(176deg, rgba(255,255,255,.05) 0 18px, rgba(0,0,0,.05) 18px 40px); }
+
+  /* mouse */
+  .shadow { position: absolute; left: 260px; top: 1540px; width: 560px; height: 90px; border-radius: 50%; background: rgba(0,0,0,.35); filter: blur(20px); }
+  .mouse { position: absolute; left: 300px; top: 1170px; width: 480px; height: 420px; }
+  .m-body { position: absolute; inset: 0; border-radius: 48% 52% 40% 40% / 62% 62% 38% 38%; background: radial-gradient(ellipse at 40% 25%, #3a3d42 0%, #17181b 45%, #0b0c0d 100%); box-shadow: inset -20px -30px 60px rgba(0,0,0,.6), inset 14px 18px 40px rgba(255,255,255,.06); }
+  .m-split { position: absolute; left: 50%; top: 4%; width: 3px; height: 40%; background: rgba(0,0,0,.7); transform: translateX(-50%); }
+  .m-wheel { position: absolute; left: 50%; top: 9%; width: 44px; height: 96px; transform: translateX(-50%); border-radius: 22px; background: #1f2125; overflow: hidden; box-shadow: inset 0 0 0 3px #0a0a0b; }
+  .m-ridges { position: absolute; left: 6px; right: 6px; top: -40px; height: 400px; background: repeating-linear-gradient(180deg, #4a4e55 0 6px, #24262a 6px 14px); }
+  .m-led { position: absolute; left: 50%; top: 36%; width: 34px; height: 6px; border-radius: 3px; background: #38bdd6; transform: translateX(-50%); box-shadow: 0 0 18px #38bdd6; }
+
+  /* tiles */
+  .tile { position: absolute; left: 0; top: 0; width: 160px; height: 160px; border-radius: 40px; display: grid; place-items: center; box-shadow: 0 18px 30px rgba(0,0,0,.28), inset 0 2px 0 rgba(255,255,255,.25); }
+  .tile svg { width: 74px; height: 74px; stroke: #fff; fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* changing label */
+  .label { position: absolute; left: 80px; right: 80px; top: 420px; text-align: center; color: #13212e; }
+  .label .k { font-size: 36px; font-weight: 600; color: #4f5d6b; }
+  .label .wrap { position: relative; height: 150px; margin-top: 10px; overflow: hidden; }
+  .label .w { position: absolute; left: 0; right: 0; top: 0; font-size: 116px; font-weight: 800; letter-spacing: -4px; line-height: 1.15; white-space: nowrap; }
+
+  /* CTA */
+  .cta { position: absolute; left: 70px; right: 70px; top: 210px; background: #0e2f45; color: #fff; border-radius: 48px; padding: 56px 56px 50px; box-shadow: 0 30px 70px rgba(14,47,69,.35); }
+  .cta h2 { font-size: 104px; font-weight: 800; letter-spacing: -4px; line-height: 1; }
+  .cta h2 em { font-style: normal; color: #5fd3e8; }
+  .cta p { font-size: 32px; color: #a9c2d3; margin-top: 18px; }
+  .cta .call { margin-top: 40px; background: #fff; color: #0e2f45; border-radius: 28px; padding: 28px 36px; }
+  .cta .call small { display: block; font-size: 26px; color: #4d6b80; font-weight: 600; }
+  .cta .call b { font-size: 78px; font-weight: 800; letter-spacing: -2px; }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <div class="bg"><div class="wall"></div><div class="panel1"></div><div class="panel2"></div><div class="panel3"></div><div class="shelf"></div><div class="bed"></div><div class="desk"></div><div class="grain"></div></div>
+  <div id="tiles"></div>
+  <div class="shadow"></div>
+  <div class="mouse"><div class="m-body"></div><div class="m-split"></div><div class="m-wheel"><div class="m-ridges" id="ridges"></div></div><div class="m-led"></div></div>
+
+  <div class="label" id="label"><div class="k">What does your business need?</div><div class="wrap" id="wrap"></div></div>
+
+  <div class="cta" id="cta">
+    <h2 class="disp">Let's build <em>yours.</em></h2>
+    <p>Websites, systems and apps for your business.</p>
+    <div class="call"><small>Call or WhatsApp</small><b class="disp">+255 672 944 649</b></div>
+  </div>
+</div>
+
+<script>
+  if (location.hash === '#green') document.body.classList.add('green');
+  var I = {
+    web: '<rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18"/><path d="M6.5 6.5h.01M9 6.5h.01"/>',
+    sys: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 17.5h7M17.5 14v7"/>',
+    app: '<rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M11 18.5h2"/>',
+    pay: '<rect x="2.5" y="6" width="19" height="13" rx="2.5"/><path d="M2.5 10.5h19"/><path d="M6.5 15h4"/>',
+    wa: '<path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5"/>',
+    sms: '<path d="M4 5h16v10H8l-4 4z"/><path d="M8 9h8M8 12h5"/>',
+    dash: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+    book: '<rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M9 15l2 2 4-4"/>',
+    iot: '<circle cx="12" cy="12" r="2.5"/><path d="M7.8 7.8a6 6 0 0 0 0 8.4M16.2 7.8a6 6 0 0 1 0 8.4M5 5a10 10 0 0 0 0 14M19 5a10 10 0 0 1 0 14"/>'
+  };
+  var items = [
+    ['Website', 'web', '#2563eb', '#1e40af'],
+    ['Business system', 'sys', '#0d9488', '#115e59'],
+    ['Mobile app', 'app', '#7c3aed', '#5b21b6'],
+    ['Online payments', 'pay', '#16a34a', '#166534'],
+    ['WhatsApp bot', 'wa', '#22c55e', '#15803d'],
+    ['SMS alerts', 'sms', '#f97316', '#c2410c'],
+    ['Dashboard', 'dash', '#4f46e5', '#3730a3'],
+    ['Booking system', 'book', '#db2777', '#9d174d'],
+    ['IoT & devices', 'iot', '#0891b2', '#155e75']
+  ];
+  var N = items.length, STEP = 25, CX = 540, CY = 1330, R = 560;
+  var tilesEl = document.getElementById('tiles'), pool = [];
+  for (var i = 0; i < 11; i++) { var d = document.createElement('div'); d.className = 'tile'; tilesEl.appendChild(d); pool.push(d); }
+  var wrap = document.getElementById('wrap'), words = [];
+  items.forEach(function (it) { var w = document.createElement('div'); w.className = 'w disp'; w.textContent = it[0]; wrap.appendChild(w); words.push(w); });
+
+  // scroll schedule: [startTime, duration, steps]
+  var sched = [[1.2, .45, 1], [2.4, .45, 1], [3.6, .45, 1], [4.8, .7, 3], [6.3, .45, 1], [7.5, .45, 1], [8.7, .45, 1], [10.0, 1.1, N]];
+  function clamp(x) { return Math.max(0, Math.min(1, x)); }
+  function inout(x) { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
+  function ease(x) { x = clamp(x); return 1 - Math.pow(1 - x, 3); }
+  function back(x) { x = clamp(x); var c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); }
+  function posAt(t) { var p = 0; sched.forEach(function (s) { p += s[2] * inout((t - s[0]) / s[1]); }); return p; }
+
+  window.render = function (t) {
+    var pos = posAt(t), dt = 1 / 30;
+    var vel = Math.abs(posAt(t + dt / 2) - posAt(t - dt / 2)) / dt; // steps per second
+    var blur = Math.min(10, vel * 1.3);
+    var appear = t;
+    var base = Math.floor(pos);
+    for (var j = 0; j < pool.length; j++) {
+      var k = base - 5 + j, it = items[((k % N) + N) % N], el = pool[j];
+      var ang = 270 + (k - pos) * STEP; // degrees, 270 = top
+      var rad = ang * Math.PI / 180;
+      var x = CX + R * Math.cos(rad), y = CY + R * Math.sin(rad);
+      var off = Math.abs(ang - 270);
+      var vis = clamp((86 - off) / 18);
+      var focus = clamp(1 - off / STEP);
+      // pop-in at start, staggered by position
+      var intro = back((appear - 0.15 - (j * 0.05)) / 0.5);
+      var sc = (0.82 + 0.3 * focus) * intro;
+      el.innerHTML = '<svg viewBox="0 0 24 24">' + I[it[1]] + '</svg>';
+      el.style.background = 'linear-gradient(145deg,' + it[2] + ',' + it[3] + ')';
+      el.style.opacity = vis * clamp(intro);
+      el.style.transform = 'translate(' + (x - 80) + 'px,' + (y - 80) + 'px) rotate(' + (ang - 270) * 0.5 + 'deg) scale(' + sc + ')';
+      el.style.filter = blur > .3 ? 'blur(' + blur + 'px)' : 'none';
+      el.style.zIndex = Math.round(focus * 10);
+    }
+    document.getElementById('ridges').style.transform = 'translateY(' + (-((pos * 28) % 14) - 14) + 'px)';
+
+    // label: current item slides in from below
+    var cur = Math.round(pos), frac = pos - Math.floor(pos);
+    words.forEach(function (w, idx) {
+      var rel = idx - (((pos % N) + N) % N);
+      if (rel > N / 2) rel -= N; if (rel < -N / 2) rel += N;
+      w.style.transform = 'translateY(' + (rel * 150) + 'px)';
+      w.style.opacity = clamp(1 - Math.abs(rel) * 1.6);
+      w.style.color = items[idx][3];
+    });
+    var lab = document.getElementById('label');
+    var lo = ease((t - 0.4) / 0.5) * (1 - ease((t - 11.6) / 0.4));
+    lab.style.opacity = lo;
+    lab.style.transform = 'translateY(' + (30 * (1 - ease((t - 0.4) / 0.5))) + 'px)';
+
+    var c = document.getElementById('cta'), co = ease((t - 11.9) / 0.6);
+    c.style.opacity = co;
+    c.style.transform = 'translateY(' + (90 * (1 - co)) + 'px) scale(' + (0.94 + 0.06 * co) + ')';
+  };
+  render(0);
+</script>
+</body>
+</html>
