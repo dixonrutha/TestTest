@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dickson Rutha Poster</title>
+<style>
+  :root {
+    --navy: #0f2a40;
+    --navy-2: #173a56;
+    --blue: #2f7fa3;
+    --sky: #7cc3dc;
+    --pale: #e8f3f8;
+    --paper: #f7fafc;
+    --ink: #13212e;
+    --muted: #5b6b7a;
+    --ok: #3fa877;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1350px; }
+  body { font-family: "Inter", sans-serif; color: var(--ink); background: var(--paper); }
+  .poster { position: relative; width: 1080px; height: 1350px; overflow: hidden; background: var(--paper); }
+
+  /* Top navy panel with soft circle */
+  .top { position: absolute; inset: 0 0 auto 0; height: 760px; background: var(--navy); overflow: hidden; }
+  .top::before { content: ""; position: absolute; width: 760px; height: 760px; border-radius: 50%; right: -260px; top: -220px; background: var(--navy-2); }
+  .top::after { content: ""; position: absolute; width: 300px; height: 300px; border-radius: 50%; right: 120px; top: 380px; background: rgba(124,195,220,.10); }
+
+  .head { position: absolute; left: 80px; top: 72px; right: 80px; display: flex; justify-content: space-between; align-items: center; color: #fff; z-index: 2; }
+  .mark { font-family: "Inter Display", "Inter", sans-serif; font-size: 34px; letter-spacing: -.5px; }
+  .mark span { font-weight: 300; }
+  .mark b { font-weight: 800; color: var(--sky); margin-left: 8px; }
+  .role { font-size: 19px; color: #b9cfdd; letter-spacing: .4px; }
+
+  .hero { position: absolute; left: 80px; top: 196px; width: 520px; z-index: 2; color: #fff; }
+  .kicker { display: inline-block; font-size: 19px; font-weight: 600; color: var(--navy); background: var(--sky); padding: 8px 18px; border-radius: 999px; }
+  .hero h1 { font-family: "Inter Display", "Inter", sans-serif; font-weight: 800; font-size: 76px; line-height: 1.02; letter-spacing: -2.4px; margin-top: 28px; }
+  .hero h1 em { font-style: normal; color: var(--sky); }
+  .hero p { font-size: 23px; line-height: 1.5; color: #c9dae6; margin-top: 26px; }
+
+  /* Illustration: browser + payment + chat */
+  .art { position: absolute; right: 64px; top: 190px; width: 400px; height: 470px; z-index: 2; }
+  .browser { position: absolute; left: 0; top: 0; width: 380px; height: 300px; background: #fff; border-radius: 18px; box-shadow: 0 30px 60px rgba(0,0,0,.30); overflow: hidden; }
+  .bar { height: 40px; background: #eef4f8; display: flex; align-items: center; gap: 8px; padding: 0 16px; }
+  .bar i { width: 11px; height: 11px; border-radius: 50%; background: #c8d6e0; display: block; }
+  .bar .url { margin-left: 10px; flex: 1; height: 20px; border-radius: 10px; background: #fff; }
+  .page { padding: 20px; }
+  .ph { height: 92px; border-radius: 12px; background: linear-gradient(120deg, var(--blue), var(--navy-2)); }
+  .lines { margin-top: 16px; display: grid; gap: 9px; }
+  .lines span { height: 11px; border-radius: 6px; background: #e4ecf2; display: block; }
+  .lines span:nth-child(1) { width: 80%; } .lines span:nth-child(2) { width: 62%; } .lines span:nth-child(3) { width: 72%; }
+  .tiles { margin-top: 16px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .tiles span { height: 46px; border-radius: 10px; background: var(--pale); display: block; }
+
+  .pay { position: absolute; left: -60px; top: 248px; width: 310px; background: #fff; border-radius: 16px; padding: 16px 18px; box-shadow: 0 24px 48px rgba(0,0,0,.28); display: flex; gap: 14px; align-items: center; }
+  .tick { width: 44px; height: 44px; border-radius: 50%; background: var(--ok); display: grid; place-items: center; flex: none; }
+  .pay b { display: block; font-size: 17px; }
+  .pay small { color: var(--muted); font-size: 14px; }
+
+  .chat { position: absolute; right: 0; top: 318px; width: 250px; display: grid; gap: 10px; }
+  .bub { padding: 12px 16px; border-radius: 16px; font-size: 16px; line-height: 1.35; box-shadow: 0 16px 32px rgba(0,0,0,.22); }
+  .bub.in { background: #fff; border-bottom-left-radius: 4px; width: 88%; }
+  .bub.out { background: var(--sky); color: var(--navy); justify-self: end; border-bottom-right-radius: 4px; width: 84%; font-weight: 500; }
+
+  /* Services */
+  .services { position: absolute; left: 64px; right: 64px; top: 668px; background: #fff; border-radius: 28px; box-shadow: 0 24px 60px rgba(15,42,64,.14); padding: 38px 48px 30px; z-index: 3; }
+  .services h2 { font-size: 18px; font-weight: 700; letter-spacing: 2.4px; text-transform: uppercase; color: var(--blue); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 30px; margin-top: 24px; }
+  .svc { display: grid; gap: 10px; align-content: start; }
+  .ico { width: 58px; height: 58px; border-radius: 16px; background: var(--pale); display: grid; place-items: center; }
+  .ico svg { width: 30px; height: 30px; stroke: var(--blue); fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+  .svc b { font-family: "Inter Display", "Inter", sans-serif; font-size: 23px; font-weight: 700; letter-spacing: -.3px; }
+  .svc span { font-size: 16.5px; color: var(--muted); line-height: 1.45; }
+
+  /* Bottom: trust + contact */
+  .trust { margin-top: 28px; padding-top: 20px; border-top: 1px solid #e3ebf1; font-size: 16.5px; color: var(--muted); }
+  .trust b { color: var(--ink); font-weight: 600; }
+  .contact { position: absolute; left: 0; right: 0; bottom: 0; height: 150px; background: var(--navy); display: flex; align-items: center; justify-content: space-between; padding: 0 80px; color: #fff; }
+  .call small { display: block; font-size: 17px; color: #b9cfdd; letter-spacing: .4px; }
+  .call b { font-family: "Inter Display", "Inter", sans-serif; font-size: 46px; font-weight: 800; letter-spacing: -.5px; }
+  .mail { text-align: right; }
+  .mail small { display: block; font-size: 17px; color: #b9cfdd; }
+  .mail span { font-size: 24px; font-weight: 600; color: var(--sky); }
+</style>
+</head>
+<body>
+<div class="poster">
+  <div class="top"></div>
+
+  <div class="head">
+    <div class="mark"><span>Dickson</span><b>Rutha</b></div>
+    <div class="role">Software Engineer · Tanzania</div>
+  </div>
+
+  <div class="hero">
+    <span class="kicker">Websites · Systems · Apps</span>
+    <h1>Let's build your <em>website</em> or <em>system.</em></h1>
+    <p>Clean websites and business systems that take orders, accept payments and keep your customers informed.</p>
+  </div>
+
+  <div class="art" aria-hidden="true">
+    <div class="browser">
+      <div class="bar"><i></i><i></i><i></i><span class="url"></span></div>
+      <div class="page">
+        <div class="ph"></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="tiles"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="pay">
+      <span class="tick"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+      <div><b>Payment received</b><small>Mobile money · TZS 50,000</small></div>
+    </div>
+    <div class="chat">
+      <div class="bub in">Habari, I'd like to place an order.</div>
+      <div class="bub out">Karibu! Your order is confirmed.</div>
+    </div>
+  </div>
+
+  <div class="services">
+    <h2>What I can build for you</h2>
+    <div class="grid">
+      <div class="svc">
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18"/><path d="M7 6.5h.01M10 6.5h.01"/></svg></div>
+        <b>Websites</b><span>Modern company websites that look great on any phone.</span>
+      </div>
+      <div class="svc">
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 17.5h7M17.5 14v7"/></svg></div>
+        <b>Business systems</b><span>Sales, stock, bookings and reports in one place.</span>
+      </div>
+      <div class="svc">
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></div>
+        <b>Mobile apps</b><span>Android and Flutter apps for your team and customers.</span>
+      </div>
+      <div class="svc">
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="13" rx="2.5"/><path d="M2.5 10.5h19"/><path d="M6.5 15h4"/></svg></div>
+        <b>Online payments</b><span>Mobile money and bank payments built into your site.</span>
+      </div>
+      <div class="svc">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z"/><path d="M8.5 10.5h7M8.5 13.5h4.5"/></svg></div>
+        <b>WhatsApp bots</b><span>Take orders and answer customers automatically.</span>
+      </div>
+      <div class="svc">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 5h16v10H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></div>
+        <b>SMS &amp; alerts</b><span>Receipts, reminders and updates sent by SMS.</span>
+      </div>
+    </div>
+    <p class="trust">Trusted by businesses like <b>Ecowater International</b>, <b>Gasify Energy</b>, <b>DataFarm</b>, <b>Safari Nodes</b> and <b>OneKite</b>.</p>
+  </div>
+
+  <div class="contact">
+    <div class="call"><small>Call or WhatsApp</small><b>+255 672 944 649</b></div>
+    <div class="mail"><small>Email</small><span>dixonruthaa@gmail.com</span></div>
+  </div>
+</div>
+</body>
+</html>
