@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Invoice INV-2026-002</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --ink: #1b2733;
+    --muted: #64717e;
+    --line: #d9e6ee;
+    --deep: #1f4f6e;
+    --mid: #2f7fa3;
+    --light: #6fb6d3;
+    --pale: #e3f1f7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Inter", "DejaVu Sans", sans-serif; color: var(--ink); font-size: 9.6pt; line-height: 1.5; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { position: relative; width: 210mm; height: 297mm; padding: 20mm 18mm 0; overflow: hidden; background: #fff; }
+
+  /* Banner: two overlapping rounded shapes running off the right edge */
+  .banner { position: absolute; top: 16mm; right: 0; width: 108mm; height: 34mm; }
+  .banner .back { position: absolute; inset: 0 0 0 0; background: var(--light); border-radius: 17mm 0 0 17mm; }
+  .banner .front { position: absolute; top: 0; bottom: 0; left: 14mm; right: 0; background: linear-gradient(100deg, var(--mid), var(--deep)); border-radius: 17mm 0 0 17mm; color: #fff; padding: 5mm 18mm 0 12mm; text-align: right; }
+  .banner h1 { font-size: 24pt; font-weight: 800; letter-spacing: 3px; line-height: 1; }
+  .banner .meta { margin-top: 3.6mm; font-size: 8.4pt; line-height: 1.55; opacity: .95; }
+  .banner .meta b { font-weight: 600; }
+
+  /* Wordmark */
+  .brand { height: 34mm; display: flex; flex-direction: column; justify-content: center; margin-top: -4mm; }
+  .brand .name { font-size: 22pt; letter-spacing: -.4px; line-height: 1; }
+  .brand .name span { font-weight: 300; }
+  .brand .name b { font-weight: 800; color: var(--deep); margin-left: 1.6mm; }
+  .brand .tag { font-size: 8.4pt; color: var(--muted); margin-top: 2mm; letter-spacing: .3px; }
+
+  .to { margin-top: 8mm; display: flex; justify-content: space-between; align-items: flex-end; }
+  .to .lbl { font-size: 8.6pt; color: var(--muted); }
+  .to .who { font-size: 15pt; font-weight: 800; margin-top: .5mm; }
+  .to .proj { text-align: right; font-size: 9pt; color: var(--muted); }
+  .to .proj b { display: block; color: var(--ink); font-size: 10pt; }
+
+  /* Items: one grid template shared by header and rows */
+  .items { margin-top: 8mm; }
+  .hrow, .irow { display: grid; grid-template-columns: 1fr 16mm 28mm 30mm; column-gap: 3mm; padding: 0 6mm; }
+  .hrow { background: linear-gradient(100deg, var(--deep), var(--mid)); color: #fff; border-radius: 6mm; padding-block: 2.6mm; font-size: 8.6pt; font-weight: 600; }
+  .irow { padding-block: 5mm; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  .c { text-align: center; } .r { text-align: right; }
+  .irow > div:last-child { font-weight: 600; }
+  .irow .item { font-weight: 700; font-size: 9.8pt; }
+  .irow .desc { color: var(--muted); font-size: 8.6pt; margin-top: .8mm; max-width: 82mm; line-height: 1.45; }
+
+  /* Payment + totals */
+  .lower { display: grid; grid-template-columns: 1fr 78mm; gap: 12mm; margin-top: 9mm; }
+  .pay h3, .terms h3 { font-size: 9.6pt; color: var(--mid); font-weight: 700; margin-bottom: 2.5mm; }
+  .pay dl { display: grid; grid-template-columns: 26mm 4mm 1fr; row-gap: 1.6mm; font-size: 9pt; }
+  .pay dt { color: var(--muted); }
+  .pay dd b { letter-spacing: .4px; }
+  .sums div { display: grid; grid-template-columns: 1fr 5mm auto; padding: 1.4mm 2mm; font-size: 9.2pt; font-variant-numeric: tabular-nums; }
+  .sums div span:first-child { font-weight: 600; }
+  .sums div span:last-child { text-align: right; font-weight: 600; }
+  .grand { display: flex; margin-top: 4mm; border-radius: 8mm; overflow: hidden; font-weight: 700; color: #fff; }
+  .grand span:first-child { flex: 1; background: var(--light); color: var(--deep); padding: 3mm 5mm; font-size: 10pt; }
+  .grand span:last-child { background: linear-gradient(100deg, var(--mid), var(--deep)); padding: 3mm 6mm; font-size: 11.5pt; border-radius: 8mm 0 0 8mm; margin-left: -6mm; white-space: nowrap; }
+  .words { text-align: right; color: var(--muted); font-size: 8.4pt; font-style: italic; margin-top: 2mm; }
+
+  .sign { display: flex; justify-content: flex-end; margin-top: 18mm; }
+  .sign div { width: 62mm; text-align: center; }
+  .sign .line { border-top: 1.5px solid var(--light); padding-top: 2mm; font-weight: 700; font-size: 10.5pt; }
+  .sign small { display: block; color: var(--muted); font-size: 8.2pt; font-weight: 400; }
+
+  /* Thank-you badge, bottom-left, off the edge */
+  .thanks { position: absolute; left: 0; bottom: 14mm; background: var(--pale); color: var(--deep); font-size: 15pt; font-weight: 700; font-style: italic; padding: 5mm 14mm 5mm 18mm; border-radius: 0 13mm 13mm 0; }
+  .contact { position: absolute; right: 18mm; bottom: 17mm; text-align: right; font-size: 8.6pt; color: var(--muted); line-height: 1.6; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="banner">
+    <div class="back"></div>
+    <div class="front">
+      <h1>INVOICE</h1>
+      <div class="meta">
+        Invoice no: <b>INV-2026-002</b><br>
+        Invoice date: <b>7 Nov 2026</b>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand">
+    <div class="name"><span>Dickson</span><b>Rutha</b></div>
+    <div class="tag">Software Engineer · Websites &amp; Systems</div>
+  </div>
+
+  <div class="to">
+    <div>
+      <div class="lbl">Invoice to:</div>
+      <div class="who">Afrisum</div>
+    </div>
+    <div class="proj"><b>Domain registration</b>afrisum.co.tz and afrisum.com</div>
+  </div>
+
+  <div class="items">
+    <div class="hrow"><div>Item description</div><div class="c">Qty</div><div class="r">Unit price</div><div class="r">Total</div></div>
+    <div class="irow"><div><div class="item">afrisum.co.tz</div><div class="desc">Domain registration, 1 year</div></div><div class="c">1</div><div class="r">40,000</div><div class="r">40,000</div></div>
+    <div class="irow"><div><div class="item">afrisum.com</div><div class="desc">Domain registration, 1 year</div></div><div class="c">1</div><div class="r">60,000</div><div class="r">60,000</div></div>
+  </div>
+
+  <div class="lower">
+    <div class="pay">
+      <h3>Payment info</h3>
+      <dl>
+        <dt>Bank</dt><dd>:</dd><dd>CRDB Bank</dd>
+        <dt>Account name</dt><dd>:</dd><dd>Dickson Rutha</dd>
+        <dt>Account no.</dt><dd>:</dd><dd><b>10058855877</b></dd>
+      </dl>
+    </div>
+    <div>
+      <div class="sums">
+        <div><span>Sub total</span><span>:</span><span>TZS 100,000</span></div>
+      </div>
+      <div class="grand"><span>Grand total</span><span>TZS 100,000</span></div>
+      <p class="words">Tanzanian Shillings One Hundred Thousand only</p>
+    </div>
+  </div>
+
+  <div class="sign">
+    <div><div class="line">Dickson Rutha<small>Software Engineer</small></div></div>
+  </div>
+
+  <div class="thanks">Thank you for your business!</div>
+  <div class="contact">+255 672 944 649<br>dixonruthaa@gmail.com</div>
+</div>
+</body>
+</html>
